@@ -1,16 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Unlocking the Critic</title>
-<meta name="description" content="Reward-Free Policy Optimization: freeze PPO's critic, calibrate it once, and use it as the reward, including for rollouts cut off at the generation cap.">
-<meta property="og:title" content="Unlocking the Critic: Reward-Free Policy Optimization for LLM Post-Training">
-<meta property="og:description" content="Reward-Free Policy Optimization: freeze PPO's critic, calibrate it once, and use it as the reward, including for rollouts cut off at the generation cap.">
-<meta property="og:type" content="article">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%233F6DA8%22/%3E%3Crect x=%223%22 y=%227%22 width=%2210%22 height=%222%22 fill=%22%23fff%22/%3E%3C/svg%3E">
-<style>body{margin:0}img{max-width:100%}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
@@ -198,8 +187,6 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 }
 @media (prefers-reduced-motion: reduce) { .bar > div { transition: none; } }
 </style>
-</head>
-<body>
 
 <header class="mast">
   <span>Research note · RL post-training for LLMs</span>
@@ -210,8 +197,7 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
   <div>
     <p class="eyebrow">Reward-Free Policy Optimization</p>
     <h1>Unlocking the <span>Critic</span></h1>
-    <p class="dek">Outcome rewards wait for the last token, so the longer the reasoning, the more RL training pays for waiting. PPO already trains a critic that can judge a rollout before it ends, then throws it away. We freeze it, calibrate it once, and use it as the reward. With half of every batch cut off at a 4,096-token cap, it validates above supervised PPO under the same cap, without verifier labels during RL and on 19% fewer GPU-hours.</p>
-    <p class="byline">Hongyang (Kevin) Li, Xiao Li, Caesar Wu, Said Mammar, Grégoire Danoy, Pascal Bouvry
+    <p class="dek">RL post-training for LLMs increasingly removes the critic, and even where a critic is trained it is discarded once training ends, although it has learned to predict outcomes. RFPO repurposes a single calibrated, frozen, well-pretrained critic as the reward. With half of every batch cut off at a 4,096-token cap, it validates above supervised PPO under the same cap, without verifier labels during RL and on 19% fewer GPU-hours.</p>
       <small>University of Luxembourg · Seafill Open-Source Community · Université Paris-Saclay</small></p>
   </div>
   <div class="hero-fig">
@@ -249,7 +235,7 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 <section class="col" id="c2">
   <p class="label">Contribution <span style="text-transform:none">(ii)</span></p>
   <h2>One frozen critic, three roles</h2>
-  <p>A well-trained critic estimates the probability that a rollout will end correct, from late states and from unfinished prefixes. RFPO takes the critic from an ordinary PPO run, freezes it, and uses that one network as the rollout-level reward, as the GAE baseline, and as a forecaster for rollouts cut off at the cap. No value network is trained and no verifier runs during RL.</p>
+  <p>A well-pretrained critic estimates the posterior probability of eventual success from later trajectory states and unfinished prefixes. RFPO repurposes a single calibrated, frozen critic as the rollout-level reward, as the value baseline for GAE, and as a success forecaster for unfinished prefixes, so the RL loop contains no verifier and trains no value network. Any procedure that yields a critic able to rank trajectories well will do.</p>
 </section>
 
 <figure class="wide">
@@ -370,9 +356,9 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 </figure>
 
 <section class="col">
-  <p>Reasoning traces and agentic episodes keep getting longer, and an outcome reward makes every rollout run to its last token before it can be scored. The value network is the one part of the standard recipe that answers earlier. So far the evidence comes from mathematical reasoning with one 4B model family and traces up to 12,288 tokens; long-horizon and agentic tasks are the next step.</p>
-
+  <p>As reasoning traces lengthen and agentic episodes stretch, waiting for the outcome buys less and less for what it costs, and the value network is the one component of the standard recipe that speaks before the outcome arrives. So far our evidence comes from mathematical reasoning with one 4B model family and traces up to 12,288 tokens; larger models and other tasks are next.</p>
   <p class="pull">The question is not whether a critic is affordable, but how much of what it already knows the current recipe throws away.</p>
+  <p>RFPO is our answer: it keeps that knowledge and turns it into a reward-free, compute-efficient method for LLM post-training.</p>
 </section>
 
 <section class="col">
@@ -568,5 +554,5 @@ const mq = matchMedia("(prefers-color-scheme: dark)");
 mq.addEventListener && mq.addEventListener("change", draw);
 new MutationObserver(draw).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
 </script>
-</body>
-</html>
+
+</body></html>
