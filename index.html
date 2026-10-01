@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hongyang (Kevin) Li</title>
+<meta name="description" content="Research notes on reinforcement learning for LLM post-training.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<style>
+:root {
+  --paper: #F6F7F9; --sheet: #FFFFFF; --ink: #16202D; --muted: #5A6575; --rule: #D8DEE6; --accent: #3F6DA8; --cap: #B06F22;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", Arial, sans-serif;
+  --f-body: "Source Serif 4", Georgia, serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #0F141B; --sheet: #151C25; --ink: #E3E8EF; --muted: #98A3B2; --rule: #2A3442; --accent: #82A9DD; --cap: #DDA35C; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --paper: #0F141B; --sheet: #151C25; --ink: #E3E8EF; --muted: #98A3B2; --rule: #2A3442; --accent: #82A9DD; --cap: #DDA35C; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 1.1rem; line-height: 1.6; padding: 0 1rem 4rem; -webkit-font-smoothing: antialiased; }
+main { max-width: 41rem; margin: 0 auto; padding-top: 4rem; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: 2.6rem; line-height: 1; margin: 0 0 .5rem; }
+.aff { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); margin: 0 0 3rem; }
+.label { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 .8rem; }
+a.post { display: block; text-decoration: none; color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.2rem; }
+a.post:hover, a.post:focus-visible { border-color: var(--accent); outline: none; }
+a.post b { display: block; font-family: var(--f-display); font-size: 1.35rem; font-weight: 700; line-height: 1.2; }
+a.post span { display: block; font-size: 1rem; color: var(--muted); margin-top: .35rem; }
+a.post small { display: block; font-family: var(--f-mono); font-size: .74rem; color: var(--cap); margin-top: .6rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Hongyang (Kevin) Li</h1>
+  <p class="aff">University of Luxembourg · RL post-training for LLMs</p>
+  <p class="label">Research notes</p>
+  <a class="post" href="unlocking-the-critic/">
+    <b>Unlocking the Critic</b>
+    <span>Reward-Free Policy Optimization: freeze PPO's critic, calibrate it once, and use it as the reward, including for rollouts cut off at the generation cap.</span>
+    <small>2026</small>
+  </a>
+</main>
+</body>
+</html>
