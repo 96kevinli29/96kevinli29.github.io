@@ -246,13 +246,13 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 <section class="wide" style="padding-block:0 1rem">
   <div class="ideas">
     <div><b>01 · Unlock the critic</b><h3>The critic is not the problem</h3>
-      <p>The instability that pushed critics out of long chain-of-thought RL comes from the update recipe, not the value network. Fix the recipe and the critic is a trained predictor of success: Pr(success | x, y≤t).</p>
+      <p>Instability in critic-based RL for long chain-of-thought reasoning is largely an optimization artifact. Keeping policy updates small and low in variance restores stable convergence, and the critic becomes what it was trained to be: a predictor of eventual success.</p>
       <a href="#c1">Contributions (i) and (ii) ↓</a></div>
     <div><b>02 · Reward-free</b><h3>No verifier, no labels in the loop</h3>
-      <p>One frozen critic serves as the reward, the GAE baseline and the forecaster. No value network is trained and no verifier is called. Binarized and debiased, it matches supervised PPO.</p>
+      <p>A single calibrated, frozen critic serves as the reward, the GAE baseline and the forecaster. Training needs no completed rollouts, no step-level annotations and no external reward labels, and the binarized critic matches supervised PPO.</p>
       <a href="#c3">Contributions (ii) and (iii) ↓</a></div>
     <div><b>03 · Don't wait for the end</b><h3>Reward a rollout before it finishes</h3>
-      <p>The critic ranks truncated rollouts about as well as finished ones. With half of every batch cut off at 4,096 tokens, RFPO validates above PPO on 19% fewer GPU-hours.</p>
+      <p>The critic scores unfinished rollouts with accuracy comparable to complete ones, so rollouts can be rewarded before they finish. This suits long-horizon reasoning, where outcomes arrive late and generation dominates cost.</p>
       <a href="#c4">Contribution (iv) ↓</a></div>
   </div>
 </section>
@@ -260,14 +260,14 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 <section class="col" id="c1">
   <p class="label">Unlock the critic · contribution <span style="text-transform:none">(i)</span></p>
   <h2>Critic instability is an optimization artifact</h2>
-  <p>Recent reasoning and agentic systems are trained with no value network at all. Two arguments carried that change: the critic is expensive, and critic-based training looked unstable. We find the instability comes from the update recipe, not the value network: it recedes once each policy update is kept small and low in variance. Under this single-update rule, none of the three zero-label runs degenerates over 310 to 378 steps. Response length stays within 13% of its starting value, and policy entropy declines gradually from 0.32 to 0.21–0.22, against 0.25 for supervised PPO.</p>
+  <p>Recent approaches to RL post-training increasingly remove the critic to reduce training instability and memory overhead. We find that this instability is largely an optimization artifact: it comes from the update recipe, not from the value network, and it recedes once each policy update is kept small and low in variance. Under this recipe, critic-based training converges stably, without length collapse or entropy collapse.</p>
 </section>
 
 
 <section class="col" id="c2">
   <p class="label">Unlock the critic, reward-free · contribution <span style="text-transform:none">(ii)</span></p>
   <h2>One frozen critic, three roles</h2>
-  <p>A well-pretrained critic estimates the posterior probability of eventual success from later trajectory states and unfinished prefixes. RFPO repurposes a single calibrated, frozen critic as the rollout-level reward, as the value baseline for GAE, and as a success forecaster for unfinished prefixes, so the RL loop contains no verifier and trains no value network. Its predictions provide outcome-derived, dense, per-prefix learning signals that need neither completed rollouts, step-level annotations, nor external reward labels. Any procedure that yields a critic able to rank trajectories well will do.</p>
+  <p>A well-pretrained critic estimates the posterior probability of eventual success from later trajectory states and unfinished prefixes. Its predictions therefore provide outcome-derived, dense, per-prefix learning signals that need neither completed rollouts, step-level annotations, nor external reward labels. RFPO repurposes a single calibrated, frozen critic as the rollout-level reward, as the value baseline for generalized advantage estimation, and as a success forecaster for unfinished prefixes. The RL loop contains no verifier and trains no value network.</p>
   <p class="pull">If a critic is good enough to be trusted as a baseline, it is also good enough to be the reward.</p>
 </section>
 
@@ -324,7 +324,7 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 <section class="col" id="c3">
   <p class="label">Reward-free, safely · contribution <span style="text-transform:none">(iii)</span></p>
   <h2>Calibration guards against length bias</h2>
-  <p>The critic's raw score carries a length bias, and a continuous reward lets the policy exploit it in either direction. We subtract a length baseline b(ℓ) and binarize at a threshold τ, which closes that channel. Used as a continuous reward, the same critic first climbs above fully supervised PPO, to 29.2% on AIME 2026 pass@1 against 25.0%, and then gives the gain back while response length drifts.</p>
+  <p>The critic's raw score carries a length bias, and a continuous reward lets the policy exploit it in either direction. Binarizing the debiased score closes that channel. Used as a continuous reward, the same critic first climbs above fully supervised PPO, which shows how much it knows, and then gives the gain back as response length drifts. Binarizing trades that ceiling for stable training.</p>
 </section>
 
 <figure class="wide">
@@ -341,7 +341,7 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
   <p class="label">Don't wait for the end · contribution <span style="text-transform:none">(iv)</span></p>
   <h2>Parity at lower cost, built for long horizons</h2>
   <p><strong>Outcome rewards wait for the last token, so the longer the reasoning, the more training pays for waiting.</strong> A critic answers earlier.</p>
-  <p>Binarized, RFPO matches supervised PPO with no verifier labels during RL while cutting compute and memory: at the standard 5,120-token cap a step takes 421 s instead of 582 s, and peak memory falls by 9.4 GB per GPU. Because the critic scores truncated rollouts as accurately as complete ones, training does not have to wait for every trajectory to finish. Under a 4,096-token cap, with about half of every batch unfinished for all 310 steps, RFPO validates above supervised PPO trained under the same cap, on 19% fewer GPU-hours, while PPO has to shorten its answers to fit.</p>
+  <p>Binarized, RFPO matches supervised PPO without a single label in the training loop, while substantially cutting compute and memory overhead. Because rollouts can be rewarded before they finish, training no longer has to pay for waiting on every trajectory to complete. Even when a tight generation cap leaves a large share of every batch unfinished, RFPO keeps pace with supervised PPO trained under the same cap, at a lower cost.</p>
 </section>
 
 
