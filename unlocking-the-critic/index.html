@@ -224,7 +224,7 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
   <div>
     <p class="eyebrow">Reward-Free Policy Optimization</p>
     <h1>Unlocking the <span>Critic</span></h1>
-    <p class="dek">RL post-training for LLMs keeps removing the critic, and even where one is trained it is thrown away when training ends, although it has learned to predict outcomes. <strong>We unlock it.</strong> One calibrated, frozen critic becomes the reward, so the RL loop needs no verifier and no labels. Because it scores a rollout <em>before</em> it ends, training no longer waits for every trajectory to finish.</p>
+    <p class="dek">Recent approaches to RL post-training for large language models increasingly remove the critic to reduce training instability and memory overhead. Even where a critic is trained, it is discarded once training ends, although it has learned to predict outcomes. We revisit this trend and show that a pretrained critic's ability to predict future outcomes can make it <strong>a valuable asset for efficient long-horizon reasoning</strong>.</p>
     <p class="links"><a href="https://arxiv.org/abs/2609.37119">arXiv 2609.37119</a><a href="https://arxiv.org/pdf/2609.37119">PDF</a><a href="https://huggingface.co/papers/2609.37119">Hugging Face</a></p>
   </div>
   <div class="hero-fig">
