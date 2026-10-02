@@ -4,12 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Unlocking the Critic</title>
-<meta name="description" content="Reward-Free Policy Optimization: freeze PPO's critic, calibrate it once, and use it as the reward, including for rollouts cut off at the generation cap.">
+<meta name="description" content="Unlocking the Critic: a frozen, calibrated PPO critic becomes the reward. Reward-free RL post-training that scores rollouts before they finish.">
 <meta property="og:title" content="Unlocking the Critic: Reward-Free Policy Optimization for LLM Post-Training">
-<meta property="og:description" content="Reward-Free Policy Optimization: freeze PPO's critic, calibrate it once, and use it as the reward, including for rollouts cut off at the generation cap.">
+<meta property="og:description" content="Unlocking the Critic: a frozen, calibrated PPO critic becomes the reward. Reward-free RL post-training that scores rollouts before they finish.">
 <meta property="og:type" content="article">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%233F6DA8%22/%3E%3Crect x=%223%22 y=%227%22 width=%2210%22 height=%222%22 fill=%22%23fff%22/%3E%3C/svg%3E">
 <style>body{margin:0}img{max-width:100%}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,9 +60,27 @@ body {
 .wide { max-width: var(--wide); margin-inline: auto; }
 
 /* ---------- masthead ---------- */
-.mast { max-width: var(--wide); margin-inline: auto; display: flex; justify-content: space-between; gap: 1rem;
+.mast { max-width: var(--wide); margin-inline: auto; display: flex; justify-content: flex-start; align-items: center; gap: 1rem;
   padding-block: 1.25rem; border-bottom: 1px solid var(--rule); font-family: var(--f-mono); font-size: .75rem;
   letter-spacing: .06em; text-transform: uppercase; color: var(--muted); flex-wrap: wrap; }
+
+.org { display: flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--ink); text-transform: none; letter-spacing: 0; }
+.org img { width: 36px; height: 36px; border-radius: 8px; flex: none; }
+.org b { display: block; font-family: var(--f-display); font-size: 1.45rem; font-weight: 700; line-height: 1; }
+.org small { display: block; font-family: var(--f-mono); font-size: .7rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: .2rem; }
+.org:hover b, .org:focus-visible b { color: var(--rfpo); }
+.org:focus-visible { outline: 2px solid var(--rfpo); outline-offset: 3px; border-radius: 6px; }
+.links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; }
+.links a { font-family: var(--f-mono); font-size: .78rem; color: var(--ink); text-decoration: none; border: 1px solid var(--rule); background: var(--sheet); border-radius: 4px; padding: .35rem .7rem; }
+.links a:hover, .links a:focus-visible { border-color: var(--rfpo); color: var(--rfpo); outline: none; }
+/* three ideas */
+.ideas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.ideas > div { background: var(--sheet); border: 1px solid var(--rule); border-top: 3px solid var(--rfpo); border-radius: 6px; padding: 1rem 1.1rem; }
+.ideas b { display: block; font-family: var(--f-mono); font-weight: 500; font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cap); margin-bottom: .35rem; }
+.ideas h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; line-height: 1.15; margin: 0 0 .5rem; }
+.ideas p { font-size: 1rem; line-height: 1.5; margin: 0; }
+.ideas a { color: var(--rfpo); font-family: var(--f-mono); font-size: .78rem; text-decoration: none; display: inline-block; margin-top: .6rem; }
+@media (max-width: 760px) { .ideas { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- hero ---------- */
 .hero { max-width: var(--wide); margin-inline: auto; padding-block: 3.5rem 2rem; display: grid;
@@ -76,9 +92,6 @@ h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.8rem, 6
 h1 span { color: var(--rfpo); }
 .dek { font-size: 1.22rem; line-height: 1.5; margin: 0 0 1.5rem; max-width: 34rem; }
 .byline { font-family: var(--f-display); font-size: 1rem; font-weight: 500; line-height: 1.5; margin: 0; }
-.links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.1rem 0 0; }
-.links a { font-family: var(--f-mono); font-size: .78rem; color: var(--ink); text-decoration: none; border: 1px solid var(--rule); background: var(--sheet); border-radius: 4px; padding: .35rem .7rem; }
-.links a:hover, .links a:focus-visible { border-color: var(--rfpo); color: var(--rfpo); outline: none; }
 .byline small { display: block; font-family: var(--f-mono); font-size: .74rem; color: var(--muted); letter-spacing: .02em; font-weight: 400; margin-top: .35rem; }
 
 .hero-fig { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 1.1rem 1.1rem .8rem; }
@@ -203,19 +216,15 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 </style>
 </head>
 <body>
-
 <header class="mast">
-  <span>Research note · RL post-training for LLMs</span>
-  <span>Hongyang (Kevin) Li et al. · 2026</span>
+  <a class="org" href="https://huggingface.co/SeaFill2025"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png" alt="" width="36" height="36"><span><b>Sea-Fill</b><small>Open-Source Research Community</small></span></a>
 </header>
 
 <div class="hero">
   <div>
     <p class="eyebrow">Reward-Free Policy Optimization</p>
     <h1>Unlocking the <span>Critic</span></h1>
-    <p class="dek">Outcome rewards wait for the last token, so the longer the reasoning, the more RL training pays for waiting. PPO already trains a critic that can judge a rollout before it ends, then throws it away. We freeze it, calibrate it once, and use it as the reward. With half of every batch cut off at a 4,096-token cap, it validates above supervised PPO under the same cap, without verifier labels during RL and on 19% fewer GPU-hours.</p>
-    <p class="byline">Hongyang (Kevin) Li, Xiao Li, Caesar Wu, Said Mammar, Grégoire Danoy, Pascal Bouvry
-      <small>University of Luxembourg · Seafill Open-Source Community · Université Paris-Saclay</small></p>
+    <p class="dek">RL post-training for LLMs keeps removing the critic, and even where one is trained it is thrown away when training ends, although it has learned to predict outcomes. <strong>We unlock it.</strong> One calibrated, frozen critic becomes the reward, so the RL loop needs no verifier and no labels. Because it scores a rollout <em>before</em> it ends, training no longer waits for every trajectory to finish.</p>
     <p class="links"><a href="https://arxiv.org/abs/2609.37119">arXiv 2609.37119</a><a href="https://arxiv.org/pdf/2609.37119">PDF</a><a href="https://huggingface.co/papers/2609.37119">Hugging Face</a></p>
   </div>
   <div class="hero-fig">
@@ -235,25 +244,31 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 </div>
 
 <section class="wide" style="padding-block:0 1rem">
-  <div class="contrib">
-    <a href="#c1"><b>(i)</b><span>Critic instability is an optimization artifact</span></a>
-    <a href="#c2"><b>(ii)</b><span>One frozen critic, three roles</span></a>
-    <a href="#c3"><b>(iii)</b><span>Calibration guards against length bias</span></a>
-    <a href="#c4"><b>(iv)</b><span>Parity at lower cost, built for long horizons</span></a>
+  <div class="ideas">
+    <div><b>01 · Unlock the critic</b><h3>The critic is not the problem</h3>
+      <p>The instability that pushed critics out of long chain-of-thought RL comes from the update recipe, not the value network. Fix the recipe and the critic is a trained predictor of success: Pr(success | x, y≤t).</p>
+      <a href="#c1">Contributions (i) and (ii) ↓</a></div>
+    <div><b>02 · Reward-free</b><h3>No verifier, no labels in the loop</h3>
+      <p>One frozen critic serves as the reward, the GAE baseline and the forecaster. No value network is trained and no verifier is called. Binarized and debiased, it matches supervised PPO.</p>
+      <a href="#c3">Contributions (ii) and (iii) ↓</a></div>
+    <div><b>03 · Don't wait for the end</b><h3>Reward a rollout before it finishes</h3>
+      <p>The critic ranks truncated rollouts about as well as finished ones. With half of every batch cut off at 4,096 tokens, RFPO validates above PPO on 19% fewer GPU-hours.</p>
+      <a href="#c4">Contribution (iv) ↓</a></div>
   </div>
 </section>
 
 <section class="col" id="c1">
-  <p class="label">Contribution <span style="text-transform:none">(i)</span></p>
+  <p class="label">Unlock the critic · contribution <span style="text-transform:none">(i)</span></p>
   <h2>Critic instability is an optimization artifact</h2>
-  <p>Critics were pushed out of long chain-of-thought RL because critic-based training looked unstable. We find the instability comes from the update recipe, not the value network: it recedes once each policy update is kept small and low in variance. Under this single-update rule, none of the three zero-label runs degenerates over 310 to 378 steps. Response length stays within 13% of its starting value, and policy entropy declines gradually from 0.32 to 0.21–0.22, against 0.25 for supervised PPO.</p>
+  <p>Recent reasoning and agentic systems are trained with no value network at all. Two arguments carried that change: the critic is expensive, and critic-based training looked unstable. We find the instability comes from the update recipe, not the value network: it recedes once each policy update is kept small and low in variance. Under this single-update rule, none of the three zero-label runs degenerates over 310 to 378 steps. Response length stays within 13% of its starting value, and policy entropy declines gradually from 0.32 to 0.21–0.22, against 0.25 for supervised PPO.</p>
 </section>
 
 
 <section class="col" id="c2">
-  <p class="label">Contribution <span style="text-transform:none">(ii)</span></p>
+  <p class="label">Unlock the critic, reward-free · contribution <span style="text-transform:none">(ii)</span></p>
   <h2>One frozen critic, three roles</h2>
-  <p>A well-trained critic estimates the probability that a rollout will end correct, from late states and from unfinished prefixes. RFPO takes the critic from an ordinary PPO run, freezes it, and uses that one network as the rollout-level reward, as the GAE baseline, and as a forecaster for rollouts cut off at the cap. No value network is trained and no verifier runs during RL.</p>
+  <p>A well-pretrained critic estimates the posterior probability of eventual success from later trajectory states and unfinished prefixes. RFPO repurposes a single calibrated, frozen critic as the rollout-level reward, as the value baseline for GAE, and as a success forecaster for unfinished prefixes, so the RL loop contains no verifier and trains no value network. Its predictions provide outcome-derived, dense, per-prefix learning signals that need neither completed rollouts, step-level annotations, nor external reward labels. Any procedure that yields a critic able to rank trajectories well will do.</p>
+  <p class="pull">If a critic is good enough to be trusted as a baseline, it is also good enough to be the reward.</p>
 </section>
 
 <figure class="wide">
@@ -307,7 +322,7 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 </figure>
 
 <section class="col" id="c3">
-  <p class="label">Contribution <span style="text-transform:none">(iii)</span></p>
+  <p class="label">Reward-free, safely · contribution <span style="text-transform:none">(iii)</span></p>
   <h2>Calibration guards against length bias</h2>
   <p>The critic's raw score carries a length bias, and a continuous reward lets the policy exploit it in either direction. We subtract a length baseline b(ℓ) and binarize at a threshold τ, which closes that channel. Used as a continuous reward, the same critic first climbs above fully supervised PPO, to 29.2% on AIME 2026 pass@1 against 25.0%, and then gives the gain back while response length drifts.</p>
 </section>
@@ -323,9 +338,10 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 
 
 <section class="col" id="c4">
-  <p class="label">Contribution <span style="text-transform:none">(iv)</span></p>
+  <p class="label">Don't wait for the end · contribution <span style="text-transform:none">(iv)</span></p>
   <h2>Parity at lower cost, built for long horizons</h2>
-  <p>Binarized, RFPO matches supervised PPO with no verifier labels during RL while cutting compute and memory: at the standard 5,120-token cap a step takes 421 s instead of 582 s, and peak memory falls by 9.4 GB per GPU. Because the critic scores truncated rollouts as accurately as complete ones, training does not have to wait for every trajectory to finish. Under a 4,096-token cap, with about half of every batch unfinished for all 310 steps, RFPO validates above supervised PPO trained under the same cap, on 19% fewer GPU-hours.</p>
+  <p><strong>Outcome rewards wait for the last token, so the longer the reasoning, the more training pays for waiting.</strong> A critic answers earlier.</p>
+  <p>Binarized, RFPO matches supervised PPO with no verifier labels during RL while cutting compute and memory: at the standard 5,120-token cap a step takes 421 s instead of 582 s, and peak memory falls by 9.4 GB per GPU. Because the critic scores truncated rollouts as accurately as complete ones, training does not have to wait for every trajectory to finish. Under a 4,096-token cap, with about half of every batch unfinished for all 310 steps, RFPO validates above supervised PPO trained under the same cap, on 19% fewer GPU-hours, while PPO has to shorten its answers to fit.</p>
 </section>
 
 
@@ -374,9 +390,15 @@ footer { max-width: var(--col); margin: 3rem auto 0; padding-top: 1.2rem; border
 </figure>
 
 <section class="col">
-  <p>Reasoning traces and agentic episodes keep getting longer, and an outcome reward makes every rollout run to its last token before it can be scored. The value network is the one part of the standard recipe that answers earlier. So far the evidence comes from mathematical reasoning with one 4B model family and traces up to 12,288 tokens; long-horizon and agentic tasks are the next step.</p>
-
+  <p>As reasoning traces lengthen and agentic episodes stretch, waiting for the outcome buys less and less for what it costs, and the value network is the one component of the standard recipe that speaks before the outcome arrives. So far our evidence comes from mathematical reasoning with one 4B model family and traces up to 12,288 tokens; larger models and other tasks are next.</p>
   <p class="pull">The question is not whether a critic is affordable, but how much of what it already knows the current recipe throws away.</p>
+  <p>RFPO is our answer: it keeps that knowledge and turns it into a reward-free, compute-efficient method for LLM post-training.</p>
+</section>
+
+<section class="col">
+  <p class="label">Authors</p>
+  <p class="byline">Hongyang (Kevin) Li, Xiao Li, Caesar Wu, Said Mammar, Grégoire Danoy, Pascal Bouvry
+    <small>University of Luxembourg · <b style="color:var(--rfpo);font-weight:500">Sea-Fill Open-Source Community</b> · Université Paris-Saclay</small></p>
 </section>
 
 <section class="col">
