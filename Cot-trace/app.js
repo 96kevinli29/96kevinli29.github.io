@@ -1,4 +1,4 @@
-// CoT Trace Explorer：静态页面，数据在 data/ 下（由 src/corpus/export_site.py 导出）。
+// Cot-trace：静态页面，数据在 data/ 下（由 src/corpus/export_site.py 导出）。
 // 路由：#/ 列表；#/t/<traj_id> 单条轨迹；#/review 人工核对列表；#/review/<traj_id> 核对一条；#/about 说明
 const LABELS = {SU: "Setup", PL: "Plan", RC: "Recall", CP: "Compute", EX: "Explore", VF: "Verify",
   MB: "Monitor", CS: "Consolidate", AN: "Answer"};
