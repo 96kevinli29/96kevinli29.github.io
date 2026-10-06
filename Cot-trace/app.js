@@ -3,7 +3,7 @@
 const LABELS = {SU: "Setup", PL: "Plan", RC: "Recall", CP: "Compute", EX: "Explore", VF: "Verify",
   MB: "Monitor", CS: "Consolidate", AN: "Answer"};
 const REVIEW_KEY = "cot-review-v1";
-const REVIEW_BASE = "27B·default";   // 核对时的默认值来自哪份标注
+const REVIEW_BASE = "27B·v4";   // 核对时的默认值来自哪份标注
 let INDEX = null;
 const cache = {};
 
@@ -78,7 +78,8 @@ async function viewTrace(id, review) {
   let cur = review ? REVIEW_BASE : (names.includes(REVIEW_BASE) ? REVIEW_BASE : names[0]);
   const st = store();
   const n = tr.paragraphs.length;
-  const base = paraMap(tr.annotations[REVIEW_BASE], n).map(x => x ? x.path === "A" : false);
+  const isExp = x => x && (x.path === "A" || x.path === "D");   // 探索 = 明确放弃 A + 死胡同 D
+  const base = paraMap(tr.annotations[REVIEW_BASE], n).map(x => isExp(x));
   if (review && !st.items[id]) { st.items[id] = {abandoned: base.slice(), note: "", done: false}; save(st); }
   const app = $("#app");
   app.innerHTML = `
@@ -92,12 +93,12 @@ async function viewTrace(id, review) {
     </div>
     <div class="card"><b>题目</b><div class="text">${esc(tr.problem)}</div>
       <p class="small muted">标准答案：<span>${esc(tr.gold)}</span>　教师答案：<span>${esc(tr.pred ?? "（无）")}</span></p></div>
-    ${review ? `<div class="card small"><b>怎么核对：</b>只看一件事——每段是不是<b>被放弃的尝试</b>
-      （一段推进后被放弃、或结论没被最终答案用到；确认性验证、复述、计划都算主路径）。默认值是 27B 的标注，
+    ${review ? `<div class="card small"><b>怎么核对：</b>只看一件事——每段是不是<b>探索</b>，即没有进入最终推导的尝试
+      （换掉的方法、算错重来、试了没用上的计算或猜测）。最终推导用到的、答案之前的设定/复述/计划算主路径；灰色的“答案之后”不用管。默认值是 27B 第四版的标注，
       不同意就改。改过的段落会有虚线框。全部看完点“标记为已完成”。</div>` : ""}
     <div class="toolbar">
       ${review ? "" : names.map(a => `<button data-a="${esc(a)}" class="${a === cur ? "on" : ""}">${esc(a)}</button>`).join("")}
-      <span class="legend"><span><i class="sw" style="background:var(--main-bar)"></i>主路径</span><span><i class="sw" style="background:var(--aband-bar)"></i>被放弃</span></span>
+      <span class="legend"><span><i class="sw" style="background:var(--main-bar)"></i>主路径</span><span><i class="sw" style="background:var(--aband-bar)"></i>探索（A+D）</span><span><i class="sw" style="background:var(--post-bar)"></i>答案之后（P）</span></span>
       ${review ? `<button id="done" class="btn primary">标记为已完成</button>` : ""}
     </div>
     <div id="paras"></div>
@@ -109,12 +110,13 @@ async function viewTrace(id, review) {
     const s = store().items[id];
     $("#paras").innerHTML = tr.paragraphs.map((p, i) => {
       const nd = pm[i];
-      const ab = review ? s.abandoned[i] : nd && nd.path === "A";
-      const cls = review ? (ab ? "A" : "M") : (nd ? nd.path : "");
+      const ab = review ? s.abandoned[i] : isExp(nd);
+      const post = nd && nd.path === "P";
+      const cls = review ? (ab ? "A" : post ? "P" : "M") : (nd ? (nd.path === "D" ? "A" : nd.path) : "");
       const tags = nd && nd.first ? `<div class="tags"><span class="chip">n${nd.node_id}</span><span class="chip">${esc(LABELS[nd.label] || nd.label)}</span>
         <span class="chip">b=${nd.branch}</span>${nd.flags ? `<span class="chip warn">${esc(nd.flags)}</span>` : ""}</div>` : "";
-      const rv = review ? `<div class="review"><label><input type="checkbox" data-i="${i}" ${ab ? "checked" : ""}> 被放弃</label>
-        <span class="muted">27B：${base[i] ? "被放弃" : "主路径"}</span></div>` : "";
+      const rv = review ? `<div class="review"><label><input type="checkbox" data-i="${i}" ${ab ? "checked" : ""}> 探索</label>
+        <span class="muted">27B：${base[i] ? "探索（" + nd.path + "）" : post ? "答案之后" : "主路径"}</span></div>` : "";
       return `<div class="para ${cls} ${nd && nd.first ? "nodestart" : ""} ${review && ab !== base[i] ? "changed" : ""}">
         <div class="pid">p${i}</div><div>${tags}<div class="text">${esc(p)}</div>${rv}</div></div>`;
     }).join("");
@@ -151,7 +153,7 @@ async function viewReview() {
       <td>${s?.done ? '<span class="chip ok">已完成</span>' : s ? '<span class="chip warn">进行中</span>' : '<span class="chip">未开始</span>'}</td></tr>`; }).join("")}
     </tbody></table></div>`;
   $("#export").onclick = () => {
-    const out = {schema: "human_review_v1", base_annotation: REVIEW_BASE, exported_at: new Date().toISOString(), items: store().items};
+    const out = {schema: "human_review_v2", base_annotation: REVIEW_BASE, exported_at: new Date().toISOString(), items: store().items};
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: "application/json"}));
     a.download = `human_review_${new Date().toISOString().slice(0, 10)}.json`; a.click();
