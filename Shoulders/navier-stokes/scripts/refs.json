@@ -1,0 +1,900 @@
+[
+ {
+  "id": "ns",
+  "title": "Finite time blowup for Navier–Stokes",
+  "date": "2026-09-08",
+  "url": "https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf",
+  "pages": 166,
+  "refs": [
+   {
+    "n": 1,
+    "a": [
+     "Dallas Albritton",
+     "Elia Brué",
+     "Maria Colombo"
+    ],
+    "t": "Non-uniqueness of Leray solutions of the forced Navier–Stokes equations",
+    "y": "2022",
+    "u": "https://doi.org/10.4007/annals.2022.196.1.3",
+    "raw": "Dallas Albritton, Elia Brué, and Maria Colombo, Non-uniqueness of Leray solutions of the forced Navier–Stokes equations, Annals of Mathematics 196 (2022), no. 1, 415–455, https://doi.org/10.4007/annals.2022.196.1.3.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Albritton, Brué, and Colombo [1] subsequently constructed distinct suitable Leray–Hopf solutions with zero initial velocity and the same force, using an unstable vortex in similarity variables."
+     }
+    ]
+   },
+   {
+    "n": 2,
+    "a": [
+     "Paul Billant",
+     "François Gallaire"
+    ],
+    "t": "Generalized Rayleigh criterion for non-axisymmetric centrifugal instabilities",
+    "y": "2005",
+    "u": "https://doi.org/10.1017/S0022112005006464",
+    "raw": "Paul Billant and François Gallaire, Generalized Rayleigh criterion for non-axisymmetric centrifugal instabilities, Journal of Fluid Mechanics 542 (2005), 365–379, https://doi.org/10.1017/S0022112005006464.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Further precedents for the wave dynamics include the centrifugal-instability criteria of Leibovich and Stewartson [15] and of Billant and Gallaire [2, 3] and the exact viscous shearing waves of Singh and Sridhar [19]."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "a": [
+     "Paul Billant",
+     "François Gallaire"
+    ],
+    "t": "A unified criterion for the centrifugal instabilities of vortices and swirling jets",
+    "y": "2013",
+    "u": "https://doi.org/10.1017/jfm.2013.460",
+    "raw": ", A unified criterion for the centrifugal instabilities of vortices and swirling jets, Journal of Fluid Mechanics 734 (2013), 5–35, https://doi.org/10.1017/jfm.2013.460.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Further precedents for the wave dynamics include the centrifugal-instability criteria of Leibovich and Stewartson [15] and of Billant and Gallaire [2, 3] and the exact viscous shearing waves of Singh and Sridhar [19]."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "a": [
+     "Tristan Buckmaster",
+     "Vlad Vicol"
+    ],
+    "t": "Nonuniqueness of weak solutions to the Navier–Stokes equation",
+    "y": "2019",
+    "u": "https://doi.org/10.4007/annals.2019.189.1.3",
+    "raw": "Tristan Buckmaster and Vlad Vicol, Nonuniqueness of weak solutions to the Navier–Stokes equation, Annals of Mathematics 189 (2019), no. 1, 101–144, https://doi.org/10.4007/annals.2019.189.1.3.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For the original equations, Buckmaster and Vicol [4] used convex integration to establish nonuniqueness among finite-energy weak solutions."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "a": [
+     "Luis Caffarelli",
+     "Robert Kohn",
+     "Louis Nirenberg"
+    ],
+    "t": "Partial regularity of suitable weak solutions of the Navier– Stokes equations",
+    "y": "1982",
+    "u": "https://doi.org/10.1002/cpa.3160350604",
+    "raw": "Luis Caffarelli, Robert Kohn, and Louis Nirenberg, Partial regularity of suitable weak solutions of the Navier– Stokes equations, Communications on Pure and Applied Mathematics 35 (1982), no. 6, 771–831, https://doi.org/10.1002/cpa.3160350604.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Caffarelli, Kohn, and Nirenberg [5] proved that the singular set of a suitable weak solution has zero one-dimensional parabolic Hausdorff measure, a bound that allows isolated singularities."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa"
+    ],
+    "t": "Blow-up for the incompressible 3D-Euler equations with uniform C^{1,1/2−ε} ∩ L^2 force",
+    "y": "2023",
+    "u": "https://arxiv.org/abs/2309.08495",
+    "raw": "Diego Córdoba and Luis Martínez-Zoroa, Blow-up for the incompressible 3D-Euler equations with uniform C1, 1 2 −ϵ ∩L2 force, arXiv:2309.08495, 2023, https://arxiv.org/abs/2309.08495.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Córdoba and Martínez-Zoroa [6] constructed finite-time singularities for the forced three-dimensional Euler equations through successive amplification of increasingly concentrated vortex layers."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa"
+    ],
+    "t": "Finite time singularities of smooth solutions for the 2D incompressible porous media (IPM) equation with a smooth source",
+    "y": "2024",
+    "u": "https://arxiv.org/abs/2410.22920",
+    "raw": ", Finite time singularities of smooth solutions for the 2D incompressible porous media (IPM) equation with a smooth source, arXiv:2410.22920, 2024, Revised 2025. https://arxiv.org/abs/2410.22920.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For the incompressible porous media equation, Córdoba and Martínez-Zoroa [7] constructed singularities from smooth initial data by suc-cessive amplification of oscillatory layers, using approximations of increasing order to keep every spatial derivative of the source uniformly bounded."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa",
+     "Fan Zheng"
+    ],
+    "t": "Finite time blow-up for the hypodissipative Navier Stokes equations with a force in L^1_t C^{1,ε}_x ∩ L^∞_t L^2_x",
+    "y": "2026",
+    "u": "https://doi.org/10.1007/s00205-026-02198-0",
+    "raw": "Diego Córdoba, Luis Martínez-Zoroa, and Fan Zheng, Finite time blow-up for the hypodissipative Navier Stokes equations with a force in L1 t C1,ϵ x ∩L∞ t L2x, Archive for Rational Mechanics and Analysis 250 (2026), 38, https://doi.org/10.1007/s00205-026-02198-0.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Córdoba, Martínez-Zoroa, and Zheng [8] extended this approach to hy-podissipative Navier–Stokes with small positive dissipation orders and forcing in a local well-posedness class."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "a": [
+     "A. D. D. Craik",
+     "W. O. Criminale"
+    ],
+    "t": "Evolution of wavelike disturbances in shear flows: a class of exact solutions of the Navier–Stokes equations",
+    "y": "1986",
+    "u": "https://doi.org/10.1098/rspa.1986.0061",
+    "raw": "A. D. D. Craik and W. O. Criminale, Evolution of wavelike disturbances in shear flows: a class of exact solutions of the Navier–Stokes equations, Proceedings of the Royal Society of London. Series A 406 (1986), no. 1830, 13–26, https://doi.org/10.1098/rspa.1986.0061.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Craik and Criminale [9] constructed exact finite-amplitude waves on affine background flows, exploiting the cancellation of the wave’s quadratic self-interaction."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "a": [
+     "Sara Daneri",
+     "László Székelyhidi, Jr."
+    ],
+    "t": "Non-uniqueness and h-principle for Hölder-continuous weak solutions of the Euler equations",
+    "y": "2017",
+    "u": "https://doi.org/10.1007/s00205-017-1081-8",
+    "raw": "Sara Daneri and László Székelyhidi, Jr., Non-uniqueness and h-principle for Hölder-continuous weak solutions of the Euler equations, Archive for Rational Mechanics and Analysis 224 (2017), 471–514, https://doi.org/10.1007/s00205-017-1081-8.",
+    "c": [
+     {
+      "p": 2,
+      "s": "The use of oscillations to realize a prescribed stress is central to the Euler constructions of Daneri and Székelyhidi [10]."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "a": [
+     "Luis Escauriaza",
+     "Gregory A. Seregin",
+     "Vladimír Šverák"
+    ],
+    "t": "L^{3,∞}-solutions of the Navier–Stokes equations and backward uniqueness",
+    "y": "2003",
+    "u": "https://doi.org/10.1070/RM2003v058n02ABEH000609",
+    "raw": "Luis Escauriaza, Gregory A. Seregin, and Vladimír Šverák, L3,∞-solutions of the Navier–Stokes equations and backward uniqueness, Russian Mathematical Surveys 58 (2003), no. 2, 211–250, https://doi.org/10.1070/RM2003v058n02ABEH000609.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Escauriaza, Seregin, and Šverák [11] proved regularity for the unforced Cauchy problem under a bounded scale-invariant L∞ t L3 x norm."
+     }
+    ]
+   },
+   {
+    "n": 12,
+    "a": [
+     "Leonhard Euler"
+    ],
+    "t": "Principes généraux du mouvement des fluides",
+    "y": "1757",
+    "u": "https://scholarlycommons.pacific.edu/euler-works/226/",
+    "raw": "Leonhard Euler, Principes généraux du mouvement des fluides, Mémoires de l’Académie des sciences de Berlin 11 (1757), 274–315, https://scholarlycommons.pacific.edu/euler-works/226/.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Incompressible and inviscid flows are described by the classical Euler equations [12]:"
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "a": [
+     "Charles L. Fefferman"
+    ],
+    "t": "Existence and smoothness of the Navier–Stokes equation",
+    "y": "2000",
+    "u": "https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf",
+    "raw": "Charles L. Fefferman, Existence and smoothness of the Navier–Stokes equation, Clay Mathematics Institute, Millen-nium Prize Problem statement, https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf.",
+    "c": [
+     {
+      "p": 1,
+      "s": "This establishes alternative (C) in the Millennium problem statement for Navier–Stokes as stated by Fefferman in [13]."
+     },
+     {
+      "p": 120,
+      "s": "Such a smooth compactly supported force satisfies the decay conditions in [13, (5)]; the zero datum satisfies its initial-data conditions as well."
+     },
+     {
+      "p": 125,
+      "s": "The pressure is periodic as well, as required in the erratum to the problem statement [13]."
+     },
+     {
+      "p": 125,
+      "s": "The following corollary gives the periodic breakdown alternative (D) in [13]."
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "a": [
+     "Susan Friedlander",
+     "Misha M. Vishik"
+    ],
+    "t": "Instability criteria for the flow of an inviscid incompressible fluid",
+    "y": "1991",
+    "u": "https://doi.org/10.1103/PhysRevLett.66.2204",
+    "raw": "Susan Friedlander and Misha M. Vishik, Instability criteria for the flow of an inviscid incompressible fluid, Physical Review Letters 66 (1991), no. 17, 2204–2206, https://doi.org/10.1103/PhysRevLett.66.2204.",
+    "c": [
+     {
+      "p": 2,
+      "s": "The methods of Lifschitz and Hameiri and of Friedlander and Vishik [17, 14] describe the evolution of wavevectors and velocity polarizations along a background flow."
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "a": [
+     "S. Leibovich",
+     "K. Stewartson"
+    ],
+    "t": "A sufficient condition for the instability of columnar vortices",
+    "y": "1983",
+    "u": "https://doi.org/10.1017/S0022112083000191",
+    "raw": "S. Leibovich and K. Stewartson, A sufficient condition for the instability of columnar vortices, Journal of Fluid Mechanics 126 (1983), 335–356, https://doi.org/10.1017/S0022112083000191.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Further precedents for the wave dynamics include the centrifugal-instability criteria of Leibovich and Stewartson [15] and of Billant and Gallaire [2, 3] and the exact viscous shearing waves of Singh and Sridhar [19]."
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "a": [
+     "Jean Leray"
+    ],
+    "t": "Sur le mouvement d’un liquide visqueux emplissant l’espace",
+    "y": "1934",
+    "u": "https://doi.org/10.1007/BF02547354",
+    "raw": "Jean Leray, Sur le mouvement d’un liquide visqueux emplissant l’espace, Acta Mathematica 63 (1934), 193–248, https://doi.org/10.1007/BF02547354.",
+    "c": [
+     {
+      "p": 2,
+      "s": "In 1934, Leray [16] constructed global finite-energy weak solutions of the three-dimensional equations satisfying an energy inequality."
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "a": [
+     "Alexander Lifschitz",
+     "Eliezer Hameiri"
+    ],
+    "t": "Local stability conditions in fluid dynamics",
+    "y": "1991",
+    "u": "https://doi.org/10.1063/1.858153",
+    "raw": "Alexander Lifschitz and Eliezer Hameiri, Local stability conditions in fluid dynamics, Physics of Fluids A 3 (1991), no. 11, 2644–2651, https://doi.org/10.1063/1.858153.",
+    "c": [
+     {
+      "p": 2,
+      "s": "The methods of Lifschitz and Hameiri and of Friedlander and Vishik [17, 14] describe the evolution of wavevectors and velocity polarizations along a background flow."
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "a": [
+     "Claude Louis Marie Henri Navier"
+    ],
+    "t": "Mémoire sur les lois du mouvement des fluides",
+    "y": "1827",
+    "u": "https://gallica.bnf.fr/ark:/12148/bd6t54644559x",
+    "raw": "Claude Louis Marie Henri Navier, Mémoire sur les lois du mouvement des fluides, Mémoires de l’Académie royale des sciences de l’Institut de France 6 (1827), 389–440, Volume for 1823; presented 18 March 1822. https://gallica.bnf.fr/ark:/12148/bd6t54644559x.",
+    "c": [
+     {
+      "p": 2,
+      "s": "The Navier–Stokes equations [18, 21], given in (1.1), add a viscous force that resists shear between neighbouring fluid parcels."
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "a": [
+     "Nishant K. Singh",
+     "S. Sridhar"
+    ],
+    "t": "Plane shearing waves of arbitrary form: Exact solutions of the Navier–Stokes equations",
+    "y": "2017",
+    "u": "https://doi.org/10.1140/epjp/i2017-11659-5",
+    "raw": "Nishant K. Singh and S. Sridhar, Plane shearing waves of arbitrary form: Exact solutions of the Navier–Stokes equations, The European Physical Journal Plus 132 (2017), 403, https://doi.org/10.1140/epjp/i2017-11659-5.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Further precedents for the wave dynamics include the centrifugal-instability criteria of Leibovich and Stewartson [15] and of Billant and Gallaire [2, 3] and the exact viscous shearing waves of Singh and Sridhar [19]."
+     }
+    ]
+   },
+   {
+    "n": 20,
+    "a": [
+     "Elias M. Stein"
+    ],
+    "t": "Singular integrals and differentiability properties of functions",
+    "y": "1970",
+    "u": "",
+    "raw": "Elias M. Stein, Singular integrals and differentiability properties of functions, Princeton Mathematical Series, vol. 30, Princeton University Press, Princeton, NJ, 1970.",
+    "c": [
+     {
+      "p": 122,
+      "s": "We use the standard Lp boundedness of Riesz transforms for 1 < p < ∞; see [20]."
+     }
+    ]
+   },
+   {
+    "n": 21,
+    "a": [
+     "George Gabriel Stokes"
+    ],
+    "t": "On the theories of the internal friction of fluids in motion, and of the equilibrium and motion of elastic solids",
+    "y": "1845",
+    "u": "https://doi.org/10.1017/CBO9780511702242.005",
+    "raw": "George Gabriel Stokes, On the theories of the internal friction of fluids in motion, and of the equilibrium and motion of elastic solids, Transactions of the Cambridge Philosophical Society 8 (1845), 287–319, Read 14 April 1845. Reprinted in Mathematical and Physical Papers, vol. 1 (1880), pp. 75–129. https://doi.org/10.1017/CBO9780511702242.005.",
+    "c": [
+     {
+      "p": 2,
+      "s": "The Navier–Stokes equations [18, 21], given in (1.1), add a viscous force that resists shear between neighbouring fluid parcels."
+     }
+    ]
+   },
+   {
+    "n": 22,
+    "a": [
+     "Terence Tao"
+    ],
+    "t": "Finite time blowup for an averaged three-dimensional Navier–Stokes equation",
+    "y": "2016",
+    "u": "https://doi.org/10.1090/jams/838",
+    "raw": "Terence Tao, Finite time blowup for an averaged three-dimensional Navier–Stokes equation, Journal of the American Mathematical Society 29 (2016), no. 3, 601–674, https://doi.org/10.1090/jams/838.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Tao [22] constructed finite-time blowup for an averaged Navier–Stokes equation that retains the energy cancellation of the original nonlinearity."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "euler",
+  "title": "Finite time blowup for the Euler equation",
+  "date": "2026-09-08",
+  "url": "https://cdn.openai.com/pdf/315b36cd-ec98-4023-8342-93345194ece1/euler.pdf",
+  "pages": 57,
+  "refs": [
+   {
+    "n": 1,
+    "a": [
+     "J. Thomas Beale",
+     "Tosio Kato",
+     "Andrew Majda"
+    ],
+    "t": "Remarks on the breakdown of smooth solutions for the 3-D Euler equations",
+    "y": "1984",
+    "u": "https://doi.org/10.1007/BF01212349",
+    "raw": "J. Thomas Beale, Tosio Kato, and Andrew Majda, Remarks on the breakdown of smooth solutions for the 3-D Euler equations, Communications in Mathematical Physics 94 (1984), no. 1, 61–66, https://doi.org/10.1007/BF01212349.",
+    "c": [
+     {
+      "p": 1,
+      "s": "The Beale–Kato–Majda criterion [1] states that a smooth three-dimensional Euler solution continues past time T if ∫︁T 0 ∥curl u(t)∥L∞dt < ∞."
+     }
+    ]
+   },
+   {
+    "n": 2,
+    "a": [
+     "Jean Bourgain",
+     "Dong Li"
+    ],
+    "t": "Strong ill-posedness of the incompressible Euler equation in borderline Sobolev spaces",
+    "y": "2015",
+    "u": "https://doi.org/10.1007/s00222-014-0548-6",
+    "raw": "Jean Bourgain and Dong Li, Strong ill-posedness of the incompressible Euler equation in borderline Sobolev spaces, Inventiones Mathematicae 201 (2015), no. 1, 97–157, https://doi.org/10.1007/s00222-014-0548-6.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Bourgain and Li [2] used large deformation of the particle flow to prove norm inflation for two-dimensional Euler in the critical velocity space H2."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "a": [
+     "Yann Brenier"
+    ],
+    "t": "Generalized solutions and hydrostatic approximation of the Euler equations",
+    "y": "2008",
+    "u": "https://doi.org/10.1016/j.physd.2008.02.026",
+    "raw": "Yann Brenier, Generalized solutions and hydrostatic approximation of the Euler equations, Physica D: Nonlinear Phenomena 237 (2008), no. 14–17, 1982–1988, https://doi.org/10.1016/j.physd.2008.02.026.",
+    "c": [
+     {
+      "p": 16,
+      "s": "The use of an upper bound on the pressure Hessian to control this quadratic action has a precedent in Brenier’s short-time action-minimization criterion for Euler flows [3, Section 2]."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "a": [
+     "Tristan Buckmaster",
+     "Camillo De Lellis",
+     "László Székelyhidi, Jr.",
+     "Vlad Vicol"
+    ],
+    "t": "Onsager’s conjecture for admissible weak solutions",
+    "y": "2019",
+    "u": "https://doi.org/10.1002/cpa.21781",
+    "raw": "Tristan Buckmaster, Camillo De Lellis, László Székelyhidi, Jr., and Vlad Vicol, Onsager’s conjecture for admissible weak solutions, Communications on Pure and Applied Mathematics 72 (2019), no. 2, 229–274, https://doi.org/10.1002/cpa.21781.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Buckmaster, De Lellis, Székelyhidi, and Vicol [4] constructed solutions in this regularity range whose kinetic energy equals any prescribed smooth positive function of time."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "a": [
+     "Jiajie Chen"
+    ],
+    "t": "Asymptotically self-similar blowup for 3D incompressible Euler with C^{1,1/3−} velocity II: 3D profiles, blowup, and limiting behavior",
+    "y": "2026",
+    "u": "https://arxiv.org/abs/2605.15130",
+    "raw": "Jiajie Chen, Asymptotically self-similar blowup for 3D incompressible Euler with C1,1/3−velocity II: 3D profiles, blowup, and limiting behavior, arXiv:2605.15130, 2026, https://arxiv.org/abs/2605.15130.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Recent preprints of Chen and Shkoller [5, 29] prove blowup on R3 for finite-energy axisymmetric velocities without swirl in C1,α, for every 0 < α < 1/3."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "a": [
+     "Jiajie Chen",
+     "Thomas Y. Hou"
+    ],
+    "t": "Stable nearly self-similar blowup of the 2D Boussinesq and 3D Euler equations with smooth data I: Analysis",
+    "y": "2022",
+    "u": "https://arxiv.org/abs/2210.07191",
+    "raw": "Jiajie Chen and Thomas Y. Hou, Stable nearly self-similar blowup of the 2D Boussinesq and 3D Euler equations with smooth data I: Analysis, arXiv:2210.07191, 2022, https://arxiv.org/abs/2210.07191.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For smooth initial data, Chen and Hou [6, 7] proved blowup in an axially periodic cylinder with an impermeable wall, combining analysis with rigorous numerical estimates."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "a": [
+     "Jiajie Chen",
+     "Thomas Y. Hou"
+    ],
+    "t": "Stable nearly self-similar blowup of the 2D Boussinesq and 3D Euler equations with smooth data II: Rigorous numerics",
+    "y": "2025",
+    "u": "https://doi.org/10.1137/23M1580395",
+    "raw": ", Stable nearly self-similar blowup of the 2D Boussinesq and 3D Euler equations with smooth data II: Rigorous numerics, Multiscale Modeling & Simulation 23 (2025), no. 1, 25–130, https://doi.org/10.1137/23M1580395.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For smooth initial data, Chen and Hou [6, 7] proved blowup in an axially periodic cylinder with an impermeable wall, combining analysis with rigorous numerical estimates."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "a": [
+     "Christophe Cheverry"
+    ],
+    "t": "Cascade of phases in turbulent flows",
+    "y": "2006",
+    "u": "https://doi.org/10.24033/bsmf.2501",
+    "raw": "Christophe Cheverry, Cascade of phases in turbulent flows, Bulletin de la Société Mathématique de France 134 (2006), no. 1, 33–82, https://doi.org/10.24033/bsmf.2501.",
+    "c": [
+     {
+      "p": 3,
+      "s": "At the nonlinear level, Cheverry [8] constructed oscillatory approximate solutions of incompressible Euler and analyzed the additional phase corrections required by their nonlinear evolution."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa"
+    ],
+    "t": "Non existence and strong ill-posedness in C^k and Sobolev spaces for SQG",
+    "y": "2022",
+    "u": "https://doi.org/10.1016/j.aim.2022.108570",
+    "raw": "Diego Córdoba and Luis Martínez-Zoroa, Non existence and strong ill-posedness in Ck and Sobolev spaces for SQG, Advances in Mathematics 407 (2022), 108570, https://doi.org/10.1016/j.aim.2022.108570.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Córdoba and Martínez-Zoroa [9] used this approach to prove ill-posedness and loss of regularity for the inviscid surface quasi-geostrophic equation."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa"
+    ],
+    "t": "Blow-up for the incompressible 3D-Euler equations with uniform C^{1,1/2−ε} ∩ L^2 force",
+    "y": "2023",
+    "u": "https://arxiv.org/abs/2309.08495",
+    "raw": ", Blow-up for the incompressible 3D-Euler equations with uniform C1, 1 2 −ε ∩L2 force, arXiv:2309.08495, 2023, https://arxiv.org/abs/2309.08495.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For each fixed 0 < ε < 1/2, Córdoba and Martínez-Zoroa [10, Theorem 1.1] constructed finite-energy solutions to the forced Euler equations on R3, with velocity in C3,1/2 before blowup and an external force uniformly bounded in C1,1/2−ε ∩L2."
+     },
+     {
+      "p": 4,
+      "s": "Córdoba and Martínez-Zoroa also use a vorticity layer to amplify a more localized layer in their forced Euler construction [10, §1.2]."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa"
+    ],
+    "t": "Finite time singularities of smooth solutions for the 2D incompressible porous media (IPM) equation with a smooth source",
+    "y": "2024",
+    "u": "https://arxiv.org/abs/2410.22920",
+    "raw": ", Finite time singularities of smooth solutions for the 2D incompressible porous media (IPM) equation with a smooth source, arXiv:2410.22920, 2024, Revised 2025. https://arxiv.org/abs/2410.22920.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For the incompressible porous media equation, Córdoba and Martínez-Zoroa [11] constructed singularities from smooth initial data by successive amplification of oscillatory layers, using approximations of increasing order to keep every spatial derivative of the source uniformly bounded."
+     }
+    ]
+   },
+   {
+    "n": 12,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa",
+     "Wojciech S. Ożański"
+    ],
+    "t": "Instantaneous gap loss of Sobolev regularity for the 2D incompressible Euler equations",
+    "y": "2024",
+    "u": "https://doi.org/10.1215/00127094-2023-0052",
+    "raw": "Diego Córdoba, Luis Martínez-Zoroa, and Wojciech S. Ożański, Instantaneous gap loss of Sobolev regularity for the 2D incompressible Euler equations, Duke Mathematical Journal 173 (2024), no. 10, 1931–1971, https://doi.org/10.1215/00127094-2023-0052.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For two-dimensional Euler, Córdoba, Martínez-Zoroa, and Ożański [12] constructed global solutions with initial velocity in Hr, 1 < r < 2, that lose a positive amount of Sobolev regularity at every positive time."
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "a": [
+     "Diego Córdoba",
+     "Luis Martínez-Zoroa",
+     "Fan Zheng"
+    ],
+    "t": "Finite time singularities to the 3D incompressible Euler equations for solutions in C^∞(ℝ^3 ∖ {0}) ∩ C^{1,α} ∩ L^2",
+    "y": "2025",
+    "u": "https://doi.org/10.1007/s40818-025-00214-2",
+    "raw": "Diego Córdoba, Luis Martínez-Zoroa, and Fan Zheng, Finite time singularities to the 3D incompressible Euler equations for solutions in C∞(R3 \\ {0}) ∩C1,α ∩L2, Annals of PDE 11 (2025), 19, https://doi.org/10.1007/s40818-025-00214-2.",
+    "c": [
+     {
+      "p": 1,
+      "s": "Córdoba, Martínez-Zoroa, and Zheng [13] proved blowup from finite-energy C1,α initial velocities that are smooth away from the origin."
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "a": [
+     "A. D. D. Craik",
+     "W. O. Criminale"
+    ],
+    "t": "Evolution of wavelike disturbances in shear flows: a class of exact solutions of the Navier–Stokes equations",
+    "y": "1986",
+    "u": "https://doi.org/10.1098/rspa.1986.0061",
+    "raw": "A. D. D. Craik and W. O. Criminale, Evolution of wavelike disturbances in shear flows: a class of exact solutions of the Navier–Stokes equations, Proceedings of the Royal Society of London. Series A 406 (1986), no. 1830, 13–26, https://doi.org/10.1098/rspa.1986.0061.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Craik and Criminale [14] constructed exact finite-amplitude waves on affine background flows, exploiting the cancellation of the wave’s quadratic self-interaction."
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "a": [
+     "Tarek M. Elgindi"
+    ],
+    "t": "Finite-time singularity formation for C^{1,α} solutions to the incompressible Euler equations on ℝ^3",
+    "y": "2021",
+    "u": "https://doi.org/10.4007/annals.2021.194.3.2",
+    "raw": "Tarek M. Elgindi, Finite-time singularity formation for C1,α solutions to the incompressible Euler equations on R3, Annals of Mathematics 194 (2021), no. 3, 647–727, https://doi.org/10.4007/annals.2021.194.3.2.",
+    "c": [
+     {
+      "p": 1,
+      "s": "Elgindi [15] proved finite-time blowup on R3 for axisymmetric velocities without swirl in C1,α, for sufficiently small α > 0."
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "a": [
+     "Tarek M. Elgindi",
+     "Tej-Eddine Ghoul",
+     "Nader Masmoudi"
+    ],
+    "t": "On the stability of self-similar blow-up for C^{1,α} solutions to the incompressible Euler equations on ℝ^3",
+    "y": "2021",
+    "u": "https://arxiv.org/abs/1910.14071",
+    "raw": "Tarek M. Elgindi, Tej-Eddine Ghoul, and Nader Masmoudi, On the stability of self-similar blow-up for C1,α solutions to the incompressible Euler equations on R3, Cambridge Journal of Mathematics 9 (2021), no. 4, 1035–1075, https://arxiv.org/abs/1910.14071.",
+    "c": [
+     {
+      "p": 1,
+      "s": "Elgindi, Ghoul, and Masmoudi [16] proved stability of this blowup and obtained finite-energy examples with the same regularity."
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "a": [
+     "Tarek M. Elgindi",
+     "In-Jee Jeong"
+    ],
+    "t": "Ill-posedness for the incompressible Euler equations in critical Sobolev spaces",
+    "y": "2017",
+    "u": "https://doi.org/10.1007/s40818-017-0027-7",
+    "raw": "Tarek M. Elgindi and In-Jee Jeong, Ill-posedness for the incompressible Euler equations in critical Sobolev spaces, Annals of PDE 3 (2017), 7, https://doi.org/10.1007/s40818-017-0027-7.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Elgindi and Jeong [17] gave a construction in which localized vorticity generates a hyperbolic flow that stretches the vorticity gradient."
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "a": [
+     "Tarek M. Elgindi",
+     "Nader Masmoudi"
+    ],
+    "t": "L^∞ ill-posedness for a class of equations arising in hydrodynamics",
+    "y": "2020",
+    "u": "https://doi.org/10.1007/s00205-019-01457-7",
+    "raw": "Tarek M. Elgindi and Nader Masmoudi, L∞ill-posedness for a class of equations arising in hydrodynam-ics, Archive for Rational Mechanics and Analysis 235 (2020), no. 3, 1979–2025, https://doi.org/10.1007/s00205-019-01457-7.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Elgindi and Masmoudi [18] proved strong ill-posedness in the velocity spaces Ck ∩L2 for integers k ≥1, by estimating singular integral terms along the particle flow."
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "a": [
+     "Tarek M. Elgindi",
+     "Federico Pasqualotto"
+    ],
+    "t": "From instability to singularity formation in incompressible fluids",
+    "y": "2023",
+    "u": "https://arxiv.org/abs/2310.19780",
+    "raw": "Tarek M. Elgindi and Federico Pasqualotto, From instability to singularity formation in incompressible fluids, arXiv:2310.19780, 2023, https://arxiv.org/abs/2310.19780.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Elgindi and Pasqualotto [19] proved blowup from finite-energy C1,α initial velocities that are smooth away from a circle."
+     }
+    ]
+   },
+   {
+    "n": 20,
+    "a": [
+     "Bruce R. Fabijonas",
+     "Darryl D. Holm"
+    ],
+    "t": "Multi-frequency Craik–Criminale solutions of the Navier–Stokes equations",
+    "y": "2004",
+    "u": "https://doi.org/10.1017/S0022112004008511",
+    "raw": "Bruce R. Fabijonas and Darryl D. Holm, Multi-frequency Craik–Criminale solutions of the Navier–Stokes equations, Journal of Fluid Mechanics 506 (2004), 207–215, https://doi.org/10.1017/S0022112004008511.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Fabijonas and Holm [20] proposed iterated superpositions of such waves."
+     }
+    ]
+   },
+   {
+    "n": 21,
+    "a": [
+     "Susan Friedlander",
+     "Misha M. Vishik"
+    ],
+    "t": "Instability criteria for the flow of an inviscid incompressible fluid",
+    "y": "1991",
+    "u": "https://doi.org/10.1103/PhysRevLett.66.2204",
+    "raw": "Susan Friedlander and Misha M. Vishik, Instability criteria for the flow of an inviscid incompressible fluid, Physical Review Letters 66 (1991), no. 17, 2204–2206, https://doi.org/10.1103/PhysRevLett.66.2204.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For perturbations with a rapidly varying phase, Lifschitz and Hameiri and Friedlander and Vishik [28, 21] studied the leading equations for the phase gradient and the velocity"
+     }
+    ]
+   },
+   {
+    "n": 22,
+    "a": [
+     "Philip Isett"
+    ],
+    "t": "A proof of Onsager’s conjecture",
+    "y": "2018",
+    "u": "https://doi.org/10.4007/annals.2018.188.3.4",
+    "raw": "Philip Isett, A proof of Onsager’s conjecture, Annals of Mathematics 188 (2018), no. 3, 871–963, https://doi.org/10.4007/annals.2018.188.3.4.",
+    "c": [
+     {
+      "p": 2,
+      "s": "On the same periodic domain, Isett [22] proved that, for every 0 < β < 1/3, there are solutions with spatial Cβ regularity whose kinetic energy is not constant."
+     }
+    ]
+   },
+   {
+    "n": 23,
+    "a": [
+     "In-Jee Jeong",
+     "Luis Martínez-Zoroa",
+     "Wojciech S. Ożański"
+    ],
+    "t": "Instantaneous continuous loss of Sobolev regularity for the 3D incompressible Euler equation",
+    "y": "2025",
+    "u": "https://arxiv.org/abs/2508.06333",
+    "raw": "In-Jee Jeong, Luis Martínez-Zoroa, and Wojciech S. Ożański, Instantaneous continuous loss of Sobolev regularity for the 3D incompressible Euler equation, arXiv:2508.06333, 2025, https://arxiv.org/abs/2508.06333.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Jeong, Martínez-Zoroa, and Ożański [23] constructed three-dimensional Euler solutions with a continuously decreasing Sobolev regularity threshold, starting from vorticity in Hs, 0 < s < 3/2."
+     }
+    ]
+   },
+   {
+    "n": 24,
+    "a": [
+     "Tosio Kato"
+    ],
+    "t": "Nonstationary flows of viscous and ideal fluids in ℝ^3",
+    "y": "1972",
+    "u": "https://doi.org/10.1016/0022-1236(72)90003-1",
+    "raw": "Tosio Kato, Nonstationary flows of viscous and ideal fluids in R3, Journal of Functional Analysis 9 (1972), no. 3, 296–305, https://doi.org/10.1016/0022-1236(72)90003-1.",
+    "c": [
+     {
+      "p": 1,
+      "s": "Local existence gives T∗(u0) > 0 [24]."
+     }
+    ]
+   },
+   {
+    "n": 25,
+    "a": [
+     "S. Le Dizès",
+     "S. Leblanc"
+    ],
+    "t": "Note on ‘multi-frequency Craik–Criminale solutions of the Navier–Stokes equations’ by B. R. Fabijonas and D. D. Holm",
+    "y": "2006",
+    "u": "https://doi.org/10.1017/S0022112005007949",
+    "raw": "S. Le Dizès and S. Leblanc, Note on ‘multi-frequency Craik–Criminale solutions of the Navier–Stokes equations’ by B. R. Fabijonas and D. D. Holm, Journal of Fluid Mechanics 550 (2006), 43–50, https://doi.org/10.1017/S0022112005007949.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Le Dizès and Leblanc [25] showed that their construction generally satisfies the equations only along a single trajectory, preventing its use as the background for the next iteration."
+     }
+    ]
+   },
+   {
+    "n": 26,
+    "a": [
+     "Camillo De Lellis",
+     "László Székelyhidi, Jr."
+    ],
+    "t": "The Euler equations as a differential inclusion",
+    "y": "2009",
+    "u": "https://doi.org/10.4007/annals.2009.170.1417",
+    "raw": "Camillo De Lellis and László Székelyhidi, Jr., The Euler equations as a differential inclusion, Annals of Mathe-matics 170 (2009), no. 3, 1417–1436, https://doi.org/10.4007/annals.2009.170.1417.",
+    "c": [
+     {
+      "p": 2,
+      "s": "De Lellis and Székelyhidi [26] constructed nonunique bounded weak solutions."
+     }
+    ]
+   },
+   {
+    "n": 27,
+    "a": [
+     "Camillo De Lellis",
+     "László Székelyhidi, Jr."
+    ],
+    "t": "Dissipative continuous Euler flows",
+    "y": "2013",
+    "u": "https://doi.org/10.1007/s00222-012-0429-9",
+    "raw": ", Dissipative continuous Euler flows, Inventiones Mathematicae 193 (2013), 377–407, https://doi.org/10.1007/s00222-012-0429-9.",
+    "c": [
+     {
+      "p": 2,
+      "s": "They later constructed continuous solutions on the three-dimensional torus with decreasing kinetic energy [27]."
+     }
+    ]
+   },
+   {
+    "n": 28,
+    "a": [
+     "Alexander Lifschitz",
+     "Eliezer Hameiri"
+    ],
+    "t": "Local stability conditions in fluid dynamics",
+    "y": "1991",
+    "u": "https://doi.org/10.1063/1.858153",
+    "raw": "Alexander Lifschitz and Eliezer Hameiri, Local stability conditions in fluid dynamics, Physics of Fluids A 3 (1991), no. 11, 2644–2651, https://doi.org/10.1063/1.858153.",
+    "c": [
+     {
+      "p": 2,
+      "s": "For perturbations with a rapidly varying phase, Lifschitz and Hameiri and Friedlander and Vishik [28, 21] studied the leading equations for the phase gradient and the velocity"
+     }
+    ]
+   },
+   {
+    "n": 29,
+    "a": [
+     "Steve Shkoller"
+    ],
+    "t": "Incompressible Euler blowup at the C^{1,1/3} threshold",
+    "y": "2026",
+    "u": "https://arxiv.org/abs/2603.10945",
+    "raw": "Steve Shkoller, Incompressible Euler blowup at the C1,1/3 threshold, arXiv:2603.10945, 2026, https://arxiv.org/abs/2603.10945.",
+    "c": [
+     {
+      "p": 2,
+      "s": "Recent preprints of Chen and Shkoller [5, 29] prove blowup on R3 for finite-energy axisymmetric velocities without swirl in C1,α, for every 0 < α < 1/3."
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -7,8 +7,8 @@ const fmt=n=>n.toLocaleString('en-US');
 let LANG=window.__LANG__||'zh';
 if(!window.__ALT__){try{const s=localStorage.getItem('shoulders-lang');if(s==='zh'||s==='en')LANG=s}catch(e){}}
 const I={
-zh:{eyebrow:'OpenAI Math Release · 引文索引 · 持续更新',h1:'巨人之肩',
- thesis:'AI 在科学前沿取得的每一项突破，都依靠人类的智慧与努力。本站随前沿超级智能公司的每一次科学突破持续更新，逐条记下每一篇 AI 论文引用了谁、引用了哪篇、在正文里怎样使用，记录 AI 在人类知识之上的演进，向人类的智力与工作致敬。',
+zh:{eyebrow:'<a href="../" style="color:inherit">← 巨人之肩</a> · 数学 · OpenAI Math Release',h1:'巨人之肩',
+ thesis:'AI 证明的每一条定理，都建立在几代数学家的积累之上。OpenAI 公开了全部 AI 数学预印本及其 LaTeX 源码；我们逐条整理它们的参考文献：引用了谁、哪一篇、在正文中怎样使用。让这些名字被看见，向 AI 时代的人类数学家致敬。',
  searchLabel:'搜索数学家',searchPh:'搜索数学家：陶哲轩、Hong Wang、Bourgain……',
  st1:'篇 AI 预印本',st2:'条参考文献',st4:'的预印本引用了同批 OpenAI 预印本',st5:'数据重建',updT:'Update',mT:'正文引用',mR:'参考文献条目',mP:'引用篇数',metL:'排名依据',metMore:'更多排名方式',metLess:'收起',inTextN:n=>`正文引用 ${n} 次`,metNote:{t:'按正文引用次数排序：每处 \\cite 计一次，同一篇论文在正文中被引多次会多计。',r:'按参考文献条目数排序：一篇预印本列出某人一篇论文计一次。',p:'按引用篇数排序：引用过某人的预印本数量。'},updAll:n=>`全部更新记录（${n}）`,updAuto:d=>`数据每天自动检查，最近一次重建 ${d}`,
  featH:'被引最多的数学家',featP:'金色、绿色、紫色标签分别为菲尔兹奖、阿贝尔奖、沃尔夫奖。点卡片可查看每篇论文和正文原句。',
@@ -36,8 +36,8 @@ zh:{eyebrow:'OpenAI Math Release · 引文索引 · 持续更新',h1:'巨人之�
  atlasNote:'基石论文取被引最多的约 110 篇，加上各学科和调和分析内部被引最多的若干篇。教材和经典专著也会出现在这里。',
  ctyH:'各国数学家',ctyP:'被引最多的 300 位数学家与全部获奖者按出生地或原国籍标注（出生与成长地不同时，部分取成长地），长条为他们按当前排名依据的计数之和。点一行查看名单。',
  ctyNote:n=>`已标注 ${n} 位；标注依据公开资料，可能有误或不全。`,ctySheet:'按国家/地区',cnL:'工作单位',cn_only:'仅中国大陆',cn_all:'全部按引用',mlTag:'中国大陆',ctyWho:'位被标注的数学家',stoneK:'人类基石论文',citedBy:'被以下 AI 预印本引用',authorsK:'作者'},
-en:{eyebrow:'OpenAI Math Release · citation index · continuously updated',h1:'On Whose Shoulders',
- thesis:'Every advance AI makes at the frontier of science relies on human wisdom and effort. This index is updated with every scientific breakthrough from frontier superintelligence companies. It records whom each AI paper cites, which work, and how it is used in the text, tracing how AI builds on human knowledge and honouring the intellect and labour of the people behind it.',
+en:{eyebrow:'<a href="../../en/" style="color:inherit">← On Whose Shoulders</a> · Mathematics · OpenAI Math Release',h1:'On Whose Shoulders',
+ thesis:'Every theorem AI proves rests on generations of mathematicians. OpenAI has published all of its AI-written mathematics preprints with their LaTeX sources; we go through their references entry by entry: whom they cite, which work, and how it is used in the text. A tribute to the human mathematicians of the AI era, so their names stay visible.',
  searchLabel:'Search mathematicians',searchPh:'Search mathematicians: Terence Tao, Hong Wang, Bourgain…',
  st1:'AI preprints',st2:'reference entries',st4:'of preprints cite other OpenAI preprints',st5:'data rebuilt',updT:'Update',mT:'in-text citations',mR:'reference entries',mP:'citing preprints',metL:'Rank by',metMore:'More ranking options',metLess:'Fewer options',inTextN:n=>`cited ${n}× in text`,metNote:{t:'Ranked by in-text citations: every \\cite counts, so a work cited several times in one paper counts several times.',r:'Ranked by reference entries: one preprint listing one of their papers counts once.',p:'Ranked by citing preprints: how many preprints cite them.'},updAll:n=>`All updates (${n})`,updAuto:d=>`Data checked daily; last rebuilt ${d}`,
  featH:'Most-cited mathematicians',featP:'Gold, green and purple tags mark Fields Medal, Abel Prize and Wolf Prize laureates. Open a card to see each paper and the sentences that cite them.',
@@ -74,7 +74,7 @@ const aff=a=>a.af?`<small class="affs">${esc(a.af[LANG==='zh'?0:1])}</small>`:''
 const aPapers=A.map(()=>new Set()), aRefs=new Int32Array(A.length);
 const aTxt=new Int32Array(A.length);
 P.forEach((p,pi)=>p.r.forEach(r=>r[0].forEach(a=>{aPapers[a].add(pi);aRefs[a]++;aTxt[a]+=(r[5]||0)})));
-let MET='t';
+let MET='r';
 const score=i=>MET==='t'?aTxt[i]:MET==='r'?aRefs[i]:aPapers[i].size;
 const HA=-1;
 const inField=(pi,f)=>f===null?true:f===HA?P[pi].ha===1:P[pi].f===f;
@@ -96,7 +96,7 @@ function surname(i){const n=A[i].n.split(/\s+/);return n[n.length-1]}
 function hlName(html,i){const s=surname(i).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');try{return html.replace(new RegExp('\\b('+s+')\\b','g'),'<mark>$1</mark>')}catch(e){return html}}
 
 let METX=false;
-function renderMet(){document.querySelectorAll('.metsw').forEach(el=>{const ks=METX?['t','r','p']:[MET];el.innerHTML=`<span class="eyebrow">${T('metL')}</span>`+ks.map(k=>`<button type="button" data-met="${k}" aria-pressed="${k===MET}">${T(k==='t'?'mT':k==='r'?'mR':'mP')}</button>`).join('')+`<button type="button" class="metmore" data-metmore="1">${METX?T('metLess'):T('metMore')}</button>`});document.querySelectorAll('.metnote').forEach(el=>el.textContent=T('metNote')[MET])}
+function renderMet(){document.querySelectorAll('.metsw').forEach(el=>{const ks=METX?['r','t','p']:[MET];el.innerHTML=`<span class="eyebrow">${T('metL')}</span>`+ks.map(k=>`<button type="button" data-met="${k}" aria-pressed="${k===MET}">${T(k==='t'?'mT':k==='r'?'mR':'mP')}</button>`).join('')+`<button type="button" class="metmore" data-metmore="1">${METX?T('metLess'):T('metMore')}</button>`});document.querySelectorAll('.metnote').forEach(el=>el.textContent=T('metNote')[MET])}
 function renderStatic(){renderMet();
  document.documentElement.lang=LANG==='zh'?'zh-CN':'en';if(window.__ALT__)document.title=LANG==='zh'?'巨人之肩':'On Whose Shoulders';
  document.querySelectorAll('[data-i]').forEach(el=>{const v=T(el.dataset.i);if(typeof v==='string')el.innerHTML=v});
@@ -150,7 +150,7 @@ function plist(){
  $('#pmore').hidden=L.length<=pcount;
 }
 function renderAll(){renderStatic();renderFeat();rail();board();pfOptions();plist();drawMap();renderCountries();if(!sheet.hidden&&cur){const[k,v]=cur;k==='a'?showA(v,true):k==='p'?showP(v,true):k==='s'?showS(v,true):openSheet(countryHTML(v),true)}}
-document.addEventListener('click',e=>{const mm=e.target.closest('[data-metmore]');if(mm){METX=!METX;if(!METX&&MET!=='t'){MET='t';renderFeat();board();renderCountries()}renderMet();return}});
+document.addEventListener('click',e=>{const mm=e.target.closest('[data-metmore]');if(mm){METX=!METX;if(!METX&&MET!=='r'){MET='r';renderFeat();board();renderCountries()}renderMet();return}});
 document.addEventListener('click',e=>{const m=e.target.closest('[data-met]');if(!m)return;MET=m.dataset.met;renderMet();renderFeat();board();renderCountries()});
 document.addEventListener('click',e=>{const b=e.target.closest('.lang button');if(!b)return;if(window.__ALT__){if(b.dataset.lang!==LANG)location.href=window.__ALT__;return}LANG=b.dataset.lang;try{localStorage.setItem('shoulders-lang',LANG)}catch(err){}renderAll()});
 $('#rail').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const v=b.dataset.f;curF=v==='all'?null:+v;rail();board();$('#pf').value=v==='all'?'all':String(v);pcount=40;plist()});

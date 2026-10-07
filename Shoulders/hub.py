@@ -1,136 +1,174 @@
-"""Builds the hub pages (index.html, en/index.html). Run from anywhere."""
-import os,json,collections,html
-H=os.path.dirname(os.path.abspath(__file__))
-_h=open(H+'/math/index.html',encoding='utf-8').read()
-D,_=json.JSONDecoder().raw_decode(_h[_h.index('{"gen"'):].replace('<\\/','</'))
-_c=collections.Counter()
-for p in D['papers']:
-    _c.update({i for r in p['r'] for i in r[0]})
-A=D['authors']
-LAUR=sum(1 for k in _c if any(x in A[k] for x in ('fm','ab','wf')))
-ROWS=[3,5,8,11,14]
-TOP=_c.most_common(sum(ROWS))
-NP=len(D['papers'])
-def stack(lang):
-    mx=TOP[0][1]; out=[]; i=0
+"""Builds the hub pages (index.html, en/index.html) from the topic data. Run from anywhere."""
+import os, sys, json, collections, html
+H = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, H)
+from common import page
+
+esc = html.escape
+
+# ---- math: OpenAI Math Release (data embedded in math/index.html) -------------
+_h = open(H + '/math/index.html', encoding='utf-8').read()
+M, _ = json.JSONDecoder().raw_decode(_h[_h.index('{"gen"'):].replace('<\\/', '</'))
+A = M['authors']
+ent = collections.Counter()                     # reference entries per author (the default ranking)
+for p in M['papers']:
+    for r in p['r']:
+        ent.update(r[0])
+ent = collections.Counter({k: v for k, v in ent.items() if not A[k]['n'].startswith('init:')})
+M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
+NP = len(M['papers'])
+ROWS = [3, 5, 8, 11, 14]
+TOP = ent.most_common(sum(ROWS))
+
+# ---- Navier–Stokes / Euler -----------------------------------------------------
+NS = json.load(open(H + '/navier-stokes/scripts/refs.json', encoding='utf-8'))
+NS_REFS = sum(len(p['refs']) for p in NS)
+MILESTONES = [('Leonhard Euler', '欧拉', 1757), ('Claude Navier', '纳维', 1827), ('George Gabriel Stokes', '斯托克斯', 1845),
+              ('Jean Leray', '勒雷', 1934), ('Elias M. Stein', '斯坦', 1970), ('Tosio Kato', '加藤敏夫', 1972),
+              ('Caffarelli–Kohn–Nirenberg', '卡法雷利–科恩–尼伦伯格', 1982), ('Terence Tao', '陶哲轩', 2016)]
+
+
+def pyramid(lang):
+    mx = TOP[0][1]
+    out, i = [], 0
     for n in ROWS:
-        row=[]
-        for k,v in TOP[i:i+n]:
-            a=A[k]; nm=a.get('zh',a['n']) if lang=='zh' else a['n']
-            prize=[x for x,lab in (('fm','Fields'),('ab','Abel'),('wf','Wolf')) if x in a]
-            cls='g laur' if prize else 'g'
-            tip=(f"{a['n']} · 被 {v} 篇 AI 预印本引用" if lang=='zh' else f"{a['n']} · cited by {v} AI preprints")
-            if prize: tip+=' · '+' / '.join(lab for x,lab in (('fm','Fields'),('ab','Abel'),('wf','Wolf')) if x in a)
-            fs=0.8+1.3*(v/mx)**1.4
-            row.append(f'<span class="{cls}" style="--s:{fs:.2f}" title="{html.escape(tip)}">{html.escape(nm)}</span>')
-        out.append('<div class="row">'+''.join(row)+'</div>'); i+=n
+        row = []
+        for k, v in TOP[i:i + n]:
+            a = A[k]
+            nm = a.get('zh', a['n']) if lang == 'zh' else a['n']
+            prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
+            tip = (f"{a['n']} · {v} 条参考文献" if lang == 'zh' else f"{a['n']} · {v} reference entries")
+            if prize:
+                tip += ' · ' + ' / '.join(prize)
+            fs = 0.8 + 1.3 * (v / mx) ** 1.2
+            row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{fs:.2f}" title="{esc(tip)}">{esc(nm)}</span>')
+        out.append('<div class="row">' + ''.join(row) + '</div>')
+        i += n
     return '\n'.join(out)
-CSS='''<style>
-:root{--paper:#eef1f3;--sheet:#fbfcfc;--ink:#14212b;--muted:#5b6b76;--rule:#d3dadf;--gold:#a8791c;--gold-soft:#f3e7c9;--use:#1f6f68;
---f-display:"Noto Serif SC","Songti SC","STSong",Georgia,serif;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11181e;--sheet:#182129;--ink:#e4e9ec;--muted:#93a3ae;--rule:#2b3741;--gold:#e0b351;--gold-soft:#3a3020;--use:#5cc2b6;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#11181e;--sheet:#182129;--ink:#e4e9ec;--muted:#93a3ae;--rule:#2b3741;--gold:#e0b351;--gold-soft:#3a3020;--use:#5cc2b6;color-scheme:dark}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--f-body)}
-main{max-width:52rem;margin:0 auto;padding:2.5rem 16px 4rem}
-.top{display:flex;justify-content:space-between;align-items:center;font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.top a{color:var(--muted)}
-h1{font:900 clamp(2.2rem,7vw,3.6rem)/1.1 var(--f-display);margin:2.2rem 0 .6rem}
-.dek{font-size:1.1rem;color:var(--muted);max-width:38rem;margin:0 0 2.5rem}
-.feature{display:block;background:var(--sheet);border:1px solid var(--rule);border-top:4px solid var(--gold);border-radius:6px;padding:1.6rem 1.5rem;text-decoration:none;color:inherit}
-.feature:hover,.feature:focus-visible{border-color:var(--gold);outline:none}
-.tag{display:inline-block;font:500 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.15rem .5rem;border-radius:3px}
-.feature h2{font:900 1.8rem/1.2 var(--f-display);margin:.7rem 0 .4rem}
-.feature p{margin:.3rem 0}
-.src{margin-top:1rem;font:.85rem var(--f-mono);color:var(--muted)}
-.src a{color:var(--use)}
-.go{display:inline-block;margin-top:1rem;font-weight:600;color:var(--use)}
-h3{font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:3rem 0 .8rem}
+
+
+def timeline(lang):
+    items = [f'<span class="ms"><b>{esc(zh if lang == "zh" else en)}</b><i>{y}</i></span>' for en, zh, y in MILESTONES]
+    return '<div class="tl">' + '<span class="arr">→</span>'.join(items) + '<span class="arr">→</span><span class="ms ai"><b>AI</b><i>2026</i></span></div>'
+
+
+CSS = '''
+.hero{padding-bottom:.5rem}
+.hero h1{font-size:clamp(2.3rem,7vw,3.9rem)}
+.manifesto{font:600 clamp(1.05rem,2.6vw,1.25rem)/1.6 var(--f-display);border-left:3px solid var(--gold);padding:.1rem 0 .1rem 1rem;margin:1.4rem 0 0;max-width:40rem}
+.card{display:block;background:var(--sheet);border:1px solid var(--rule);border-top:4px solid var(--gold);border-radius:6px;padding:1.5rem 1.4rem;margin-top:1.1rem;text-decoration:none;color:inherit}
+a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
+.card h2{margin:.6rem 0 .4rem}
+.card p{margin:.3rem 0;max-width:44rem}
+.card .go{display:inline-block;margin-top:.9rem;font-weight:600;color:var(--use)}
+.card .src{margin-top:.9rem;font:.78rem var(--f-mono);color:var(--muted)}
+.card .stats{margin-top:1.1rem}
+.tl{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .5rem;margin:1.1rem 0 .2rem}
+.ms{display:inline-flex;flex-direction:column;align-items:center;line-height:1.2;padding:.3rem .55rem;border:1px solid var(--rule);border-radius:4px;background:var(--paper)}
+.ms b{font:600 .95rem var(--f-display)}
+.ms i{font:.68rem var(--f-mono);font-style:normal;color:var(--muted)}
+.ms.ai{background:var(--ink);border-color:var(--ink)}.ms.ai b,.ms.ai i{color:var(--paper)}
+.arr{color:var(--muted);font-size:.8rem}
+.viz{margin:1.2rem 0 .4rem;text-align:center}
+.aiblk{display:inline-block;font:600 .85rem var(--f-mono);letter-spacing:.08em;color:var(--paper);background:var(--ink);padding:.4rem 1rem;border-radius:4px 4px 0 0}
+.aiblk small{display:block;font-size:.66rem;opacity:.75;letter-spacing:.04em}
+.pyr{border-top:3px solid var(--ink);padding-top:.5rem}
+.row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.1rem 1rem;padding:.28rem 0;margin:0 auto;border-bottom:1px solid var(--rule)}
+.row:nth-child(1){max-width:26rem}.row:nth-child(2){max-width:34rem}.row:nth-child(3){max-width:42rem}
+.g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap}
+.g.laur{color:var(--gold);font-weight:900}
+.legend{font:.74rem var(--f-mono);color:var(--muted);margin-top:.7rem}
+.legend b{color:var(--gold)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem}
 .soon{border:1px dashed var(--rule);border-radius:6px;padding:1rem;color:var(--muted)}
 .soon b{display:block;color:var(--ink);font:600 1.1rem var(--f-display)}
-.viz{margin:0 0 2.5rem;text-align:center}
-.ai{display:inline-block;font:600 .9rem var(--f-mono);letter-spacing:.08em;color:var(--sheet);background:var(--ink);padding:.45rem 1rem;border-radius:4px 4px 0 0;position:relative}
-.ai small{display:block;font-size:.68rem;opacity:.75;letter-spacing:.04em}
-.pyr{border-top:3px solid var(--ink);padding-top:.6rem}
-.row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.15rem 1rem;padding:.3rem 0;margin:0 auto;border-bottom:1px solid var(--rule)}
-.row:nth-child(1){max-width:26rem}.row:nth-child(2){max-width:34rem}.row:nth-child(3){max-width:42rem}
-.g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap;cursor:default}
-.g.laur{color:var(--gold);font-weight:900}
-.legend{font:.78rem var(--f-mono);color:var(--muted);margin-top:.8rem}
-.legend b{color:var(--gold)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.75rem;margin:0 0 2.5rem}
-.stat{border-left:3px solid var(--gold);padding:.2rem .8rem}
-.stat b{display:block;font:900 1.9rem/1.1 var(--f-display)}
-.stat span{font-size:.85rem;color:var(--muted)}
-@media (max-width:520px){.g{font-size:calc(var(--s)*.78rem)}.row{gap:.1rem .7rem}}
-footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
-footer a{color:var(--muted)}
-</style>'''
-T={'zh':dict(lang='zh-CN',title='巨人之肩',alt=('English','en/'),math='math/',
- desc='AI 时代的科学突破，站在谁的肩膀上？按学科记录 AI 前沿成果所引用的人类科学家。',
- eyebrow='巨人之肩 · On Whose Shoulders',h1='AI 的每一项突破，<br>都站在人类科学家的肩膀上',
- dek='本项目在每一次 AI 科学突破后更新，按学科分开，记录这些成果引用了哪些人类科学家的工作，向他们的智慧与努力致敬。',
- tag='第 1 期 · 数学',h2='OpenAI Math Release：722 篇 AI 数学预印本',
- p='OpenAI 公开了 722 篇 AI 撰写的数学预印本及其 LaTeX 源码。我们解析了全部参考文献：哪些数学家被引用最多、哪些经典论文被反复使用，菲尔兹奖、阿贝尔奖、沃尔夫奖得主的工作如何成为基石。',
- src='数据来源',go='进入数学专题 →',more='其他学科',soon='即将推出',
- ai='AI · OpenAI Math Release',ais=f'{NP} 篇 AI 数学预印本',
- legend='字号 = 引用它的 AI 预印本篇数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。',
- st=[(NP,'篇 AI 数学预印本'),(D['works'],'部被引用的人类著作'),(len(A),'位人类作者'),(LAUR,'位菲尔兹 / 阿贝尔 / 沃尔夫奖得主被引用')],
- subs=['物理','化学','生命科学','计算机科学'],
- foot='引用不等于依赖；本项目不评判 AI 结果的原创性。'),
- 'en':dict(lang='en',title='On Whose Shoulders',alt=('中文','../'),math='../math/en/',
- desc='Whose shoulders does AI-era science stand on? A field-by-field record of the human scientists cited by frontier AI results.',
- eyebrow='On Whose Shoulders · 巨人之肩',h1='Every AI breakthrough<br>stands on human shoulders',
- dek='Updated with each AI breakthrough in science, field by field: which human scientists’ work these results cite, in tribute to their insight and effort.',
- tag='Issue 1 · Mathematics',h2='OpenAI Math Release: 722 AI-written math preprints',
- p='OpenAI published 722 AI-written mathematics preprints with their LaTeX sources. We parsed every reference: which mathematicians are cited most, which classic papers recur, and how the work of Fields, Abel and Wolf laureates forms the foundations.',
- src='Source',go='Open the mathematics index →',more='Other fields',soon='Coming soon',
- ai='AI · OpenAI Math Release',ais=f'{NP} AI-written math preprints',
- legend='Size = number of AI preprints citing them; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.',
- st=[(NP,'AI-written math preprints'),(D['works'],'human works cited'),(len(A),'human authors'),(LAUR,'Fields / Abel / Wolf laureates cited')],
- subs=['Physics','Chemistry','Life sciences','Computer science'],
- foot='Citation is not dependence; this project does not judge the originality of AI results.')}
-for k,t in T.items():
-    soon=''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])
-    h=f'''<!doctype html>
-<html lang="{t['lang']}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{t['title']}</title>
-<meta name="description" content="{t['desc']}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-{CSS}
-</head>
-<body>
-<main>
-<div class="top"><span>{t['eyebrow']}</span><a href="{t['alt'][1]}">{t['alt'][0]}</a></div>
+@media (max-width:520px){.g{font-size:calc(var(--s)*.78rem)}.row{gap:.1rem .7rem}.card{padding:1.2rem 1rem}.ms b{font-size:.85rem}}
+'''
+
+T = {
+ 'zh': dict(
+  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', 'en/'), ns='navier-stokes/', math='math/',
+  desc='向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。',
+  eyebrow='巨人之肩 · On Whose Shoulders',
+  h1='AI 的每一次突破，<br>都站在人类科学家的肩膀上',
+  dek='当 AI 证明一条定理、攻克一个难题，它用到的概念、方法和工具，来自几代科学家的积累。我们逐条整理 AI 成果的参考文献，找出其中的每一个名字，按学科分开，随每一次突破更新。',
+  manifesto='科学家是桥梁：一端连着几百年的人类知识，一端连着今天的 AI。这个项目向 AI 时代的人类科学家致敬。',
+  secMath='数学',
+  nsTag='最新 · 2026 年 9 月 · 流体方程', nsH='从欧拉到 AI：Navier–Stokes 与 Euler 方程',
+  nsP=f'OpenAI 公开两篇论文，给出三维 Navier–Stokes 方程与 Euler 方程有限时间爆破的构造，并附 Lean 形式化证明。两篇论文的 {NS_REFS} 条参考文献，从 1757 年的欧拉一直延续到 2026 年。',
+  nsGo='进入流体方程专题 →',
+  mTag='2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{NP} 篇 AI 数学预印本',
+  mP=f'OpenAI 公开了 {NP} 篇 AI 撰写的数学预印本及其 LaTeX 源码。下面的金字塔是被引用最多的数学家：顶端是 AI，托起它的是人类。',
+  aiS=f'{NP} 篇 AI 数学预印本',
+  legend='字号 = 参考文献条目数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。',
+  st=[(NP, '篇 AI 数学预印本'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
+  mGo='进入数学专题 →', src='数据来源',
+  more='其他学科', soon='即将推出', subs=['物理', '化学', '生命科学', '计算机科学'],
+  foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属。',
+ ),
+ 'en': dict(
+  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', '../'), ns='../navier-stokes/en/', math='../math/en/',
+  desc='A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.',
+  eyebrow='On Whose Shoulders · 巨人之肩',
+  h1='Every AI breakthrough<br>stands on human shoulders',
+  dek='When AI proves a theorem or settles an open problem, the ideas, methods and tools it uses come from generations of scientists. We go through the references of AI results entry by entry, find every name, and keep the record field by field, updated with each breakthrough.',
+  manifesto='Scientists are the bridge: one end rests on centuries of human knowledge, the other on today’s AI. This project is a tribute to the human scientists of the AI era.',
+  secMath='Mathematics',
+  nsTag='Latest · September 2026 · Fluid equations', nsH='From Euler to AI: Navier–Stokes and Euler',
+  nsP=f'OpenAI released two papers constructing finite-time blowup for the three-dimensional Navier–Stokes and Euler equations, with Lean formalizations. Their {NS_REFS} references run from Euler in 1757 to 2026.',
+  nsGo='Open the fluid equations page →',
+  mTag='October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {NP} AI-written math preprints',
+  mP=f'OpenAI published {NP} AI-written mathematics preprints with their LaTeX sources. The pyramid shows the most-cited mathematicians: AI at the top, held up by people.',
+  aiS=f'{NP} AI-written math preprints',
+  legend='Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.',
+  st=[(NP, 'AI-written math preprints'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
+  mGo='Open the mathematics index →', src='Source',
+  more='Other fields', soon='Coming soon', subs=['Physics', 'Chemistry', 'Life sciences', 'Computer science'],
+  foot='Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results.',
+ ),
+}
+
+for k, t in T.items():
+    body = f'''<div class="top"><span>{t['eyebrow']}</span><a href="{t['alt'][1]}">{t['alt'][0]}</a></div>
+<header class="hero">
 <h1>{t['h1']}</h1>
 <p class="dek">{t['dek']}</p>
+<p class="manifesto">{t['manifesto']}</p>
+</header>
+
+<section class="sec">
+<span class="eyebrow">{t['secMath']}</span>
+
+<a class="card" href="{t['ns']}">
+<span class="tag">{t['nsTag']}</span>
+<h2>{t['nsH']}</h2>
+<p>{t['nsP']}</p>
+{timeline(k)}
+<span class="go">{t['nsGo']}</span>
+</a>
+
+<div class="card">
+<span class="tag">{t['mTag']}</span>
+<h2><a href="{t['math']}" style="color:inherit;text-decoration:none">{t['mH']}</a></h2>
+<p>{t['mP']}</p>
 <figure class="viz">
-<div class="ai">{t['ai']}<small>{t['ais']}</small></div>
+<div class="aiblk">AI · OpenAI Math Release<small>{t['aiS']}</small></div>
 <div class="pyr">
-{stack(k)}
+{pyramid(k)}
 </div>
 <figcaption class="legend">{t['legend']}</figcaption>
 </figure>
-<div class="stats">{''.join(f'<div class="stat"><b>{n:,}</b><span>{l}</span></div>' for n,l in t['st'])}</div>
-<a class="feature" href="{t['math']}">
-<span class="tag">{t['tag']}</span>
-<h2>{t['h2']}</h2>
-<p>{t['p']}</p>
-<span class="go">{t['go']}</span>
-</a>
+<div class="stats">{''.join(f'<div class="stat"><b>{n:,}</b><span>{esc(l)}</span></div>' for n, l in t['st'])}</div>
+<a class="go" href="{t['math']}">{t['mGo']}</a>
 <p class="src">{t['src']}: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
-<h3>{t['more']}</h3>
-<div class="grid">{soon}</div>
-<footer>{t['foot']} · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>
-</main>
-</body>
-</html>
-'''
-    p=os.path.join(H,'index.html' if k=='zh' else 'en/index.html')
-    os.makedirs(os.path.dirname(p),exist_ok=True)
-    open(p,'w').write(h)
+</div>
+</section>
+
+<section class="sec">
+<span class="eyebrow">{t['more']}</span>
+<div class="grid">{''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])}</div>
+</section>
+<footer>{t['foot']} · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>'''
+    f = os.path.join(H, 'index.html' if k == 'zh' else 'en/index.html')
+    os.makedirs(os.path.dirname(f), exist_ok=True)
+    open(f, 'w', encoding='utf-8').write(page(k, t['title'], t['desc'], CSS, body))
