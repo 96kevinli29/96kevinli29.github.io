@@ -132,6 +132,7 @@ code { font-family: var(--f-mono); font-size: .85em; }
 .why { padding-left: 1.1rem; }
 .why li { margin: .55rem 0; }
 @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
+.views { font-family: var(--f-display); font-size: .9rem; color: var(--muted); margin-top: .35rem; display: none; }
 footer { color: var(--muted); font-size: .9rem; margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
 [data-lang] { display: none; }
 html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: revert; }
@@ -148,6 +149,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 <header class="hero col">
   <h1>TraceAtlas: 1,000 Long Reasoning Traces, Mapped</h1>
   <p class="lede">We release 1,000 math reasoning traces from Qwen3.8-27B, each labeled paragraph by paragraph: the path that reached the answer, the paths that were tried and dropped, and what came after the answer was settled. The labeling procedure was checked against an independent annotator, GPT-6.1 Sol, before we labeled at scale.</p>
+  <p class="views" data-views-en></p>
   <p class="byline">Hongyang Li, Kyungmin Hong, Xiao Li, Caesar Wu, Pascal Bouvry · <a href="https://huggingface.co/SeaFill2025">SeaFill Open-Source Team</a> · University of Luxembourg</p>
   <div class="links"><a class="primary" href="https://huggingface.co/datasets/SeaFill2025/TraceAtlas">Download on Hugging Face</a><a href="../#/">Browse online</a><a href="#cite">Cite</a></div>
 </header>
@@ -229,6 +231,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 <header class="hero col">
   <h1>TraceAtlas：1,000 条长推理轨迹的结构地图</h1>
   <p class="lede">我们开源 1,000 条 Qwen3.8-27B 的数学推理轨迹，每条都逐段标注：哪条路走到了答案，哪些路走了一段又放弃了，哪些是答案定下来之后的内容。标注流程在大规模使用前，先和独立标注者 GPT-6.1 Sol 做过对照检查。</p>
+  <p class="views" data-views-zh></p>
   <p class="byline">Hongyang Li、Kyungmin Hong、Xiao Li、Caesar Wu、Pascal Bouvry · <a href="https://huggingface.co/SeaFill2025">SeaFill 开源团队</a> · 卢森堡大学</p>
   <div class="links"><a class="primary" href="https://huggingface.co/datasets/SeaFill2025/TraceAtlas">在 Hugging Face 下载</a><a href="../#/">在线浏览</a><a href="#cite-zh">引用</a></div>
 </header>
@@ -369,6 +372,15 @@ document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => {
   const t = document.getElementById(b.dataset.copy).textContent;
   if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => { const o = b.textContent; b.textContent = "✓"; setTimeout(() => b.textContent = o, 1200); });
 });
+
+// 公开浏览量（GoatCounter）：后台开启 “Allow adding visitor counts” 后才有数据；拿不到就不显示
+fetch("https://96kevinli29.goatcounter.com/counter/" + encodeURIComponent(location.pathname) + ".json")
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(d => {
+    const en = document.querySelector("[data-views-en]"), zh = document.querySelector("[data-views-zh]");
+    if (en) { en.textContent = d.count + " views"; en.style.display = ""; }
+    if (zh) { zh.textContent = d.count + " 次浏览"; zh.style.display = ""; }
+  }).catch(() => {});
 </script>
 <script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
