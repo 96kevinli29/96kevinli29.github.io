@@ -85,7 +85,7 @@ code { font-family: var(--f-mono); font-size: .85em; }
 .cite { position: relative; }
 .cite pre { font-family: var(--f-mono); font-size: .8rem; line-height: 1.55; background: var(--sheet); border: 1px solid var(--rule); padding: 1rem; overflow-x: auto; }
 .cite button { position: absolute; top: .6rem; right: .6rem; font-family: var(--f-mono); font-size: .72rem; background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: .2rem .5rem; cursor: pointer; }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin: 1.4rem 0 .4rem; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; margin: 1.4rem 0 .4rem; }
 .stat { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: .7rem .8rem; }
 .stat b { display: block; font-family: var(--f-display); font-size: 1.55rem; line-height: 1.1; color: var(--accent); }
 .stat span { font-family: var(--f-display); font-size: .88rem; color: var(--muted); }
@@ -107,7 +107,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 <article data-lang="en">
 <header class="hero col">
   <h1>TraceAtlas: 1,000 Long Reasoning Traces, Mapped</h1>
-  <p class="lede">We release 1,000 math reasoning traces from Qwen3.8-27B, each labeled paragraph by paragraph: the path that reached the answer, the paths that were tried and dropped, and what came after the answer was settled.</p>
+  <p class="lede">We release 1,000 math reasoning traces from Qwen3.8-27B, each labeled paragraph by paragraph: the path that reached the answer, the paths that were tried and dropped, and what came after the answer was settled. The labeling procedure was checked against an independent annotator, GPT-6.1 Sol, before we labeled at scale.</p>
   <p class="byline">Hongyang Li, Kyungmin Hong, Xiao Li, Caesar Wu, Pascal Bouvry · <a href="https://huggingface.co/SeaFill2025">SeaFill Open-Source Team</a> · University of Luxembourg</p>
   <div class="links"><a class="primary" href="https://huggingface.co/datasets/SeaFill2025/TraceAtlas">Download on Hugging Face</a><a href="../#/">Browse online</a><a href="#cite">Cite</a></div>
 </header>
@@ -117,6 +117,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
   <div class="stat"><b>1,000</b><span>long traces, all correct, medium and hard problems</span></div>
   <div class="stat"><b>every paragraph</b><span>labeled: main path, dropped path, or after the answer</span></div>
   <div class="stat"><b>frontier-level</b><span>open teacher — Qwen3.8-27B, roughly Opus 4.6 class</span></div>
+  <div class="stat"><b>cross-checked</b><span>against GPT-6.1 Sol before labeling at scale</span></div>
 </div>
 
 <h2>Why this matters</h2>
@@ -183,7 +184,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 <article data-lang="zh">
 <header class="hero col">
   <h1>TraceAtlas：1,000 条长推理轨迹的结构地图</h1>
-  <p class="lede">我们开源 1,000 条 Qwen3.8-27B 的数学推理轨迹，每条都逐段标注：哪条路走到了答案，哪些路走了一段又放弃了，哪些是答案定下来之后的内容。</p>
+  <p class="lede">我们开源 1,000 条 Qwen3.8-27B 的数学推理轨迹，每条都逐段标注：哪条路走到了答案，哪些路走了一段又放弃了，哪些是答案定下来之后的内容。标注流程在大规模使用前，先和独立标注者 GPT-6.1 Sol 做过对照检查。</p>
   <p class="byline">Hongyang Li、Kyungmin Hong、Xiao Li、Caesar Wu、Pascal Bouvry · <a href="https://huggingface.co/SeaFill2025">SeaFill 开源团队</a> · 卢森堡大学</p>
   <div class="links"><a class="primary" href="https://huggingface.co/datasets/SeaFill2025/TraceAtlas">在 Hugging Face 下载</a><a href="../#/">在线浏览</a><a href="#cite-zh">引用</a></div>
 </header>
@@ -193,6 +194,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
   <div class="stat"><b>1,000 条</b><span>长推理轨迹，全部答对，中等题和难题</span></div>
   <div class="stat"><b>逐段标注</b><span>每段标明：主路径、放弃的路，还是答案之后</span></div>
   <div class="stat"><b>前沿水平</b><span>开源教师 Qwen3.8-27B，大致相当于 Opus 4.6</span></div>
+  <div class="stat"><b>交叉验证</b><span>大规模标注前，先用 GPT-6.1 Sol 独立标注做对照检查</span></div>
 </div>
 
 <h2>为什么重要</h2>
