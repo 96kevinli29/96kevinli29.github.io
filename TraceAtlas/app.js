@@ -64,7 +64,7 @@ function store() {
 function save(s) { try { localStorage.setItem(REVIEW_KEY, JSON.stringify(s)); } catch (e) {} }
 
 async function getIndex() {
-  if (!INDEX) INDEX = await (await fetch("data/index.json")).json();
+  if (!INDEX) INDEX = await (await fetch("data/index.json?v=" + Date.now())).json();
   return INDEX;
 }
 async function getTrace(id) {
