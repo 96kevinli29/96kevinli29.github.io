@@ -1,0 +1,37 @@
+1978|Israel Gelfand;Carl Ludwig Siegel
+1979|Jean Leray;André Weil
+1980|Henri Cartan;Andrey Kolmogorov
+1981|Lars Ahlfors;Oscar Zariski
+1982|Hassler Whitney;Mark Krein
+1984|Shiing-Shen Chern;Paul Erdős
+1985|Kunihiko Kodaira;Hans Lewy
+1986|Samuel Eilenberg;Atle Selberg
+1987|Kiyosi Itô;Peter Lax
+1988|Friedrich Hirzebruch;Lars Hörmander
+1989|Alberto Calderón;John Milnor
+1990|Ennio De Giorgi;Ilya Piatetski-Shapiro
+1992|Lennart Carleson;John G. Thompson
+1993|Mikhail Gromov;Jacques Tits
+1995|Jürgen Moser
+1996|Robert Langlands;Andrew Wiles
+1997|Joseph Keller;Yakov Sinai
+1999|László Lovász;Elias M. Stein
+2000|Raoul Bott;Jean-Pierre Serre
+2001|Vladimir Arnold;Saharon Shelah
+2003|Mikio Sato;John Tate
+2005|Grigory Margulis;Sergei Novikov
+2007|Stephen Smale;Hillel Furstenberg
+2008|Pierre Deligne;Phillip A. Griffiths;David Mumford
+2010|Shing-Tung Yau;Dennis Sullivan
+2012|Michael Aschbacher;Luis Caffarelli
+2013|George Mostow;Michael Artin
+2014|Peter Sarnak
+2015|James Arthur
+2017|Richard Schoen;Charles Fefferman
+2018|Alexander Beilinson;Vladimir Drinfeld
+2019|Jean-François Le Gall;Gregory F. Lawler
+2020|Simon Donaldson;Yakov Eliashberg
+2022|George Lusztig
+2023|Ingrid Daubechies
+2024|Adi Shamir;Noga Alon
+2026|David Kazhdan;Joseph Bernstein

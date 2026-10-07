@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>On Whose Shoulders</title>
+<meta name="description" content="Whose shoulders does AI-era science stand on? A field-by-field record of the human scientists cited by frontier AI results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#eef1f3;--sheet:#fbfcfc;--ink:#14212b;--muted:#5b6b76;--rule:#d3dadf;--gold:#a8791c;--gold-soft:#f3e7c9;--use:#1f6f68;
+--f-display:"Noto Serif SC","Songti SC","STSong",Georgia,serif;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11181e;--sheet:#182129;--ink:#e4e9ec;--muted:#93a3ae;--rule:#2b3741;--gold:#e0b351;--gold-soft:#3a3020;--use:#5cc2b6;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#11181e;--sheet:#182129;--ink:#e4e9ec;--muted:#93a3ae;--rule:#2b3741;--gold:#e0b351;--gold-soft:#3a3020;--use:#5cc2b6;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--f-body)}
+main{max-width:52rem;margin:0 auto;padding:2.5rem 16px 4rem}
+.top{display:flex;justify-content:space-between;align-items:center;font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.top a{color:var(--muted)}
+h1{font:900 clamp(2.2rem,7vw,3.6rem)/1.1 var(--f-display);margin:2.2rem 0 .6rem}
+.dek{font-size:1.1rem;color:var(--muted);max-width:38rem;margin:0 0 2.5rem}
+.feature{display:block;background:var(--sheet);border:1px solid var(--rule);border-top:4px solid var(--gold);border-radius:6px;padding:1.6rem 1.5rem;text-decoration:none;color:inherit}
+.feature:hover,.feature:focus-visible{border-color:var(--gold);outline:none}
+.tag{display:inline-block;font:500 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.15rem .5rem;border-radius:3px}
+.feature h2{font:900 1.8rem/1.2 var(--f-display);margin:.7rem 0 .4rem}
+.feature p{margin:.3rem 0}
+.src{margin-top:1rem;font:.85rem var(--f-mono);color:var(--muted)}
+.src a{color:var(--use)}
+.go{display:inline-block;margin-top:1rem;font-weight:600;color:var(--use)}
+h3{font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:3rem 0 .8rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem}
+.soon{border:1px dashed var(--rule);border-radius:6px;padding:1rem;color:var(--muted)}
+.soon b{display:block;color:var(--ink);font:600 1.1rem var(--f-display)}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><span>On Whose Shoulders · 巨人之肩</span><a href="../">中文</a></div>
+<h1>Every AI breakthrough<br>stands on human shoulders</h1>
+<p class="dek">Updated with each AI breakthrough in science, field by field: which human scientists’ work these results cite, in tribute to their insight and effort.</p>
+<a class="feature" href="../math/en/">
+<span class="tag">Issue 1 · Mathematics</span>
+<h2>OpenAI Math Release: 722 AI-written math preprints</h2>
+<p>OpenAI published 722 AI-written mathematics preprints with their LaTeX sources. We parsed every reference: which mathematicians are cited most, which classic papers recur, and how the work of Fields, Abel and Wolf laureates forms the foundations.</p>
+<span class="go">Open the mathematics index →</span>
+</a>
+<p class="src">Source: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
+<h3>Other fields</h3>
+<div class="grid"><div class="soon"><b>Physics</b>Coming soon</div><div class="soon"><b>Chemistry</b>Coming soon</div><div class="soon"><b>Life sciences</b>Coming soon</div><div class="soon"><b>Computer science</b>Coming soon</div></div>
+<footer>Citation is not dependence; this project does not judge the originality of AI results. · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>
+</main>
+</body>
+</html>

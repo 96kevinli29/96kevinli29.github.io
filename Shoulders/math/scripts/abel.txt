@@ -1,0 +1,24 @@
+2003|Jean-Pierre Serre
+2004|Michael Atiyah;Isadore Singer
+2005|Peter Lax
+2006|Lennart Carleson
+2007|S. R. Srinivasa Varadhan
+2008|John G. Thompson;Jacques Tits
+2009|Mikhail Gromov
+2010|John Tate
+2011|John Milnor
+2012|Endre Szemerédi
+2013|Pierre Deligne
+2014|Yakov Sinai
+2015|John Nash;Louis Nirenberg
+2016|Andrew Wiles
+2017|Yves Meyer
+2018|Robert Langlands
+2019|Karen Uhlenbeck
+2020|Hillel Furstenberg;Grigory Margulis
+2021|László Lovász;Avi Wigderson
+2022|Dennis Sullivan
+2023|Luis Caffarelli
+2024|Michel Talagrand
+2025|Masaki Kashiwara
+2026|Gerd Faltings

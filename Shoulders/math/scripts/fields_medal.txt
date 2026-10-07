@@ -1,0 +1,21 @@
+1936|Lars Ahlfors;Jesse Douglas
+1950|Laurent Schwartz;Atle Selberg
+1954|Kunihiko Kodaira;Jean-Pierre Serre
+1958|Klaus Roth;René Thom
+1962|Lars Hörmander;John Milnor
+1966|Michael Atiyah;Paul Cohen;Alexander Grothendieck;Stephen Smale
+1970|Alan Baker;Heisuke Hironaka;Sergei Novikov;John G. Thompson
+1974|Enrico Bombieri;David Mumford
+1978|Pierre Deligne;Charles Fefferman;Grigory Margulis;Daniel Quillen
+1982|Alain Connes;William Thurston;Shing-Tung Yau
+1986|Simon Donaldson;Gerd Faltings;Michael Freedman
+1990|Vladimir Drinfeld;Vaughan Jones;Shigefumi Mori;Edward Witten
+1994|Jean Bourgain;Pierre-Louis Lions;Jean-Christophe Yoccoz;Efim Zelmanov
+1998|Richard Borcherds;Timothy Gowers;Maxim Kontsevich;Curtis McMullen
+2002|Laurent Lafforgue;Vladimir Voevodsky
+2006|Andrei Okounkov;Grigori Perelman;Terence Tao;Wendelin Werner
+2010|Elon Lindenstrauss;Bao Châu Ngô;Stanislav Smirnov;Cédric Villani
+2014|Artur Avila;Manjul Bhargava;Martin Hairer;Maryam Mirzakhani
+2018|Caucher Birkar;Alessio Figalli;Peter Scholze;Akshay Venkatesh
+2022|Hugo Duminil-Copin;June Huh;James Maynard;Maryna Viazovska
+2026|Yu Deng;John Pardon;Jacob Tsimerman;Hong Wang

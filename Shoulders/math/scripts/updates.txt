@@ -1,0 +1,2 @@
+# date|中文|English   (newest first; one line per update)
+2026-10-08|第 1 期 · 全景：OpenAI Math Release 全部 722 篇预印本的引文索引上线，含基石地图、被引最多的数学家、各领域前 300 位与各国数学家。之后按学科分期更新。|Issue 1 · Overview: a citation index of all 722 preprints in the OpenAI Math Release, with the foundations map, the most-cited mathematicians, the top 300 in each field and a country view. Field-by-field issues follow.

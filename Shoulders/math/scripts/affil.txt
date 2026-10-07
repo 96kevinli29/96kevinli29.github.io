@@ -1,0 +1,37 @@
+# name|中文名(可空)|origin|单位(中文)|Affiliation (English)   — verified Oct 2026; see README
+Shing-Tung Yau|丘成桐|CN|清华大学丘成桐数学科学中心|Yau Mathematical Sciences Center, Tsinghua University
+Hong Wang|王虹|CN|纽约大学柯朗研究所、法国高等科学研究所|NYU Courant Institute and IHÉS
+Wenhao Ou|欧文浩|CN|中国科学院数学与系统科学研究院|AMSS, Chinese Academy of Sciences
+Junyan Cao||CN|法国蔚蓝海岸大学|Université Côte d'Azur
+Gang Tian|田刚|CN|北京大学|Peking University
+Jian Ding|丁剑|CN|北京大学|Peking University
+Song Sun|孙崧|CN|浙江大学数学高等研究院|Institute for Advanced Study in Mathematics, Zhejiang University
+Ruixiang Zhang|张瑞祥|CN|加州大学伯克利分校|UC Berkeley
+Shukun Wu||CN|印第安纳大学伯明顿分校|Indiana University Bloomington
+Yumeng Ou||CN|宾夕法尼亚大学|University of Pennsylvania
+Yu Deng|邓煜|CN|芝加哥大学|University of Chicago
+Xu-Jia Wang|汪徐家|CN|西湖大学|Westlake University
+Chao Li||CN|纽约大学柯朗研究所|NYU Courant Institute
+Xiumin Du||CN|美国西北大学|Northwestern University
+Xiuxiong Chen|陈秀雄|CN|纽约州立大学石溪分校|Stony Brook University
+Kefeng Liu|刘克峰|CN|上海数学与交叉学科研究院|Shanghai Institute for Mathematics and Interdisciplinary Sciences
+Ngaiming Mok|莫毅明|HK|香港大学|University of Hong Kong
+Xin Sun|孙鑫|CN|北京大学北京国际数学研究中心|BICMR, Peking University
+Chenyang Xu|许晨阳|CN|普林斯顿大学|Princeton University
+Ye Tian|田野|CN|中国科学院数学与系统科学研究院|AMSS, Chinese Academy of Sciences
+Chi Li|李驰|CN|罗格斯大学|Rutgers University
+Yuchen Liu||CN|美国西北大学|Northwestern University
+Xiangyu Zhou|周向宇|CN|中国科学院数学与系统科学研究院|AMSS, Chinese Academy of Sciences
+Jin-Yi Cai|蔡进一|CN|威斯康星大学麦迪逊分校|University of Wisconsin–Madison
+Jihao Liu||CN|北京大学|Peking University
+Jiaoyang Huang||CN|宾夕法尼亚大学沃顿商学院|Wharton School, University of Pennsylvania
+Zhiwei Yun|恽之玮|CN|麻省理工学院|MIT
+Junliang Shen||CN|耶鲁大学|Yale University
+Shou-Wu Zhang|张寿武|CN|普林斯顿大学|Princeton University
+Jingjun Han|韩京俊|CN|复旦大学上海数学中心|Shanghai Center for Mathematical Sciences, Fudan University
+Xiangdong Ye|叶向东|CN|中国科学技术大学|University of Science and Technology of China
+Jintian Zhu||CN|西湖大学|Westlake University
+Shaoyun Bai||CN|麻省理工学院|MIT
+Horng-Tzer Yau|姚鸿泽|TW|哈佛大学|Harvard University
+C. N. Yang|杨振宁|CN|清华大学高等研究院（已故，2025）|Institute for Advanced Study, Tsinghua University (d. 2025)
+Shaoming Guo|郭少明|CN|南开大学陈省身数学研究所|Chern Institute of Mathematics, Nankai University

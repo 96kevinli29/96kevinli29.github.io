@@ -1,0 +1,456 @@
+# name|ISO country (country of origin / birth nationality; blank = unsure, omitted)
+Elliott H. Lieb|US
+Paul Erdős|HU
+James S. Milne|NZ
+Pierre Deligne|BE
+Terence Tao|AU
+Jean-Pierre Demailly|FR
+János Kollár|HU
+Jean-Pierre Serre|FR
+Osamu Fujino|JP
+Oded Schramm|IL
+Shing-Tung Yau|CN
+Michael Aizenman|IL
+Mikhail Gromov|RU
+Barry Simon|US
+Jean Bourgain|BE
+Christopher D. Hacon|GB
+Allen Hatcher|US
+Alexander Grothendieck|DE
+Hugo Duminil-Copin|FR
+Frédéric Campana|FR
+Caucher Birkar|IR
+John Milnor|US
+Mihai Păun|RO
+Shigefumi Mori|JP
+Stanislav Smirnov|RU
+P. W. Kasteleyn|NL
+James McKernan|GB
+C. M. Fortuin|NL
+Yuval Peres|IL
+Leon Simon|AU
+Thomas Peternell|DE
+Neil S. Trudinger|AU
+László Lovász|HU
+Wassily Hoeffding|FI
+Jean Ginibre|FR
+Paolo Cascini|IT
+William Fulton|US
+Jürg Fröhlich|CH
+Armand Borel|CH
+Yujiro Kawamata|JP
+Andreas Höring|DE
+Noga Alon|IL
+Prasad Tetali|IN
+Scott Sheffield|US
+Sébastien Boucksom|FR
+Ioan Manolescu|RO
+Andrea Montanari|IT
+Vladimir Lazić|RS
+David Gilbarg|US
+Hans Grauert|DE
+Ryan O'Donnell|CA
+Brian Conrad|US
+Michael Atiyah|GB
+Thomas Spencer|US
+Stefan Kebekus|DE
+Michel Talagrand|FR
+Nikolaos Tsakanikas|GR
+Robert Lazarsfeld|US
+Harry Kesten|NL
+Endre Szemerédi|HU
+Wendelin Werner|FR
+Nathan Linial|IL
+Uffe Haagerup|DK
+Dmitry Krachun|RU
+Persi Diaconis|US
+John Nash|US
+Charles H. Bennett|US
+Peter Scholze|DE
+Yoshinori Gongyo|JP
+Andrei Okounkov|RU
+Ran Raz|IL
+Roger Penrose|GB
+Luigi Ambrosio|IT
+Francesco Guerra|IT
+David Ruelle|BE
+David Mumford|GB
+Florin Ambro|RO
+Mircea Mustaţă|RO
+Bernard Nienhuis|NL
+Alexander Glazman|RU
+Joe Harris|US
+Christophe Garban|FR
+Itai Benjamini|IL
+Petter Brändén|SE
+Gregory F. Lawler|US
+Vincent Tassion|FR
+Ofer Zeitouni|IL
+Pavel Etingof|RU
+Scott Kirkpatrick|US
+Alan D. Sokal|US
+Christian Schnell|DE
+Larry Guth|US
+Jean Leray|FR
+Robert Seiringer|AT
+Martin R. Bridson|GB
+Richard V. Kadison|US
+André Haefliger|CH
+Assaf Naor|IL
+Vladimir Drinfeld|UA
+D. R. Heath-Brown|GB
+Gerd Faltings|DE
+Oded Regev|IL
+Daniel Greb|DE
+David J. Thouless|GB
+Louis Nirenberg|CA
+Wenhao Ou|CN
+Mihnea Popa|RO
+Michel Raynaud|FR
+Dmitry Chelkak|RU
+Elchanan Mossel|IL
+Allan Sly|AU
+Gerhard Huisken|DE
+Tom Ilmanen|US
+Subhash Khot|IN
+Philip Hall|GB
+John L. Cardy|GB
+Richard Schoen|US
+Michael J. Hopkins|US
+Lars Hörmander|SE
+Benedict H. Gross|US
+Béla Bollobás|HU
+John Tate|US
+David Sherrington|GB
+Richard P. Stanley|US
+Shin-ichi Matsumura|JP
+Bo Berndtsson|SE
+Enrico Bombieri|IT
+Kenji Matsuki|JP
+Hubert L. Bray|US
+Jeff Cheeger|US
+Alberto P. Calderón|AR
+Herbert Federer|AT
+Robin Hartshorne|US
+W. Timothy Gowers|GB
+Daniel Quillen|US
+Jeff Kahn|US
+Martin W. Liebeck|GB
+Charles M. Newman|US
+Hillel Furstenberg|DE
+Isadore Singer|US
+Nicholas M. Katz|US
+Gang Tian|CN
+Jan Philip Solovej|DK
+Ronen Eldan|IL
+Piotr T. Chruściel|PL
+Pavel Etingof|RU
+Fedor Bogomolov|RU
+Jacob Tsimerman|CA
+Hugh L. Montgomery|US
+Roland Bauerschmidt|DE
+Edward O. Thorp|US
+Igor V. Dolgachev|RU
+Yoichi Miyaoka|JP
+Sorin Popa|RO
+Stuart White|GB
+Dan Abramovich|IL
+Alexander Beilinson|RU
+Sourav Chatterjee|IN
+Nicola Fusco|IT
+Yves André|FR
+Heisuke Hironaka|JP
+Irit Dinur|IL
+Nets Hawk Katz|US
+Prasad Raghavendra|IN
+Daniel Peralta-Salas|ES
+Jack Edmonds|US
+Ehud Friedgut|IL
+Jian Ding|CN
+Aner Shalev|IL
+Ben Green|GB
+Robert C. Vaughan|GB
+Vincent Lafforgue|FR
+Joel Spencer|US
+Peter Frankl|HU
+Juanyong Wang|CN
+Freeman J. Dyson|GB
+André Weil|FR
+Sándor J. Kovács|HU
+Phillip A. Griffiths|US
+Valentino Tosatti|IT
+Dmitry Panchenko|RU
+Raghu Meka|IN
+J. M. Kosterlitz|GB
+Spencer Bloch|US
+Thomas M. Liggett|US
+Junyan Cao|CN
+John M. Hammersley|GB
+Eckart Viehweg|DE
+Diego Pallara|IT
+Jerry L. Kazdan|US
+Song Sun|CN
+Arnaud Beauville|FR
+Pierre de la Harpe|CH
+Richard M. Karp|US
+Madhu Sudan|IN
+Mario Szegedy|HU
+A. M. Turing|GB
+Bruno Nachtergaele|BE
+Giorgio Parisi|IT
+Nina Holden|NO
+Miklós Ajtai|HU
+Lars Ahlfors|FI
+Alain Connes|FR
+Shmuel Weinberger|US
+Tim Austin|GB
+Ronald L. Graham|US
+Ron Peled|IL
+Narutaka Ozawa|JP
+Joel A. Tropp|US
+Huzihiro Araki|JP
+Alain-Sol Sznitman|FR
+Douglas C. Ravenel|US
+Akhil Mathew|US
+Stephen Smale|US
+Michael Artin|DE
+Richard Taylor|GB
+Henryk Iwaniec|PL
+Eric A. Carlen|US
+Kunihiko Kodaira|JP
+Cédric Villani|FR
+Charles Fefferman|US
+Hong Wang|CN
+Maxim Kontsevich|RU
+James Maynard|GB
+Akshay Venkatesh|IN
+Lennart Carleson|SE
+Atle Selberg|NO
+Dennis Sullivan|US
+Pierre-Louis Lions|FR
+Avi Wigderson|IL
+Simon Donaldson|GB
+Robert Langlands|CA
+Edward Witten|US
+Andrew Wiles|GB
+Grigori Perelman|RU
+Luis Caffarelli|AR
+Alessio Figalli|IT
+Grigory Margulis|RU
+Elon Lindenstrauss|IL
+Peter Lax|HU
+Michael Freedman|US
+Karen Uhlenbeck|US
+Curtis McMullen|US
+René Thom|FR
+June Huh|KR
+Vaughan Jones|NZ
+Jacques Tits|BE
+Yu Deng|CN
+Klaus Roth|DE
+Maryna Viazovska|UA
+Manjul Bhargava|CA
+Laurent Lafforgue|FR
+John Pardon|US
+Bao Châu Ngô|VN
+Sergei Novikov|RU
+Vladimir Voevodsky|RU
+S. R. Srinivasa Varadhan|IN
+Artur Avila|BR
+Masaki Kashiwara|JP
+Yves Meyer|FR
+William Thurston|US
+Martin Hairer|AT
+Shaoming Guo|CN
+Ruixiang Zhang|CN
+Shukun Wu|CN
+Xiumin Du|CN
+Yumeng Ou|CN
+Changkeun Oh|KR
+Ciprian Demeter|RO
+Pablo Shmerkin|AR
+Tuomas Orponen|FI
+Christoph Thiele|DE
+Thomas Wolff|US
+Elias M. Stein|BE
+Anthony Carbery|GB
+Jonathan Bennett|GB
+Andreas Seeger|DE
+Joshua Zahl|US
+Malabika Pramanik|IN
+Loukas Grafakos|GR
+Polona Durcik|SI
+Vjekoslav Kovač|HR
+Bernard Host|FR
+Bryna Kra|US
+Tamar Ziegler|IL
+Ben Green|GB
+Jean-Pierre Demailly|FR
+Xu-Jia Wang|CN
+Gang Tian|CN
+Xiuxiong Chen|CN
+Hong Wang|CN
+Chao Li|CN
+Otis Chodosh|US
+Fernando C. Marques|BR
+André Neves|PT
+Camillo De Lellis|IT
+Simon Brendle|DE
+Richard S. Hamilton|US
+Grigori Perelman|RU
+Peter Sarnak|ZA
+Jean-Michel Bismut|FR
+Ngaiming Mok|HK
+Kefeng Liu|CN
+Israel Gelfand|UA
+Carl Ludwig Siegel|DE
+Henri Cartan|FR
+Andrey Kolmogorov|RU
+Oscar Zariski|BY
+Hassler Whitney|US
+Mark Krein|UA
+Shiing-Shen Chern|CN
+Hans Lewy|DE
+Samuel Eilenberg|PL
+Kiyosi Itô|JP
+Friedrich Hirzebruch|DE
+Ennio De Giorgi|IT
+Ilya Piatetski-Shapiro|RU
+Jürgen Moser|DE
+Joseph Keller|US
+Raoul Bott|HU
+Vladimir Arnold|UA
+Saharon Shelah|IL
+Mikio Sato|JP
+Michael Aschbacher|US
+George Mostow|US
+James Arthur|CA
+Jean-François Le Gall|FR
+Yakov Eliashberg|RU
+George Lusztig|RO
+Ingrid Daubechies|BE
+Adi Shamir|IL
+David Kazhdan|RU
+Joseph Bernstein|RU
+Dennis Gaitsgory|TJ
+Sam Raskin|US
+Jason Miller|US
+Tomer M. Schlank|IL
+Jared Weinstein|US
+Karol Kajetan Kozlowski|PL
+Piet Lammers|NL
+Andrew Senger|US
+Dima Arinkin|UA
+Juhan Aru|EE
+Dor Minzer|IL
+Muli Safra|IL
+Mikael Rørdam|DK
+Nicola Gigli|IT
+Avelio Sepúlveda|CL
+Aaron Tikuisis|CA
+Wilhelm Winter|DE
+Mark Hovey|US
+Andrei S. Rapinchuk|BY
+Amine Marrakchi|TN
+Morihiko Saito|JP
+S. J. Patterson|GB
+Kenji Fukaya|JP
+Kazuya Kato|JP
+Zaher Hani|LB
+Michael Schneider|DE
+Wilfried Schmid|DE
+Cristopher Moore|US
+Rahul Pandharipande|IN
+Charles A. Weibel|US
+Eberhard Kirchberg|DE
+M. Radziwi|PL
+Stefano Filipazzi|IT
+Victor Ostrik|UA
+Antti Kemppainen|FI
+Manfred Einsiedler|AT
+Stefaan Vaes|BE
+Daniel T. Wise|US
+Eva Miranda|ES
+Emanuele Macrì|IT
+Robert Steinberg|CA
+Laurent Fargues|FR
+Benoît Claudon|FR
+Yong-Geun Oh|KR
+Gilles Pisier|FR
+Neil P. Strickland|GB
+Søren Fournais|DK
+Ola Svensson|SE
+Nathaniel Stapleton|US
+Martin Dyer|GB
+Ziquan Zhuang|CN
+Marcin Lis|PL
+Bruce Blackadar|US
+Jacob Lurie|US
+Erik Christensen|DK
+Kevin Ford|US
+Henry Cohn|US
+Franc Forstnerič|SI
+Tom Hutchcroft|GB
+Oleg Golberg|RU
+Sebastian Hensel|DE
+Alex Schwendner|US
+Dmitry Vaintrob|US
+Kaoru Ono|JP
+Johan Hstad|SE
+Peter Teichner|SK
+Agnès Beaudry|CA
+Bruce E. Sagan|US
+Venkatesan Guruswami|IN
+Roman Bezrukavnikov|RU
+Daniel Huybrechts|DE
+David Nadler|US
+Antonio Auffinger|BR
+George A. Elliott|CA
+Kevin Coulembier|BE
+Roger R. Smith|GB
+Alistair Sinclair|GB
+Maksym Radziwiłł|PL
+Paul G. Goerss|US
+Clifford Henry Taubes|US
+Mihály Weiner|HU
+Jacob Fox|US
+Benny Sudakov|GE
+Christopher Skinner|US
+Nima Anari|IR
+James R. Lee|US
+Denka Kutzarova|BG
+Dan A. Lee|US
+Jakob Yngvason|IS
+Arunima Ray|IN
+Mohammed Abouzaid|MA
+Barbara Fantechi|IT
+Shayan Oveis Gharan|IR
+Ethan S. Devinatz|US
+Mark Kisin|AU
+Russell Lyons|US
+David Steurer|DE
+Philippe Michel|FR
+Tobias Barthel|DE
+Bertrand Duplantier|FR
+Clément Hongler|CH
+Niko Naumann|DE
+Guy Kindler|IL
+Jean-Christophe Mourrat|FR
+Taro Fujisawa|JP
+Hiroshi Ohta|JP
+Mirko Mauri|IT
+Jorge Castillejos|MX
+Cyril Houdayer|FR
+Paolo Stellari|IT
+Kalle Karu|EE
+Eyal Markman|IL
+Titus Lupu|RO
+Ashay Burungale|IN
+Euiwoong Lee|KR
+Mark Powell|GB
+Gregory Valiant|US
+Aaron Sidford|US
+Marcus Khuri|US
+Ewain Gwynne|US
+Omprokash Das|IN
+Robert Cardona|ES
