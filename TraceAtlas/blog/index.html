@@ -80,6 +80,13 @@ code { font-family: var(--f-mono); font-size: .85em; }
 .cite { position: relative; }
 .cite pre { font-family: var(--f-mono); font-size: .8rem; line-height: 1.55; background: var(--sheet); border: 1px solid var(--rule); padding: 1rem; overflow-x: auto; }
 .cite button { position: absolute; top: .6rem; right: .6rem; font-family: var(--f-mono); font-size: .72rem; background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: .2rem .5rem; cursor: pointer; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin: 1.4rem 0 .4rem; }
+.stat { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: .7rem .8rem; }
+.stat b { display: block; font-family: var(--f-display); font-size: 1.55rem; line-height: 1.1; color: var(--accent); }
+.stat span { font-family: var(--f-display); font-size: .88rem; color: var(--muted); }
+.why { padding-left: 1.1rem; }
+.why li { margin: .55rem 0; }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
 footer { color: var(--muted); font-size: .9rem; margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
 [data-lang] { display: none; }
 html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: revert; }
@@ -101,7 +108,20 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 </header>
 
 <section class="col">
-<p>Good chain-of-thought data is scarce, and what exists is plain text: you can see that a model thought for ten thousand tokens, but not which of them the answer rests on. TraceAtlas draws that map.</p>
+<div class="stats">
+  <div class="stat"><b>1,000</b><span>long traces, all correct, medium and hard problems</span></div>
+  <div class="stat"><b>every paragraph</b><span>labeled: main path, dropped path, or after the answer</span></div>
+  <div class="stat"><b>frontier-level</b><span>open teacher — Qwen3.8-27B, roughly Opus 4.6 class</span></div>
+</div>
+
+<h2>Why this matters</h2>
+<p>Reasoning models now think for thousands of tokens before they answer, and their traces have become the main ingredient for training the next generation of models. Yet the open data that exists is plain text. You can see that a model thought for ten thousand tokens, but not which of them the answer actually rests on. To our knowledge, TraceAtlas is the first open set of long reasoning traces that maps this out, paragraph by paragraph.</p>
+<ul class="why">
+  <li><b>Better training data, not just more of it.</b> Knowing which parts of a trace are dead ends lets you prune them, keep them on purpose, or pick traces by how they reason — the questions that decide what a student model learns from distillation.</li>
+  <li><b>Step-level supervision for free.</b> Every paragraph says whether the answer depends on it. That is exactly the signal process reward models and step-level verifiers are trained on, and it is usually expensive to collect.</li>
+  <li><b>A lens on how strong models think.</b> Even in this small release the structure is striking: about half of the traces go straight to the answer, most newly opened approaches are later dropped, and well over a third of the thinking happens after the answer is already settled. Two traces for the same problem can look completely different.</li>
+  <li><b>Open and frontier-quality.</b> The strongest reasoning traces usually come from closed models that hide or summarize their thinking. These come from an open model at roughly Opus 4.6 level, with the full thinking kept.</li>
+</ul>
 
 <figure class="map" aria-label="Map of one reasoning trace">
   <p class="q"><b>Problem.</b> Find the greatest <i>n</i> such that there are <i>n</i> positive integers below 5000, any two sharing a divisor greater than 1 but any three coprime. <span style="color:var(--muted)">(Answer: 4)</span></p>
@@ -143,7 +163,20 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 </header>
 
 <section class="col">
-<p>高质量的思维链数据很稀缺，现有的也都是纯文本：能看出模型想了一万个 token，却看不出答案到底建立在哪一部分上。TraceAtlas 就是把这张地图画出来。</p>
+<div class="stats">
+  <div class="stat"><b>1,000 条</b><span>长推理轨迹，全部答对，中等题和难题</span></div>
+  <div class="stat"><b>逐段标注</b><span>每段标明：主路径、放弃的路，还是答案之后</span></div>
+  <div class="stat"><b>前沿水平</b><span>开源教师 Qwen3.8-27B，大致相当于 Opus 4.6</span></div>
+</div>
+
+<h2>为什么重要</h2>
+<p>推理模型在回答前会先想几千甚至上万个 token，这些思维链已经成为训练下一代模型的主要原料。但现有的开源数据都是纯文本：能看出模型想了一万个 token，却看不出答案真正建立在哪一部分上。据我们所知，TraceAtlas 是第一份逐段画出这张结构地图的开源长推理轨迹数据。</p>
+<ul class="why">
+  <li><b>让训练数据更好，而不只是更多。</b>知道轨迹里哪些是死胡同，就能把它们剪掉、有意保留，或者按推理方式挑选轨迹——蒸馏时学生模型学到什么，正取决于这些选择。</li>
+  <li><b>现成的步骤级监督信号。</b>每一段都标明答案是否依赖它。这正是过程奖励模型和步骤级验证器需要的训练信号，而通常收集起来代价很高。</li>
+  <li><b>看清强模型怎么思考。</b>即使在这批小规模数据里，结构差异也很明显：约一半的轨迹直奔答案，新开的思路大多后来被放弃，超过三分之一的思考发生在答案已经确定之后；同一道题的两条轨迹可以完全不同。</li>
+  <li><b>开源，而且是前沿水平。</b>最强的推理轨迹通常来自闭源模型，它们的思考过程要么隐藏、要么只给摘要。这批轨迹来自能力大致相当于 Opus 4.6 的开源模型，完整保留了思考过程。</li>
+</ul>
 
 <figure class="map" aria-label="一条推理轨迹的地图">
   <p class="q"><b>题目。</b>求最大的 <i>n</i>，使得存在 <i>n</i> 个小于 5000 的正整数，任意两个有大于 1 的公因数，但任意三个互素。<span style="color:var(--muted)">（答案：4）</span></p>
