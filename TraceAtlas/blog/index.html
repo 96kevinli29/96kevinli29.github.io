@@ -162,6 +162,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
   <tr><td><code>exploration_share</code></td><td>Fraction of the thinking spent on dropped paths</td></tr>
 </table>
 <p>The traces cover medium and hard problems and short, medium and long reasoning. Labels were produced by Qwen3.8-27B in thinking mode: long traces are first outlined as a whole, then labeled in chunks.</p>
+<p><b>Quality check.</b> Before labeling at scale, we checked the labels against an independent reference: GPT-6.1 Sol annotated 100 pilot traces with the same scheme. We went through four versions of the labeling procedure and kept the one that agreed best with the reference — paragraph-level F1 of 0.73 on which steps were dropped before the answer (0.86 on short traces, about 0.67 on medium and long ones). Part of the remaining gap is genuine ambiguity: some paragraphs have no single right label. Only then were these 1,000 traces labeled with that procedure.</p>
 
 <h2>Related work</h2>
 <p>The labels build on earlier ways of describing reasoning: problem-solving episodes in the sense of Schoenfeld (<a href="https://arxiv.org/abs/2509.14662">arXiv:2509.14662</a>, <a href="https://arxiv.org/abs/2512.19995">arXiv:2512.19995</a>), sentence-level function categories in <i>Thought Anchors</i> (<a href="https://arxiv.org/abs/2506.19143">arXiv:2506.19143</a>), reasoning graphs with failed steps (<a href="https://arxiv.org/abs/2509.19284">arXiv:2509.19284</a>), and cognitive behaviors such as verification and backtracking (Gandhi et al., <a href="https://arxiv.org/abs/2503.01307">arXiv:2503.01307</a>). TraceAtlas applies a related scheme at paragraph level to long traces and releases the labeled data.</p>
@@ -237,6 +238,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
   <tr><td><code>exploration_share</code></td><td>思考中花在放弃的路上的比例</td></tr>
 </table>
 <p>轨迹覆盖中等题和难题，以及短、中、长不同长度的推理。标注由 Qwen3.8-27B 思考模式完成：长轨迹先整体概括，再分块逐段标注。</p>
+<p><b>质量检查。</b>在大规模标注之前，我们先用一个独立参照检查标签质量：让 GPT-6.1 Sol 按同一套体系标注 100 条试点轨迹。标注流程前后改了四版，最后选用和参照最一致的一版：在“答案之前哪些步骤被放弃”这一点上，段落级 F1 为 0.73（短轨迹 0.86，中、长轨迹约 0.67）。剩下的差距有一部分是真正的模糊地带，有些段落本来就没有唯一正确的标签。确认之后，才用这一版流程标注了这 1,000 条。</p>
 
 <h2>相关工作</h2>
 <p>这套标签借鉴了已有的推理刻画方式：Schoenfeld 意义上的解题情节（<a href="https://arxiv.org/abs/2509.14662">arXiv:2509.14662</a>、<a href="https://arxiv.org/abs/2512.19995">arXiv:2512.19995</a>），<i>Thought Anchors</i> 的句子功能分类（<a href="https://arxiv.org/abs/2506.19143">arXiv:2506.19143</a>），带失败步骤的推理图（<a href="https://arxiv.org/abs/2509.19284">arXiv:2509.19284</a>），以及验证、回溯等认知行为（Gandhi 等，<a href="https://arxiv.org/abs/2503.01307">arXiv:2503.01307</a>）。TraceAtlas 在长轨迹上按段落使用相近的体系，并公开了标注数据。</p>
