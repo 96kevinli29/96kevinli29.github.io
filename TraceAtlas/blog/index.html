@@ -136,6 +136,22 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 </figure>
 <figcaption>One trace (<a href="../#/t/deepmath-106656_5">deepmath-106656_5</a>, 163 paragraphs). The trunk is what the final answer is built on; each side branch is a path the model took and abandoned; the dotted tail is re-checking after the answer was already settled.</figcaption>
 
+<h2>What the function labels mean</h2>
+<p>Besides its path, every step gets one of nine labels describing what the model is doing at that moment. Together they turn a wall of text into a readable sequence of moves.</p>
+<table>
+  <tr><th>Label</th><th>What the model is doing</th><th>Typical wording</th></tr>
+  <tr><td><span class="fn SU">Setup</span></td><td>Restating the problem, naming variables, writing down what is given</td><td>“We need to find…”, “Let <i>x</i> be…”</td></tr>
+  <tr><td><span class="fn PL">Plan</span></td><td>Deciding what to do next or how to attack the problem</td><td>“First I'll…, then…”, “Let's try to bound…”</td></tr>
+  <tr><td><span class="fn RC">Recall</span></td><td>Bringing in a known theorem, formula or fact, without new computation</td><td>“By Fermat's little theorem…”</td></tr>
+  <tr><td><span class="fn CP">Compute</span></td><td>Moving the solution forward: algebra, calculation, derivation</td><td>equations, case work, step-by-step arithmetic</td></tr>
+  <tr><td><span class="fn EX">Explore</span></td><td>Opening a new approach, case or guess that differs from the current line</td><td>“Alternatively…”, “What if we try…”</td></tr>
+  <tr><td><span class="fn VF">Verify</span></td><td>Checking an earlier result: plugging back in, a special case, recomputing</td><td>“Let me check…”, “Plugging in <i>n</i> = 3…”</td></tr>
+  <tr><td><span class="fn MB">Monitor</span></td><td>Stepping back: doubting, noticing an error, deciding to abandon or go back</td><td>“Wait, that's wrong”, “This doesn't work”</td></tr>
+  <tr><td><span class="fn CS">Consolidate</span></td><td>Summarizing or combining intermediate results</td><td>“So far we have…”, “Putting these together…”</td></tr>
+  <tr><td><span class="fn AN">Answer</span></td><td>Stating the final answer</td><td>“So the answer is…”</td></tr>
+</table>
+<p>Read in order, the labels show the rhythm of a trace. In the example above, the first dropped branch is <span class="fn EX">Explore</span> three times followed by <span class="fn MB">Monitor</span>: three quick constructions, then the realization that none can work. After the answer, the tail is almost all <span class="fn VF">Verify</span> and <span class="fn MB">Monitor</span> — the model checking itself again and again.</p>
+
 <h2>What is in each trace</h2>
 <table>
   <tr><th>Field</th><th>Content</th></tr>
@@ -191,6 +207,22 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
   <div class="legend"><span><i class="sw" style="background:var(--main)"></i>通向答案的路</span><span><i class="sw" style="background:var(--exp)"></i>走了又放弃</span><span><i class="sw" style="background:var(--post)"></i>答案之后</span><span>小标签：每一步在做什么</span></div>
 </figure>
 <figcaption>一条轨迹（<a href="../#/t/deepmath-106656_5">deepmath-106656_5</a>，163 段）。主干是最终答案所依赖的推理；每条侧枝是模型走过、后来放弃的路；虚线尾巴是答案已经确定之后的复查。</figcaption>
+
+<h2>功能标签代表什么</h2>
+<p>除了路径，每一步还有一个功能标签，说明模型此刻在做什么，共九种。有了它们，一大段文字就变成了一串看得懂的推理动作。</p>
+<table>
+  <tr><th>标签</th><th>模型在做什么</th><th>典型说法</th></tr>
+  <tr><td><span class="fn SU">设定</span></td><td>复述题目、设变量、写下已知条件</td><td>“我们要求……”“设 <i>x</i> 为……”</td></tr>
+  <tr><td><span class="fn PL">计划</span></td><td>决定接下来做什么、从哪里入手</td><td>“先……再……”“试着给出上界”</td></tr>
+  <tr><td><span class="fn RC">引用</span></td><td>调用已知的定理、公式或事实，不做新的计算</td><td>“由费马小定理……”</td></tr>
+  <tr><td><span class="fn CP">计算</span></td><td>推进解答：代数变形、计算、推导</td><td>列方程、分情况、逐步运算</td></tr>
+  <tr><td><span class="fn EX">探索</span></td><td>开一条和当前不同的新思路、新情况或新猜测</td><td>“换个思路……”“如果试试……”</td></tr>
+  <tr><td><span class="fn VF">验证</span></td><td>检查之前的结果：代回、特例、重算</td><td>“检查一下……”“代入 <i>n</i> = 3……”</td></tr>
+  <tr><td><span class="fn MB">监控</span></td><td>停下来审视：怀疑、发现错误、决定放弃或回头</td><td>“等等，不对”“这条路走不通”</td></tr>
+  <tr><td><span class="fn CS">汇总</span></td><td>总结或合并中间结果</td><td>“目前我们得到……”“合起来看……”</td></tr>
+  <tr><td><span class="fn AN">答案</span></td><td>给出最终答案</td><td>“所以答案是……”</td></tr>
+</table>
+<p>按顺序读这些标签，就能看出一条轨迹的节奏。上面例子里第一条被放弃的侧枝是 <span class="fn EX">探索</span> 三次之后接一个 <span class="fn MB">监控</span>：连试三种构造，然后意识到都不行。答案之后的尾巴几乎全是 <span class="fn VF">验证</span> 和 <span class="fn MB">监控</span>：模型一遍又一遍地自我检查。</p>
 
 <h2>每条轨迹包含什么</h2>
 <table>
