@@ -11,7 +11,7 @@ const I18N = {
     nav_list: "轨迹列表", nav_review: "人工核对", nav_about: "说明", switch: "English",
     list_title: "轨迹列表", n_items: n => `（${n} 条）`,
     tier: "难度", correct: "对错", length: "长度", set: "集合", all: "全部", right: "正确", wrong: "错误",
-    set_api: "有 API 参照", set_human: "人工核对", sort_by: "按", sort_suffix: "的探索占比排序",
+    set_api: "有 API 参照", set_human: "人工核对", set_pilot: "试点", set_corpus: "全量打标（第四版）抽样", sort_by: "按", sort_suffix: "的探索占比排序",
     col_traj: "轨迹", col_tokens: "token", col_paras: "段数", col_exp: "探索占比", col_ann: "标注", col_status: "状态",
     ok: "对", bad: "错", back: "← 返回", review_mode: "核对模式", answered_right: "答对", answered_wrong: "答错",
     paras: n => `${n} 段`, leak: "泄露", problem: "题目", gold: "标准答案", pred: "教师答案", none: "（无）",
@@ -31,7 +31,7 @@ const I18N = {
     nav_list: "Traces", nav_review: "Human review", nav_about: "About", switch: "中文",
     list_title: "Traces", n_items: n => ` (${n} traces)`,
     tier: "Difficulty", correct: "Correct", length: "Length", set: "Subset", all: "All", right: "Correct", wrong: "Wrong",
-    set_api: "With API reference", set_human: "Human review", sort_by: "Sort by", sort_suffix: "exploration share",
+    set_api: "With API reference", set_human: "Human review", set_pilot: "Pilot", set_corpus: "Full run (v4) sample", sort_by: "Sort by", sort_suffix: "exploration share",
     col_traj: "Trace", col_tokens: "Tokens", col_paras: "Paragraphs", col_exp: "Exploration", col_ann: "Annotations", col_status: "Status",
     ok: "✓", bad: "✗", back: "← Back", review_mode: "Review mode", answered_right: "Correct", answered_wrong: "Wrong",
     paras: n => `${n} paragraphs`, leak: "Leak", problem: "Problem", gold: "Gold answer", pred: "Teacher answer", none: "(none)",
@@ -109,14 +109,14 @@ async function viewList() {
       <label>${T("tier")} <select id="f-tier"><option value="">${T("all")}</option><option>easy</option><option>medium</option><option>hard</option><option>zero</option></select></label>
       <label>${T("correct")} <select id="f-cor"><option value="">${T("all")}</option><option value="1">${T("right")}</option><option value="0">${T("wrong")}</option></select></label>
       <label>${T("length")} <select id="f-len"><option value="">${T("all")}</option><option>short</option><option>mid</option><option>long</option></select></label>
-      <label>${T("set")} <select id="f-set"><option value="">${T("all")}</option><option value="api">${T("set_api")}</option><option value="human">${T("set_human")}</option></select></label>
+      <label>${T("set")} <select id="f-set"><option value="">${T("all")}</option><option value="api">${T("set_api")}</option><option value="human">${T("set_human")}</option><option value="pilot">${T("set_pilot")}</option><option value="corpus">${T("set_corpus")}</option></select></label>
       <label>${T("sort_by")} <select id="f-ann">${annNames.map(a => `<option>${esc(a)}</option>`).join("")}</select> ${T("sort_suffix")}</label>
     </div>
     <div class="tablewrap"><table><thead><tr><th>${T("col_traj")}</th><th>${T("tier")}</th><th>${T("correct")}</th><th>${T("col_tokens")}</th><th>${T("col_paras")}</th><th>${T("col_exp")}</th><th>${T("col_ann")}</th></tr></thead><tbody id="rows"></tbody></table></div>`;
   const draw = () => {
     const t = $("#f-tier").value, c = $("#f-cor").value, l = $("#f-len").value, s = $("#f-set").value, a = $("#f-ann").value;
     const rows = idx.items.filter(r => (!t || r.tier === t) && (!c || String(+r.is_correct) === c) && (!l || r.len_bin === l)
-      && (!s || (s === "api" ? r.in_api : r.in_human)))
+      && (!s || (s === "api" ? r.in_api : s === "human" ? r.in_human : (r.set || "pilot") === s)))
       .sort((x, y) => (y.fsf_tok?.[a] ?? -1) - (x.fsf_tok?.[a] ?? -1));
     $("#rows").innerHTML = rows.map(r => `<tr>
       <td><a href="#/t/${encodeURIComponent(r.traj_id)}">${esc(r.traj_id)}</a></td>
