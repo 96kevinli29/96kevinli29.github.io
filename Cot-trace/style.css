@@ -56,3 +56,5 @@ td a { color: var(--accent); text-decoration: none; font-family: var(--mono); fo
 .progress > div { height: 100%; background: var(--accent); }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 640px) { .para { grid-template-columns: 34px 1fr; } header nav a { margin-left: 10px; } }
+
+.langbtn { margin-left: 16px; background: var(--card); color: var(--accent); border: 1px solid var(--line); border-radius: 6px; padding: 2px 10px; font: inherit; cursor: pointer; }

@@ -1,11 +1,59 @@
-// Cot-trace：静态页面，数据在 data/ 下（由 src/corpus/export_site.py 导出）。
+// Cot-trace：静态页面，数据在 data/ 下（由 src/corpus/export_site.py 导出）。中英双语。
 // 路由：#/ 列表；#/t/<traj_id> 单条轨迹；#/review 人工核对列表；#/review/<traj_id> 核对一条；#/about 说明
-const LABELS = {SU: "Setup", PL: "Plan", RC: "Recall", CP: "Compute", EX: "Explore", VF: "Verify",
-  MB: "Monitor", CS: "Consolidate", AN: "Answer"};
 const REVIEW_KEY = "cot-review-v1";
+const LANG_KEY = "cot-lang";
 const REVIEW_BASE = "27B·v4";   // 核对时的默认值来自哪份标注
 let INDEX = null;
 const cache = {};
+
+const I18N = {
+  zh: {
+    nav_list: "轨迹列表", nav_review: "人工核对", nav_about: "说明", switch: "English",
+    list_title: "轨迹列表", n_items: n => `（${n} 条）`,
+    tier: "难度", correct: "对错", length: "长度", set: "集合", all: "全部", right: "正确", wrong: "错误",
+    set_api: "有 API 参照", set_human: "人工核对", sort_by: "按", sort_suffix: "的探索占比排序",
+    col_traj: "轨迹", col_tokens: "token", col_paras: "段数", col_exp: "探索占比", col_ann: "标注", col_status: "状态",
+    ok: "对", bad: "错", back: "← 返回", review_mode: "核对模式", answered_right: "答对", answered_wrong: "答错",
+    paras: n => `${n} 段`, leak: "泄露", problem: "题目", gold: "标准答案", pred: "教师答案", none: "（无）",
+    how_title: "怎么核对：",
+    how: "只看一件事——每段是不是<b>探索</b>，即没有进入最终推导的尝试（换掉的方法、算错重来、试了没用上的计算或猜测）。最终推导用到的、答案之前的设定/复述/计划算主路径；灰色的“答案之后”不用管。默认值是 27B 第四版的标注，不同意就改。改过的段落会有虚线框。全部看完点“标记为已完成”。",
+    lg_main: "主路径", lg_exp: "探索（A+D）", lg_post: "答案之后（P）", done_btn: "标记为已完成",
+    final_answer: "正式回答", note: "备注", method: "方法摘要", exp_cb: "探索",
+    base_exp: p => `27B：探索（${p}）`, base_post: "27B：答案之后", base_main: "27B：主路径",
+    review_title: n => `人工核对（${n} 条）`,
+    review_hint: "进度只存在这个浏览器里。全部完成后点“导出”，把下载的 JSON 文件交给 Agent。",
+    done_count: (a, b) => `已完成 ${a} / ${b}`, export: "导出核对结果", reset: "清空本地进度",
+    st_done: "已完成", st_doing: "进行中", st_todo: "未开始", confirm_reset: "清空本浏览器里的全部核对进度？",
+    about_title: "说明", load_fail: "加载失败：",
+    labels: {SU: "设定", PL: "计划", RC: "引用", CP: "计算", EX: "探索", VF: "验证", MB: "监控", CS: "汇总", AN: "答案"},
+  },
+  en: {
+    nav_list: "Traces", nav_review: "Human review", nav_about: "About", switch: "中文",
+    list_title: "Traces", n_items: n => ` (${n} traces)`,
+    tier: "Difficulty", correct: "Correct", length: "Length", set: "Subset", all: "All", right: "Correct", wrong: "Wrong",
+    set_api: "With API reference", set_human: "Human review", sort_by: "Sort by", sort_suffix: "exploration share",
+    col_traj: "Trace", col_tokens: "Tokens", col_paras: "Paragraphs", col_exp: "Exploration", col_ann: "Annotations", col_status: "Status",
+    ok: "✓", bad: "✗", back: "← Back", review_mode: "Review mode", answered_right: "Correct", answered_wrong: "Wrong",
+    paras: n => `${n} paragraphs`, leak: "Leak", problem: "Problem", gold: "Gold answer", pred: "Teacher answer", none: "(none)",
+    how_title: "How to review: ",
+    how: "Judge one thing only — is each paragraph <b>exploration</b>, i.e. an attempt that did not make it into the final derivation (a dropped method, a wrong computation that was redone, a computation or guess that was tried and never used)? What the final derivation uses, and setup/restating/planning before the answer, is the main path; ignore the grey “post-answer” part. Defaults come from the 27B v4 labels; change any you disagree with. Changed paragraphs get a dashed outline. When done, click “Mark as done”.",
+    lg_main: "Main path", lg_exp: "Exploration (A+D)", lg_post: "Post-answer (P)", done_btn: "Mark as done",
+    final_answer: "Final response", note: "Notes", method: "Method summary", exp_cb: "Exploration",
+    base_exp: p => `27B: exploration (${p})`, base_post: "27B: post-answer", base_main: "27B: main path",
+    review_title: n => `Human review (${n} traces)`,
+    review_hint: "Progress is stored only in this browser. When finished, click “Export” and send the downloaded JSON file to the agent.",
+    done_count: (a, b) => `Done ${a} / ${b}`, export: "Export results", reset: "Clear local progress",
+    st_done: "Done", st_doing: "In progress", st_todo: "Not started", confirm_reset: "Clear all review progress stored in this browser?",
+    about_title: "About", load_fail: "Failed to load: ",
+    labels: {SU: "Setup", PL: "Plan", RC: "Recall", CP: "Compute", EX: "Explore", VF: "Verify", MB: "Monitor", CS: "Consolidate", AN: "Answer"},
+  },
+};
+function getLang() {
+  try { const v = localStorage.getItem(LANG_KEY); if (v === "zh" || v === "en") return v; } catch (e) {}
+  return (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+}
+let LANG = getLang();
+const T = k => I18N[LANG][k];
 
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
@@ -24,7 +72,7 @@ async function getTrace(id) {
   return cache[id];
 }
 function math(el) {
-  if (window.renderMathInElement) {
+  if (el && window.renderMathInElement) {
     renderMathInElement(el, {delimiters: [
       {left: "$$", right: "$$", display: true}, {left: "\\[", right: "\\]", display: true},
       {left: "\\(", right: "\\)", display: false}, {left: "$", right: "$", display: false}], throwOnError: false});
@@ -40,22 +88,31 @@ function paraMap(ann, n) {
 }
 function fmtPct(x) { return x == null ? "—" : (100 * x).toFixed(0) + "%"; }
 
+function renderNav() {
+  $("#nav-list").textContent = T("nav_list");
+  $("#nav-review").textContent = T("nav_review");
+  $("#nav-about").textContent = T("nav_about");
+  $("#lang").textContent = T("switch");
+  document.documentElement.lang = LANG === "zh" ? "zh" : "en";
+}
+
 // ---------------- 列表 ----------------
 async function viewList() {
   const idx = await getIndex();
   const app = $("#app");
   const annNames = idx.annotators;
+  const desc = LANG === "en" ? (idx.description_en || idx.description) : idx.description;
   app.innerHTML = `
-    <h1>轨迹列表</h1>
-    <p class="muted small">${esc(idx.description)}（${idx.items.length} 条）</p>
+    <h1>${T("list_title")}</h1>
+    <p class="muted small">${esc(desc)}${T("n_items")(idx.items.length)}</p>
     <div class="filters">
-      <label>难度 <select id="f-tier"><option value="">全部</option><option>easy</option><option>medium</option><option>hard</option><option>zero</option></select></label>
-      <label>对错 <select id="f-cor"><option value="">全部</option><option value="1">正确</option><option value="0">错误</option></select></label>
-      <label>长度 <select id="f-len"><option value="">全部</option><option>short</option><option>mid</option><option>long</option></select></label>
-      <label>集合 <select id="f-set"><option value="">全部</option><option value="api">有 API 参照</option><option value="human">人工核对</option></select></label>
-      <label>按 <select id="f-ann">${annNames.map(a => `<option>${esc(a)}</option>`).join("")}</select> 的放弃占比排序</label>
+      <label>${T("tier")} <select id="f-tier"><option value="">${T("all")}</option><option>easy</option><option>medium</option><option>hard</option><option>zero</option></select></label>
+      <label>${T("correct")} <select id="f-cor"><option value="">${T("all")}</option><option value="1">${T("right")}</option><option value="0">${T("wrong")}</option></select></label>
+      <label>${T("length")} <select id="f-len"><option value="">${T("all")}</option><option>short</option><option>mid</option><option>long</option></select></label>
+      <label>${T("set")} <select id="f-set"><option value="">${T("all")}</option><option value="api">${T("set_api")}</option><option value="human">${T("set_human")}</option></select></label>
+      <label>${T("sort_by")} <select id="f-ann">${annNames.map(a => `<option>${esc(a)}</option>`).join("")}</select> ${T("sort_suffix")}</label>
     </div>
-    <div class="tablewrap"><table><thead><tr><th>轨迹</th><th>难度</th><th>对错</th><th>token</th><th>段数</th><th>放弃占比</th><th>标注</th></tr></thead><tbody id="rows"></tbody></table></div>`;
+    <div class="tablewrap"><table><thead><tr><th>${T("col_traj")}</th><th>${T("tier")}</th><th>${T("correct")}</th><th>${T("col_tokens")}</th><th>${T("col_paras")}</th><th>${T("col_exp")}</th><th>${T("col_ann")}</th></tr></thead><tbody id="rows"></tbody></table></div>`;
   const draw = () => {
     const t = $("#f-tier").value, c = $("#f-cor").value, l = $("#f-len").value, s = $("#f-set").value, a = $("#f-ann").value;
     const rows = idx.items.filter(r => (!t || r.tier === t) && (!c || String(+r.is_correct) === c) && (!l || r.len_bin === l)
@@ -63,7 +120,7 @@ async function viewList() {
       .sort((x, y) => (y.fsf_tok?.[a] ?? -1) - (x.fsf_tok?.[a] ?? -1));
     $("#rows").innerHTML = rows.map(r => `<tr>
       <td><a href="#/t/${encodeURIComponent(r.traj_id)}">${esc(r.traj_id)}</a></td>
-      <td>${esc(r.tier)}</td><td>${r.is_correct ? '<span class="chip ok">对</span>' : '<span class="chip bad">错</span>'}</td>
+      <td>${esc(r.tier)}</td><td>${r.is_correct ? `<span class="chip ok">${T("ok")}</span>` : `<span class="chip bad">${T("bad")}</span>`}</td>
       <td>${r.n_tokens.toLocaleString()}</td><td>${r.n_paras}</td><td>${fmtPct(r.fsf_tok?.[a])}</td>
       <td>${Object.keys(r.fsf_tok || {}).map(k => `<span class="chip">${esc(k)}</span>`).join("")}</td></tr>`).join("");
   };
@@ -79,44 +136,45 @@ async function viewTrace(id, review) {
   const st = store();
   const n = tr.paragraphs.length;
   const isExp = x => x && (x.path === "A" || x.path === "D");   // 探索 = 明确放弃 A + 死胡同 D
-  const base = paraMap(tr.annotations[REVIEW_BASE], n).map(x => isExp(x));
+  const baseMap = paraMap(tr.annotations[REVIEW_BASE], n);
+  const base = baseMap.map(x => !!isExp(x));
   if (review && !st.items[id]) { st.items[id] = {abandoned: base.slice(), note: "", done: false}; save(st); }
   const app = $("#app");
   app.innerHTML = `
-    <p class="small"><a href="${review ? "#/review" : "#/"}">← 返回</a></p>
-    <h1>${esc(tr.traj_id)} ${review ? '<span class="chip warn">核对模式</span>' : ""}</h1>
+    <p class="small"><a href="${review ? "#/review" : "#/"}">${T("back")}</a></p>
+    <h1>${esc(tr.traj_id)} ${review ? `<span class="chip warn">${T("review_mode")}</span>` : ""}</h1>
     <div class="meta">
       <span class="chip">${esc(tr.tier)}</span>
-      <span class="chip ${tr.is_correct ? "ok" : "bad"}">${tr.is_correct ? "答对" : "答错"}</span>
-      <span class="chip">${tr.n_tokens.toLocaleString()} token</span><span class="chip">${n} 段</span>
-      ${tr.meta_leak?.length ? `<span class="chip warn">泄露：${esc(tr.meta_leak.join(", "))}</span>` : ""}
+      <span class="chip ${tr.is_correct ? "ok" : "bad"}">${tr.is_correct ? T("answered_right") : T("answered_wrong")}</span>
+      <span class="chip">${tr.n_tokens.toLocaleString()} token</span><span class="chip">${T("paras")(n)}</span>
+      ${tr.meta_leak?.length ? `<span class="chip warn">${T("leak")}: ${esc(tr.meta_leak.join(", "))}</span>` : ""}
     </div>
-    <div class="card"><b>题目</b><div class="text">${esc(tr.problem)}</div>
-      <p class="small muted">标准答案：<span>${esc(tr.gold)}</span>　教师答案：<span>${esc(tr.pred ?? "（无）")}</span></p></div>
-    ${review ? `<div class="card small"><b>怎么核对：</b>只看一件事——每段是不是<b>探索</b>，即没有进入最终推导的尝试
-      （换掉的方法、算错重来、试了没用上的计算或猜测）。最终推导用到的、答案之前的设定/复述/计划算主路径；灰色的“答案之后”不用管。默认值是 27B 第四版的标注，
-      不同意就改。改过的段落会有虚线框。全部看完点“标记为已完成”。</div>` : ""}
+    <div class="card"><b>${T("problem")}</b><div class="text">${esc(tr.problem)}</div>
+      <p class="small muted">${T("gold")}: <span>${esc(tr.gold)}</span>　${T("pred")}: <span>${esc(tr.pred ?? T("none"))}</span></p></div>
+    ${review ? `<div class="card small"><b>${T("how_title")}</b>${T("how")}</div>` : ""}
     <div class="toolbar">
       ${review ? "" : names.map(a => `<button data-a="${esc(a)}" class="${a === cur ? "on" : ""}">${esc(a)}</button>`).join("")}
-      <span class="legend"><span><i class="sw" style="background:var(--main-bar)"></i>主路径</span><span><i class="sw" style="background:var(--aband-bar)"></i>探索（A+D）</span><span><i class="sw" style="background:var(--post-bar)"></i>答案之后（P）</span></span>
-      ${review ? `<button id="done" class="btn primary">标记为已完成</button>` : ""}
+      <span class="legend"><span><i class="sw" style="background:var(--main-bar)"></i>${T("lg_main")}</span><span><i class="sw" style="background:var(--aband-bar)"></i>${T("lg_exp")}</span><span><i class="sw" style="background:var(--post-bar)"></i>${T("lg_post")}</span></span>
+      ${review ? `<button id="done" class="btn primary">${T("done_btn")}</button>` : ""}
     </div>
     <div id="paras"></div>
-    <h2>正式回答</h2><div class="card answer" id="answer">${esc(tr.answer_text)}</div>
-    ${review ? `<h2>备注</h2><textarea id="note" rows="3" style="width:100%">${esc(st.items[id].note)}</textarea>` : ""}
-    <h2>方法摘要</h2><div class="card small">${names.map(a => `<div><b>${esc(a)}</b>：${esc(tr.annotations[a].method || "—")}</div>`).join("")}</div>`;
+    <h2>${T("final_answer")}</h2><div class="card answer" id="answer">${esc(tr.answer_text)}</div>
+    ${review ? `<h2>${T("note")}</h2><textarea id="note" rows="3" style="width:100%">${esc(st.items[id].note)}</textarea>` : ""}
+    <h2>${T("method")}</h2><div class="card small">${names.map(a => `<div><b>${esc(a)}</b>: ${esc(tr.annotations[a].method || "—")}</div>`).join("")}</div>`;
   const draw = () => {
     const pm = paraMap(tr.annotations[cur], n);
     const s = store().items[id];
+    const L = T("labels");
     $("#paras").innerHTML = tr.paragraphs.map((p, i) => {
       const nd = pm[i];
       const ab = review ? s.abandoned[i] : isExp(nd);
       const post = nd && nd.path === "P";
       const cls = review ? (ab ? "A" : post ? "P" : "M") : (nd ? (nd.path === "D" ? "A" : nd.path) : "");
-      const tags = nd && nd.first ? `<div class="tags"><span class="chip">n${nd.node_id}</span><span class="chip">${esc(LABELS[nd.label] || nd.label)}</span>
+      const tags = nd && nd.first ? `<div class="tags"><span class="chip">n${nd.node_id}</span><span class="chip">${esc(L[nd.label] || nd.label)}</span>
         <span class="chip">b=${nd.branch}</span>${nd.flags ? `<span class="chip warn">${esc(nd.flags)}</span>` : ""}</div>` : "";
-      const rv = review ? `<div class="review"><label><input type="checkbox" data-i="${i}" ${ab ? "checked" : ""}> 探索</label>
-        <span class="muted">27B：${base[i] ? "探索（" + nd.path + "）" : post ? "答案之后" : "主路径"}</span></div>` : "";
+      const bn = baseMap[i];
+      const rv = review ? `<div class="review"><label><input type="checkbox" data-i="${i}" ${ab ? "checked" : ""}> ${T("exp_cb")}</label>
+        <span class="muted">${base[i] ? T("base_exp")(bn.path) : bn && bn.path === "P" ? T("base_post") : T("base_main")}</span></div>` : "";
       return `<div class="para ${cls} ${nd && nd.first ? "nodestart" : ""} ${review && ab !== base[i] ? "changed" : ""}">
         <div class="pid">p${i}</div><div>${tags}<div class="text">${esc(p)}</div>${rv}</div></div>`;
     }).join("");
@@ -142,15 +200,15 @@ async function viewReview() {
   const st = store();
   const nDone = items.filter(r => st.items[r.traj_id]?.done).length;
   $("#app").innerHTML = `
-    <h1>人工核对（${items.length} 条）</h1>
-    <p class="muted small">进度只存在这个浏览器里。全部完成后点“导出”，把下载的 JSON 文件交给 Agent。</p>
+    <h1>${T("review_title")(items.length)}</h1>
+    <p class="muted small">${T("review_hint")}</p>
     <div class="progress"><div style="width:${100 * nDone / Math.max(items.length, 1)}%"></div></div>
-    <p>已完成 ${nDone} / ${items.length}　<button class="btn primary" id="export">导出核对结果</button>
-       <button class="btn" id="reset">清空本地进度</button></p>
-    <div class="tablewrap"><table><thead><tr><th>轨迹</th><th>难度</th><th>对错</th><th>段数</th><th>状态</th></tr></thead><tbody>
+    <p>${T("done_count")(nDone, items.length)}　<button class="btn primary" id="export">${T("export")}</button>
+       <button class="btn" id="reset">${T("reset")}</button></p>
+    <div class="tablewrap"><table><thead><tr><th>${T("col_traj")}</th><th>${T("tier")}</th><th>${T("correct")}</th><th>${T("col_paras")}</th><th>${T("col_status")}</th></tr></thead><tbody>
     ${items.map(r => { const s = st.items[r.traj_id]; return `<tr><td><a href="#/review/${encodeURIComponent(r.traj_id)}">${esc(r.traj_id)}</a></td>
-      <td>${esc(r.tier)}</td><td>${r.is_correct ? "对" : "错"}</td><td>${r.n_paras}</td>
-      <td>${s?.done ? '<span class="chip ok">已完成</span>' : s ? '<span class="chip warn">进行中</span>' : '<span class="chip">未开始</span>'}</td></tr>`; }).join("")}
+      <td>${esc(r.tier)}</td><td>${r.is_correct ? T("ok") : T("bad")}</td><td>${r.n_paras}</td>
+      <td>${s?.done ? `<span class="chip ok">${T("st_done")}</span>` : s ? `<span class="chip warn">${T("st_doing")}</span>` : `<span class="chip">${T("st_todo")}</span>`}</td></tr>`; }).join("")}
     </tbody></table></div>`;
   $("#export").onclick = () => {
     const out = {schema: "human_review_v2", base_annotation: REVIEW_BASE, exported_at: new Date().toISOString(), items: store().items};
@@ -158,15 +216,17 @@ async function viewReview() {
     a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: "application/json"}));
     a.download = `human_review_${new Date().toISOString().slice(0, 10)}.json`; a.click();
   };
-  $("#reset").onclick = () => { if (confirm("清空本浏览器里的全部核对进度？")) { save({items: {}}); viewReview(); } };
+  $("#reset").onclick = () => { if (confirm(T("confirm_reset"))) { save({items: {}}); viewReview(); } };
 }
 
 async function viewAbout() {
   const idx = await getIndex();
-  $("#app").innerHTML = `<h1>说明</h1><div class="card">${idx.about_html || ""}</div>`;
+  const html = LANG === "en" ? (idx.about_html_en || idx.about_html) : idx.about_html;
+  $("#app").innerHTML = `<h1>${T("about_title")}</h1><div class="card">${html || ""}</div>`;
 }
 
 async function route() {
+  renderNav();
   const h = location.hash.replace(/^#/, "") || "/";
   try {
     if (h.startsWith("/t/")) await viewTrace(decodeURIComponent(h.slice(3)), false);
@@ -174,8 +234,15 @@ async function route() {
     else if (h === "/review") await viewReview();
     else if (h === "/about") await viewAbout();
     else await viewList();
-  } catch (e) { $("#app").innerHTML = `<p class="muted">加载失败：${esc(e.message)}</p>`; }
+  } catch (e) { $("#app").innerHTML = `<p class="muted">${T("load_fail")}${esc(e.message)}</p>`; }
   window.scrollTo(0, 0);
 }
 window.addEventListener("hashchange", route);
-window.addEventListener("DOMContentLoaded", route);
+window.addEventListener("DOMContentLoaded", () => {
+  $("#lang").onclick = () => {
+    LANG = LANG === "zh" ? "en" : "zh";
+    try { localStorage.setItem(LANG_KEY, LANG); } catch (e) {}
+    route();
+  };
+  route();
+});
