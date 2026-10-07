@@ -238,7 +238,12 @@ async function route() {
   } catch (e) { $("#app").innerHTML = `<p class="muted">${T("load_fail")}${esc(e.message)}</p>`; }
   window.scrollTo(0, 0);
 }
-window.addEventListener("hashchange", route);
+window.addEventListener("hashchange", () => {
+  route();
+  // GoatCounter：单页应用切换视图时也计一次浏览（路径带上 #/…）
+  if (window.goatcounter && window.goatcounter.count)
+    window.goatcounter.count({path: location.pathname + location.hash.replace(/^#/, "#")});
+});
 window.addEventListener("DOMContentLoaded", () => {
   $("#lang").onclick = () => {
     LANG = LANG === "zh" ? "en" : "zh";
