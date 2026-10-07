@@ -26,12 +26,13 @@ jobs:
           cd Shoulders/math/scripts
           old=$(cat data.sha)
           for s in fields extract build_data contexts cites pack assemble; do python -I $s.py; done
+          python -I ../../hub.py
           if [ "$old" = "$(cat data.sha)" ]; then echo "CHANGED=0" >> $GITHUB_ENV; else echo "CHANGED=1" >> $GITHUB_ENV; fi
       - name: Commit if data changed
         if: env.CHANGED == '1'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add -A Shoulders/math
+          git add -A Shoulders/math Shoulders/index.html Shoulders/en/index.html
           git commit -m "Shoulders math: rebuild from openai/math"
           git push
