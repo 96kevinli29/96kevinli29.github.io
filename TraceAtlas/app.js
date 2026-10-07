@@ -8,7 +8,7 @@ const cache = {};
 
 const I18N = {
   zh: {
-    nav_list: "轨迹列表", nav_review: "人工核对", nav_about: "说明", switch: "English",
+    nav_list: "轨迹列表", nav_review: "人工核对", nav_about: "说明", nav_blog: "博客", switch: "English",
     list_title: "轨迹列表", n_items: n => `（${n} 条）`,
     tier: "难度", correct: "对错", length: "长度", set: "集合", all: "全部", right: "正确", wrong: "错误",
     set_api: "有 API 参照", set_human: "人工核对", set_pilot: "试点", set_corpus: "全量打标（第四版）抽样", sort_by: "按", sort_suffix: "的探索占比排序",
@@ -28,7 +28,7 @@ const I18N = {
     labels: {SU: "设定", PL: "计划", RC: "引用", CP: "计算", EX: "探索", VF: "验证", MB: "监控", CS: "汇总", AN: "答案"},
   },
   en: {
-    nav_list: "Traces", nav_review: "Human review", nav_about: "About", switch: "中文",
+    nav_list: "Traces", nav_review: "Human review", nav_about: "About", nav_blog: "Blog", switch: "中文",
     list_title: "Traces", n_items: n => ` (${n} traces)`,
     tier: "Difficulty", correct: "Correct", length: "Length", set: "Subset", all: "All", right: "Correct", wrong: "Wrong",
     set_api: "With API reference", set_human: "Human review", set_pilot: "Pilot", set_corpus: "Full run (v4) sample", sort_by: "Sort by", sort_suffix: "exploration share",
@@ -92,6 +92,7 @@ function renderNav() {
   $("#nav-list").textContent = T("nav_list");
   $("#nav-review").textContent = T("nav_review");
   $("#nav-about").textContent = T("nav_about");
+  $("#nav-blog").textContent = T("nav_blog");
   $("#lang").textContent = T("switch");
   document.documentElement.lang = LANG === "zh" ? "zh" : "en";
 }

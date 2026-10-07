@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TraceAtlas</title>
+<meta name="description" content="TraceAtlas: long chain-of-thought traces from a strong open teacher, labeled paragraph by paragraph with their reasoning structure — main path, exploration and post-answer.">
+<meta property="og:title" content="TraceAtlas: Mapping the Structure of Long Chain-of-Thought">
+<meta property="og:description" content="Long math reasoning traces from Qwen3.8-27B, labeled paragraph by paragraph: what the answer is built on, what was explored and dropped, and what came after the answer.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Serif+SC:wght@400;600&display=swap">
+<style>
+/* One reading column on a cool paper ground; figures break out wider.
+   Motif: a trace drawn as a strip of paragraphs, colored by path (main / exploration / post-answer). */
+:root {
+  --paper: #F6F7F9; --sheet: #FFFFFF; --ink: #16202D; --muted: #5A6575; --rule: #D8DEE6; --grid: #E6EAF0;
+  --main: #3F6DA8; --main-soft: #E3ECF7; --exp: #C25A4A; --exp-soft: #F6E3DF; --post: #A9B2BF; --post-soft: #EEF1F5;
+  --accent: #3F6DA8;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", "Noto Serif SC", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --col: 41rem; --wide: 60rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0F141B; --sheet: #151C25; --ink: #E3E8EF; --muted: #98A3B2; --rule: #2A3442; --grid: #1F2833;
+    --main: #82A9DD; --main-soft: #1C2A3C; --exp: #E2826F; --exp-soft: #3A211D; --post: #5E6B7C; --post-soft: #1E2530;
+    --accent: #82A9DD; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0F141B; --sheet: #151C25; --ink: #E3E8EF; --muted: #98A3B2; --rule: #2A3442; --grid: #1F2833;
+  --main: #82A9DD; --main-soft: #1C2A3C; --exp: #E2826F; --exp-soft: #3A211D; --post: #5E6B7C; --post-soft: #1E2530;
+  --accent: #82A9DD; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 1.125rem; line-height: 1.62;
+  padding-inline: 1rem; padding-block: 0 4rem; -webkit-font-smoothing: antialiased; }
+.col { max-width: var(--col); margin-inline: auto; }
+.wide { max-width: var(--wide); margin-inline: auto; }
+a { color: var(--accent); }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 1rem; font-family: var(--f-display);
+  font-size: .95rem; flex-wrap: wrap; }
+.top a { text-decoration: none; margin-right: 1rem; }
+.top button { font: inherit; background: var(--sheet); color: var(--accent); border: 1px solid var(--rule); border-radius: 6px; padding: .15rem .7rem; cursor: pointer; }
+header.hero { padding-block: 2.5rem 1.5rem; }
+.kicker { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; margin: .4rem 0 .8rem; }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 1.5rem; margin: 2.6rem 0 .6rem; }
+.lede { font-size: 1.25rem; color: var(--ink); }
+.byline { font-family: var(--f-display); color: var(--muted); font-size: .98rem; margin-top: 1rem; }
+.links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.links a { font-family: var(--f-display); font-size: .95rem; border: 1px solid var(--rule); background: var(--sheet); padding: .3rem .8rem; border-radius: 999px; text-decoration: none; }
+figure { margin: 1.8rem auto; }
+figcaption { font-size: .92rem; color: var(--muted); margin-top: .6rem; }
+.strip { display: flex; height: 26px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.strip span { flex: 1; }
+.strip .M { background: var(--main); } .strip .A, .strip .D { background: var(--exp); } .strip .P { background: var(--post); }
+.legend { font-family: var(--f-display); font-size: .9rem; color: var(--muted); display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: .5rem; }
+.sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 2px; vertical-align: -1px; margin-right: .35rem; }
+.trow { display: grid; grid-template-columns: 9.5rem 1fr; gap: .8rem; align-items: center; margin: .45rem 0; font-family: var(--f-mono); font-size: .8rem; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; font-size: .98rem; background: var(--sheet); border: 1px solid var(--rule); }
+th, td { text-align: left; padding: .45rem .7rem; border-bottom: 1px solid var(--grid); }
+th { font-family: var(--f-display); font-weight: 600; color: var(--muted); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tablewrap { overflow-x: auto; }
+.bars { display: grid; gap: .5rem; }
+.bar { display: grid; grid-template-columns: 7.5rem 1fr 3.4rem; gap: .7rem; align-items: center; font-family: var(--f-display); font-size: .95rem; }
+.bar .track { background: var(--grid); height: 14px; border-radius: 3px; overflow: hidden; }
+.bar .fill { background: var(--exp); height: 100%; }
+.bar .v { text-align: right; font-family: var(--f-mono); font-size: .85rem; color: var(--muted); }
+.note { background: var(--sheet); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: .8rem 1rem; font-size: 1rem; }
+.cite { position: relative; }
+.cite pre { font-family: var(--f-mono); font-size: .8rem; line-height: 1.55; background: var(--sheet); border: 1px solid var(--rule); padding: 1rem; overflow-x: auto; }
+.cite button { position: absolute; top: .6rem; right: .6rem; font-family: var(--f-mono); font-size: .72rem; background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: .2rem .5rem; cursor: pointer; }
+footer { color: var(--muted); font-size: .9rem; margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+[data-lang] { display: none; }
+html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: revert; }
+@media (max-width: 560px) { .trow { grid-template-columns: 1fr; gap: .2rem; } .bar { grid-template-columns: 5.5rem 1fr 3rem; } }
+</style>
+</head>
+<body>
+<nav class="top col">
+  <div><a href="../">TraceAtlas</a><a href="../#/" data-lang="en">Browse traces</a><a href="../#/" data-lang="zh">浏览轨迹</a></div>
+  <button id="lang" type="button">中文</button>
+</nav>
+
+<!-- ============================== English ============================== -->
+<article data-lang="en">
+<header class="hero col">
+  <p class="kicker">Dataset · work in progress</p>
+  <h1>TraceAtlas: Mapping the Structure of Long Chain-of-Thought</h1>
+  <p class="lede">Long reasoning traces are mostly unlabeled text. TraceAtlas takes traces from a strong open teacher and marks, paragraph by paragraph, what the final answer is built on, what was tried and dropped, and what came after the answer was already settled.</p>
+  <p class="byline">Hongyang Li, Xiao Li, Caesar Wu, Pascal Bouvry · <a href="https://huggingface.co/SeaFill2025">SeaFill Open-Source Team</a> · University of Luxembourg · October 2026</p>
+  <div class="links"><a href="../#/">Browse 2,000 labeled traces</a><a href="#cite">Cite</a></div>
+</header>
+
+<section class="col">
+<h2>Why</h2>
+<p>The community lacks high-quality chain-of-thought data with structure. Public reasoning traces come as plain text: you can see that a model thought for 10,000 tokens, but not which of those tokens the answer actually rests on. Questions such as “does training on exploratory traces help or hurt a student?” need that distinction, and so do practical ones like pruning dead ends before fine-tuning.</p>
+<p>We generate traces with Qwen3.8-27B in thinking mode — a strong open model, roughly comparable to Opus 4.6 on our tasks — and annotate their structure with the same model.</p>
+
+<h2>What one labeled trace looks like</h2>
+<p>Each trace's thinking is split into paragraphs. Every paragraph gets a <b>path</b> and a <b>function label</b>. The path is the core annotation:</p>
+<figure class="wide">
+  <div class="trow"><span>deepmath-90280 · 55 ¶</span><div class="strip" id="s1"></div></div>
+  <div class="trow"><span>numina-21498 · 182 ¶</span><div class="strip" id="s2"></div></div>
+  <div class="legend"><span><i class="sw" style="background:var(--main)"></i>main path</span><span><i class="sw" style="background:var(--exp)"></i>exploration (abandoned or unused)</span><span><i class="sw" style="background:var(--post)"></i>post-answer</span></div>
+  <figcaption>Two traces, one cell per paragraph. In the first, the model computes <i>AB</i> and <i>BA</i> and det(<i>B</i>) “to see”, never uses them, and solves the problem through <i>A</i>² = <i>A</i> and <i>B</i>² = <i>I</i>. In the second, more than a dozen searches and modular arguments for a larger answer fail before the model settles on its example.</figcaption>
+</figure>
+<ul>
+  <li><b>Main path</b> — what the final derivation uses, plus setup, restating and planning before the answer.</li>
+  <li><b>Exploration</b> — attempts that did not make it into the final derivation: approaches explicitly given up, wrong computations later redone, and dead ends that are simply never used again.</li>
+  <li><b>Post-answer</b> — re-checks, alternative proofs and planning of the write-up after the answer was first reached.</li>
+</ul>
+<p>Function labels (Setup, Plan, Recall, Compute, Explore, Verify, Monitor, Consolidate, Answer), node dependencies and flags for math errors, redundancy and leaked meta-instructions come with every node.</p>
+
+<h2>The data</h2>
+<div class="tablewrap"><table>
+  <tr><th>Stage</th><th class="num">Count</th></tr>
+  <tr><td>Math problems (NuminaMath-1.5, DeepMath-103K; deduplicated and decontaminated against common benchmarks)</td><td class="num">50,000</td></tr>
+  <tr><td>Teacher traces (8 per problem, 16k-token cap)</td><td class="num">400,000</td></tr>
+  <tr><td>Untruncated traces</td><td class="num">337,325</td></tr>
+  <tr><td>First release being labeled: every usable trace of medium and hard problems, one per easy problem</td><td class="num">71,218</td></tr>
+</table></div>
+<p>Every trace also carries checks: correctness (math-verify), truncation, leaked hidden-setting text (16% of traces mention things like “oververbosity”), and problems whose reference answer is likely wrong (the teacher never matches it, and most samples agree on something else).</p>
+
+<h2>How the labels are made</h2>
+<p>Short traces (≤ 50 paragraphs) are labeled in one pass. Long traces are done in two steps: the model first reads the whole trace and writes a coarse map — where the answer is reached, which paragraphs it relies on, and a segment-level outline — then labels 40-paragraph chunks with that map in front of it. All calls use thinking mode at temperature 0, and outputs are checked for consistency (for example, a step the answer uses cannot be marked as abandoned).</p>
+<p>Getting here took four prompt versions. Two lessons stood out:</p>
+<ul>
+  <li><b>Definitions matter more than model size.</b> When “abandoned” was defined as “given up <i>and</i> unused”, the model correctly noticed that a computation was never used — and still called it main path, because it was never explicitly given up. Adding a separate “dead end” category fixed this.</li>
+  <li><b>Long traces need a map.</b> Asked to label 150+ paragraphs in one go, the model marked failed attempts as main path. Outlining first, then labeling chunks, raised agreement on long traces from 0.44 to 0.67.</li>
+</ul>
+<div class="note">Against an independent reference (GPT-6.1 Sol, 100 traces), paragraph-level agreement on exploration before the answer is F1 = 0.73 (short 0.86, medium 0.66, long 0.67). Part of the remaining gap is genuine ambiguity — some paragraphs have no single right label. A human check is in progress.</div>
+
+<h2>A first look</h2>
+<p>From the first 5,000 labeled traces (medium and hard problems):</p>
+<div class="bars">
+  <div class="bar"><span>short (&lt;3k)</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="v">4%</span></div>
+  <div class="bar"><span>mid (3–10k)</span><div class="track"><div class="fill" style="width:61%"></div></div><span class="v">16%</span></div>
+  <div class="bar"><span>long (&gt;10k)</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">26%</span></div>
+</div>
+<p style="font-size:.92rem;color:var(--muted)">Share of the thinking spent on exploration, by trace length.</p>
+<ul>
+  <li><b>Exploration is concentrated.</b> Nearly half of the traces (46%) go straight to the answer with no exploration at all, while a minority explore heavily (mean 13%, median 3%).</li>
+  <li><b>Most new ideas fail.</b> Of paragraphs that open a new approach, 62% end up unused.</li>
+  <li><b>A lot happens after the answer.</b> On average 38% of the thinking comes after the answer is already settled, and three quarters of all verification happens there.</li>
+  <li><b>Same problem, different structure.</b> Among problems with several traces, the most and least exploratory traces differ by a median of 18 points of exploration share; for 62% of problems the gap is at least 10 points.</li>
+</ul>
+
+<h2>Limitations</h2>
+<p>All labels are model annotations. Agreement with the reference is good on short traces and moderate on long ones; the split between “explicitly abandoned” and “dead end” is not reliable, so we only use their sum. Function labels have not been validated separately. Traces come from one teacher on one domain (math).</p>
+
+<h2 id="cite">Cite</h2>
+<div class="cite"><button type="button" data-copy="bib-en">copy</button><pre id="bib-en">@misc{li2026traceatlas,
+  title        = {TraceAtlas: Mapping the Structure of Long
+                  Chain-of-Thought},
+  author       = {Li, Hongyang and Li, Xiao and Wu, Caesar and
+                  Bouvry, Pascal and {SeaFill Open-Source Team}},
+  year         = {2026},
+  howpublished = {\url{https://96kevinli29.github.io/TraceAtlas/blog/}},
+  note         = {Dataset and annotation pipeline, work in progress}
+}</pre></div>
+</section>
+</article>
+
+<!-- ============================== 中文 ============================== -->
+<article data-lang="zh">
+<header class="hero col">
+  <p class="kicker">数据集 · 进行中</p>
+  <h1>TraceAtlas：给长思维链画一张结构地图</h1>
+  <p class="lede">长推理轨迹基本都是没有标注的纯文本。TraceAtlas 用一个很强的开源教师模型生成轨迹，再逐段标出：最终答案建立在哪些内容上，哪些尝试做了又放弃了，哪些是答案定下来之后的内容。</p>
+  <p class="byline">Hongyang Li、Xiao Li、Caesar Wu、Pascal Bouvry · <a href="https://huggingface.co/SeaFill2025">SeaFill 开源团队</a> · 卢森堡大学 · 2026 年 10 月</p>
+  <div class="links"><a href="../#/">浏览 2,000 条已标注轨迹</a><a href="#cite-zh">引用</a></div>
+</header>
+
+<section class="col">
+<h2>为什么做这个</h2>
+<p>社区缺少高质量、带结构的思维链数据。公开的推理轨迹都是纯文本：能看出模型想了一万个 token，却看不出答案真正依赖的是哪一部分。“用探索很多的轨迹训练学生，是好是坏？”这类问题需要这种区分，“微调前把死胡同剪掉”这类实际操作也需要。</p>
+<p>我们用 Qwen3.8-27B 思考模式生成轨迹（一个很强的开源模型，在我们的任务上大致相当于 Opus 4.6），再用同一个模型标注它们的结构。</p>
+
+<h2>一条标注后的轨迹长什么样</h2>
+<p>每条轨迹的思考过程按段落切分，每段有一个<b>路径</b>和一个<b>功能标签</b>。路径是核心标注：</p>
+<figure class="wide">
+  <div class="trow"><span>deepmath-90280 · 55 段</span><div class="strip" id="s1z"></div></div>
+  <div class="trow"><span>numina-21498 · 182 段</span><div class="strip" id="s2z"></div></div>
+  <div class="legend"><span><i class="sw" style="background:var(--main)"></i>主路径</span><span><i class="sw" style="background:var(--exp)"></i>探索（放弃或没用上）</span><span><i class="sw" style="background:var(--post)"></i>答案之后</span></div>
+  <figcaption>两条轨迹，一格一段。第一条里，模型“看看”算了 <i>AB</i>、<i>BA</i> 和 det(<i>B</i>)，之后再没用上，最终靠 <i>A</i>² = <i>A</i>、<i>B</i>² = <i>I</i> 解题。第二条里，模型在定下答案之前，试了十几次找更大答案的例子和模运算论证，都失败了。</figcaption>
+</figure>
+<ul>
+  <li><b>主路径</b>：最终推导用到的内容，加上答案之前的设定、复述和计划。</li>
+  <li><b>探索</b>：没有进入最终推导的尝试，包括明说放弃的方法、算错后重来的部分，以及做了却再没用上的死胡同。</li>
+  <li><b>答案之后</b>：答案第一次确定之后的复查、替代证明和写作规划。</li>
+</ul>
+<p>每个节点还带功能标签（设定、计划、引用、计算、探索、验证、监控、汇总、答案）、节点间的依赖，以及数学错误、重复、泄露隐藏设置三种标记。</p>
+
+<h2>数据</h2>
+<div class="tablewrap"><table>
+  <tr><th>阶段</th><th class="num">数量</th></tr>
+  <tr><td>数学题（NuminaMath-1.5、DeepMath-103K；已去重，并对常见评测集去污染）</td><td class="num">50,000</td></tr>
+  <tr><td>教师轨迹（每题 8 条，上限 16k token）</td><td class="num">400,000</td></tr>
+  <tr><td>未截断的轨迹</td><td class="num">337,325</td></tr>
+  <tr><td>正在标注的第一批：中等题、难题的全部可用轨迹，加每道简单题 1 条</td><td class="num">71,218</td></tr>
+</table></div>
+<p>每条轨迹还带有检查结果：是否答对（math-verify）、是否截断、是否泄露隐藏设置（16% 的轨迹会提到“oververbosity”之类），以及标准答案是否可疑（教师从没答出标准答案，而多数回答一致给出另一个答案）。</p>
+
+<h2>标注怎么做</h2>
+<p>短轨迹（≤ 50 段）一次标完。长轨迹分两步：模型先通读全文，写出一张粗略的地图——答案在哪里定下、依赖哪些段落、按段落区间划分的大纲——再带着这张地图，按 40 段一块逐块细标。所有调用都用思考模式、温度为 0，输出还会做一致性检查（比如，答案用到的步骤不能被标成放弃）。</p>
+<p>提示词前后改了四版，有两点体会最深：</p>
+<ul>
+  <li><b>定义比模型大小更重要。</b>当“放弃”被定义为“放弃了<i>并且</i>没用上”时，模型准确看出某段计算没被用上，却仍然判为主路径，理由是它没有明说放弃。单独加一类“死胡同”后，这个问题就解决了。</li>
+  <li><b>长轨迹需要先画地图。</b>要求一次标完 150 段以上时，模型会把失败的尝试标成主路径。先概括、再分块标注，让长轨迹上的一致率从 0.44 提高到 0.67。</li>
+</ul>
+<div class="note">和独立参照（GPT-6.1 Sol，100 条）相比，答案之前“探索”段落的一致率 F1 = 0.73（短 0.86，中 0.66，长 0.67）。剩下的差距有一部分是真正的模糊地带，有些段落本来就没有唯一正确的标签。人工核对正在进行。</div>
+
+<h2>初步观察</h2>
+<p>来自最先标完的 5,000 条轨迹（中等题和难题）：</p>
+<div class="bars">
+  <div class="bar"><span>短（&lt;3k）</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="v">4%</span></div>
+  <div class="bar"><span>中（3–10k）</span><div class="track"><div class="fill" style="width:61%"></div></div><span class="v">16%</span></div>
+  <div class="bar"><span>长（&gt;10k）</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">26%</span></div>
+</div>
+<p style="font-size:.92rem;color:var(--muted)">按轨迹长度，思考中花在探索上的比例。</p>
+<ul>
+  <li><b>探索很集中。</b>将近一半（46%）的轨迹直奔答案、完全没有探索，少数轨迹探索很多（均值 13%，中位数 3%）。</li>
+  <li><b>新思路大多失败。</b>开启新思路的段落里，62% 最后没被用上。</li>
+  <li><b>答案之后还有很多内容。</b>平均 38% 的思考发生在答案已经确定之后，四分之三的验证也在这一部分。</li>
+  <li><b>同一道题，结构差别很大。</b>在有多条轨迹的题里，探索最多和最少的两条，探索占比的差的中位数是 18 个百分点；62% 的题差距在 10 个百分点以上。</li>
+</ul>
+
+<h2>局限</h2>
+<p>所有标签都是模型标注。和参照相比，短轨迹一致率高，长轨迹中等；“明确放弃”和“死胡同”之间的区分不可靠，因此只使用两者之和。功能标签没有单独验证。轨迹来自单一教师模型、单一领域（数学）。</p>
+
+<h2 id="cite-zh">引用</h2>
+<div class="cite"><button type="button" data-copy="bib-zh">复制</button><pre id="bib-zh">@misc{li2026traceatlas,
+  title        = {TraceAtlas: Mapping the Structure of Long
+                  Chain-of-Thought},
+  author       = {Li, Hongyang and Li, Xiao and Wu, Caesar and
+                  Bouvry, Pascal and {SeaFill Open-Source Team}},
+  year         = {2026},
+  howpublished = {\url{https://96kevinli29.github.io/TraceAtlas/blog/}},
+  note         = {Dataset and annotation pipeline, work in progress}
+}</pre></div>
+</section>
+</article>
+
+<footer class="col">
+  <span data-lang="en">Numbers on this page come from the annotation logs (pilot of 100 reference traces; first 5,000 labeled traces). Browse traces at <a href="../">TraceAtlas</a>.</span>
+  <span data-lang="zh">本页数字来自标注日志（100 条参照试点；最先标完的 5,000 条）。轨迹浏览见 <a href="../">TraceAtlas</a>。</span>
+</footer>
+
+<script>
+// 两条真实轨迹的逐段路径（来自第四版标注）：M 主路径 / A、D 探索 / P 答案之后
+const S1 = "MMMMMMMDDDDDDDDDDDDMDDMMMMMMMMMMMMMMMMMMMMMMMMMMMPPPPPP";
+const S2 = "MMMMMMMMMMMMMMMMMMMMMDDDDDDDDDDDDDMMMDDDDDDDDDDDDDDDDDDDDDDDDMMMMMDDDDDDDDDDDDDDPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMMMMMMMMMMMMMMMMMMMMMMMMMMMDDDDDDDDDDDDDDDDDDDDMMMMMMMMMMPPPPP";
+function strip(id, s) { const el = document.getElementById(id); if (el) el.innerHTML = [...s].map(c => `<span class="${c}"></span>`).join(""); }
+strip("s1", S1); strip("s2", S2); strip("s1z", S1); strip("s2z", S2);
+function setLang(l) {
+  document.documentElement.lang = l;
+  document.getElementById("lang").textContent = l === "zh" ? "English" : "中文";
+  try { localStorage.setItem("cot-lang", l); } catch (e) {}
+}
+let L = "en";
+try { L = localStorage.getItem("cot-lang") || ((navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en"); } catch (e) {}
+setLang(L);
+document.getElementById("lang").onclick = () => setLang(document.documentElement.lang === "zh" ? "en" : "zh");
+document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => {
+  const t = document.getElementById(b.dataset.copy).textContent;
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { b.textContent = "✓"; setTimeout(() => b.textContent = b.dataset.copy === "bib-zh" ? "复制" : "copy", 1200); }).catch(() => {});
+});
+</script>
+</body>
+</html>
