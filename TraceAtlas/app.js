@@ -1,4 +1,4 @@
-// Cot-trace：静态页面，数据在 data/ 下（由 src/corpus/export_site.py 导出）。中英双语。
+// TraceAtlas（原 Cot-trace）：静态页面，数据在 data/ 下（由 src/corpus/export_site.py 导出）。中英双语。
 // 路由：#/ 列表；#/t/<traj_id> 单条轨迹；#/review 人工核对列表；#/review/<traj_id> 核对一条；#/about 说明
 const REVIEW_KEY = "cot-review-v1";
 const LANG_KEY = "cot-lang";
