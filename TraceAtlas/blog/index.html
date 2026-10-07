@@ -115,7 +115,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 </div>
 
 <h2>Why this matters</h2>
-<p>Reasoning models now think for thousands of tokens before they answer, and their traces have become the main ingredient for training the next generation of models. Yet the open data that exists is plain text. You can see that a model thought for ten thousand tokens, but not which of them the answer actually rests on. To our knowledge, TraceAtlas is the first open set of long reasoning traces that maps this out, paragraph by paragraph.</p>
+<p>Reasoning models now think for thousands of tokens before they answer, and their traces have become the main ingredient for training the next generation of models. Yet the open data that exists is plain text. You can see that a model thought for ten thousand tokens, but not which of them the answer actually rests on. TraceAtlas is one of the few open sets of long reasoning traces that map this out, paragraph by paragraph.</p>
 <ul class="why">
   <li><b>Better training data, not just more of it.</b> Knowing which parts of a trace are dead ends lets you prune them, keep them on purpose, or pick traces by how they reason — the questions that decide what a student model learns from distillation.</li>
   <li><b>Step-level supervision for free.</b> Every paragraph says whether the answer depends on it. That is exactly the signal process reward models and step-level verifiers are trained on, and it is usually expensive to collect.</li>
@@ -170,7 +170,7 @@ html[lang="en"] [data-lang="en"], html[lang="zh"] [data-lang="zh"] { display: re
 </div>
 
 <h2>为什么重要</h2>
-<p>推理模型在回答前会先想几千甚至上万个 token，这些思维链已经成为训练下一代模型的主要原料。但现有的开源数据都是纯文本：能看出模型想了一万个 token，却看不出答案真正建立在哪一部分上。据我们所知，TraceAtlas 是第一份逐段画出这张结构地图的开源长推理轨迹数据。</p>
+<p>推理模型在回答前会先想几千甚至上万个 token，这些思维链已经成为训练下一代模型的主要原料。但现有的开源数据都是纯文本：能看出模型想了一万个 token，却看不出答案真正建立在哪一部分上。TraceAtlas 是少有的、逐段画出这张结构地图的开源长推理轨迹数据。</p>
 <ul class="why">
   <li><b>让训练数据更好，而不只是更多。</b>知道轨迹里哪些是死胡同，就能把它们剪掉、有意保留，或者按推理方式挑选轨迹——蒸馏时学生模型学到什么，正取决于这些选择。</li>
   <li><b>现成的步骤级监督信号。</b>每一段都标明答案是否依赖它。这正是过程奖励模型和步骤级验证器需要的训练信号，而通常收集起来代价很高。</li>
