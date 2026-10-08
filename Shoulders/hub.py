@@ -81,7 +81,7 @@ def search_index():
             me=v, mp=len(papers[k]), i=k, mw=[[(w[0] or '')[:110], w[1] or '', len(w[2])] for w in top if w[0]],
             ne=0, nw=[])
     zh_ns = {'Leonhard Euler': '欧拉', 'Claude Louis Marie Henri Navier': '纳维', 'George Gabriel Stokes': '斯托克斯',
-             'Tosio Kato': '加藤敏夫', 'Thomas Y. Hou': '侯一钊', 'Jiajie Chen': '陈佳杰'}
+             'Tosio Kato': '加藤敏夫', 'Thomas Y. Hou': '侯一钊'}
     for p in NS:
         for r in p['refs']:
             for a in r['a']:

@@ -10,7 +10,7 @@ LAUR = laureates(ROOT + '/math/scripts')
 ZH = {'Leonhard Euler': '欧拉', 'Claude Louis Marie Henri Navier': '纳维', 'George Gabriel Stokes': '斯托克斯',
       'Jean Leray': '勒雷', 'Tosio Kato': '加藤敏夫', 'Terence Tao': '陶哲轩', 'Elias M. Stein': '斯坦',
       'Charles L. Fefferman': '费弗曼', 'Jean Bourgain': '布尔甘', 'Luis Caffarelli': '卡法雷利',
-      'Louis Nirenberg': '尼伦伯格', 'Thomas Y. Hou': '侯一钊', 'Jiajie Chen': '陈佳杰'}
+      'Louis Nirenberg': '尼伦伯格', 'Thomas Y. Hou': '侯一钊'}
 MILESTONES = [('Euler', '欧拉', 1757), ('Navier', '纳维', 1827), ('Stokes', '斯托克斯', 1845), ('Leray', '勒雷', 1934),
               ('Stein', '斯坦', 1970), ('Kato', '加藤敏夫', 1972), ('Caffarelli–Kohn–Nirenberg', '卡法雷利–科恩–尼伦伯格', 1982),
               ('Beale–Kato–Majda', 'Beale–加藤–Majda', 1984), ('Fefferman', '费弗曼', 2000), ('Tao', '陶哲轩', 2016)]
