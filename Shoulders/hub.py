@@ -53,7 +53,7 @@ def place(names, after=None, row=None):
 
 
 ROWS = [3, 4, 5, 7, 9, 11, 13]
-place(['Shing-Tung Yau'], after='Terence Tao')
+place(['Shing-Tung Yau', 'Shiing-Shen Chern'], after='Terence Tao')
 place(['Gang Tian'], row=3)
 place(['Yu Deng', 'Hong Wang', 'Shaoming Guo'], row=4)
 ROWS.append(len(TOP) - sum(ROWS))
