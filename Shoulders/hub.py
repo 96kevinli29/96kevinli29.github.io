@@ -19,16 +19,23 @@ M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
 NP = len(M['papers'])
 ROWS = [3, 5, 8, 11, 14]
 TOP = ent.most_common(sum(ROWS))
-# Always shown in the middle of the third row, whatever their rank, with both Chinese and Latin names.
-PIN = ['Shaoming Guo']
+# Shown side by side in the middle of the third row, whatever their rank, with Chinese and Latin names.
+PIN = ['Hong Wang', 'Shaoming Guo']
 PINNED = {}
+at = sum(ROWS[:2]) + ROWS[2] // 2
+size = TOP[at][1]                               # drawn at the size of their neighbours
 for n in PIN:
     k = next((i for i, a in enumerate(A) if a['n'] == n), None)
-    if k is not None and k not in dict(TOP):
-        at = sum(ROWS[:2]) + ROWS[2] // 2
-        PINNED[k] = TOP[at][1]                 # drawn at the size of its neighbours
-        TOP.insert(at, (k, ent[k]))
-        ROWS[2] += 1
+    if k is None:
+        continue
+    j = next((j for j, (x, _) in enumerate(TOP) if x == k), None)
+    if j is not None:
+        TOP.pop(j)
+        ROWS[next(r for r in range(len(ROWS)) if j < sum(ROWS[:r + 1]))] -= 1
+    PINNED[k] = size
+    TOP.insert(at, (k, ent[k]))
+    ROWS[2] += 1
+    at += 1
 
 # ---- Navier–Stokes / Euler -----------------------------------------------------
 NS = json.load(open(H + '/navier-stokes/scripts/refs.json', encoding='utf-8'))
