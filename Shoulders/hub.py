@@ -19,7 +19,7 @@ M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
 NP = len(M['papers'])
 ROWS = [3, 5, 8, 11, 14]
 TOP = ent.most_common(sum(ROWS))
-# Shown side by side in the middle of the third row, whatever their rank, with Chinese and Latin names.
+# Shown side by side in the middle of the third row, whatever their rank.
 PIN = ['Hong Wang', 'Shaoming Guo']
 PINNED = {}
 at = sum(ROWS[:2]) + ROWS[2] // 2
@@ -93,8 +93,6 @@ def pyramid(lang):
         for k, v in TOP[i:i + n]:
             a = A[k]
             nm = a.get('zh', a['n']) if lang == 'zh' else a['n']
-            if k in PINNED and a.get('zh'):
-                nm = f"{a['zh']} {a['n']}"
             prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
             tip = (f"{a['n']} · {v} 条参考文献" if lang == 'zh' else f"{a['n']} · {v} reference entries")
             if prize:
