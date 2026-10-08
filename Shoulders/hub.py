@@ -22,13 +22,12 @@ RELEASED = 722   # manuscripts in OpenAI's original release (6 Oct 2026); headli
 # ---- the pyramid: the best-known names among those cited --------------------------
 # Laureates (Fields / Abel / Wolf) cited most, the most-cited names without those prizes,
 # and a few names chosen by hand; ordered by reference entries, a few placed side by side.
-LAUR_N = 54
-OTHERS = ['Osamu Fujino', 'Elliott H. Lieb', 'Jean-Pierre Demailly', 'János Kollár']   # most cited without these prizes
-EXTRA = ['Grigori Perelman', 'Shiing-Shen Chern', 'Chenyang Xu']
+LAUR_N, OTHER_N = 50, 20                        # about a third of the names carry none of these prizes
+EXTRA = ['Grigori Perelman', 'Shiing-Shen Chern', 'Chenyang Xu', 'Gang Tian', 'Shaoming Guo']
 _k = {a['n']: i for i, a in enumerate(A)}
 _is_laur = lambda k: any(x in A[k] for x in ('fm', 'ab', 'wf'))
 _laur = [k for k, _ in ent.most_common() if _is_laur(k)][:LAUR_N]
-_other = [_k[n] for n in OTHERS if n in _k]
+_other = [k for k, _ in ent.most_common() if not _is_laur(k)][:OTHER_N]
 _sel = list(dict.fromkeys(_laur + _other + [_k[n] for n in EXTRA if n in _k]))
 TOP = sorted(((k, ent[k]) for k in _sel), key=lambda x: -x[1])
 PINNED = {}                                     # names drawn at their neighbours' size
@@ -53,9 +52,10 @@ def place(names, after=None, row=None):
         PINNED[k] = size
 
 
-ROWS = [3, 5, 8, 12, 16]
-place(['Shing-Tung Yau', 'Gang Tian'], after='Terence Tao')
-place(['Yu Deng', 'Hong Wang', 'Shaoming Guo'], row=2)
+ROWS = [3, 4, 5, 7, 9, 11, 13]
+place(['Shing-Tung Yau'], after='Terence Tao')
+place(['Gang Tian'], row=3)
+place(['Yu Deng', 'Hong Wang', 'Shaoming Guo'], row=4)
 ROWS.append(len(TOP) - sum(ROWS))
 
 # ---- Navier–Stokes / Euler -----------------------------------------------------
@@ -144,8 +144,12 @@ with open(H + '/search.json', 'w', encoding='utf-8') as f:
     json.dump(search_index(), f, ensure_ascii=False, separators=(',', ':'))
 
 
-TIER_SIZE = {'zh': [1.7, 1.3, 1.12, 1.0, 0.92, 0.86],   # one size per row: tiers, not an exact ranking
-             'en': [1.6, 1.15, 1.0, 0.92, 0.86, 0.82]}   # Latin names run longer
+# On the Chinese page, Chinese mathematicians keep their Chinese names; everyone else keeps the original spelling.
+CHINESE_ALSO = {'Terence Tao'}
+chinese = lambda a: a.get('c') in ('CN', 'TW', 'HK', 'MO') or a['n'] in CHINESE_ALSO
+
+TIER_SIZE = {'zh': [1.55, 1.22, 0.97, 0.92, 0.88, 0.84, 0.8, 0.76],   # one size per row: tiers, not an exact ranking
+             'en': [1.55, 1.22, 0.97, 0.92, 0.88, 0.84, 0.8, 0.76]}      # Latin names run longer
 
 
 def pyramid(lang):
@@ -171,10 +175,11 @@ def pyramid(lang):
         row = []
         for k in order:
             a = A[k]
-            nm = a.get('zh', a['n']) if lang == 'zh' else a['n']
+            nm = a['zh'] if lang == 'zh' and a.get('zh') and chinese(a) else a['n']
             prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
             tip = a['n'] + (' · ' + ' / '.join(prize) if prize else '')
-            row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{TIER_SIZE[lang][min(r, 5)]};--d:{seq * 45}ms" title="{esc(tip)}">{esc(nm)}</span>')
+            cjk = nm != a['n']
+            row.append(f'<span class="g{" laur" if prize else ""}{" cjk" if cjk else ""}" style="--s:{TIER_SIZE[lang][min(r, 7)]};--d:{seq * 45}ms" title="{esc(tip)}">{esc(nm)}</span>')
             seq += 1
         out.append('<div class="row">' + ''.join(row) + '</div>')
     return '\n'.join(out)
@@ -256,6 +261,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 
 .g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap}
 .g.laur{color:var(--gold);font-weight:900}
+.g.cjk{font-size:calc(var(--s)*1.12rem)}
 .g{transition:color .5s var(--d),text-shadow .5s var(--d)}
 .lit .g{color:var(--gold);text-shadow:0 0 14px var(--gold-soft)}
 .thanks{text-align:center;margin:1.1rem 0 .2rem}
