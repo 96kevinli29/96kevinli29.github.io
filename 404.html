@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sea-Fill · Page not found</title>
+<script>
+// Paths are case-sensitive on GitHub Pages: send /shoulders/…, /SHOULDERS/… etc. to the real folder.
+(function () {
+  var dirs = ['Shoulders', 'ThoughtAtlas', 'TraceAtlas', 'Cot-trace', 'unlocking-the-critic'];
+  var p = location.pathname, parts = p.split('/');
+  for (var i = 0; i < dirs.length; i++) {
+    if (parts[1] && parts[1].toLowerCase() === dirs[i].toLowerCase() && parts[1] !== dirs[i]) {
+      parts[1] = dirs[i];
+      location.replace(parts.join('/') + location.search + location.hash);
+      return;
+    }
+  }
+})();
+</script>
+<style>
+:root{--paper:#F6F7F9;--ink:#16202D;--muted:#5A6575;--accent:#3F6DA8}
+@media (prefers-color-scheme:dark){:root{--paper:#0F141B;--ink:#E3E8EF;--muted:#98A3B2;--accent:#82A9DD}}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.05rem/1.6 Georgia,"Songti SC",serif}
+main{max-width:34rem;margin:0 auto;padding:4rem 16px}
+h1{font:700 1.8rem/1.2 "Helvetica Neue",Arial,sans-serif;margin:0 0 .6rem}
+p{color:var(--muted)}a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>Page not found · 页面不存在</h1>
+<p>The address may have a typo. 地址可能有误。</p>
+<p><a href="/">Sea-Fill</a> · <a href="/Shoulders/">On Whose Shoulders</a> · <a href="/Shoulders/zh/">巨人之肩</a></p>
+</main>
+</body>
+</html>
