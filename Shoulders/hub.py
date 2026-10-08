@@ -269,9 +269,7 @@ function card(x){
   h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
  if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
  if(x[9]){h+=`<p class="line">${fill(S.fAf,{ae:x[9]})}</p><ul>${x[10].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.af}">${S.fGoA}</a></p>`}
- const who=C.zh&&x[1]?x[1]:x[0],p='tribute/'+x[0];
- h+=`<div class="tb"><button type="button" class="tribute" data-path="${esc(p)}" data-done="${esc(S.tDone)}" data-title="${esc('Tribute: '+x[0])}"><span class="ic">✦</span><span class="lb">${esc(fill(S.tOne,{n:who}))}</span></button><span class="tcount" hidden><b>0</b> ${esc(S.tCount)}</span></div>`;
- res.innerHTML=h;sug.hidden=true;if(window.Tribute)Tribute.bind(res)}
+ res.innerHTML=h;sug.hidden=true}
 function pick(x){q.value=label(x);card(x)}
 q.addEventListener('focus',load,{once:true});
 q.addEventListener('input',()=>{const v=q.value;if(!IDX)res.textContent=S.fLoading;find(v).then(h=>{if(q.value!==v)return;if(res.textContent===S.fLoading)res.textContent='';hits=h;on=0;showSug();if(v.trim()&&!h.length)res.textContent=S.fNone})});
@@ -279,11 +277,6 @@ q.addEventListener('keydown',e=>{if(sug.hidden)return;if(e.key==='ArrowDown'){on
 sug.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pick(hits[+b.dataset.i])});
 document.addEventListener('click',e=>{if(!e.target.closest('.qwrap'))sug.hidden=true});
 document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.q;find(b.dataset.q).then(h=>{if(h[0])pick(h[0]);else res.textContent=S.fNone})}));
-// ---- tribute to all: light up the pyramid ----
-const pyr=document.querySelector('.pyr');
-const lit=()=>pyr&&pyr.classList.add('lit');
-try{if(localStorage.getItem('tribute:tribute/all'))lit()}catch(e){}
-document.addEventListener('tribute',e=>{if(e.target.dataset.path==='tribute/all')lit()});
 // ---- contact (Web3Forms) ----
 const f=$('#cform'),m=$('#cmsg'),btn=f.querySelector('button[type=submit]');
 if(!C.key){btn.disabled=true;m.textContent=S.cOff}
@@ -415,7 +408,6 @@ for k, t in T.items():
 </div>
 <figcaption class="legend">{t['legend']}</figcaption>
 </figure>
-<div class="thanks">{tribute_button('tribute/all', t['tAll'], t['tDone'], t['tCount'], 'Tribute: all')}</div>
 <div class="stats">{''.join(f'<div class="stat"><b>{n:,}</b><span>{esc(l)}</span></div>' for n, l in t['st'])}</div>
 <a class="go" href="{t['math']}">{t['mGo']}</a>
 <p class="src">{t['src']}: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>

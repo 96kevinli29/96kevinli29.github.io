@@ -144,8 +144,7 @@ def build(lang):
         cls = 'w' + (' laur' if laur else '') + (' classic' if y and y < 1980 else '')
         col.append(f'<div class="{cls}"><div class="yr">{w["y"] or "—"}</div><div><div class="who">{names}</div>'
                    f'<div class="ti">{title}</div><div class="by">{t["citedIn"]}{by}</div>{det}</div></div>')
-    out.append(f'<section class="sec"><span class="eyebrow">{t["colH"]}</span><p class="lead">{t["colP"]}</p><div class="col">' + '\n'.join(col) + '</div>'
-               f'<div class="thanks">{tribute_button("tribute/navier-stokes", t["tAll"], t["tDone"], t["tCount"], "Tribute: Navier–Stokes and Euler")}</div></section>')
+    out.append(f'<section class="sec"><span class="eyebrow">{t["colH"]}</span><p class="lead">{t["colP"]}</p><div class="col">' + '\n'.join(col) + '</div></section>')
 
     # ranking
     m = json.dumps(dict(l=t['metL'], r=t['mR'], t=t['mT'], p=t['mP'], more=t['more'], less=t['less']), ensure_ascii=False)
