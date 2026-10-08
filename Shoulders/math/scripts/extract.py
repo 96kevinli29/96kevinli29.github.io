@@ -5,7 +5,10 @@ def delatex(s):
     s=re.sub(r'%.*','',s)
     for k,v in ACC.items():
         s=re.sub(re.escape(k)+r'\s*\{?\\?([a-zA-Z])\}?',lambda m:m.group(1)+v,s)
-    s=s.replace('\\l ','ł').replace('{\\l}','ł').replace('\\l{}','ł').replace('\\o ','ø').replace('{\\o}','ø').replace('\\ss','ß').replace('\\i','i').replace('\\&','&').replace('--','–').replace('~',' ')
+    # letters written as control words: {\L}ukasz, Radziwi\l\l, {\o}, \ss … (not \left, \label …)
+    for cw,ch in (('AE','Æ'),('ae','æ'),('OE','Œ'),('oe','œ'),('AA','Å'),('aa','å'),('ss','ß'),('L','Ł'),('l','ł'),('O','Ø'),('o','ø'),('i','ı')):
+        s=re.sub(r'\{\\'+cw+r'\}|\\'+cw+r'\{\}|\\'+cw+r'(?![a-zA-Z])\s?',ch,s)
+    s=s.replace('ı','i').replace('\\&','&').replace('--','–').replace('~',' ')
     s=re.sub(r'\\(?:emph|textit|textbf|textsc|textrm|mathrm|mathbb|mathcal|bf|it|em|sc|rm|url|href)\b\s*','',s)
     s=re.sub(r'\\[a-zA-Z]+\*?','',s)
     s=re.sub(r'[{}]','',s); s=unicodedata.normalize('NFC',s)
@@ -94,7 +97,12 @@ def alltex(d):
     fs=glob.glob(f'{ROOT}/{d}/build/**/*.tex',recursive=True)
     return {f:open(f,errors='ignore').read() for f in fs}
 papers={}
+# Only the current editions listed in CONTENTS.md: revised papers keep their old edition's folder,
+# and withdrawn papers keep theirs too, so listing preprints/ would count them twice or count retractions.
+_cont=os.path.join(os.path.dirname(ROOT),'CONTENTS.md')
+CURRENT=set(re.findall(r'\]\(preprints/(.+?)/[^/()\s]+\.(?:pdf|md)\)',open(_cont).read())) if os.path.exists(_cont) else None
 for d in sorted(os.listdir(ROOT)):
+    if CURRENT is not None and d not in CURRENT: continue
     b=f'{ROOT}/{d}/build'; refs=[]
     for f in glob.glob(b+'/**/*.bib',recursive=True):
         refs+=parse_bib(open(f,errors='ignore').read())

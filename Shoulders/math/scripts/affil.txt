@@ -13,8 +13,8 @@ Yu Deng|邓煜|CN|芝加哥大学|University of Chicago
 Xu-Jia Wang|汪徐家|CN|西湖大学|Westlake University
 Chao Li||CN|纽约大学柯朗研究所|NYU Courant Institute
 Xiumin Du||CN|美国西北大学|Northwestern University
-Xiuxiong Chen|陈秀雄|CN|纽约州立大学石溪分校|Stony Brook University
-Kefeng Liu|刘克峰|CN|上海数学与交叉学科研究院|Shanghai Institute for Mathematics and Interdisciplinary Sciences
+Xiuxiong Chen|陈秀雄|CN|中国科学技术大学|University of Science and Technology of China
+Kefeng Liu|刘克峰|CN|加州大学洛杉矶分校；上海数学与交叉学科研究院|UCLA; Shanghai Institute for Mathematics and Interdisciplinary Sciences
 Ngaiming Mok|莫毅明|HK|香港大学|University of Hong Kong
 Xin Sun|孙鑫|CN|北京大学北京国际数学研究中心|BICMR, Peking University
 Chenyang Xu|许晨阳|CN|普林斯顿大学|Princeton University
@@ -23,14 +23,14 @@ Chi Li|李驰|CN|罗格斯大学|Rutgers University
 Yuchen Liu||CN|美国西北大学|Northwestern University
 Xiangyu Zhou|周向宇|CN|中国科学院数学与系统科学研究院|AMSS, Chinese Academy of Sciences
 Jin-Yi Cai|蔡进一|CN|威斯康星大学麦迪逊分校|University of Wisconsin–Madison
-Jihao Liu||CN|北京大学|Peking University
+Jihao Liu|刘济豪|CN|北京大学|Peking University
 Jiaoyang Huang||CN|宾夕法尼亚大学沃顿商学院|Wharton School, University of Pennsylvania
 Zhiwei Yun|恽之玮|CN|麻省理工学院|MIT
 Junliang Shen||CN|耶鲁大学|Yale University
 Shou-Wu Zhang|张寿武|CN|普林斯顿大学|Princeton University
 Jingjun Han|韩京俊|CN|复旦大学上海数学中心|Shanghai Center for Mathematical Sciences, Fudan University
 Xiangdong Ye|叶向东|CN|中国科学技术大学|University of Science and Technology of China
-Jintian Zhu||CN|西湖大学|Westlake University
+Jintian Zhu|朱锦天|CN|西湖大学|Westlake University
 Shaoyun Bai||CN|麻省理工学院|MIT
 Horng-Tzer Yau|姚鸿泽|TW|哈佛大学|Harvard University
 C. N. Yang|杨振宁|CN|清华大学高等研究院（已故，2025）|Institute for Advanced Study, Tsinghua University (d. 2025)

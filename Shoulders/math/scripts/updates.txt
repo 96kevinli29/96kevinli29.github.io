@@ -1,2 +1,3 @@
 # date|中文|English   (newest first; one line per update)
+2026-10-08|数据更新：OpenAI 于 10 月 7 日撤回 3 篇稿件并修订了另外 14 篇。本站现只统计每篇论文的当前版本，共 719 篇稿件（372 个成果）。|Data update: on 7 October OpenAI withdrew 3 manuscripts and revised 14 others. The index now counts only the current edition of each paper: 719 manuscripts in 372 results.
 2026-10-08|第 1 期 · 全景：OpenAI Math Release 全部 722 篇预印本的引文索引上线，含基石地图、被引最多的数学家、各领域前 300 位与各国数学家。之后按学科分期更新。|Issue 1 · Overview: a citation index of all 722 preprints in the OpenAI Math Release, with the foundations map, the most-cited mathematicians, the top 300 in each field and a country view. Field-by-field issues follow.

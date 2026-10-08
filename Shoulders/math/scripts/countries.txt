@@ -86,7 +86,7 @@ Petter Brändén|SE
 Gregory F. Lawler|US
 Vincent Tassion|FR
 Ofer Zeitouni|IL
-Pavel Etingof|RU
+Pavel Etingof|UA
 Scott Kirkpatrick|US
 Alan D. Sokal|US
 Christian Schnell|DE
@@ -144,7 +144,7 @@ Gang Tian|CN
 Jan Philip Solovej|DK
 Ronen Eldan|IL
 Piotr T. Chruściel|PL
-Pavel Etingof|RU
+Pavel Etingof|UA
 Fedor Bogomolov|RU
 Jacob Tsimerman|CA
 Hugh L. Montgomery|US
@@ -179,7 +179,7 @@ André Weil|FR
 Sándor J. Kovács|HU
 Phillip A. Griffiths|US
 Valentino Tosatti|IT
-Dmitry Panchenko|RU
+Dmitry Panchenko|UA
 Raghu Meka|IN
 J. M. Kosterlitz|GB
 Spencer Bloch|US

@@ -1,6 +1,20 @@
 import json,os,collections,re
 S=os.path.dirname(os.path.abspath(__file__))
 D=json.load(open(S+'/data_stage1.json')); C=json.load(open(S+'/contexts.json'))
+# Not human authors: parsing fragments of institution names, a book title, and AI models cited as tools.
+NONHUMAN={'others','Technology','National Institute','National Institute of Standards','IEEE','SGA 4',
+          'ChatGPT 5.6','ChatGPT 5.6 Sol','Claude Fable 5.1'}
+for _p in D['papers']:
+    for _r in _p['refs']:
+        _r['a']=[a for a in _r['a'] if D['names'].get(a,a) not in NONHUMAN]
+# Same name, different people: the Columbia number theorist Chao Li wrote the Heegner-point paper with Kriz;
+# the other "Chao Li" citations are the NYU geometric analyst.
+SPLIT={('chao|li','Heegner points'):('chao|li|columbia','Chao Li (Columbia)')}
+for _p in D['papers']:
+    for _r in _p['refs']:
+        for (k,frag),(k2,n2) in SPLIT.items():
+            if k in _r['a'] and frag in (_r['t'] or ''):
+                _r['a']=[k2 if a==k else a for a in _r['a']]; D['names'][k2]=n2
 FM={}
 for line in open(S+'/fields_medal.txt'):
     y,ns=line.strip().split('|')
@@ -49,18 +63,21 @@ for line in open(S+'/affil.txt',encoding='utf-8'):
     n,zh,c,az,ae=line.split('|'); AF[n]=(zh,c,az,ae)
 CC.pop('Juanyong Wang',None)
 CIT=json.load(open(S+'/cites.json'))
+# Display spellings that differ from how the name is written in the citations (the prize lists match the citation form).
+DISPLAY={'Bao Châu Ngô':'Ngô Bảo Châu'}
 authors=[]
 for k in keys:
     n=D['names'].get(k,k)
     if n.startswith('init:'): n=k
-    a={'n':n}
+    a={'n':DISPLAY.get(n,n)}
     if k in FM: a['fm']=FM[k]
     if k in ZH: a['zh']=ZH[k]
     if k in AB: a['ab']=AB[k]
     if k in WF: a['wf']=WF[k]
     if n in CC: a['c']=CC[n]
     if n in AF:
-        zh,c,az,ae=AF[n]; a['c']=c; a['af']=[az,ae]
+        zh,c,az,ae=AF[n]; a['c']=c
+        if az or ae: a['af']=[az,ae]
         if any(x in az for x in ['清华','北京','中国科学院','浙江','西湖','上海','复旦','中国科学技术','南开']): a['ml']=1
         if zh and 'zh' not in a: a['zh']=zh
     authors.append(a)
