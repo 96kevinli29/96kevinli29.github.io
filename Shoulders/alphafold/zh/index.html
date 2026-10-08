@@ -236,7 +236,7 @@ window.Tribute=(function(){
  const done=p=>{try{return !!localStorage.getItem(key(p))}catch(e){return false}};
  function read(p,box){fetch(B+encodeURIComponent(p)+'.json').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.count){box.querySelector('b').textContent=j.count;box.hidden=false}}).catch(()=>{})}
  function send(p,t,n){n=n||0;if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:t,event:true});else if(n<20)setTimeout(()=>send(p,t,n+1),500)}
- function set(b){b.setAttribute('aria-pressed','true');b.querySelector('.lb').textContent=b.dataset.done}
+ function set(b){b.setAttribute('aria-pressed','true')}   // keeps its label; the filled gold shows it was given
  function bind(root){(root||document).querySelectorAll('.tribute:not([data-bound])').forEach(b=>{
   b.dataset.bound=1;const p=b.dataset.path,box=b.nextElementSibling&&b.nextElementSibling.classList.contains('tcount')?b.nextElementSibling:null;
   if(done(p))set(b);if(box)read(p,box);
