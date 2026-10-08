@@ -19,16 +19,16 @@ M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
 NP = len(M['papers'])
 ROWS = [3, 5, 8, 11, 14]
 TOP = ent.most_common(sum(ROWS))
-# Always shown in the bottom row, whatever their rank.
+# Always shown in the middle of the third row, whatever their rank, with both Chinese and Latin names.
 PIN = ['Shaoming Guo']
-PINNED = set()
-FLOOR = TOP[-1][1]          # pinned names are drawn no smaller than the last ranked name
+PINNED = {}
 for n in PIN:
     k = next((i for i, a in enumerate(A) if a['n'] == n), None)
     if k is not None and k not in dict(TOP):
-        TOP.append((k, ent[k]))
-        PINNED.add(k)
-ROWS[-1] += len(TOP) - sum(ROWS)
+        at = sum(ROWS[:2]) + ROWS[2] // 2
+        PINNED[k] = TOP[at][1]                 # drawn at the size of its neighbours
+        TOP.insert(at, (k, ent[k]))
+        ROWS[2] += 1
 
 # ---- Navier–Stokes / Euler -----------------------------------------------------
 NS = json.load(open(H + '/navier-stokes/scripts/refs.json', encoding='utf-8'))
@@ -86,11 +86,13 @@ def pyramid(lang):
         for k, v in TOP[i:i + n]:
             a = A[k]
             nm = a.get('zh', a['n']) if lang == 'zh' else a['n']
+            if k in PINNED and a.get('zh'):
+                nm = f"{a['zh']} {a['n']}"
             prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
             tip = (f"{a['n']} · {v} 条参考文献" if lang == 'zh' else f"{a['n']} · {v} reference entries")
             if prize:
                 tip += ' · ' + ' / '.join(prize)
-            fs = 0.8 + 1.3 * (max(v, FLOOR if k in PINNED else 0) / mx) ** 1.2
+            fs = 0.8 + 1.3 * (PINNED.get(k, v) / mx) ** 1.2
             row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{fs:.2f}" title="{esc(tip)}">{esc(nm)}</span>')
         out.append('<div class="row">' + ''.join(row) + '</div>')
         i += n
