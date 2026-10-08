@@ -3,7 +3,7 @@ import os, sys, json, html, re
 S = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(S))
 sys.path.insert(0, ROOT)
-from common import page, laureates, person_key, chips
+from common import page, laureates, person_key, chips, tribute_button
 
 D = json.load(open(S + '/refs.json', encoding='utf-8'))
 LAUR = laureates(ROOT + '/math/scripts')
@@ -67,6 +67,7 @@ T = {
   ai='AI · OpenAI', aiS='Navier–Stokes 与 Euler 方程有限时间爆破',
   how=lambda n: f'正文怎样引用（{n}）', pg='第 {} 页', citedIn='被引于',
   eras=[(2020, '2020 年代'), (2000, '2000–2019'), (1980, '1980–1999'), (1900, '20 世纪'), (0, '18–19 世纪：方程的诞生')],
+  tAll=f'向这 {len(people)} 位科学家致敬', tDone='已致敬 · 谢谢你', tCount='次致敬',
   rankH='被引用的科学家', rankP='默认按参考文献条目数排名：一篇论文列出某人的一部著作计一次。',
   metL='排名依据', mR='参考文献条目', mT='正文引用', mP='引用论文数', more='更多排名方式', less='收起',
   showAll=lambda n: f'显示全部 {n} 位', showLess='收起',
@@ -88,6 +89,7 @@ T = {
   ai='AI · OpenAI', aiS='Finite-time blowup for Navier–Stokes and Euler',
   how=lambda n: f'How it is cited ({n})', pg='p. {}', citedIn='Cited in',
   eras=[(2020, '2020s'), (2000, '2000–2019'), (1980, '1980–1999'), (1900, '20th century'), (0, '18th–19th century: the equations are born')],
+  tAll=f'Pay tribute to these {len(people)} scientists', tDone='Tribute paid · thank you', tCount='tributes',
   rankH='Scientists cited', rankP='Ranked by reference entries by default: a paper listing one of their works counts once.',
   metL='Rank by', mR='Reference entries', mT='In-text citations', mP='Citing papers', more='More ranking options', less='Fewer options',
   showAll=lambda n: f'Show all {n}', showLess='Show fewer',
@@ -97,6 +99,8 @@ T = {
 }
 
 CSS = '''
+.thanks{margin:1.6rem 0 0 6rem}
+@media (max-width:560px){.thanks{margin-left:4.3rem}}
 .tl{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .5rem;margin:1.4rem 0 .4rem}
 .ms{display:inline-flex;flex-direction:column;align-items:center;line-height:1.2;padding:.3rem .55rem;border:1px solid var(--rule);border-radius:4px;background:var(--sheet)}
 .ms b{font:600 .95rem var(--f-display)}.ms i{font:.68rem var(--f-mono);font-style:normal;color:var(--muted)}
@@ -217,7 +221,8 @@ def build(lang):
         cls = 'w' + (' laur' if laur else '') + (' classic' if y and y < 1980 else '')
         col.append(f'<div class="{cls}"><div class="yr">{w["y"] or "—"}</div><div><div class="who">{names}</div>'
                    f'<div class="ti">{title}</div><div class="by">{t["citedIn"]}{by}</div>{det}</div></div>')
-    out.append(f'<section class="sec"><span class="eyebrow">{t["colH"]}</span><p class="lead">{t["colP"]}</p><div class="col">' + '\n'.join(col) + '</div></section>')
+    out.append(f'<section class="sec"><span class="eyebrow">{t["colH"]}</span><p class="lead">{t["colP"]}</p><div class="col">' + '\n'.join(col) + '</div>'
+               f'<div class="thanks">{tribute_button("tribute/navier-stokes", t["tAll"], t["tDone"], t["tCount"], "Tribute: Navier–Stokes and Euler")}</div></section>')
 
     # ranking
     m = json.dumps(dict(l=t['metL'], r=t['mR'], t=t['mT'], p=t['mP'], more=t['more'], less=t['less']), ensure_ascii=False)

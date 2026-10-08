@@ -2,7 +2,7 @@
 import os, sys, json, collections, html
 H = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, H)
-from common import page, laureates, person_key
+from common import page, laureates, person_key, tribute_button
 
 esc = html.escape
 
@@ -103,7 +103,7 @@ with open(H + '/search.json', 'w', encoding='utf-8') as f:
 
 def pyramid(lang):
     mx = TOP[0][1]
-    out, i = [], 0
+    out, i, seq = [], 0, 0
     for n in ROWS:
         row = []
         for k, v in TOP[i:i + n]:
@@ -114,7 +114,8 @@ def pyramid(lang):
             if prize:
                 tip += ' · ' + ' / '.join(prize)
             fs = 0.8 + 1.3 * (PINNED.get(k, v) / mx) ** 1.2
-            row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{fs:.2f}" title="{esc(tip)}">{esc(nm)}</span>')
+            row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{fs:.2f};--d:{seq * 45}ms" title="{esc(tip)}">{esc(nm)}</span>')
+            seq += 1
         out.append('<div class="row">' + ''.join(row) + '</div>')
         i += n
     return '\n'.join(out)
@@ -195,6 +196,10 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 .row:nth-child(1){max-width:26rem}.row:nth-child(2){max-width:34rem}.row:nth-child(3){max-width:42rem}
 .g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap}
 .g.laur{color:var(--gold);font-weight:900}
+.g{transition:color .5s var(--d),text-shadow .5s var(--d)}
+.lit .g{color:var(--gold);text-shadow:0 0 14px var(--gold-soft)}
+.thanks{text-align:center;margin:1.1rem 0 .2rem}
+.res .tb{margin-top:.8rem}
 .legend{font:.74rem var(--f-mono);color:var(--muted);margin-top:.7rem}
 .legend b{color:var(--gold)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem}
@@ -224,7 +229,9 @@ function card(x){
   if(x[6].length)h+=`<div>${S.fTop}</div><ul>${x[6].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''} · ${w[2]} ${S.fPp}</li>`).join('')}</ul>`;
   h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
  if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
- res.innerHTML=h;sug.hidden=true}
+ const who=C.zh&&x[1]?x[1]:x[0],p='tribute/'+x[0];
+ h+=`<div class="tb"><button type="button" class="tribute" data-path="${esc(p)}" data-done="${esc(S.tDone)}" data-title="${esc('Tribute: '+x[0])}"><span class="ic">✦</span><span class="lb">${esc(fill(S.tOne,{n:who}))}</span></button><span class="tcount" hidden><b>0</b> ${esc(S.tCount)}</span></div>`;
+ res.innerHTML=h;sug.hidden=true;if(window.Tribute)Tribute.bind(res)}
 function pick(x){q.value=label(x);card(x)}
 q.addEventListener('focus',load,{once:true});
 q.addEventListener('input',()=>{const v=q.value;if(!IDX)res.textContent=S.fLoading;find(v).then(h=>{if(q.value!==v)return;if(res.textContent===S.fLoading)res.textContent='';hits=h;on=0;showSug();if(v.trim()&&!h.length)res.textContent=S.fNone})});
@@ -232,6 +239,11 @@ q.addEventListener('keydown',e=>{if(sug.hidden)return;if(e.key==='ArrowDown'){on
 sug.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pick(hits[+b.dataset.i])});
 document.addEventListener('click',e=>{if(!e.target.closest('.qwrap'))sug.hidden=true});
 document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.q;find(b.dataset.q).then(h=>{if(h[0])pick(h[0]);else res.textContent=S.fNone})}));
+// ---- tribute to all: light up the pyramid ----
+const pyr=document.querySelector('.pyr');
+const lit=()=>pyr&&pyr.classList.add('lit');
+try{if(localStorage.getItem('tribute:tribute/all'))lit()}catch(e){}
+document.addEventListener('tribute',e=>{if(e.target.dataset.path==='tribute/all')lit()});
 // ---- contact (Web3Forms) ----
 const f=$('#cform'),m=$('#cmsg'),btn=f.querySelector('button[type=submit]');
 if(!C.key){btn.disabled=true;m.textContent=S.cOff}
@@ -256,6 +268,7 @@ T = {
   dek='AI 证明的每一条定理、攻克的每一道难题，都写在前人留下的纸页上。那些概念、方法与工具，是几代科学家用一生换来的。',
   manifesto='我们找出 AI 成果引用的每一位科学家，写下他们的名字。他们是连接人类知识与 AI 的桥梁，也是我们永远尊敬的人。',
   team=('Sea-Fill 开源科学团队', '我们是 Sea-Fill，一个开源科学团队'),
+  tAll='向他们致敬', tDone='已致敬 · 谢谢你', tCount='次致敬', tOne='向 {n} 致敬',
   fH='寻找一位巨人', fP='输入一位科学家的名字，看看 AI 站在了他们的哪些工作之上。',
   fPh='输入名字：陶哲轩、Grothendieck、欧拉……', fTry='试试：', fTries=['陶哲轩', 'Grothendieck', '欧拉', '王虹'],
   fLoading='正在载入索引…', fNone='没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。',
@@ -287,6 +300,7 @@ T = {
   dek='Every theorem AI proves and every problem it settles is written on pages others left behind. Its ideas, methods and tools were paid for with lifetimes of human work.',
   manifesto='We find every scientist an AI result cites and write down their name. They are the bridge between human knowledge and AI, and the people we will always honour.',
   team=('Sea-Fill · open-source science team', 'We are Sea-Fill, an open-source science team'),
+  tAll='Pay tribute to them', tDone='Tribute paid · thank you', tCount='tributes', tOne='Pay tribute to {n}',
   fH='Find a giant', fP='Type a scientist’s name to see which of their works AI has built upon.',
   fPh='Type a name: Terence Tao, Grothendieck, Euler…', fTry='Try: ', fTries=['Terence Tao', 'Grothendieck', 'Euler', 'Hong Wang'],
   fLoading='Loading the index…', fNone='No match. This name does not appear in the references of the AI papers covered so far.',
@@ -351,6 +365,7 @@ for k, t in T.items():
 </div>
 <figcaption class="legend">{t['legend']}</figcaption>
 </figure>
+<div class="thanks">{tribute_button('tribute/all', t['tAll'], t['tDone'], t['tCount'], 'Tribute: all')}</div>
 <div class="stats">{''.join(f'<div class="stat"><b>{n:,}</b><span>{esc(l)}</span></div>' for n, l in t['st'])}</div>
 <a class="go" href="{t['math']}">{t['mGo']}</a>
 <p class="src">{t['src']}: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
@@ -380,7 +395,7 @@ for k, t in T.items():
 
 <footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a></footer>'''
     cfg = dict(idx=t['idx'], math=t['math'], ns=t['ns'], key=WEB3FORMS_KEY, zh=k == 'zh',
-               s={x: t[x] for x in ('fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
+               s={x: t[x] for x in ('tOne', 'tDone', 'tCount', 'fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
                                     'cSending', 'cSend', 'cOk', 'cErr', 'cOff')})
     body += '<script>window.__CFG__=' + json.dumps(cfg, ensure_ascii=False).replace('</', '<\\/') + ';</script>\n<script>' + JS + '</script>'
     f = os.path.join(H, 'zh/index.html' if k == 'zh' else 'index.html')

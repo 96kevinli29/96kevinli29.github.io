@@ -39,6 +39,13 @@ footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-
 footer a{color:var(--muted)}
 :focus-visible{outline:2px solid var(--use);outline-offset:2px}
 
+.tribute{display:inline-flex;align-items:center;gap:.45rem;font:600 .92rem var(--f-body);color:var(--gold);background:transparent;border:1.5px solid var(--gold);border-radius:999px;padding:.42rem 1.1rem;cursor:pointer;transition:background .25s,color .25s}
+.tribute:hover{background:var(--gold-soft)}
+.tribute[aria-pressed="true"]{background:var(--gold);color:var(--paper);cursor:default}
+.tribute .ic{font-size:1.05em;line-height:1}
+.tcount{font:.8rem var(--f-mono);color:var(--muted);margin-left:.7rem}
+.tcount b{color:var(--ink);font-weight:600}
+
 .finder{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.3rem 1.4rem;margin-top:1.1rem}
 .finder h2{margin-bottom:.3rem}.finder>p{color:var(--muted);margin:0 0 .9rem}
 .qwrap{position:relative}
@@ -102,6 +109,10 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 .row:nth-child(1){max-width:26rem}.row:nth-child(2){max-width:34rem}.row:nth-child(3){max-width:42rem}
 .g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap}
 .g.laur{color:var(--gold);font-weight:900}
+.g{transition:color .5s var(--d),text-shadow .5s var(--d)}
+.lit .g{color:var(--gold);text-shadow:0 0 14px var(--gold-soft)}
+.thanks{text-align:center;margin:1.1rem 0 .2rem}
+.res .tb{margin-top:.8rem}
 .legend{font:.74rem var(--f-mono);color:var(--muted);margin-top:.7rem}
 .legend b{color:var(--gold)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem}
@@ -146,14 +157,15 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 <figure class="viz">
 <div class="aiblk">AI · OpenAI Math Release<small>722 AI-written math preprints</small></div>
 <div class="pyr">
-<div class="row"><span class="g" style="--s:2.10" title="Osamu Fujino · 125 reference entries">Osamu Fujino</span><span class="g" style="--s:2.04" title="Elliott H. Lieb · 120 reference entries">Elliott H. Lieb</span><span class="g" style="--s:2.01" title="Jean-Pierre Demailly · 118 reference entries">Jean-Pierre Demailly</span></div>
-<div class="row"><span class="g laur" style="--s:1.92" title="Terence Tao · 110 reference entries · Fields">Terence Tao</span><span class="g laur" style="--s:1.92" title="Shing-Tung Yau · 65 reference entries · Fields / Wolf">Shing-Tung Yau</span><span class="g" style="--s:1.75" title="James S. Milne · 96 reference entries">James S. Milne</span><span class="g" style="--s:1.75" title="Thomas Peternell · 96 reference entries">Thomas Peternell</span><span class="g" style="--s:1.74" title="János Kollár · 95 reference entries">János Kollár</span><span class="g laur" style="--s:1.70" title="Hugo Duminil-Copin · 92 reference entries · Fields">Hugo Duminil-Copin</span></div>
-<div class="row"><span class="g" style="--s:1.66" title="Frédéric Campana · 89 reference entries">Frédéric Campana</span><span class="g" style="--s:1.63" title="Christopher D. Hacon · 86 reference entries">Christopher D. Hacon</span><span class="g" style="--s:1.60" title="Scott Sheffield · 83 reference entries">Scott Sheffield</span><span class="g laur" style="--s:1.58" title="Paul Erdős · 82 reference entries · Wolf">Paul Erdős</span><span class="g laur" style="--s:1.55" title="Hong Wang · 44 reference entries · Fields">Hong Wang</span><span class="g" style="--s:1.55" title="Shaoming Guo · 11 reference entries">Shaoming Guo</span><span class="g" style="--s:1.55" title="Oded Schramm · 79 reference entries">Oded Schramm</span><span class="g laur" style="--s:1.52" title="Caucher Birkar · 76 reference entries · Fields">Caucher Birkar</span><span class="g laur" style="--s:1.49" title="Pierre Deligne · 74 reference entries · Fields / Abel / Wolf">Pierre Deligne</span><span class="g" style="--s:1.49" title="Mihai Păun · 74 reference entries">Mihai Păun</span></div>
-<div class="row"><span class="g laur" style="--s:1.44" title="Stanislav Smirnov · 69 reference entries · Fields">Stanislav Smirnov</span><span class="g laur" style="--s:1.37" title="Jean-Pierre Serre · 63 reference entries · Fields / Abel / Wolf">Jean-Pierre Serre</span><span class="g" style="--s:1.35" title="Ewain Gwynne · 61 reference entries">Ewain Gwynne</span><span class="g" style="--s:1.35" title="Ben Morris · 61 reference entries">Ben Morris</span><span class="g laur" style="--s:1.34" title="Mikhail Gromov · 60 reference entries · Abel / Wolf">Mikhail Gromov</span><span class="g laur" style="--s:1.33" title="Jean Bourgain · 59 reference entries · Fields">Jean Bourgain</span><span class="g" style="--s:1.33" title="Jason Miller · 59 reference entries">Jason Miller</span><span class="g" style="--s:1.29" title="Dennis Gaitsgory · 55 reference entries">Dennis Gaitsgory</span><span class="g" style="--s:1.25" title="Barry Simon · 52 reference entries">Barry Simon</span><span class="g" style="--s:1.25" title="Michael Aizenman · 52 reference entries">Michael Aizenman</span></div>
-<div class="row"><span class="g" style="--s:1.24" title="James McKernan · 51 reference entries">James McKernan</span><span class="g" style="--s:1.19" title="Subhash Khot · 46 reference entries">Subhash Khot</span><span class="g" style="--s:1.18" title="Dmitry Panchenko · 45 reference entries">Dmitry Panchenko</span><span class="g laur" style="--s:1.17" title="Alexander Grothendieck · 44 reference entries · Fields">Alexander Grothendieck</span><span class="g" style="--s:1.16" title="Yuval Peres · 43 reference entries">Yuval Peres</span><span class="g laur" style="--s:1.15" title="Peter Scholze · 42 reference entries · Fields">Peter Scholze</span><span class="g" style="--s:1.15" title="Ioan Manolescu · 42 reference entries">Ioan Manolescu</span><span class="g laur" style="--s:1.14" title="Shigefumi Mori · 41 reference entries · Fields">Shigefumi Mori</span><span class="g" style="--s:1.13" title="Andreas Höring · 40 reference entries">Andreas Höring</span><span class="g" style="--s:1.12" title="Marcus Khuri · 39 reference entries">Marcus Khuri</span><span class="g" style="--s:1.12" title="Vladimir Lazić · 39 reference entries">Vladimir Lazić</span><span class="g" style="--s:1.11" title="Allen Hatcher · 38 reference entries">Allen Hatcher</span><span class="g" style="--s:1.11" title="Larry Guth · 38 reference entries">Larry Guth</span></div>
+<div class="row"><span class="g" style="--s:2.10;--d:0ms" title="Osamu Fujino · 125 reference entries">Osamu Fujino</span><span class="g" style="--s:2.04;--d:45ms" title="Elliott H. Lieb · 120 reference entries">Elliott H. Lieb</span><span class="g" style="--s:2.01;--d:90ms" title="Jean-Pierre Demailly · 118 reference entries">Jean-Pierre Demailly</span></div>
+<div class="row"><span class="g laur" style="--s:1.92;--d:135ms" title="Terence Tao · 110 reference entries · Fields">Terence Tao</span><span class="g laur" style="--s:1.92;--d:180ms" title="Shing-Tung Yau · 65 reference entries · Fields / Wolf">Shing-Tung Yau</span><span class="g" style="--s:1.75;--d:225ms" title="James S. Milne · 96 reference entries">James S. Milne</span><span class="g" style="--s:1.75;--d:270ms" title="Thomas Peternell · 96 reference entries">Thomas Peternell</span><span class="g" style="--s:1.74;--d:315ms" title="János Kollár · 95 reference entries">János Kollár</span><span class="g laur" style="--s:1.70;--d:360ms" title="Hugo Duminil-Copin · 92 reference entries · Fields">Hugo Duminil-Copin</span></div>
+<div class="row"><span class="g" style="--s:1.66;--d:405ms" title="Frédéric Campana · 89 reference entries">Frédéric Campana</span><span class="g" style="--s:1.63;--d:450ms" title="Christopher D. Hacon · 86 reference entries">Christopher D. Hacon</span><span class="g" style="--s:1.60;--d:495ms" title="Scott Sheffield · 83 reference entries">Scott Sheffield</span><span class="g laur" style="--s:1.58;--d:540ms" title="Paul Erdős · 82 reference entries · Wolf">Paul Erdős</span><span class="g laur" style="--s:1.55;--d:585ms" title="Hong Wang · 44 reference entries · Fields">Hong Wang</span><span class="g" style="--s:1.55;--d:630ms" title="Shaoming Guo · 11 reference entries">Shaoming Guo</span><span class="g" style="--s:1.55;--d:675ms" title="Oded Schramm · 79 reference entries">Oded Schramm</span><span class="g laur" style="--s:1.52;--d:720ms" title="Caucher Birkar · 76 reference entries · Fields">Caucher Birkar</span><span class="g laur" style="--s:1.49;--d:765ms" title="Pierre Deligne · 74 reference entries · Fields / Abel / Wolf">Pierre Deligne</span><span class="g" style="--s:1.49;--d:810ms" title="Mihai Păun · 74 reference entries">Mihai Păun</span></div>
+<div class="row"><span class="g laur" style="--s:1.44;--d:855ms" title="Stanislav Smirnov · 69 reference entries · Fields">Stanislav Smirnov</span><span class="g laur" style="--s:1.37;--d:900ms" title="Jean-Pierre Serre · 63 reference entries · Fields / Abel / Wolf">Jean-Pierre Serre</span><span class="g" style="--s:1.35;--d:945ms" title="Ewain Gwynne · 61 reference entries">Ewain Gwynne</span><span class="g" style="--s:1.35;--d:990ms" title="Ben Morris · 61 reference entries">Ben Morris</span><span class="g laur" style="--s:1.34;--d:1035ms" title="Mikhail Gromov · 60 reference entries · Abel / Wolf">Mikhail Gromov</span><span class="g laur" style="--s:1.33;--d:1080ms" title="Jean Bourgain · 59 reference entries · Fields">Jean Bourgain</span><span class="g" style="--s:1.33;--d:1125ms" title="Jason Miller · 59 reference entries">Jason Miller</span><span class="g" style="--s:1.29;--d:1170ms" title="Dennis Gaitsgory · 55 reference entries">Dennis Gaitsgory</span><span class="g" style="--s:1.25;--d:1215ms" title="Barry Simon · 52 reference entries">Barry Simon</span><span class="g" style="--s:1.25;--d:1260ms" title="Michael Aizenman · 52 reference entries">Michael Aizenman</span></div>
+<div class="row"><span class="g" style="--s:1.24;--d:1305ms" title="James McKernan · 51 reference entries">James McKernan</span><span class="g" style="--s:1.19;--d:1350ms" title="Subhash Khot · 46 reference entries">Subhash Khot</span><span class="g" style="--s:1.18;--d:1395ms" title="Dmitry Panchenko · 45 reference entries">Dmitry Panchenko</span><span class="g laur" style="--s:1.17;--d:1440ms" title="Alexander Grothendieck · 44 reference entries · Fields">Alexander Grothendieck</span><span class="g" style="--s:1.16;--d:1485ms" title="Yuval Peres · 43 reference entries">Yuval Peres</span><span class="g laur" style="--s:1.15;--d:1530ms" title="Peter Scholze · 42 reference entries · Fields">Peter Scholze</span><span class="g" style="--s:1.15;--d:1575ms" title="Ioan Manolescu · 42 reference entries">Ioan Manolescu</span><span class="g laur" style="--s:1.14;--d:1620ms" title="Shigefumi Mori · 41 reference entries · Fields">Shigefumi Mori</span><span class="g" style="--s:1.13;--d:1665ms" title="Andreas Höring · 40 reference entries">Andreas Höring</span><span class="g" style="--s:1.12;--d:1710ms" title="Marcus Khuri · 39 reference entries">Marcus Khuri</span><span class="g" style="--s:1.12;--d:1755ms" title="Vladimir Lazić · 39 reference entries">Vladimir Lazić</span><span class="g" style="--s:1.11;--d:1800ms" title="Allen Hatcher · 38 reference entries">Allen Hatcher</span><span class="g" style="--s:1.11;--d:1845ms" title="Larry Guth · 38 reference entries">Larry Guth</span></div>
 </div>
 <figcaption class="legend">Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.</figcaption>
 </figure>
+<div class="thanks"><button type="button" class="tribute" data-path="tribute/all" data-done="Tribute paid · thank you" data-title="Tribute: all"><span class="ic">✦</span><span class="lb">Pay tribute to them</span></button><span class="tcount" hidden><b>0</b> tributes</span></div>
 <div class="stats"><div class="stat"><b>722</b><span>AI-written math preprints</span></div><div class="stat"><b>11,153</b><span>human works cited</span></div><div class="stat"><b>9,644</b><span>human authors</span></div><div class="stat"><b>114</b><span>laureates cited</span></div></div>
 <a class="go" href="math/">Open the mathematics index →</a>
 <p class="src">Source: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
@@ -181,7 +193,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </div>
 </section>
 
-<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
+<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"tOne": "Pay tribute to {n}", "tDone": "Tribute paid · thank you", "tCount": "tributes", "fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
 <script>
 (function(){
 const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);
@@ -203,7 +215,9 @@ function card(x){
   if(x[6].length)h+=`<div>${S.fTop}</div><ul>${x[6].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''} · ${w[2]} ${S.fPp}</li>`).join('')}</ul>`;
   h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
  if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
- res.innerHTML=h;sug.hidden=true}
+ const who=C.zh&&x[1]?x[1]:x[0],p='tribute/'+x[0];
+ h+=`<div class="tb"><button type="button" class="tribute" data-path="${esc(p)}" data-done="${esc(S.tDone)}" data-title="${esc('Tribute: '+x[0])}"><span class="ic">✦</span><span class="lb">${esc(fill(S.tOne,{n:who}))}</span></button><span class="tcount" hidden><b>0</b> ${esc(S.tCount)}</span></div>`;
+ res.innerHTML=h;sug.hidden=true;if(window.Tribute)Tribute.bind(res)}
 function pick(x){q.value=label(x);card(x)}
 q.addEventListener('focus',load,{once:true});
 q.addEventListener('input',()=>{const v=q.value;if(!IDX)res.textContent=S.fLoading;find(v).then(h=>{if(q.value!==v)return;if(res.textContent===S.fLoading)res.textContent='';hits=h;on=0;showSug();if(v.trim()&&!h.length)res.textContent=S.fNone})});
@@ -211,6 +225,11 @@ q.addEventListener('keydown',e=>{if(sug.hidden)return;if(e.key==='ArrowDown'){on
 sug.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pick(hits[+b.dataset.i])});
 document.addEventListener('click',e=>{if(!e.target.closest('.qwrap'))sug.hidden=true});
 document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.q;find(b.dataset.q).then(h=>{if(h[0])pick(h[0]);else res.textContent=S.fNone})}));
+// ---- tribute to all: light up the pyramid ----
+const pyr=document.querySelector('.pyr');
+const lit=()=>pyr&&pyr.classList.add('lit');
+try{if(localStorage.getItem('tribute:tribute/all'))lit()}catch(e){}
+document.addEventListener('tribute',e=>{if(e.target.dataset.path==='tribute/all')lit()});
 // ---- contact (Web3Forms) ----
 const f=$('#cform'),m=$('#cmsg'),btn=f.querySelector('button[type=submit]');
 if(!C.key){btn.disabled=true;m.textContent=S.cOff}
@@ -226,5 +245,24 @@ f.addEventListener('submit',e=>{e.preventDefault();if(!C.key)return;
 })();
 </script>
 </main>
+<script>
+window.Tribute=(function(){
+ const B='https://96kevinli29.goatcounter.com/counter/';
+ const key=p=>'tribute:'+p;
+ const done=p=>{try{return !!localStorage.getItem(key(p))}catch(e){return false}};
+ function read(p,box){fetch(B+encodeURIComponent(p)+'.json').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.count){box.querySelector('b').textContent=j.count;box.hidden=false}}).catch(()=>{})}
+ function send(p,t,n){n=n||0;if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:t,event:true});else if(n<20)setTimeout(()=>send(p,t,n+1),500)}
+ function set(b){b.setAttribute('aria-pressed','true');b.querySelector('.lb').textContent=b.dataset.done}
+ function bind(root){(root||document).querySelectorAll('.tribute:not([data-bound])').forEach(b=>{
+  b.dataset.bound=1;const p=b.dataset.path,box=b.nextElementSibling&&b.nextElementSibling.classList.contains('tcount')?b.nextElementSibling:null;
+  if(done(p))set(b);if(box)read(p,box);
+  b.addEventListener('click',()=>{if(done(p))return;try{localStorage.setItem(key(p),'1')}catch(e){}
+   send(p,b.dataset.title||p);set(b);
+   if(box&&!box.hidden){const el=box.querySelector('b'),n=parseInt(el.textContent.replace(/\D/g,''),10);if(!isNaN(n))el.textContent=(n+1).toLocaleString('en-US')}
+   b.dispatchEvent(new CustomEvent('tribute',{bubbles:true}))})})}
+ return {bind};
+})();
+Tribute.bind();</script>
+<script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

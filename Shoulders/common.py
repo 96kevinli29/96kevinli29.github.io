@@ -49,12 +49,14 @@ def page(lang, title, desc, css, body):
 <meta property="og:title" content="{_html.escape(title)}">
 <meta property="og:description" content="{_html.escape(desc)}">
 {FONTS}
-<style>{BASE}{css}</style>
+<style>{BASE}{TRIBUTE_CSS}{css}</style>
 </head>
 <body>
 <main>
 {body}
 </main>
+<script>{TRIBUTE_JS}Tribute.bind();</script>
+{GC}
 </body>
 </html>
 '''
@@ -88,3 +90,39 @@ PRIZE = {'zh': {'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖'
 
 def chips(prizes, lang):
     return ''.join(f'<span class="chip {k}">{PRIZE[lang][k]} {prizes[k]}</span>' for k in ('fm', 'ab', 'wf') if k in prizes)
+
+
+# ---- tributes: counted as GoatCounter events, read back through its public counter -------------
+GC = '<script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+TRIBUTE_CSS = '''
+.tribute{display:inline-flex;align-items:center;gap:.45rem;font:600 .92rem var(--f-body);color:var(--gold);background:transparent;border:1.5px solid var(--gold);border-radius:999px;padding:.42rem 1.1rem;cursor:pointer;transition:background .25s,color .25s}
+.tribute:hover{background:var(--gold-soft)}
+.tribute[aria-pressed="true"]{background:var(--gold);color:var(--paper);cursor:default}
+.tribute .ic{font-size:1.05em;line-height:1}
+.tcount{font:.8rem var(--f-mono);color:var(--muted);margin-left:.7rem}
+.tcount b{color:var(--ink);font-weight:600}
+'''
+TRIBUTE_JS = r'''
+window.Tribute=(function(){
+ const B='https://96kevinli29.goatcounter.com/counter/';
+ const key=p=>'tribute:'+p;
+ const done=p=>{try{return !!localStorage.getItem(key(p))}catch(e){return false}};
+ function read(p,box){fetch(B+encodeURIComponent(p)+'.json').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.count){box.querySelector('b').textContent=j.count;box.hidden=false}}).catch(()=>{})}
+ function send(p,t,n){n=n||0;if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:t,event:true});else if(n<20)setTimeout(()=>send(p,t,n+1),500)}
+ function set(b){b.setAttribute('aria-pressed','true');b.querySelector('.lb').textContent=b.dataset.done}
+ function bind(root){(root||document).querySelectorAll('.tribute:not([data-bound])').forEach(b=>{
+  b.dataset.bound=1;const p=b.dataset.path,box=b.nextElementSibling&&b.nextElementSibling.classList.contains('tcount')?b.nextElementSibling:null;
+  if(done(p))set(b);if(box)read(p,box);
+  b.addEventListener('click',()=>{if(done(p))return;try{localStorage.setItem(key(p),'1')}catch(e){}
+   send(p,b.dataset.title||p);set(b);
+   if(box&&!box.hidden){const el=box.querySelector('b'),n=parseInt(el.textContent.replace(/\D/g,''),10);if(!isNaN(n))el.textContent=(n+1).toLocaleString('en-US')}
+   b.dispatchEvent(new CustomEvent('tribute',{bubbles:true}))})})}
+ return {bind};
+})();
+'''
+
+
+def tribute_button(path, label, done, count_label, title=''):
+    return (f'<button type="button" class="tribute" data-path="{_html.escape(path)}" data-done="{_html.escape(done)}" data-title="{_html.escape(title or path)}">'
+            f'<span class="ic">✦</span><span class="lb">{_html.escape(label)}</span></button>'
+            f'<span class="tcount" hidden><b>0</b> {_html.escape(count_label)}</span>')
