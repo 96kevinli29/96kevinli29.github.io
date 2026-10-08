@@ -354,7 +354,7 @@ for k, t in T.items():
 </div>
 </section>
 
-<footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a> · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>'''
+<footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a></footer>'''
     cfg = dict(idx=t['idx'], math=t['math'], ns=t['ns'], key=WEB3FORMS_KEY, zh=k == 'zh',
                s={x: t[x] for x in ('fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
                                     'cSending', 'cSend', 'cOk', 'cErr', 'cOff')})
