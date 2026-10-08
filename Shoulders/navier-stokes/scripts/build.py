@@ -1,4 +1,4 @@
-"""Builds navier-stokes/index.html and navier-stokes/en/index.html from refs.json."""
+"""Builds navier-stokes/index.html (English) and navier-stokes/zh/index.html from refs.json."""
 import os, sys, json, html, re
 S = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(S))
@@ -55,7 +55,7 @@ T = {
  'zh': dict(
   title='从欧拉到 AI · 巨人之肩',
   desc='OpenAI 的 Navier–Stokes 与 Euler 方程有限时间爆破论文引用了哪些人类科学家：从 1757 年的欧拉到 2026 年。',
-  back='← 巨人之肩', alt=('English', 'en/'), eyebrow='数学 · 流体方程 · 2026 年 9 月',
+  back='← 巨人之肩', alt=('English', '../'), eyebrow='数学 · 流体方程 · 2026 年 9 月',
   h1=f'从欧拉到 AI：<br>流体方程的 {SPAN} 年',
   dek=[f'2026 年 9 月 8 日，OpenAI 公开两篇论文，给出三维不可压 <b>Navier–Stokes 方程</b>与 <b>Euler 方程</b>光滑解在有限时间内爆破的构造，并附 Lean 4 形式化证明。Navier–Stokes 一篇对应克雷数学研究所千禧年大奖难题中的情形 (C) 与 (D)。',
        f'这一步走在 {SPAN} 年的积累之上：从 1757 年欧拉写下流体运动方程，到纳维、斯托克斯、勒雷，再到今天仍在推进这一问题的数学家。两篇论文共列出 {NREF} 条参考文献。我们把它们逐条找出来，记下每一位被引用的人。'],
@@ -76,7 +76,7 @@ T = {
  'en': dict(
   title='From Euler to AI · On Whose Shoulders',
   desc='Which human scientists do OpenAI’s finite-time blowup papers for Navier–Stokes and Euler cite? From Euler in 1757 to 2026.',
-  back='← On Whose Shoulders', alt=('中文', '../'), eyebrow='Mathematics · Fluid equations · September 2026',
+  back='← On Whose Shoulders', alt=('中文', 'zh/'), eyebrow='Mathematics · Fluid equations · September 2026',
   h1=f'From Euler to AI:<br>{SPAN} years of fluid equations',
   dek=[f'On 8 September 2026 OpenAI released two papers constructing smooth solutions of the three-dimensional incompressible <b>Navier–Stokes</b> and <b>Euler equations</b> that blow up in finite time, with Lean 4 formalizations. The Navier–Stokes paper addresses alternatives (C) and (D) of the Clay Mathematics Institute’s Millennium Prize Problem.',
        f'That step rests on {SPAN} years of human work: from Euler writing down the equations of fluid motion in 1757, through Navier, Stokes and Leray, to the mathematicians still pushing on the problem today. Together the two papers list {NREF} references. We traced every one of them and the people behind it.'],
@@ -186,7 +186,7 @@ def name_html(a, lang, laur):
 
 def build(lang):
     t = T[lang]
-    out = [f'<div class="top"><a href="{"../" if lang == "zh" else "../../"}">{t["back"]}</a><a href="{t["alt"][1]}">{t["alt"][0]}</a></div>',
+    out = [f'<div class="top"><a href="{"../../zh/" if lang == "zh" else "../"}">{t["back"]}</a><a href="{t["alt"][1]}">{t["alt"][0]}</a></div>',
            f'<h1>{t["h1"]}</h1>']
     out += [f'<p class="dek">{x}</p>' for x in t['dek']]
     out.append('<div class="tl">' + '<span class="arr">→</span>'.join(
@@ -242,7 +242,7 @@ def build(lang):
 
 
 base = os.path.dirname(S)
-for lang, path in (('zh', 'index.html'), ('en', 'en/index.html')):
+for lang, path in (('zh', 'zh/index.html'), ('en', 'index.html')):
     f = os.path.join(base, path)
     os.makedirs(os.path.dirname(f), exist_ok=True)
     open(f, 'w', encoding='utf-8').write(build(lang))

@@ -2,9 +2,9 @@
 
 AI 在科学前沿的每一项突破都依靠人类的智慧与努力。本站随每一次 AI 科学突破持续更新，按学科分开。第 1 期（数学）记录 OpenAI 公开的 AI 数学预印本（[openai/math](https://github.com/openai/math)，Apache 2.0）引用了哪些人类数学家的工作，向人类的智力与工作致敬。
 
-- 首页 / Home：https://96kevinli29.github.io/Shoulders/ （English: `/en/`）
-- 流体方程 / Navier–Stokes & Euler：https://96kevinli29.github.io/Shoulders/navier-stokes/ （English: `/navier-stokes/en/`）
-- 数学全景 / OpenAI Math Release：https://96kevinli29.github.io/Shoulders/math/ （English: `/math/en/`）
+- 首页 / Home：https://96kevinli29.github.io/Shoulders/ （中文：`/zh/`）
+- 流体方程 / Navier–Stokes & Euler：https://96kevinli29.github.io/Shoulders/navier-stokes/ （中文：`/navier-stokes/zh/`）
+- 数学全景 / OpenAI Math Release：https://96kevinli29.github.io/Shoulders/math/ （中文：`/math/zh/`）
 
 ## 目录结构
 

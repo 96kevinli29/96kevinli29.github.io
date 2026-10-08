@@ -1,4 +1,4 @@
-"""Builds the hub pages (index.html, en/index.html) from the topic data. Run from anywhere."""
+"""Builds the hub pages (index.html = English, zh/index.html) from the topic data. Run from anywhere."""
 import os, sys, json, collections, html
 H = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, H)
@@ -36,6 +36,22 @@ for n in PIN:
     TOP.insert(at, (k, ent[k]))
     ROWS[2] += 1
     at += 1
+
+# Shown right after Terence Tao, at Tao's row size.
+NEXT_TO = {'Shing-Tung Yau': 'Terence Tao'}
+for n, m in NEXT_TO.items():
+    k = next((i for i, a in enumerate(A) if a['n'] == n), None)
+    t = next((i for i, a in enumerate(A) if a['n'] == m), None)
+    if k is None or t is None or t not in dict(TOP):
+        continue
+    j = next((j for j, (x, _) in enumerate(TOP) if x == k), None)
+    if j is not None:
+        TOP.pop(j)
+        ROWS[next(r for r in range(len(ROWS)) if j < sum(ROWS[:r + 1]))] -= 1
+    ti = next(j for j, (x, _) in enumerate(TOP) if x == t)
+    PINNED[k] = TOP[ti][1]
+    TOP.insert(ti + 1, (k, ent[k]))
+    ROWS[next(r for r in range(len(ROWS)) if ti < sum(ROWS[:r + 1]))] += 1
 
 # ---- Navier–Stokes / Euler -----------------------------------------------------
 NS = json.load(open(H + '/navier-stokes/scripts/refs.json', encoding='utf-8'))
@@ -233,7 +249,7 @@ f.addEventListener('submit',e=>{e.preventDefault();if(!C.key)return;
 
 T = {
  'zh': dict(
-  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', 'en/'), ns='navier-stokes/', math='math/', idx='search.json',
+  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', '../'), ns='../navier-stokes/zh/', math='../math/zh/', idx='../search.json',
   desc='向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。',
   eyebrow='巨人之肩 · On Whose Shoulders',
   h1='AI 的每一次突破，<br>都站在人类科学家的肩膀上',
@@ -264,7 +280,7 @@ T = {
   foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。',
  ),
  'en': dict(
-  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', '../'), ns='../navier-stokes/en/', math='../math/en/', idx='../search.json',
+  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', 'zh/'), ns='navier-stokes/', math='math/', idx='search.json',
   desc='A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.',
   eyebrow='On Whose Shoulders · 巨人之肩',
   h1='Every AI breakthrough<br>stands on human shoulders',
@@ -367,6 +383,6 @@ for k, t in T.items():
                s={x: t[x] for x in ('fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
                                     'cSending', 'cSend', 'cOk', 'cErr', 'cOff')})
     body += '<script>window.__CFG__=' + json.dumps(cfg, ensure_ascii=False).replace('</', '<\\/') + ';</script>\n<script>' + JS + '</script>'
-    f = os.path.join(H, 'index.html' if k == 'zh' else 'en/index.html')
+    f = os.path.join(H, 'zh/index.html' if k == 'zh' else 'index.html')
     os.makedirs(os.path.dirname(f), exist_ok=True)
     open(f, 'w', encoding='utf-8').write(page(k, t['title'], t['desc'], CSS, body))

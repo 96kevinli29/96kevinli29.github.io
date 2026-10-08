@@ -33,6 +33,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add -A Shoulders/math Shoulders/index.html Shoulders/en/index.html
+          git add -A Shoulders/math Shoulders/index.html Shoulders/zh/index.html Shoulders/search.json
           git commit -m "Shoulders math: rebuild from openai/math"
           git push

@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>On Whose Shoulders · 巨人之肩</title>
-<meta name="description" content="A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.">
-<meta property="og:title" content="On Whose Shoulders · 巨人之肩">
-<meta property="og:description" content="A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.">
+<title>巨人之肩 · On Whose Shoulders</title>
+<meta name="description" content="向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。">
+<meta property="og:title" content="巨人之肩 · On Whose Shoulders">
+<meta property="og:description" content="向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -112,76 +112,76 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </head>
 <body>
 <main>
-<div class="top"><span>On Whose Shoulders · 巨人之肩</span><a href="zh/">中文</a></div>
+<div class="top"><span>巨人之肩 · On Whose Shoulders</span><a href="../">English</a></div>
 <header class="hero">
-<h1>Every AI breakthrough<br>stands on human shoulders</h1>
-<p class="dek">Every theorem AI proves and every problem it settles is written on pages others left behind. Its ideas, methods and tools were paid for with lifetimes of human work.</p>
-<p class="manifesto">We find every scientist an AI result cites and write down their name. They are the bridge between human knowledge and AI, and the people we will always honour.</p>
-<a class="team" href="https://huggingface.co/SeaFill2025"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png" alt="" width="34" height="34"><span><b>Sea-Fill · open-source science team</b><small>We are Sea-Fill, an open-source science team</small></span></a>
+<h1>AI 的每一次突破，<br>都站在人类科学家的肩膀上</h1>
+<p class="dek">AI 证明的每一条定理、攻克的每一道难题，都写在前人留下的纸页上。那些概念、方法与工具，是几代科学家用一生换来的。</p>
+<p class="manifesto">我们找出 AI 成果引用的每一位科学家，写下他们的名字。他们是连接人类知识与 AI 的桥梁，也是我们永远尊敬的人。</p>
+<a class="team" href="https://huggingface.co/SeaFill2025"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png" alt="" width="34" height="34"><span><b>Sea-Fill 开源科学团队</b><small>我们是 Sea-Fill，一个开源科学团队</small></span></a>
 </header>
 
 <section class="finder" id="finder">
-<h2>Find a giant</h2>
-<p>Type a scientist’s name to see which of their works AI has built upon.</p>
-<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="Type a name: Terence Tao, Grothendieck, Euler…" aria-label="Find a giant"><div class="sug" id="sug" hidden></div></div>
-<div class="try">Try: <button type="button" data-q="Terence Tao">Terence Tao</button> · <button type="button" data-q="Grothendieck">Grothendieck</button> · <button type="button" data-q="Euler">Euler</button> · <button type="button" data-q="Hong Wang">Hong Wang</button></div>
+<h2>寻找一位巨人</h2>
+<p>输入一位科学家的名字，看看 AI 站在了他们的哪些工作之上。</p>
+<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="输入名字：陶哲轩、Grothendieck、欧拉……" aria-label="寻找一位巨人"><div class="sug" id="sug" hidden></div></div>
+<div class="try">试试：<button type="button" data-q="陶哲轩">陶哲轩</button> · <button type="button" data-q="Grothendieck">Grothendieck</button> · <button type="button" data-q="欧拉">欧拉</button> · <button type="button" data-q="王虹">王虹</button></div>
 <div class="res" id="res" aria-live="polite"></div>
 </section>
 
 <section class="sec">
-<span class="eyebrow">Mathematics</span>
+<span class="eyebrow">数学</span>
 
-<a class="card" href="navier-stokes/">
-<span class="tag">Latest · September 2026 · Fluid equations</span>
-<h2>From Euler to AI: Navier–Stokes and Euler</h2>
-<p>OpenAI released two papers constructing finite-time blowup for the three-dimensional Navier–Stokes and Euler equations, with Lean formalizations. Their 51 references run from Euler in 1757 to 2026.</p>
-<div class="tl"><span class="ms"><b>Leonhard Euler</b><i>1757</i></span><span class="arr">→</span><span class="ms"><b>Claude Navier</b><i>1827</i></span><span class="arr">→</span><span class="ms"><b>George Gabriel Stokes</b><i>1845</i></span><span class="arr">→</span><span class="ms"><b>Jean Leray</b><i>1934</i></span><span class="arr">→</span><span class="ms"><b>Elias M. Stein</b><i>1970</i></span><span class="arr">→</span><span class="ms"><b>Tosio Kato</b><i>1972</i></span><span class="arr">→</span><span class="ms"><b>Caffarelli–Kohn–Nirenberg</b><i>1982</i></span><span class="arr">→</span><span class="ms"><b>Terence Tao</b><i>2016</i></span><span class="arr">→</span><span class="ms ai"><b>AI</b><i>2026</i></span></div>
-<span class="go">Open the fluid equations page →</span>
+<a class="card" href="../navier-stokes/zh/">
+<span class="tag">最新 · 2026 年 9 月 · 流体方程</span>
+<h2>从欧拉到 AI：Navier–Stokes 与 Euler 方程</h2>
+<p>OpenAI 公开两篇论文，给出三维 Navier–Stokes 方程与 Euler 方程有限时间爆破的构造，并附 Lean 形式化证明。两篇论文的 51 条参考文献，从 1757 年的欧拉一直延续到 2026 年。</p>
+<div class="tl"><span class="ms"><b>欧拉</b><i>1757</i></span><span class="arr">→</span><span class="ms"><b>纳维</b><i>1827</i></span><span class="arr">→</span><span class="ms"><b>斯托克斯</b><i>1845</i></span><span class="arr">→</span><span class="ms"><b>勒雷</b><i>1934</i></span><span class="arr">→</span><span class="ms"><b>斯坦</b><i>1970</i></span><span class="arr">→</span><span class="ms"><b>加藤敏夫</b><i>1972</i></span><span class="arr">→</span><span class="ms"><b>卡法雷利–科恩–尼伦伯格</b><i>1982</i></span><span class="arr">→</span><span class="ms"><b>陶哲轩</b><i>2016</i></span><span class="arr">→</span><span class="ms ai"><b>AI</b><i>2026</i></span></div>
+<span class="go">进入流体方程专题 →</span>
 </a>
 
 <div class="card">
-<span class="tag">October 2026 · Mathematics overview</span>
-<h2><a href="math/" style="color:inherit;text-decoration:none">OpenAI Math Release: 722 AI-written math preprints</a></h2>
-<p>OpenAI published 722 mathematics preprints written by AI. Holding them up are the names below; the larger the name, the more often it is cited.</p>
+<span class="tag">2026 年 10 月 · 数学全景</span>
+<h2><a href="../math/zh/" style="color:inherit;text-decoration:none">OpenAI Math Release：722 篇 AI 数学预印本</a></h2>
+<p>OpenAI 公开了 722 篇由 AI 撰写的数学预印本。托起它们的，是下面这些名字；字越大，被引用越多。</p>
 <figure class="viz">
-<div class="aiblk">AI · OpenAI Math Release<small>722 AI-written math preprints</small></div>
+<div class="aiblk">AI · OpenAI Math Release<small>722 篇 AI 数学预印本</small></div>
 <div class="pyr">
-<div class="row"><span class="g" style="--s:2.10" title="Osamu Fujino · 125 reference entries">Osamu Fujino</span><span class="g" style="--s:2.04" title="Elliott H. Lieb · 120 reference entries">Elliott H. Lieb</span><span class="g" style="--s:2.01" title="Jean-Pierre Demailly · 118 reference entries">Jean-Pierre Demailly</span></div>
-<div class="row"><span class="g laur" style="--s:1.92" title="Terence Tao · 110 reference entries · Fields">Terence Tao</span><span class="g laur" style="--s:1.92" title="Shing-Tung Yau · 65 reference entries · Fields / Wolf">Shing-Tung Yau</span><span class="g" style="--s:1.75" title="James S. Milne · 96 reference entries">James S. Milne</span><span class="g" style="--s:1.75" title="Thomas Peternell · 96 reference entries">Thomas Peternell</span><span class="g" style="--s:1.74" title="János Kollár · 95 reference entries">János Kollár</span><span class="g laur" style="--s:1.70" title="Hugo Duminil-Copin · 92 reference entries · Fields">Hugo Duminil-Copin</span></div>
-<div class="row"><span class="g" style="--s:1.66" title="Frédéric Campana · 89 reference entries">Frédéric Campana</span><span class="g" style="--s:1.63" title="Christopher D. Hacon · 86 reference entries">Christopher D. Hacon</span><span class="g" style="--s:1.60" title="Scott Sheffield · 83 reference entries">Scott Sheffield</span><span class="g laur" style="--s:1.58" title="Paul Erdős · 82 reference entries · Wolf">Paul Erdős</span><span class="g laur" style="--s:1.55" title="Hong Wang · 44 reference entries · Fields">Hong Wang</span><span class="g" style="--s:1.55" title="Shaoming Guo · 11 reference entries">Shaoming Guo</span><span class="g" style="--s:1.55" title="Oded Schramm · 79 reference entries">Oded Schramm</span><span class="g laur" style="--s:1.52" title="Caucher Birkar · 76 reference entries · Fields">Caucher Birkar</span><span class="g laur" style="--s:1.49" title="Pierre Deligne · 74 reference entries · Fields / Abel / Wolf">Pierre Deligne</span><span class="g" style="--s:1.49" title="Mihai Păun · 74 reference entries">Mihai Păun</span></div>
-<div class="row"><span class="g laur" style="--s:1.44" title="Stanislav Smirnov · 69 reference entries · Fields">Stanislav Smirnov</span><span class="g laur" style="--s:1.37" title="Jean-Pierre Serre · 63 reference entries · Fields / Abel / Wolf">Jean-Pierre Serre</span><span class="g" style="--s:1.35" title="Ewain Gwynne · 61 reference entries">Ewain Gwynne</span><span class="g" style="--s:1.35" title="Ben Morris · 61 reference entries">Ben Morris</span><span class="g laur" style="--s:1.34" title="Mikhail Gromov · 60 reference entries · Abel / Wolf">Mikhail Gromov</span><span class="g laur" style="--s:1.33" title="Jean Bourgain · 59 reference entries · Fields">Jean Bourgain</span><span class="g" style="--s:1.33" title="Jason Miller · 59 reference entries">Jason Miller</span><span class="g" style="--s:1.29" title="Dennis Gaitsgory · 55 reference entries">Dennis Gaitsgory</span><span class="g" style="--s:1.25" title="Barry Simon · 52 reference entries">Barry Simon</span><span class="g" style="--s:1.25" title="Michael Aizenman · 52 reference entries">Michael Aizenman</span></div>
-<div class="row"><span class="g" style="--s:1.24" title="James McKernan · 51 reference entries">James McKernan</span><span class="g" style="--s:1.19" title="Subhash Khot · 46 reference entries">Subhash Khot</span><span class="g" style="--s:1.18" title="Dmitry Panchenko · 45 reference entries">Dmitry Panchenko</span><span class="g laur" style="--s:1.17" title="Alexander Grothendieck · 44 reference entries · Fields">Alexander Grothendieck</span><span class="g" style="--s:1.16" title="Yuval Peres · 43 reference entries">Yuval Peres</span><span class="g laur" style="--s:1.15" title="Peter Scholze · 42 reference entries · Fields">Peter Scholze</span><span class="g" style="--s:1.15" title="Ioan Manolescu · 42 reference entries">Ioan Manolescu</span><span class="g laur" style="--s:1.14" title="Shigefumi Mori · 41 reference entries · Fields">Shigefumi Mori</span><span class="g" style="--s:1.13" title="Andreas Höring · 40 reference entries">Andreas Höring</span><span class="g" style="--s:1.12" title="Marcus Khuri · 39 reference entries">Marcus Khuri</span><span class="g" style="--s:1.12" title="Vladimir Lazić · 39 reference entries">Vladimir Lazić</span><span class="g" style="--s:1.11" title="Allen Hatcher · 38 reference entries">Allen Hatcher</span><span class="g" style="--s:1.11" title="Larry Guth · 38 reference entries">Larry Guth</span></div>
+<div class="row"><span class="g" style="--s:2.10" title="Osamu Fujino · 125 条参考文献">Osamu Fujino</span><span class="g" style="--s:2.04" title="Elliott H. Lieb · 120 条参考文献">Elliott H. Lieb</span><span class="g" style="--s:2.01" title="Jean-Pierre Demailly · 118 条参考文献">Jean-Pierre Demailly</span></div>
+<div class="row"><span class="g laur" style="--s:1.92" title="Terence Tao · 110 条参考文献 · Fields">陶哲轩</span><span class="g laur" style="--s:1.92" title="Shing-Tung Yau · 65 条参考文献 · Fields / Wolf">丘成桐</span><span class="g" style="--s:1.75" title="James S. Milne · 96 条参考文献">James S. Milne</span><span class="g" style="--s:1.75" title="Thomas Peternell · 96 条参考文献">Thomas Peternell</span><span class="g" style="--s:1.74" title="János Kollár · 95 条参考文献">János Kollár</span><span class="g laur" style="--s:1.70" title="Hugo Duminil-Copin · 92 条参考文献 · Fields">迪米尼尔-科潘</span></div>
+<div class="row"><span class="g" style="--s:1.66" title="Frédéric Campana · 89 条参考文献">Frédéric Campana</span><span class="g" style="--s:1.63" title="Christopher D. Hacon · 86 条参考文献">Christopher D. Hacon</span><span class="g" style="--s:1.60" title="Scott Sheffield · 83 条参考文献">Scott Sheffield</span><span class="g laur" style="--s:1.58" title="Paul Erdős · 82 条参考文献 · Wolf">埃尔德什</span><span class="g laur" style="--s:1.55" title="Hong Wang · 44 条参考文献 · Fields">王虹</span><span class="g" style="--s:1.55" title="Shaoming Guo · 11 条参考文献">郭少明</span><span class="g" style="--s:1.55" title="Oded Schramm · 79 条参考文献">Oded Schramm</span><span class="g laur" style="--s:1.52" title="Caucher Birkar · 76 条参考文献 · Fields">比尔卡尔</span><span class="g laur" style="--s:1.49" title="Pierre Deligne · 74 条参考文献 · Fields / Abel / Wolf">德利涅</span><span class="g" style="--s:1.49" title="Mihai Păun · 74 条参考文献">Mihai Păun</span></div>
+<div class="row"><span class="g laur" style="--s:1.44" title="Stanislav Smirnov · 69 条参考文献 · Fields">斯米尔诺夫</span><span class="g laur" style="--s:1.37" title="Jean-Pierre Serre · 63 条参考文献 · Fields / Abel / Wolf">塞尔</span><span class="g" style="--s:1.35" title="Ewain Gwynne · 61 条参考文献">Ewain Gwynne</span><span class="g" style="--s:1.35" title="Ben Morris · 61 条参考文献">Ben Morris</span><span class="g laur" style="--s:1.34" title="Mikhail Gromov · 60 条参考文献 · Abel / Wolf">格罗莫夫</span><span class="g laur" style="--s:1.33" title="Jean Bourgain · 59 条参考文献 · Fields">布尔甘</span><span class="g" style="--s:1.33" title="Jason Miller · 59 条参考文献">Jason Miller</span><span class="g" style="--s:1.29" title="Dennis Gaitsgory · 55 条参考文献">Dennis Gaitsgory</span><span class="g" style="--s:1.25" title="Barry Simon · 52 条参考文献">Barry Simon</span><span class="g" style="--s:1.25" title="Michael Aizenman · 52 条参考文献">Michael Aizenman</span></div>
+<div class="row"><span class="g" style="--s:1.24" title="James McKernan · 51 条参考文献">James McKernan</span><span class="g" style="--s:1.19" title="Subhash Khot · 46 条参考文献">Subhash Khot</span><span class="g" style="--s:1.18" title="Dmitry Panchenko · 45 条参考文献">Dmitry Panchenko</span><span class="g laur" style="--s:1.17" title="Alexander Grothendieck · 44 条参考文献 · Fields">格罗滕迪克</span><span class="g" style="--s:1.16" title="Yuval Peres · 43 条参考文献">Yuval Peres</span><span class="g laur" style="--s:1.15" title="Peter Scholze · 42 条参考文献 · Fields">舒尔茨</span><span class="g" style="--s:1.15" title="Ioan Manolescu · 42 条参考文献">Ioan Manolescu</span><span class="g laur" style="--s:1.14" title="Shigefumi Mori · 41 条参考文献 · Fields">森重文</span><span class="g" style="--s:1.13" title="Andreas Höring · 40 条参考文献">Andreas Höring</span><span class="g" style="--s:1.12" title="Marcus Khuri · 39 条参考文献">Marcus Khuri</span><span class="g" style="--s:1.12" title="Vladimir Lazić · 39 条参考文献">Vladimir Lazić</span><span class="g" style="--s:1.11" title="Allen Hatcher · 38 条参考文献">Allen Hatcher</span><span class="g" style="--s:1.11" title="Larry Guth · 38 条参考文献">Larry Guth</span></div>
 </div>
-<figcaption class="legend">Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.</figcaption>
+<figcaption class="legend">字号 = 参考文献条目数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。</figcaption>
 </figure>
-<div class="stats"><div class="stat"><b>722</b><span>AI-written math preprints</span></div><div class="stat"><b>11,153</b><span>human works cited</span></div><div class="stat"><b>9,644</b><span>human authors</span></div><div class="stat"><b>114</b><span>laureates cited</span></div></div>
-<a class="go" href="math/">Open the mathematics index →</a>
-<p class="src">Source: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
+<div class="stats"><div class="stat"><b>722</b><span>篇 AI 数学预印本</span></div><div class="stat"><b>11,153</b><span>部被引用的人类著作</span></div><div class="stat"><b>9,644</b><span>位人类作者</span></div><div class="stat"><b>114</b><span>位获奖数学家被引用</span></div></div>
+<a class="go" href="../math/zh/">进入数学专题 →</a>
+<p class="src">数据来源: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
 </div>
 </section>
 
 <section class="sec">
-<span class="eyebrow">Other fields</span>
-<div class="grid"><div class="soon"><b>Physics</b>Coming soon</div><div class="soon"><b>Chemistry</b>Coming soon</div><div class="soon"><b>Life sciences</b>Coming soon</div><div class="soon"><b>Computer science</b>Coming soon</div></div>
+<span class="eyebrow">其他学科</span>
+<div class="grid"><div class="soon"><b>物理</b>即将推出</div><div class="soon"><b>化学</b>即将推出</div><div class="soon"><b>生命科学</b>即将推出</div><div class="soon"><b>计算机科学</b>即将推出</div></div>
 </section>
 <section class="sec" id="contact">
 <div class="contact">
-<h2>Write to us</h2>
-<p>Correct a citation, suggest the next AI breakthrough worth remembering, or join us in carrying this on.</p>
+<h2>写信给我们</h2>
+<p>纠正一处引用，推荐下一项值得铭记的 AI 科学突破，或与我们一起把这件事做下去。</p>
 <form id="cform" novalidate>
-<label>Name (optional)<input name="name" autocomplete="name" maxlength="80"></label>
-<label>Your email (for our reply)<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
-<label class="full">Topic<select name="topic"><option>Correction</option><option>Suggest the next AI breakthrough</option><option>Collaboration</option><option>Other</option></select></label>
-<label class="full">Message<textarea name="message" required maxlength="5000"></textarea></label>
+<label>称呼（可选）<input name="name" autocomplete="name" maxlength="80"></label>
+<label>你的邮箱（用于回复）<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
+<label class="full">类型<select name="topic"><option>纠错</option><option>推荐下一期 AI 突破</option><option>合作</option><option>其他</option></select></label>
+<label class="full">内容<textarea name="message" required maxlength="5000"></textarea></label>
 <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-<button type="submit">Send</button>
+<button type="submit">发送</button>
 <p class="msg" id="cmsg" role="status"></p>
-<p class="fine">Your message is forwarded to the Sea-Fill team by Web3Forms and used only to reply to you.</p>
+<p class="fine">提交的内容经 Web3Forms 转发给 Sea-Fill 团队，只用于回复你。</p>
 </form>
 </div>
 </section>
 
-<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
+<footer>引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。 · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "../search.json", "math": "../math/zh/", "ns": "../navier-stokes/zh/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": true, "s": {"fLoading": "正在载入索引…", "fNone": "没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。", "fMath": "数学全景：被 <b>{mp}<\/b> 篇 AI 数学预印本引用，共 <b>{me}<\/b> 条参考文献。", "fTop": "被引最多的著作：", "fPp": "篇引用", "fNs": "流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}<\/b> 条。", "fGoM": "在数学专题中查看 →", "fGoN": "查看流体方程专题 →", "prize": {"fm": "菲尔兹奖", "ab": "阿贝尔奖", "wf": "沃尔夫奖"}, "cSending": "发送中…", "cSend": "发送", "cOk": "已发送，谢谢！我们会尽快回复。", "cErr": "发送失败，请稍后再试。", "cOff": "表单尚未启用。"}};</script>
 <script>
 (function(){
 const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);

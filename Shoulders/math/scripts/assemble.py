@@ -9,7 +9,7 @@ def page(lang,full,alt=None):
     desc='OpenAI 722 篇 AI 数学预印本引用了哪些人类数学家：基石地图、各国数学家与菲尔兹奖、阿贝尔奖得主的引文索引。' if lang=='zh' else 'Which human mathematicians do OpenAI’s 722 AI-written math preprints cite? A foundations map, countries, and Fields and Abel laureates.'
     return f'<!doctype html>\n<html lang="{"zh-CN" if lang=="zh" else "en"}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="description" content="{desc}">\n'+body[:i]+'\n</head>\n<body>\n'+body[i:]+'\n</body>\n</html>\n'
 open(S+'/shoulders.html','w').write(page('zh',False))
-open(OUT+'/index.html','w').write(page('zh',True,'en/'))
-os.makedirs(OUT+'/en',exist_ok=True)
-open(OUT+'/en/index.html','w').write(page('en',True,'../'))
+open(OUT+'/index.html','w').write(page('en',True,'zh/'))
+os.makedirs(OUT+'/zh',exist_ok=True)
+open(OUT+'/zh/index.html','w').write(page('zh',True,'../'))
 print('ok',os.path.getsize(OUT+'/index.html')/1e6)

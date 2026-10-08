@@ -7,7 +7,7 @@ const fmt=n=>n.toLocaleString('en-US');
 let LANG=window.__LANG__||'zh';
 if(!window.__ALT__){try{const s=localStorage.getItem('shoulders-lang');if(s==='zh'||s==='en')LANG=s}catch(e){}}
 const I={
-zh:{eyebrow:'<a href="../" style="color:inherit">← 巨人之肩</a> · 数学 · OpenAI Math Release',h1:'巨人之肩',
+zh:{eyebrow:'<a href="../../zh/" style="color:inherit">← 巨人之肩</a> · 数学 · OpenAI Math Release',h1:'巨人之肩',
  thesis:'AI 证明的每一条定理，都建立在几代数学家的积累之上。OpenAI 公开了全部 AI 数学预印本及其 LaTeX 源码；我们逐条整理它们的参考文献：引用了谁、哪一篇、在正文中怎样使用。让这些名字被看见，向 AI 时代的人类数学家致敬。',
  searchLabel:'搜索数学家',searchPh:'搜索数学家：陶哲轩、Hong Wang、Bourgain……',
  st1:'篇 AI 预印本',st2:'条参考文献',st4:'的预印本引用了同批 OpenAI 预印本',st5:'数据重建',updT:'Update',mT:'正文引用',mR:'参考文献条目',mP:'引用篇数',metL:'排名依据',metMore:'更多排名方式',metLess:'收起',inTextN:n=>`正文引用 ${n} 次`,metNote:{t:'按正文引用次数排序：每处 \\cite 计一次，同一篇论文在正文中被引多次会多计。',r:'按参考文献条目数排序：一篇预印本列出某人一篇论文计一次。',p:'按引用篇数排序：引用过某人的预印本数量。'},updAll:n=>`全部更新记录（${n}）`,updAuto:d=>`数据每天自动检查，最近一次重建 ${d}`,
@@ -20,7 +20,7 @@ zh:{eyebrow:'<a href="../" style="color:inherit">← 巨人之肩</a> · 数学 
  papersH:'全部预印本',papersP:'点一行查看这篇论文的完整参考文献，作者名可以点开。',pqLabel:'搜索论文',pqPh:'按标题搜索，例如 Kakeya、Penrose、Bochner',pfLabel:'领域',psLabel:'排序',
  sortD:'按日期',sortR:'按参考文献数',sortT:'按标题',thPaper:'论文',thField:'领域',thDate:'日期',thRefs:'引文',thSelf:'自引',more:'显示更多',
  none:'没有匹配的论文。换个关键词试试。',noName:'没有找到这个名字。可以试试英文拼写。',
- methodH:'数据与口径',footer:'巨人之肩 · 由 <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill 开源科学社区</a>制作，记录 AI 数学成果所依赖的人类工作。发现错误或漏掉的引用，欢迎通过<a href="../#contact">首页的联系表单</a>告诉我们。',
+ methodH:'数据与口径',footer:'巨人之肩 · 由 <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill 开源科学社区</a>制作，记录 AI 数学成果所依赖的人类工作。发现错误或漏掉的引用，欢迎通过<a href="../../zh/#contact">首页的联系表单</a>告诉我们。',
  method:g=>`<p style="margin:0">数据来自 <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a>（Apache 2.0 许可）的全部 722 篇预印本源文件，最近一次重建于 ${g}，之后每天自动检查更新。每篇论文的参考文献从 BibTeX 或 <span class="m">\\bibitem</span> 中解析，正文引用句从 LaTeX 源码的 <span class="m">\\cite</span> 位置截取。</p><ul>
  <li><b>引用 ≠ 依赖。</b>人类论文同样大量引用前人；这里记录的是"站在谁的肩膀上"，不评判 AI 结果是否原创。</li>
  <li><b>人名消歧。</b>按"姓 + 名"合并，只有缩写的条目在无歧义时并入全名。常见姓氏（Wang、Li、Zhang 等）的缩写条目单独列出，不强行合并；少数学者的缩写条目按合作者和题目领域人工规则判定。</li>
@@ -36,7 +36,7 @@ zh:{eyebrow:'<a href="../" style="color:inherit">← 巨人之肩</a> · 数学 
  atlasNote:'基石论文取被引最多的约 110 篇，加上各学科和调和分析内部被引最多的若干篇。教材和经典专著也会出现在这里。',
  ctyH:'各国数学家',ctyP:'被引最多的 300 位数学家与全部获奖者按出生地或原国籍标注（出生与成长地不同时，部分取成长地），长条为他们按当前排名依据的计数之和。点一行查看名单。',
  ctyNote:n=>`已标注 ${n} 位；标注依据公开资料，可能有误或不全。`,ctySheet:'按国家/地区',cnL:'工作单位',cn_only:'仅中国大陆',cn_all:'全部按引用',mlTag:'中国大陆',ctyWho:'位被标注的数学家',stoneK:'人类基石论文',citedBy:'被以下 AI 预印本引用',authorsK:'作者'},
-en:{eyebrow:'<a href="../../en/" style="color:inherit">← On Whose Shoulders</a> · Mathematics · OpenAI Math Release',h1:'On Whose Shoulders',
+en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · Mathematics · OpenAI Math Release',h1:'On Whose Shoulders',
  thesis:'Every theorem AI proves rests on generations of mathematicians. OpenAI has published all of its AI-written mathematics preprints with their LaTeX sources; we go through their references entry by entry: whom they cite, which work, and how it is used in the text. A tribute to the human mathematicians of the AI era, so their names stay visible.',
  searchLabel:'Search mathematicians',searchPh:'Search mathematicians: Terence Tao, Hong Wang, Bourgain…',
  st1:'AI preprints',st2:'reference entries',st4:'of preprints cite other OpenAI preprints',st5:'data rebuilt',updT:'Update',mT:'in-text citations',mR:'reference entries',mP:'citing preprints',metL:'Rank by',metMore:'More ranking options',metLess:'Fewer options',inTextN:n=>`cited ${n}× in text`,metNote:{t:'Ranked by in-text citations: every \\cite counts, so a work cited several times in one paper counts several times.',r:'Ranked by reference entries: one preprint listing one of their papers counts once.',p:'Ranked by citing preprints: how many preprints cite them.'},updAll:n=>`All updates (${n})`,updAuto:d=>`Data checked daily; last rebuilt ${d}`,
@@ -49,7 +49,7 @@ en:{eyebrow:'<a href="../../en/" style="color:inherit">← On Whose Shoulders</a
  papersH:'All preprints',papersP:'Open a row to see the full reference list. Author names are clickable.',pqLabel:'Search papers',pqPh:'Search titles, e.g. Kakeya, Penrose, Bochner',pfLabel:'Field',psLabel:'Sort',
  sortD:'By date',sortR:'By references',sortT:'By title',thPaper:'Paper',thField:'Field',thDate:'Date',thRefs:'Refs',thSelf:'Self',more:'Show more',
  none:'No papers match. Try another keyword.',noName:'No one by that name. Try the Latin spelling.',
- methodH:'Data and method',footer:'On Whose Shoulders · made by the <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill open-source science community</a>, recording the human work behind AI-produced mathematics. Found an error or a missing citation? Tell us through the <a href="../../en/#contact">contact form</a>.',
+ methodH:'Data and method',footer:'On Whose Shoulders · made by the <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill open-source science community</a>, recording the human work behind AI-produced mathematics. Found an error or a missing citation? Tell us through the <a href="../#contact">contact form</a>.',
  method:g=>`<p style="margin:0">Data come from the source files of all 722 preprints in <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a> (Apache 2.0), last rebuilt on ${g} and checked for updates daily. References are parsed from BibTeX or <span class="m">\\bibitem</span>; citing sentences are taken from the <span class="m">\\cite</span> positions in the LaTeX source.</p><ul>
  <li><b>A citation is not dependence.</b> Human papers cite heavily too. This index records whose shoulders the work stands on; it does not judge whether the AI results are original.</li>
  <li><b>Name disambiguation.</b> Names merge on surname plus given name; initial-only entries join a full name only when unambiguous. Initial-only entries with common surnames (Wang, Li, Zhang, …) stay separate, except for a few people resolved by co-author and topic rules.</li>
