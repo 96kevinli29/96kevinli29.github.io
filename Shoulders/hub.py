@@ -2,7 +2,7 @@
 import os, sys, json, collections, html
 H = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, H)
-from common import page
+from common import page, laureates, person_key
 
 esc = html.escape
 
@@ -38,6 +38,46 @@ MILESTONES = [('Leonhard Euler', '欧拉', 1757), ('Claude Navier', '纳维', 18
               ('Caffarelli–Kohn–Nirenberg', '卡法雷利–科恩–尼伦伯格', 1982), ('Terence Tao', '陶哲轩', 2016)]
 
 
+# ---- search index for "on whose shoulders?" (fetched by the page on first use) --
+def search_index():
+    works = collections.defaultdict(lambda: collections.defaultdict(lambda: [None, None, set()]))
+    papers = collections.defaultdict(set)
+    for pi, p in enumerate(M['papers']):
+        for r in p['r']:
+            for a in r[0]:
+                w = works[a][(r[1] or '').strip().lower()[:80]]
+                w[0], w[1] = r[1], r[2]
+                w[2].add(pi)
+                papers[a].add(pi)
+    people = {}
+    for k, v in ent.items():
+        a = A[k]
+        top = sorted(works[k].values(), key=lambda w: (-len(w[2]), w[1] or ''))[:3]
+        people[person_key(a['n'])] = dict(
+            n=a['n'], zh=a.get('zh', ''), pz={x: a[x] for x in ('fm', 'ab', 'wf') if x in a},
+            me=v, mp=len(papers[k]), i=k, mw=[[(w[0] or '')[:110], w[1] or '', len(w[2])] for w in top if w[0]],
+            ne=0, nw=[])
+    zh_ns = {'Leonhard Euler': '欧拉', 'Claude Louis Marie Henri Navier': '纳维', 'George Gabriel Stokes': '斯托克斯',
+             'Tosio Kato': '加藤敏夫', 'Thomas Y. Hou': '侯一钊', 'Jiajie Chen': '陈佳杰'}
+    for p in NS:
+        for r in p['refs']:
+            for a in r['a']:
+                k = person_key(a)
+                q = people.setdefault(k, dict(n=a, zh=zh_ns.get(a, ''), pz=NS_LAUR.get(k, {}), me=0, mp=0, i=-1, mw=[], ne=0, nw=[]))
+                q['zh'] = q['zh'] or zh_ns.get(a, '')
+                q['ne'] += 1
+                if [r['t'], r['y']] not in q['nw']:
+                    q['nw'].append([r['t'], r['y']])
+    out = sorted(people.values(), key=lambda q: -(q['me'] + q['ne'] * 3))
+    pz = lambda d: ' '.join(f'{k}{v}' for k, v in d.items())
+    return [[q['n'], q['zh'], pz(q['pz']), q['me'], q['mp'], q['i'], q['mw'], q['ne'], q['nw']] for q in out]
+
+
+NS_LAUR = laureates(H + '/math/scripts')
+with open(H + '/search.json', 'w', encoding='utf-8') as f:
+    json.dump(search_index(), f, ensure_ascii=False, separators=(',', ':'))
+
+
 def pyramid(lang):
     mx = TOP[0][1]
     out, i = [], 0
@@ -62,10 +102,46 @@ def timeline(lang):
     return '<div class="tl">' + '<span class="arr">→</span>'.join(items) + '<span class="arr">→</span><span class="ms ai"><b>AI</b><i>2026</i></span></div>'
 
 
+# Web3Forms access key for the contact form (from web3forms.com; it maps to the inbox, which never appears in the page).
+WEB3FORMS_KEY = '52178693-3a18-435c-84d2-5e32494c379e'
+
 SEAFILL = 'https://huggingface.co/SeaFill2025'
 SEAFILL_LOGO = 'https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png'
 
 CSS = '''
+.finder{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.3rem 1.4rem;margin-top:1.1rem}
+.finder h2{margin-bottom:.3rem}.finder>p{color:var(--muted);margin:0 0 .9rem}
+.qwrap{position:relative}
+.qwrap input{width:100%;font:1rem var(--f-body);padding:.7rem .9rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
+.qwrap input:focus{outline:2px solid var(--use);outline-offset:0;border-color:var(--use)}
+.sug{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--sheet);border:1px solid var(--rule);border-radius:5px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:5;max-height:22rem;overflow:auto}
+.sug button{display:flex;justify-content:space-between;gap:1rem;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);padding:.5rem .9rem;font:.95rem var(--f-body);color:var(--ink);cursor:pointer}
+.sug button:last-child{border-bottom:0}
+.sug button:hover,.sug button.on{background:var(--paper)}
+.sug small{color:var(--muted);font:.75rem var(--f-mono);white-space:nowrap}
+.try{margin-top:.6rem;font-size:.85rem;color:var(--muted)}
+.try button{background:none;border:0;padding:0 .15rem;color:var(--use);font:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--rule)}
+.res{margin-top:1rem}
+.res .who{font:900 1.5rem/1.3 var(--f-display)}.res .who small{font:400 .85rem var(--f-body);color:var(--muted);margin-left:.4rem}
+.res .line{margin:.6rem 0 .2rem}
+.res .line b{font-family:var(--f-display);font-size:1.15rem}
+.res ul{margin:.2rem 0 0;padding-left:1.2rem;font-size:.9rem;color:var(--muted)}
+.res li i{color:var(--ink)}
+.res .go{font-weight:600;font-size:.9rem}
+.contact{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.3rem 1.4rem}
+.contact>p{color:var(--muted);margin:.2rem 0 1rem}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.contact label{display:flex;flex-direction:column;gap:.25rem;font:.78rem var(--f-mono);color:var(--muted);letter-spacing:.03em}
+.contact .full{grid-column:1/-1}
+.contact input,.contact select,.contact textarea{font:.95rem var(--f-body);padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
+.contact textarea{min-height:8rem;resize:vertical}
+.contact button[type=submit]{justify-self:start;font:600 .95rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.6rem 1.3rem;cursor:pointer}
+.contact button[disabled]{opacity:.5;cursor:default}
+.contact .msg{grid-column:1/-1;font-size:.88rem;margin:0}
+.contact .msg.ok{color:var(--use)}.contact .msg.err{color:#c25a4a}
+.contact .fine{grid-column:1/-1;font-size:.78rem;color:var(--muted);margin:0}
+.hp{position:absolute;left:-9999px}
+@media (max-width:520px){.contact form{grid-template-columns:1fr}.finder,.contact{padding:1.1rem 1rem}}
 .team{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.3rem;text-decoration:none;color:var(--ink)}
 .team img{width:34px;height:34px;border-radius:8px;flex:none}
 .team b{display:block;font:700 1.05rem/1.2 var(--f-display)}
@@ -103,15 +179,69 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 @media (max-width:520px){.g{font-size:calc(var(--s)*.78rem)}.row{gap:.1rem .7rem}.card{padding:1.2rem 1rem}.ms b{font-size:.85rem}}
 '''
 
+JS = r'''
+(function(){
+const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fold=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const fill=(s,o)=>s.replace(/\{(\w+)\}/g,(m,k)=>o[k]);
+// ---- finder ----
+let IDX=null;
+const load=()=>IDX||(IDX=fetch(C.idx).then(r=>r.json()).then(d=>d.map(x=>({x,k:fold(x[0]+' '+x[1])}))));
+const q=$('#q'),sug=$('#sug'),res=$('#res');let hits=[],on=0;
+const label=x=>C.zh&&x[1]?x[1]+' · '+x[0]:x[0];
+function find(v){v=fold(v.trim());if(!v)return Promise.resolve([]);
+ return load().then(L=>{const a=[],b=[];for(const e of L){const i=e.k.indexOf(v);if(i<0)continue;(i===0||e.k[i-1]===' '?a:b).push(e.x);if(a.length>=8)break}return a.concat(b).slice(0,8)})}
+function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]}</small></button>`).join('')}
+function card(x){
+ const pz=x[2]?x[2].split(' ').map(p=>`<span class="chip ${p.slice(0,2)}">${S.prize[p.slice(0,2)]} ${p.slice(2)}</span>`).join(''):'';
+ let h=`<div class="who">${esc(C.zh&&x[1]?x[1]:x[0])}${C.zh&&x[1]?`<small>${esc(x[0])}</small>`:''}${pz}</div>`;
+ if(x[3]){h+=`<p class="line">${fill(S.fMath,{mp:x[4],me:x[3]})}</p>`;
+  if(x[6].length)h+=`<div>${S.fTop}</div><ul>${x[6].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''} · ${w[2]} ${S.fPp}</li>`).join('')}</ul>`;
+  h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
+ if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
+ res.innerHTML=h;sug.hidden=true}
+function pick(x){q.value=label(x);card(x)}
+q.addEventListener('focus',load,{once:true});
+q.addEventListener('input',()=>{const v=q.value;if(!IDX)res.textContent=S.fLoading;find(v).then(h=>{if(q.value!==v)return;if(res.textContent===S.fLoading)res.textContent='';hits=h;on=0;showSug();if(v.trim()&&!h.length)res.textContent=S.fNone})});
+q.addEventListener('keydown',e=>{if(sug.hidden)return;if(e.key==='ArrowDown'){on=Math.min(on+1,hits.length-1);showSug();e.preventDefault()}else if(e.key==='ArrowUp'){on=Math.max(on-1,0);showSug();e.preventDefault()}else if(e.key==='Enter'&&hits[on]){pick(hits[on]);e.preventDefault()}else if(e.key==='Escape')sug.hidden=true});
+sug.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pick(hits[+b.dataset.i])});
+document.addEventListener('click',e=>{if(!e.target.closest('.qwrap'))sug.hidden=true});
+document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.q;find(b.dataset.q).then(h=>{if(h[0])pick(h[0]);else res.textContent=S.fNone})}));
+// ---- contact (Web3Forms) ----
+const f=$('#cform'),m=$('#cmsg'),btn=f.querySelector('button[type=submit]');
+if(!C.key){btn.disabled=true;m.textContent=S.cOff}
+f.addEventListener('submit',e=>{e.preventDefault();if(!C.key)return;
+ if(!f.reportValidity())return;
+ const d=Object.fromEntries(new FormData(f));if(d.botcheck)return;
+ btn.disabled=true;btn.textContent=S.cSending;m.className='msg';m.textContent='';
+ fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+  body:JSON.stringify({access_key:C.key,subject:'[巨人之肩 / On Whose Shoulders] '+d.topic,from_name:d.name||'Shoulders visitor',name:d.name,email:d.email,replyto:d.email,topic:d.topic,message:d.message,page:location.href})})
+ .then(r=>r.json()).then(j=>{if(!j.success)throw 0;m.className='msg ok';m.textContent=S.cOk;f.reset()})
+ .catch(()=>{m.className='msg err';m.textContent=S.cErr})
+ .finally(()=>{btn.disabled=false;btn.textContent=S.cSend})});
+})();
+'''
+
 T = {
  'zh': dict(
-  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', 'en/'), ns='navier-stokes/', math='math/',
+  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', 'en/'), ns='navier-stokes/', math='math/', idx='search.json',
   desc='向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。',
   eyebrow='巨人之肩 · On Whose Shoulders',
   h1='AI 的每一次突破，<br>都站在人类科学家的肩膀上',
   dek='当 AI 证明一条定理、攻克一个难题，它用到的概念、方法和工具，来自几代科学家的积累。我们逐条整理 AI 成果的参考文献，找出其中的每一个名字，按学科分开，随每一次突破更新。',
   manifesto='科学家是桥梁：一端连着几百年的人类知识，一端连着今天的 AI。这个项目向 AI 时代的人类科学家致敬。',
   team=('Sea-Fill 开源科学团队', '我们是 Sea-Fill，一个开源科学团队'),
+  fH='查一查：AI 站在谁的肩膀上', fP='输入一位科学家的名字，看看 AI 论文引用了他的哪些工作。目前收录数学全景与流体方程两期。',
+  fPh='输入名字：陶哲轩、Grothendieck、欧拉……', fTry='试试：', fTries=['陶哲轩', '郭少明', 'Grothendieck', '欧拉', '王虹'],
+  fLoading='正在载入索引…', fNone='没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。',
+  fMath='数学全景：被 <b>{mp}</b> 篇 AI 数学预印本引用，共 <b>{me}</b> 条参考文献。', fTop='被引最多的著作：', fPp='篇引用',
+  fNs='流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}</b> 条。', fGoM='在数学专题中查看 →', fGoN='查看流体方程专题 →',
+  prize={'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖'},
+  cH='联系我们', cP='发现引用错误、想推荐下一期值得记录的 AI 科学突破，或者想参与合作，都可以写信给我们。',
+  cName='称呼（可选）', cEmail='你的邮箱（用于回复）', cType='类型', cTypes=['纠错', '推荐下一期 AI 突破', '合作', '其他'], cMsg='内容',
+  cSend='发送', cSending='发送中…', cOk='已发送，谢谢！我们会尽快回复。', cErr='发送失败，请稍后再试。', cOff='表单尚未启用。',
+  cFine='提交的内容经 Web3Forms 转发给 Sea-Fill 团队，只用于回复你。',
   secMath='数学',
   nsTag='最新 · 2026 年 9 月 · 流体方程', nsH='从欧拉到 AI：Navier–Stokes 与 Euler 方程',
   nsP=f'OpenAI 公开两篇论文，给出三维 Navier–Stokes 方程与 Euler 方程有限时间爆破的构造，并附 Lean 形式化证明。两篇论文的 {NS_REFS} 条参考文献，从 1757 年的欧拉一直延续到 2026 年。',
@@ -126,13 +256,23 @@ T = {
   foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属。',
  ),
  'en': dict(
-  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', '../'), ns='../navier-stokes/en/', math='../math/en/',
+  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', '../'), ns='../navier-stokes/en/', math='../math/en/', idx='../search.json',
   desc='A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.',
   eyebrow='On Whose Shoulders · 巨人之肩',
   h1='Every AI breakthrough<br>stands on human shoulders',
   dek='When AI proves a theorem or settles an open problem, the ideas, methods and tools it uses come from generations of scientists. We go through the references of AI results entry by entry, find every name, and keep the record field by field, updated with each breakthrough.',
   manifesto='Scientists are the bridge: one end rests on centuries of human knowledge, the other on today’s AI. This project is a tribute to the human scientists of the AI era.',
   team=('Sea-Fill · open-source science team', 'We are Sea-Fill, an open-source science team'),
+  fH='Look up: whose shoulders does AI stand on?', fP='Type a scientist’s name to see which of their works AI papers cite. Covers the mathematics overview and the fluid equations issue.',
+  fPh='Type a name: Terence Tao, Grothendieck, Euler…', fTry='Try: ', fTries=['Terence Tao', 'Shaoming Guo', 'Grothendieck', 'Euler', 'Hong Wang'],
+  fLoading='Loading the index…', fNone='No match. This name does not appear in the references of the AI papers covered so far.',
+  fMath='Mathematics overview: cited by <b>{mp}</b> AI-written preprints, <b>{me}</b> reference entries in all.', fTop='Most-cited works:', fPp='citing preprints',
+  fNs='Fluid equations: cited <b>{ne}</b> times in OpenAI’s Navier–Stokes / Euler papers.', fGoM='Open in the mathematics index →', fGoN='Open the fluid equations page →',
+  prize={'fm': 'Fields', 'ab': 'Abel', 'wf': 'Wolf'},
+  cH='Contact us', cP='Spotted a citation error, want to suggest the next AI breakthrough in science worth recording, or want to collaborate? Write to us.',
+  cName='Name (optional)', cEmail='Your email (for our reply)', cType='Topic', cTypes=['Correction', 'Suggest the next AI breakthrough', 'Collaboration', 'Other'], cMsg='Message',
+  cSend='Send', cSending='Sending…', cOk='Sent, thank you! We will reply soon.', cErr='Sending failed; please try again later.', cOff='The form is not enabled yet.',
+  cFine='Your message is forwarded to the Sea-Fill team by Web3Forms and used only to reply to you.',
   secMath='Mathematics',
   nsTag='Latest · September 2026 · Fluid equations', nsH='From Euler to AI: Navier–Stokes and Euler',
   nsP=f'OpenAI released two papers constructing finite-time blowup for the three-dimensional Navier–Stokes and Euler equations, with Lean formalizations. Their {NS_REFS} references run from Euler in 1757 to 2026.',
@@ -156,6 +296,14 @@ for k, t in T.items():
 <p class="manifesto">{t['manifesto']}</p>
 <a class="team" href="{SEAFILL}"><img src="{SEAFILL_LOGO}" alt="" width="34" height="34"><span><b>{t['team'][0]}</b><small>{t['team'][1]}</small></span></a>
 </header>
+
+<section class="finder" id="finder">
+<h2>{t['fH']}</h2>
+<p>{t['fP']}</p>
+<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="{esc(t['fPh'])}" aria-label="{esc(t['fH'])}"><div class="sug" id="sug" hidden></div></div>
+<div class="try">{t['fTry']}{' · '.join(f'<button type="button" data-q="{esc(x)}">{esc(x)}</button>' for x in t['fTries'])}</div>
+<div class="res" id="res" aria-live="polite"></div>
+</section>
 
 <section class="sec">
 <span class="eyebrow">{t['secMath']}</span>
@@ -189,7 +337,28 @@ for k, t in T.items():
 <span class="eyebrow">{t['more']}</span>
 <div class="grid">{''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])}</div>
 </section>
+<section class="sec" id="contact">
+<div class="contact">
+<h2>{t['cH']}</h2>
+<p>{t['cP']}</p>
+<form id="cform" novalidate>
+<label>{t['cName']}<input name="name" autocomplete="name" maxlength="80"></label>
+<label>{t['cEmail']}<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
+<label class="full">{t['cType']}<select name="topic">{''.join(f'<option>{esc(x)}</option>' for x in t['cTypes'])}</select></label>
+<label class="full">{t['cMsg']}<textarea name="message" required maxlength="5000"></textarea></label>
+<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button type="submit">{t['cSend']}</button>
+<p class="msg" id="cmsg" role="status"></p>
+<p class="fine">{t['cFine']}</p>
+</form>
+</div>
+</section>
+
 <footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a> · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>'''
+    cfg = dict(idx=t['idx'], math=t['math'], ns=t['ns'], key=WEB3FORMS_KEY, zh=k == 'zh',
+               s={x: t[x] for x in ('fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
+                                    'cSending', 'cSend', 'cOk', 'cErr', 'cOff')})
+    body += '<script>window.__CFG__=' + json.dumps(cfg, ensure_ascii=False).replace('</', '<\\/') + ';</script>\n<script>' + JS + '</script>'
     f = os.path.join(H, 'index.html' if k == 'zh' else 'en/index.html')
     os.makedirs(os.path.dirname(f), exist_ok=True)
     open(f, 'w', encoding='utf-8').write(page(k, t['title'], t['desc'], CSS, body))
