@@ -19,41 +19,44 @@ M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
 NP = len(M['papers'])
 NF = len({p['fam'] for p in M['papers']})   # OpenAI groups the manuscripts into result families
 RELEASED = 722   # manuscripts in OpenAI's original release (6 Oct 2026); headlines keep this number, a note gives the current count
-ROWS = [3, 5, 8, 11, 14]
-TOP = ent.most_common(sum(ROWS))
-# Shown side by side in the middle of the third row, whatever their rank.
-PIN = ['Hong Wang', 'Shaoming Guo']
-PINNED = {}
-at = sum(ROWS[:2]) + ROWS[2] // 2
-size = TOP[at][1]                               # drawn at the size of their neighbours
-for n in PIN:
-    k = next((i for i, a in enumerate(A) if a['n'] == n), None)
-    if k is None:
-        continue
-    j = next((j for j, (x, _) in enumerate(TOP) if x == k), None)
-    if j is not None:
-        TOP.pop(j)
-        ROWS[next(r for r in range(len(ROWS)) if j < sum(ROWS[:r + 1]))] -= 1
-    PINNED[k] = size
-    TOP.insert(at, (k, ent[k]))
-    ROWS[2] += 1
-    at += 1
+# ---- the pyramid: the best-known names among those cited --------------------------
+# Laureates (Fields / Abel / Wolf) cited most, the most-cited names without those prizes,
+# and a few names chosen by hand; ordered by reference entries, a few placed side by side.
+LAUR_N = 54
+OTHERS = ['Osamu Fujino', 'Elliott H. Lieb', 'Jean-Pierre Demailly', 'János Kollár']   # most cited without these prizes
+EXTRA = ['Grigori Perelman', 'Shiing-Shen Chern', 'Chenyang Xu']
+_k = {a['n']: i for i, a in enumerate(A)}
+_is_laur = lambda k: any(x in A[k] for x in ('fm', 'ab', 'wf'))
+_laur = [k for k, _ in ent.most_common() if _is_laur(k)][:LAUR_N]
+_other = [_k[n] for n in OTHERS if n in _k]
+_sel = list(dict.fromkeys(_laur + _other + [_k[n] for n in EXTRA if n in _k]))
+TOP = sorted(((k, ent[k]) for k in _sel), key=lambda x: -x[1])
+PINNED = {}                                     # names drawn at their neighbours' size
 
-# Shown right after Terence Tao, at Tao's row size.
-NEXT_TO = {'Shing-Tung Yau': 'Terence Tao'}
-for n, m in NEXT_TO.items():
-    k = next((i for i, a in enumerate(A) if a['n'] == n), None)
-    t = next((i for i, a in enumerate(A) if a['n'] == m), None)
-    if k is None or t is None or t not in dict(TOP):
-        continue
-    j = next((j for j, (x, _) in enumerate(TOP) if x == k), None)
-    if j is not None:
-        TOP.pop(j)
-        ROWS[next(r for r in range(len(ROWS)) if j < sum(ROWS[:r + 1]))] -= 1
-    ti = next(j for j, (x, _) in enumerate(TOP) if x == t)
-    PINNED[k] = TOP[ti][1]
-    TOP.insert(ti + 1, (k, ent[k]))
-    ROWS[next(r for r in range(len(ROWS)) if ti < sum(ROWS[:r + 1]))] += 1
+
+def place(names, after=None, row=None):
+    """Move names (in order) right after `after`, or into the middle of pyramid row `row`."""
+    ks = [_k[n] for n in names if n in _k]
+    for k in ks:
+        for j, (x, _) in enumerate(TOP):
+            if x == k:
+                TOP.pop(j)
+                break
+    if after is not None:
+        at = next(j for j, (x, _) in enumerate(TOP) if x == _k[after]) + 1
+        PINNED[_k[after]] = ent[_k[after]]      # the anchor belongs to the group
+    else:
+        at = sum(ROWS[:row]) + ROWS[row] // 2
+    size = TOP[min(at, len(TOP) - 1)][1]
+    for i, k in enumerate(ks):
+        TOP.insert(at + i, (k, ent[k]))
+        PINNED[k] = size
+
+
+ROWS = [3, 5, 8, 12, 16]
+place(['Shing-Tung Yau', 'Gang Tian'], after='Terence Tao')
+place(['Yu Deng', 'Hong Wang', 'Shaoming Guo'], row=2)
+ROWS.append(len(TOP) - sum(ROWS))
 
 # ---- Navier–Stokes / Euler -----------------------------------------------------
 NS = json.load(open(H + '/navier-stokes/scripts/refs.json', encoding='utf-8'))
@@ -141,23 +144,39 @@ with open(H + '/search.json', 'w', encoding='utf-8') as f:
     json.dump(search_index(), f, ensure_ascii=False, separators=(',', ':'))
 
 
+TIER_SIZE = {'zh': [1.7, 1.3, 1.12, 1.0, 0.92, 0.86],   # one size per row: tiers, not an exact ranking
+             'en': [1.6, 1.15, 1.0, 0.92, 0.86, 0.82]}   # Latin names run longer
+
+
 def pyramid(lang):
-    mx = TOP[0][1]
     out, i, seq = [], 0, 0
-    for n in ROWS:
+    for r, n in enumerate(ROWS):
+        ks = [k for k, _ in TOP[i:i + n]]
+        i += n
+        # groups placed side by side stay together in the middle; the rest of the row is alphabetical
+        groups, cur = [], []
+        for k in ks:
+            if k in PINNED:
+                cur.append(k)
+            else:
+                if cur:
+                    groups.append(cur)
+                cur = []
+        if cur:
+            groups.append(cur)
+        grouped = {k for g in groups for k in g}
+        rest = sorted((k for k in ks if k not in grouped), key=lambda k: A[k]['n'].split()[-1])
+        mid = len(rest) // 2
+        order = rest[:mid] + [k for g in groups for k in g] + rest[mid:]
         row = []
-        for k, v in TOP[i:i + n]:
+        for k in order:
             a = A[k]
             nm = a.get('zh', a['n']) if lang == 'zh' else a['n']
             prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
-            tip = (f"{a['n']} · {v} 条参考文献" if lang == 'zh' else f"{a['n']} · {v} reference entries")
-            if prize:
-                tip += ' · ' + ' / '.join(prize)
-            fs = 0.8 + 1.3 * (PINNED.get(k, v) / mx) ** 1.2
-            row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{fs:.2f};--d:{seq * 45}ms" title="{esc(tip)}">{esc(nm)}</span>')
+            tip = a['n'] + (' · ' + ' / '.join(prize) if prize else '')
+            row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{TIER_SIZE[lang][min(r, 5)]};--d:{seq * 45}ms" title="{esc(tip)}">{esc(nm)}</span>')
             seq += 1
         out.append('<div class="row">' + ''.join(row) + '</div>')
-        i += n
     return '\n'.join(out)
 
 
@@ -234,7 +253,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 .aiblk small{display:block;font-size:.66rem;opacity:.75;letter-spacing:.04em}
 .pyr{border-top:3px solid var(--ink);padding-top:.5rem}
 .row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.1rem 1rem;padding:.28rem 0;margin:0 auto;border-bottom:1px solid var(--rule)}
-.row:nth-child(1){max-width:26rem}.row:nth-child(2){max-width:34rem}.row:nth-child(3){max-width:42rem}
+
 .g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap}
 .g.laur{color:var(--gold);font-weight:900}
 .g{transition:color .5s var(--d),text-shadow .5s var(--d)}
@@ -323,7 +342,7 @@ T = {
   mP=f'OpenAI 发布了由其内部模型撰写的 {RELEASED} 篇数学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字。',
   aiS=f'{RELEASED} 篇稿件 · {NF} 个成果',
   upd=f'注：2026 年 10 月 7 日，OpenAI 撤回 3 篇稿件并修订了另外 14 篇。以上数字按当前的 {NP} 篇稿件统计，每天自动更新。' if NP != RELEASED else '',
-  legend='字号 = 参考文献条目数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。',
+  legend='按被引用情况大致分层；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。',
   st=[(NP, f'篇当前稿件（{NF} 个成果）'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
   mGo='进入数学专题 →', src='数据来源',
   secChem='化学 · 生命科学',
@@ -361,7 +380,7 @@ T = {
   mP=f'OpenAI released {RELEASED} mathematics manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below.',
   aiS=f'{RELEASED} manuscripts · {NF} results',
   upd=f'Note: on 7 October 2026 OpenAI withdrew 3 manuscripts and revised 14 others. The figures above count the {NP} current manuscripts and update daily.' if NP != RELEASED else '',
-  legend='Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.',
+  legend='Loosely tiered by how often they are cited; <b>gold</b> = Fields / Abel / Wolf laureate.',
   st=[(NP, f'current manuscripts ({NF} results)'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
   mGo='Open the mathematics index →', src='Source',
   secChem='Chemistry · Life sciences',
