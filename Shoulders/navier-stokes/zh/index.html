@@ -30,7 +30,7 @@ h2{font:900 clamp(1.45rem,4vw,1.9rem)/1.25 var(--f-display);margin:0 0 .5rem}
 .sec>.eyebrow{display:block;margin-bottom:.6rem}
 .tag{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.12rem .5rem;border-radius:3px}
 .chip{display:inline-block;font:500 .66rem/1.5 var(--f-mono);letter-spacing:.04em;padding:0 .4rem;border-radius:3px;vertical-align:.12em;margin-left:.3rem;white-space:nowrap}
-.chip.fm{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
+.chip.fm,.chip.nc{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.75rem;margin:1.6rem 0 0}
 .stat{border-left:3px solid var(--gold);padding:.1rem .8rem}
 .stat b{display:block;font:900 1.8rem/1.15 var(--f-display)}
@@ -112,8 +112,8 @@ blockquote small{display:block;font:.7rem var(--f-mono);color:var(--muted);margi
 <main>
 <div class="top"><a href="../../zh/">← 巨人之肩</a><a href="../">English</a></div>
 <h1>从欧拉到 AI：<br>流体方程的 269 年</h1>
-<p class="dek">2026 年 9 月 8 日，OpenAI 公开两篇论文，给出三维不可压 <b>Navier–Stokes 方程</b>与 <b>Euler 方程</b>光滑解在有限时间内爆破的构造，并附 Lean 4 形式化证明。Navier–Stokes 一篇对应克雷数学研究所千禧年大奖难题中的情形 (C) 与 (D)。</p>
-<p class="dek">这一步走在 269 年的积累之上：从 1757 年欧拉写下流体运动方程，到纳维、斯托克斯、勒雷，再到今天仍在推进这一问题的数学家。两篇论文共列出 51 条参考文献。我们把它们逐条找出来，记下每一位被引用的人。</p>
+<p class="dek">2026 年 9 月 8 日，OpenAI 发布关于三维不可压 <b>Navier–Stokes 方程</b>与 <b>Euler 方程</b>有限时间爆破的两篇论文，并附 Lean 4 形式化。OpenAI 表示，Navier–Stokes 一篇对应克雷数学研究所千禧年大奖难题中的情形 (C) 与 (D)。</p>
+<p class="dek">AI 的这一步，建立在 269 年的人类积累之上：从 1757 年欧拉写下流体运动方程，到纳维、斯托克斯、勒雷，再到今天仍在推进这一问题的数学家。两篇论文共列出 51 条参考文献。我们把它们逐条找出来，记下每一位被引用的人。</p>
 <div class="tl"><span class="ms"><b>欧拉</b><i>1757</i></span><span class="arr">→</span><span class="ms"><b>纳维</b><i>1827</i></span><span class="arr">→</span><span class="ms"><b>斯托克斯</b><i>1845</i></span><span class="arr">→</span><span class="ms"><b>勒雷</b><i>1934</i></span><span class="arr">→</span><span class="ms"><b>斯坦</b><i>1970</i></span><span class="arr">→</span><span class="ms"><b>加藤敏夫</b><i>1972</i></span><span class="arr">→</span><span class="ms"><b>卡法雷利–科恩–尼伦伯格</b><i>1982</i></span><span class="arr">→</span><span class="ms"><b>Beale–加藤–Majda</b><i>1984</i></span><span class="arr">→</span><span class="ms"><b>费弗曼</b><i>2000</i></span><span class="arr">→</span><span class="ms"><b>陶哲轩</b><i>2016</i></span><span class="arr">→</span><span class="ms now"><b>AI</b><i>2026</i></span></div>
 <div class="links"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI 博客</a><a href="https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf">Navier–Stokes 论文</a><a href="https://cdn.openai.com/pdf/315b36cd-ec98-4023-8342-93345194ece1/euler.pdf">Euler 论文</a><a href="https://github.com/openai/NavierStokesAndEuler">Lean 形式化</a></div>
 <div class="stats"><div class="stat"><b>2</b><span>篇 AI 论文（166 + 57 页）</span></div><div class="stat"><b>51</b><span>条参考文献</span></div><div class="stat"><b>46</b><span>部被引用的人类著作</span></div><div class="stat"><b>57</b><span>位被引用的科学家</span></div><div class="stat"><b>269</b><span>年跨度（1757–2026）</span></div></div>
@@ -179,7 +179,7 @@ blockquote small{display:block;font:.7rem var(--f-mono);color:var(--muted);margi
   var rows=[].slice.call(L.children);
   rows.sort(function(a,b){return b.dataset[met]-a.dataset[met]||b.dataset.r-a.dataset.r||b.dataset.t-a.dataset.t});
   rows.forEach(function(li,i){L.appendChild(li);li.querySelector('.ct').textContent=li.dataset[met];li.classList.toggle('hide',!all&&i>=TOP)});
-  var ks=more?['r','t','p']:[met];
+  var ks=more?(M.ks||['r','t','p']):[met];
   sw.innerHTML='<span class="eyebrow">'+M.l+'</span>'+ks.map(function(k){return '<button type="button" data-k="'+k+'" aria-pressed="'+(k===met)+'">'+M[k]+'</button>'}).join('')+'<button type="button" class="more">'+(more?M.less:M.more)+'</button>';
   tg.textContent=all?tg.dataset.less:tg.dataset.all;
  }

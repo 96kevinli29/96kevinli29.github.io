@@ -30,7 +30,7 @@ h2{font:900 clamp(1.45rem,4vw,1.9rem)/1.25 var(--f-display);margin:0 0 .5rem}
 .sec>.eyebrow{display:block;margin-bottom:.6rem}
 .tag{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.12rem .5rem;border-radius:3px}
 .chip{display:inline-block;font:500 .66rem/1.5 var(--f-mono);letter-spacing:.04em;padding:0 .4rem;border-radius:3px;vertical-align:.12em;margin-left:.3rem;white-space:nowrap}
-.chip.fm{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
+.chip.fm,.chip.nc{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.75rem;margin:1.6rem 0 0}
 .stat{border-left:3px solid var(--gold);padding:.1rem .8rem}
 .stat b{display:block;font:900 1.8rem/1.15 var(--f-display)}
@@ -112,8 +112,8 @@ blockquote small{display:block;font:.7rem var(--f-mono);color:var(--muted);margi
 <main>
 <div class="top"><a href="../">← On Whose Shoulders</a><a href="zh/">中文</a></div>
 <h1>From Euler to AI:<br>269 years of fluid equations</h1>
-<p class="dek">On 8 September 2026 OpenAI released two papers constructing smooth solutions of the three-dimensional incompressible <b>Navier–Stokes</b> and <b>Euler equations</b> that blow up in finite time, with Lean 4 formalizations. The Navier–Stokes paper addresses alternatives (C) and (D) of the Clay Mathematics Institute’s Millennium Prize Problem.</p>
-<p class="dek">That step rests on 269 years of human work: from Euler writing down the equations of fluid motion in 1757, through Navier, Stokes and Leray, to the mathematicians still pushing on the problem today. Together the two papers list 51 references. We traced every one of them and the people behind it.</p>
+<p class="dek">On 8 September 2026 OpenAI released two papers on finite-time blowup for the three-dimensional incompressible <b>Navier–Stokes</b> and <b>Euler equations</b>, with Lean 4 formalizations. OpenAI states that the Navier–Stokes paper addresses alternatives (C) and (D) of the Clay Mathematics Institute’s Millennium Prize Problem.</p>
+<p class="dek">This step by AI is built on 269 years of human work: from Euler writing down the equations of fluid motion in 1757, through Navier, Stokes and Leray, to the mathematicians still pushing on the problem today. Together the two papers list 51 references. We traced every one of them and the people behind it.</p>
 <div class="tl"><span class="ms"><b>Euler</b><i>1757</i></span><span class="arr">→</span><span class="ms"><b>Navier</b><i>1827</i></span><span class="arr">→</span><span class="ms"><b>Stokes</b><i>1845</i></span><span class="arr">→</span><span class="ms"><b>Leray</b><i>1934</i></span><span class="arr">→</span><span class="ms"><b>Stein</b><i>1970</i></span><span class="arr">→</span><span class="ms"><b>Kato</b><i>1972</i></span><span class="arr">→</span><span class="ms"><b>Caffarelli–Kohn–Nirenberg</b><i>1982</i></span><span class="arr">→</span><span class="ms"><b>Beale–Kato–Majda</b><i>1984</i></span><span class="arr">→</span><span class="ms"><b>Fefferman</b><i>2000</i></span><span class="arr">→</span><span class="ms"><b>Tao</b><i>2016</i></span><span class="arr">→</span><span class="ms now"><b>AI</b><i>2026</i></span></div>
 <div class="links"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI blog post</a><a href="https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf">Navier–Stokes paper</a><a href="https://cdn.openai.com/pdf/315b36cd-ec98-4023-8342-93345194ece1/euler.pdf">Euler paper</a><a href="https://github.com/openai/NavierStokesAndEuler">Lean formalization</a></div>
 <div class="stats"><div class="stat"><b>2</b><span>AI papers (166 + 57 pages)</span></div><div class="stat"><b>51</b><span>reference entries</span></div><div class="stat"><b>46</b><span>human works cited</span></div><div class="stat"><b>57</b><span>scientists cited</span></div><div class="stat"><b>269</b><span>years spanned (1757–2026)</span></div></div>
@@ -179,7 +179,7 @@ blockquote small{display:block;font:.7rem var(--f-mono);color:var(--muted);margi
   var rows=[].slice.call(L.children);
   rows.sort(function(a,b){return b.dataset[met]-a.dataset[met]||b.dataset.r-a.dataset.r||b.dataset.t-a.dataset.t});
   rows.forEach(function(li,i){L.appendChild(li);li.querySelector('.ct').textContent=li.dataset[met];li.classList.toggle('hide',!all&&i>=TOP)});
-  var ks=more?['r','t','p']:[met];
+  var ks=more?(M.ks||['r','t','p']):[met];
   sw.innerHTML='<span class="eyebrow">'+M.l+'</span>'+ks.map(function(k){return '<button type="button" data-k="'+k+'" aria-pressed="'+(k===met)+'">'+M[k]+'</button>'}).join('')+'<button type="button" class="more">'+(more?M.less:M.more)+'</button>';
   tg.textContent=all?tg.dataset.less:tg.dataset.all;
  }
