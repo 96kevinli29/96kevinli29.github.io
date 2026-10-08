@@ -146,17 +146,20 @@ with open(H + '/search.json', 'w', encoding='utf-8') as f:
 
 # On the Chinese page, Chinese mathematicians keep their Chinese names; everyone else keeps the original spelling.
 CHINESE_ALSO = {'Terence Tao'}
+# Known by surname alone in English, so narrow screens may shorten them; other Chinese names stay in full.
+SURNAME_OK = {'Terence Tao', 'Shing-Tung Yau', 'Shiing-Shen Chern'}
 chinese = lambda a: a.get('c') in ('CN', 'TW', 'HK', 'MO') or a['n'] in CHINESE_ALSO
 
 
 
 GROUPS = [['Terence Tao', 'Shing-Tung Yau', 'Shiing-Shen Chern'], ['Yu Deng', 'Hong Wang', 'Shaoming Guo']]
-MOUND_W = (380, 805)                            # target line widths (px), narrow at the top, widening downward
-
-
-def _w(name):
-    """Rough rendered width of a name in px at the pyramid's font size (Latin ~8.9 px, CJK ~18.3 px, gap 17.6 px)."""
-    return sum(18.3 if ord(c) > 0x2e80 else 8.9 for c in name) + 17.6
+# Three packings of the same mound, one per screen width (CSS shows the one that fits):
+# (Latin px/char, CJK px/char, gap px, top line px, base line widths tried, surnames only)
+MOUND_LAYOUTS = {
+    'wide':   (8.9, 18.3, 17.6, 380, range(700, 806, 5), False),   # card content ~ 816 px; full names
+    'mid':    (8.9, 18.3, 17.6, 150, range(400, 446, 5), True),    # 521–860 px screens; surnames
+    'narrow': (6.95, 14.2, 11.2, 110, range(280, 318, 2), True),   # phones (font x0.78, CJK x0.87); surnames
+}
 
 
 def pyramid(lang):
@@ -172,10 +175,9 @@ def pyramid(lang):
             units.remove(g)
             units.insert(len(units) // 3, g)
     label = lambda k: A[k]['zh'] if lang == 'zh' and A[k].get('zh') and chinese(A[k]) else A[k]['n']
-    widths = [sum(_w(label(k)) for k in u) for u in units]
-    total = sum(widths)
 
-    def pack(lo, hi):
+    def pack(widths, lo, hi):
+        total = sum(widths)
         n = max(1, round(total / ((lo + hi) / 2)))
         lines, cur, cw, li = [], [], 0, 0
         for u, uw in zip(units, widths):
@@ -186,21 +188,33 @@ def pyramid(lang):
         lines.append((cur, cw))
         return lines
 
-    # pick the widest-base fit: the last line should be nearly full
-    best = max((pack(MOUND_W[0], hi) for hi in range(700, MOUND_W[1] + 1, 5)),
-               key=lambda L: (L[-1][1] / max(w for _, w in L)) - 0.002 * len(L))
-    lines = [ks for ks, _ in best]
+    def short(k):
+        """Surname for narrow screens; Chinese mathematicians keep their full name."""
+        a = A[k]
+        if chinese(a) and (lang == 'zh' or a['n'] not in SURNAME_OK):
+            return label(k)
+        w = a['n'].split()
+        sn = ' '.join(w[next((i for i in range(len(w) - 1, 0, -1) if not w[i - 1][:1].islower()), 0):]) if len(w) > 1 else a['n']
+        return sn
+
+    def span(k, sur=False):
+        a = A[k]
+        nm = short(k) if sur else label(k)
+        prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
+        tip = a['n'] + (' · ' + ' / '.join(prize) if prize else '')
+        cls = 'g' + (' laur' if prize else '') + (' cjk' if any(ord(c) > 0x2e80 for c in nm) else '')
+        return f'<span class="{cls}" title="{esc(tip)}">{esc(nm)}</span>'
+
     out = []
-    for ks in lines:
-        row = []
-        for k in ks:
-            a = A[k]
-            nm = a['zh'] if lang == 'zh' and a.get('zh') and chinese(a) else a['n']
-            prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
-            tip = a['n'] + (' · ' + ' / '.join(prize) if prize else '')
-            cls = 'g' + (' laur' if prize else '') + (' cjk' if nm != a['n'] else '')
-            row.append(f'<span class="{cls}" title="{esc(tip)}">{esc(nm)}</span>')
-        out.append('<div class="row">' + ''.join(row) + '</div>')
+    for name, (lw, cw_, gap, lo, his, sur) in MOUND_LAYOUTS.items():
+        lab = short if sur else label
+        w = lambda s: sum(cw_ if ord(c) > 0x2e80 else lw for c in s) + gap
+        widths = [sum(w(lab(k)) for k in u) for u in units]
+        # the widest-base fit: the last line should be nearly full
+        best = max((pack(widths, lo, hi) for hi in his),
+                   key=lambda L: (L[-1][1] / max(x for _, x in L)) - 0.002 * len(L))
+        rows = ''.join('<div class="row">' + ''.join(span(k, sur) for k in ks) + '</div>' for ks, _ in best)
+        out.append(f'<div class="mound {name}">{rows}</div>')
     return '\n'.join(out)
 
 
@@ -288,7 +302,12 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem}
 .soon{border:1px dashed var(--rule);border-radius:6px;padding:1rem;color:var(--muted)}
 .soon b{display:block;color:var(--ink);font:600 1.1rem var(--f-display)}
-@media (max-width:520px){.g{font-size:calc(var(--s)*.78rem)}.row{gap:.1rem .7rem}.card{padding:1.2rem 1rem}.ms b{font-size:.85rem}}
+.mound.mid,.mound.narrow{display:none}
+@media (max-width:860px){.mound.wide{display:none}.mound.mid{display:block}}
+@media (max-width:520px){.mound.mid{display:none}.mound.narrow{display:block}
+ .g{font-size:calc(var(--s)*.78rem)}.g.cjk{font-size:calc(var(--s)*.87rem)}.row{gap:.1rem .7rem}.card{padding:1.2rem 1rem}
+ .ms b{font-size:.85rem}.ms{padding:.25rem .45rem}.tl{gap:.35rem}.tl .arr{display:none}
+ .hero h1{font-size:1.7rem}}
 '''
 
 JS = r'''
