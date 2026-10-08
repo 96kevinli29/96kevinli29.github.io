@@ -71,7 +71,7 @@ T = {
   metL='排名依据', mR='参考文献条目', mT='正文引用', mP='引用论文数', more='更多排名方式', less='收起',
   showAll=lambda n: f'显示全部 {n} 位', showLess='收起',
   refH='参考文献原文', refP='按两篇论文分列，保留原始编号；右侧数字为该条在正文中被引用的次数。',
-  foot='参考文献与正文原句从论文 PDF 中解析，脚本见 GitHub。引用不等于依赖；本页不评判结果的正确性、原创性或归属。',
+  foot='由 <a href="https://huggingface.co/SeaFill2025">Sea-Fill 开源科学团队</a>制作。参考文献与正文原句从论文 PDF 中解析，脚本见 GitHub。引用不等于依赖；本页不评判结果的正确性、原创性或归属。',
  ),
  'en': dict(
   title='From Euler to AI · On Whose Shoulders',
@@ -92,7 +92,7 @@ T = {
   metL='Rank by', mR='Reference entries', mT='In-text citations', mP='Citing papers', more='More ranking options', less='Fewer options',
   showAll=lambda n: f'Show all {n}', showLess='Show fewer',
   refH='Reference lists', refP='One list per paper, with the original numbering; the number on the right is how often the entry is cited in the text.',
-  foot='References and in-text sentences are parsed from the paper PDFs; the scripts are on GitHub. Citation is not dependence; this page does not judge the correctness, originality or attribution of the results.',
+  foot='Made by <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a>, an open-source science team. References and in-text sentences are parsed from the paper PDFs; the scripts are on GitHub. Citation is not dependence; this page does not judge the correctness, originality or attribution of the results.',
  ),
 }
 

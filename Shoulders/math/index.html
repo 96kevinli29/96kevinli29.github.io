@@ -365,7 +365,7 @@ zh:{eyebrow:'<a href="../" style="color:inherit">← 巨人之肩</a> · 数学 
  papersH:'全部预印本',papersP:'点一行查看这篇论文的完整参考文献，作者名可以点开。',pqLabel:'搜索论文',pqPh:'按标题搜索，例如 Kakeya、Penrose、Bochner',pfLabel:'领域',psLabel:'排序',
  sortD:'按日期',sortR:'按参考文献数',sortT:'按标题',thPaper:'论文',thField:'领域',thDate:'日期',thRefs:'引文',thSelf:'自引',more:'显示更多',
  none:'没有匹配的论文。换个关键词试试。',noName:'没有找到这个名字。可以试试英文拼写。',
- methodH:'数据与口径',footer:'巨人之肩 · 一个记录 AI 数学成果所依赖的人类工作的小项目。发现错误或漏掉的引用，欢迎在 GitHub 上提出。',
+ methodH:'数据与口径',footer:'巨人之肩 · 由 <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill 开源科学社区</a>制作，记录 AI 数学成果所依赖的人类工作。发现错误或漏掉的引用，欢迎在 <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders" target="_blank" rel="noopener">GitHub</a> 上提出。',
  method:g=>`<p style="margin:0">数据来自 <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a>（Apache 2.0 许可）的全部 722 篇预印本源文件，最近一次重建于 ${g}，之后每天自动检查更新。每篇论文的参考文献从 BibTeX 或 <span class="m">\\bibitem</span> 中解析，正文引用句从 LaTeX 源码的 <span class="m">\\cite</span> 位置截取。</p><ul>
  <li><b>引用 ≠ 依赖。</b>人类论文同样大量引用前人；这里记录的是"站在谁的肩膀上"，不评判 AI 结果是否原创。</li>
  <li><b>人名消歧。</b>按"姓 + 名"合并，只有缩写的条目在无歧义时并入全名。常见姓氏（Wang、Li、Zhang 等）的缩写条目单独列出，不强行合并；少数学者的缩写条目按合作者和题目领域人工规则判定。</li>
@@ -394,7 +394,7 @@ en:{eyebrow:'<a href="../../en/" style="color:inherit">← On Whose Shoulders</a
  papersH:'All preprints',papersP:'Open a row to see the full reference list. Author names are clickable.',pqLabel:'Search papers',pqPh:'Search titles, e.g. Kakeya, Penrose, Bochner',pfLabel:'Field',psLabel:'Sort',
  sortD:'By date',sortR:'By references',sortT:'By title',thPaper:'Paper',thField:'Field',thDate:'Date',thRefs:'Refs',thSelf:'Self',more:'Show more',
  none:'No papers match. Try another keyword.',noName:'No one by that name. Try the Latin spelling.',
- methodH:'Data and method',footer:'On Whose Shoulders · a small project recording the human work behind AI-produced mathematics. Found an error or a missing citation? Open an issue on GitHub.',
+ methodH:'Data and method',footer:'On Whose Shoulders · made by the <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill open-source science community</a>, recording the human work behind AI-produced mathematics. Found an error or a missing citation? Open an issue on <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders" target="_blank" rel="noopener">GitHub</a>.',
  method:g=>`<p style="margin:0">Data come from the source files of all 722 preprints in <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a> (Apache 2.0), last rebuilt on ${g} and checked for updates daily. References are parsed from BibTeX or <span class="m">\\bibitem</span>; citing sentences are taken from the <span class="m">\\cite</span> positions in the LaTeX source.</p><ul>
  <li><b>A citation is not dependence.</b> Human papers cite heavily too. This index records whose shoulders the work stands on; it does not judge whether the AI results are original.</li>
  <li><b>Name disambiguation.</b> Names merge on surname plus given name; initial-only entries join a full name only when unambiguous. Initial-only entries with common surnames (Wang, Li, Zhang, …) stay separate, except for a few people resolved by co-author and topic rules.</li>
@@ -561,8 +561,10 @@ const raK=F.findIndex(f=>f[0]==='Real and complex analysis');
 const haAnchor=raK>=0?[CX+(anchor[raK][0]-CX)*0.62,CY+(anchor[raK][1]-CY)*0.62-20]:[CX,CY];
 const fColor=k=>{const j=fOrder.indexOf(k);return `hsl(${Math.round(j/fOrder.length*330+12)} 42% 52%)`};
 const STONES=(D.W||[]).map((w,s)=>({s,t:w[0],a:w[1],y:w[2],l:w[3],ps:w[4],n:w[4].length,lau:w[1].some(x=>A[x].fm||A[x].ab||A[x].wf),ha:w[4].filter(i=>P[i].ha).length}));
-let MAP=null;
-function layout(){
+let MAP=null,MAPJOB=false;
+// The force layout (320 ticks) takes over a second on a laptop, so it runs in ~12 ms slices
+// after the rest of the page is drawn; the result is the same as running it in one go.
+function layout(done){
  const rnd=d3.randomLcg(42);
  const pn=P.map((p,pi)=>{const an=p.ha?haAnchor:anchor[p.f];return {kind:'p',i:pi,ax:an[0],ay:an[1],x:an[0]+(rnd()-.5)*60,y:an[1]+(rnd()-.5)*60,r:2.6}});
  const sn=STONES.map(st=>{let x=0,y=0;st.ps.forEach(i=>{x+=pn[i].ax;y+=pn[i].ay});return {kind:'s',st,x:x/st.n+(rnd()-.5)*20,y:y/st.n+(rnd()-.5)*20,r:3+2.1*Math.sqrt(st.n)}});
@@ -573,14 +575,20 @@ function layout(){
   .force('link',d3.forceLink(links).strength(0.06).distance(18))
   .force('collide',d3.forceCollide(d=>d.r+(d.kind==='s'?2.5:0.8)).iterations(2))
   .force('charge',d3.forceManyBody().strength(d=>d.kind==='s'?-10:-2.5).distanceMax(90)).stop();
- for(let k=0;k<320;k++)sim.tick();
- nodes.forEach(d=>{d.x=Math.max(14,Math.min(W0-14,d.x));d.y=Math.max(14,Math.min(H0-14,d.y))});
- return {pn,sn,links};
+ let k=0;
+ (function step(){const t0=performance.now();while(k<320&&performance.now()-t0<12){sim.tick();k++}
+  if(k<320){setTimeout(step,0);return}
+  nodes.forEach(d=>{d.x=Math.max(14,Math.min(W0-14,d.x));d.y=Math.max(14,Math.min(H0-14,d.y))});
+  done({pn,sn,links});})();
 }
 function shortLabel(st){const a=st.a.map(x=>A[x].n.split(/\s+/).pop());return (a.length>2?a[0]+' et al.':a.join('–')||'?')+(st.y?' '+st.y:'')}
 function drawMap(){
  if(typeof d3==='undefined'){$('#mapbox').innerHTML='<p class="note" style="padding:16px">'+(LANG==='zh'?'地图需要加载 d3 脚本，当前网络无法加载。':'The map needs the d3 script, which could not load.')+'</p>';return}
- if(!MAP)MAP=layout();
+ if(!MAP){
+  if(!MAPJOB){MAPJOB=true;
+   d3.select('#map').attr('viewBox',`0 0 ${W0} ${H0}`).append('text').attr('x',CX).attr('y',CY).attr('text-anchor','middle').attr('fill','currentColor').attr('opacity',.5).style('font-size','18px').text(LANG==='zh'?'基石地图生成中…':'Laying out the map…');
+   setTimeout(()=>layout(m=>{MAP=m;drawMap()}),30)}
+  return}
  const {pn,sn,links}=MAP;
  const svg=d3.select('#map').attr('viewBox',`0 0 ${W0} ${H0}`);svg.selectAll('*').remove();
  const g=svg.append('g');

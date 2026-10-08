@@ -19,6 +19,16 @@ M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
 NP = len(M['papers'])
 ROWS = [3, 5, 8, 11, 14]
 TOP = ent.most_common(sum(ROWS))
+# Always shown in the bottom row, whatever their rank.
+PIN = ['Shaoming Guo']
+PINNED = set()
+FLOOR = TOP[-1][1]          # pinned names are drawn no smaller than the last ranked name
+for n in PIN:
+    k = next((i for i, a in enumerate(A) if a['n'] == n), None)
+    if k is not None and k not in dict(TOP):
+        TOP.append((k, ent[k]))
+        PINNED.add(k)
+ROWS[-1] += len(TOP) - sum(ROWS)
 
 # ---- Navier–Stokes / Euler -----------------------------------------------------
 NS = json.load(open(H + '/navier-stokes/scripts/refs.json', encoding='utf-8'))
@@ -40,7 +50,7 @@ def pyramid(lang):
             tip = (f"{a['n']} · {v} 条参考文献" if lang == 'zh' else f"{a['n']} · {v} reference entries")
             if prize:
                 tip += ' · ' + ' / '.join(prize)
-            fs = 0.8 + 1.3 * (v / mx) ** 1.2
+            fs = 0.8 + 1.3 * (max(v, FLOOR if k in PINNED else 0) / mx) ** 1.2
             row.append(f'<span class="g{" laur" if prize else ""}" style="--s:{fs:.2f}" title="{esc(tip)}">{esc(nm)}</span>')
         out.append('<div class="row">' + ''.join(row) + '</div>')
         i += n
@@ -52,7 +62,15 @@ def timeline(lang):
     return '<div class="tl">' + '<span class="arr">→</span>'.join(items) + '<span class="arr">→</span><span class="ms ai"><b>AI</b><i>2026</i></span></div>'
 
 
+SEAFILL = 'https://huggingface.co/SeaFill2025'
+SEAFILL_LOGO = 'https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png'
+
 CSS = '''
+.team{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.3rem;text-decoration:none;color:var(--ink)}
+.team img{width:34px;height:34px;border-radius:8px;flex:none}
+.team b{display:block;font:700 1.05rem/1.2 var(--f-display)}
+.team small{display:block;font:.72rem var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.team:hover b{color:var(--use)}
 .hero{padding-bottom:.5rem}
 .hero h1{font-size:clamp(2.3rem,7vw,3.9rem)}
 .manifesto{font:600 clamp(1.05rem,2.6vw,1.25rem)/1.6 var(--f-display);border-left:3px solid var(--gold);padding:.1rem 0 .1rem 1rem;margin:1.4rem 0 0;max-width:40rem}
@@ -93,6 +111,7 @@ T = {
   h1='AI 的每一次突破，<br>都站在人类科学家的肩膀上',
   dek='当 AI 证明一条定理、攻克一个难题，它用到的概念、方法和工具，来自几代科学家的积累。我们逐条整理 AI 成果的参考文献，找出其中的每一个名字，按学科分开，随每一次突破更新。',
   manifesto='科学家是桥梁：一端连着几百年的人类知识，一端连着今天的 AI。这个项目向 AI 时代的人类科学家致敬。',
+  team=('Sea-Fill 开源科学团队', '我们是 Sea-Fill，一个开源科学团队'),
   secMath='数学',
   nsTag='最新 · 2026 年 9 月 · 流体方程', nsH='从欧拉到 AI：Navier–Stokes 与 Euler 方程',
   nsP=f'OpenAI 公开两篇论文，给出三维 Navier–Stokes 方程与 Euler 方程有限时间爆破的构造，并附 Lean 形式化证明。两篇论文的 {NS_REFS} 条参考文献，从 1757 年的欧拉一直延续到 2026 年。',
@@ -113,6 +132,7 @@ T = {
   h1='Every AI breakthrough<br>stands on human shoulders',
   dek='When AI proves a theorem or settles an open problem, the ideas, methods and tools it uses come from generations of scientists. We go through the references of AI results entry by entry, find every name, and keep the record field by field, updated with each breakthrough.',
   manifesto='Scientists are the bridge: one end rests on centuries of human knowledge, the other on today’s AI. This project is a tribute to the human scientists of the AI era.',
+  team=('Sea-Fill · open-source science team', 'We are Sea-Fill, an open-source science team'),
   secMath='Mathematics',
   nsTag='Latest · September 2026 · Fluid equations', nsH='From Euler to AI: Navier–Stokes and Euler',
   nsP=f'OpenAI released two papers constructing finite-time blowup for the three-dimensional Navier–Stokes and Euler equations, with Lean formalizations. Their {NS_REFS} references run from Euler in 1757 to 2026.',
@@ -134,6 +154,7 @@ for k, t in T.items():
 <h1>{t['h1']}</h1>
 <p class="dek">{t['dek']}</p>
 <p class="manifesto">{t['manifesto']}</p>
+<a class="team" href="{SEAFILL}"><img src="{SEAFILL_LOGO}" alt="" width="34" height="34"><span><b>{t['team'][0]}</b><small>{t['team'][1]}</small></span></a>
 </header>
 
 <section class="sec">
@@ -168,7 +189,7 @@ for k, t in T.items():
 <span class="eyebrow">{t['more']}</span>
 <div class="grid">{''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])}</div>
 </section>
-<footer>{t['foot']} · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>'''
+<footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a> · <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/Shoulders">GitHub</a></footer>'''
     f = os.path.join(H, 'index.html' if k == 'zh' else 'en/index.html')
     os.makedirs(os.path.dirname(f), exist_ok=True)
     open(f, 'w', encoding='utf-8').write(page(k, t['title'], t['desc'], CSS, body))
