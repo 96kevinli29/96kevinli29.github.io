@@ -61,6 +61,34 @@ MILESTONES = [('Leonhard Euler', '欧拉', 1757), ('Claude Navier', '纳维', 18
               ('Caffarelli–Kohn–Nirenberg', '卡法雷利–科恩–尼伦伯格', 1982), ('Terence Tao', '陶哲轩', 2016)]
 
 
+# ---- AlphaFold 2 (chemistry / life sciences) ---------------------------------------
+AF = json.load(open(H + '/alphafold/scripts/refs.json', encoding='utf-8'))
+AF_REFS = len(AF['refs'])
+AF_MS = [('Christian Anfinsen', '安芬森', 1973), ('Altschuh · Klug', 'Altschuh · 克鲁格', 1987), ('CASP · Moult', 'CASP · Moult', 1995),
+         ('Marks et al.', 'Marks 等', 2011), ('AlphaFold 1', 'AlphaFold 1', 2020), ('trRosetta · Baker', 'trRosetta · 大卫·贝克', 2020)]
+AF_NOBEL = {'anfinsen c': 1972, 'klug a': 1982, 'wuthrich k': 2002, 'baker d': 2024, 'hassabis d': 2024, 'jumper j': 2024}
+AF_ZH = {'Christian B. Anfinsen': '安芬森', 'Aaron Klug': '克鲁格', 'Kurt Wüthrich': '维特里希', 'David Baker': '大卫·贝克',
+         'Demis Hassabis': '哈萨比斯', 'John Jumper': '江珀', 'Yang Zhang': '张阳', 'Jinbo Xu': '许锦波', 'Jianyi Yang': '杨建益'}
+
+
+def af_people():
+    """Canonical AlphaFold-cited names (surname + initial merged, longest spelling kept) with their works."""
+    import unicodedata
+    f = lambda x: unicodedata.normalize('NFKD', x).encode('ascii', 'ignore').decode().lower()
+    out = {}
+    for r in AF['refs']:
+        for a in r['a']:
+            a = {'A. Klug': 'Aaron Klug'}.get(a, a)
+            w = a.replace(',', ' ').split()
+            k = f(w[-1]) + ' ' + f(w[0])[:1] if len(w) > 1 else f(a)
+            q = out.setdefault(k, dict(n=a, e=0, w=[], nb=AF_NOBEL.get(k)))
+            if len(a) > len(q['n']):
+                q['n'] = a
+            q['e'] += 1
+            q['w'].append([r['t'], r['y']])
+    return out.values()
+
+
 # ---- search index for "on whose shoulders?" (fetched by the page on first use) --
 def search_index():
     works = collections.defaultdict(lambda: collections.defaultdict(lambda: [None, None, set()]))
@@ -91,9 +119,19 @@ def search_index():
                 q['ne'] += 1
                 if [r['t'], r['y']] not in q['nw']:
                     q['nw'].append([r['t'], r['y']])
-    out = sorted(people.values(), key=lambda q: -(q['me'] + q['ne'] * 3))
+    # AlphaFold names stay separate from the mathematicians unless known to be the same person:
+    # common names (Yang Li, H. Wang, X. Zhang …) belong to different people across the fields.
+    same_person = {'Riccardo Zecchina'}
+    for a in af_people():
+        k = person_key(a['n']) if a['n'] in same_person else 'af:' + person_key(a['n'])
+        q = people.setdefault(k, dict(n=a['n'], zh='', pz={}, me=0, mp=0, i=-1, mw=[], ne=0, nw=[]))
+        q['zh'] = q['zh'] or AF_ZH.get(a['n'], '')
+        if a['nb']:
+            q['pz'] = dict(q['pz'], nc=a['nb'])
+        q['ae'], q['aw'] = a['e'], a['w']
+    out = sorted(people.values(), key=lambda q: -(q['me'] + q['ne'] * 3 + q.get('ae', 0) * 3))
     pz = lambda d: ' '.join(f'{k}{v}' for k, v in d.items())
-    return [[q['n'], q['zh'], pz(q['pz']), q['me'], q['mp'], q['i'], q['mw'], q['ne'], q['nw']] for q in out]
+    return [[q['n'], q['zh'], pz(q['pz']), q['me'], q['mp'], q['i'], q['mw'], q['ne'], q['nw'], q.get('ae', 0), q.get('aw', [])] for q in out]
 
 
 NS_LAUR = laureates(H + '/math/scripts')
@@ -221,7 +259,7 @@ const q=$('#q'),sug=$('#sug'),res=$('#res');let hits=[],on=0;
 const label=x=>C.zh&&x[1]?x[1]+' · '+x[0]:x[0];
 function find(v){v=fold(v.trim());if(!v)return Promise.resolve([]);
  return load().then(L=>{const a=[],b=[];for(const e of L){const i=e.k.indexOf(v);if(i<0)continue;(i===0||e.k[i-1]===' '?a:b).push(e.x);if(a.length>=8)break}return a.concat(b).slice(0,8)})}
-function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]}</small></button>`).join('')}
+function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]+(x[9]||0)}</small></button>`).join('')}
 function card(x){
  const pz=x[2]?x[2].split(' ').map(p=>`<span class="chip ${p.slice(0,2)}">${S.prize[p.slice(0,2)]} ${p.slice(2)}</span>`).join(''):'';
  let h=`<div class="who">${esc(C.zh&&x[1]?x[1]:x[0])}${C.zh&&x[1]?`<small>${esc(x[0])}</small>`:''}${pz}</div>`;
@@ -229,6 +267,7 @@ function card(x){
   if(x[6].length)h+=`<div>${S.fTop}</div><ul>${x[6].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''} · ${w[2]} ${S.fPp}</li>`).join('')}</ul>`;
   h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
  if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
+ if(x[9]){h+=`<p class="line">${fill(S.fAf,{ae:x[9]})}</p><ul>${x[10].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.af}">${S.fGoA}</a></p>`}
  const who=C.zh&&x[1]?x[1]:x[0],p='tribute/'+x[0];
  h+=`<div class="tb"><button type="button" class="tribute" data-path="${esc(p)}" data-done="${esc(S.tDone)}" data-title="${esc('Tribute: '+x[0])}"><span class="ic">✦</span><span class="lb">${esc(fill(S.tOne,{n:who}))}</span></button><span class="tcount" hidden><b>0</b> ${esc(S.tCount)}</span></div>`;
  res.innerHTML=h;sug.hidden=true;if(window.Tribute)Tribute.bind(res)}
@@ -261,7 +300,7 @@ f.addEventListener('submit',e=>{e.preventDefault();if(!C.key)return;
 
 T = {
  'zh': dict(
-  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', '../'), ns='../navier-stokes/zh/', math='../math/zh/', idx='../search.json',
+  lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', '../'), ns='../navier-stokes/zh/', math='../math/zh/', af='../alphafold/zh/', idx='../search.json',
   desc='向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。',
   eyebrow='巨人之肩 · On Whose Shoulders',
   h1='AI 的每一次突破，<br>都站在人类科学家的肩膀上',
@@ -274,7 +313,8 @@ T = {
   fLoading='正在载入索引…', fNone='没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。',
   fMath='数学全景：被 <b>{mp}</b> 篇 AI 数学预印本引用，共 <b>{me}</b> 条参考文献。', fTop='被引最多的著作：', fPp='篇引用',
   fNs='流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}</b> 条。', fGoM='在数学专题中查看 →', fGoN='查看流体方程专题 →',
-  prize={'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖'},
+  prize={'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖', 'nc': '诺贝尔化学奖'},
+  fAf='蛋白质结构：AlphaFold 2 论文引用了 <b>{ae}</b> 条。', fGoA='查看 AlphaFold 专题 →',
   cH='写信给我们', cP='纠正一处引用，推荐下一项值得铭记的 AI 科学突破，或与我们一起把这件事做下去。',
   cName='称呼（可选）', cEmail='你的邮箱（用于回复）', cType='类型', cTypes=['纠错', '推荐下一期 AI 突破', '合作', '其他'], cMsg='内容',
   cSend='发送', cSending='发送中…', cOk='已发送，谢谢！我们会尽快回复。', cErr='发送失败，请稍后再试。', cOff='表单尚未启用。',
@@ -289,11 +329,15 @@ T = {
   legend='字号 = 参考文献条目数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。',
   st=[(NP, '篇 AI 数学预印本'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
   mGo='进入数学专题 →', src='数据来源',
-  more='其他学科', soon='即将推出', subs=['物理', '化学', '生命科学', '计算机科学'],
+  secChem='化学 · 生命科学',
+  afTag='2021 年 7 月 · 蛋白质结构', afH='从安芬森到 AlphaFold：蛋白质结构预测',
+  afP=f'DeepMind 的 AlphaFold 2 以接近实验的精度预测蛋白质结构，并因此获得 2024 年诺贝尔化学奖的一半。它的 {AF_REFS} 条参考文献，从 1973 年安芬森的“序列决定结构”延续到 2021 年。',
+  afGo='进入 AlphaFold 专题 →',
+  more='其他学科', soon='即将推出', subs=['物理', '计算机科学'],
   foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。',
  ),
  'en': dict(
-  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', 'zh/'), ns='navier-stokes/', math='math/', idx='search.json',
+  lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', 'zh/'), ns='navier-stokes/', math='math/', af='alphafold/', idx='search.json',
   desc='A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.',
   eyebrow='On Whose Shoulders · 巨人之肩',
   h1='Every AI breakthrough<br>stands on human shoulders',
@@ -306,7 +350,8 @@ T = {
   fLoading='Loading the index…', fNone='No match. This name does not appear in the references of the AI papers covered so far.',
   fMath='Mathematics overview: cited by <b>{mp}</b> AI-written preprints, <b>{me}</b> reference entries in all.', fTop='Most-cited works:', fPp='citing preprints',
   fNs='Fluid equations: cited <b>{ne}</b> times in OpenAI’s Navier–Stokes / Euler papers.', fGoM='Open in the mathematics index →', fGoN='Open the fluid equations page →',
-  prize={'fm': 'Fields', 'ab': 'Abel', 'wf': 'Wolf'},
+  prize={'fm': 'Fields', 'ab': 'Abel', 'wf': 'Wolf', 'nc': 'Nobel Chemistry'},
+  fAf='Protein structure: cited <b>{ae}</b> times in the AlphaFold 2 paper.', fGoA='Open the AlphaFold page →',
   cH='Write to us', cP='Correct a citation, suggest the next AI breakthrough worth remembering, or join us in carrying this on.',
   cName='Name (optional)', cEmail='Your email (for our reply)', cType='Topic', cTypes=['Correction', 'Suggest the next AI breakthrough', 'Collaboration', 'Other'], cMsg='Message',
   cSend='Send', cSending='Sending…', cOk='Sent, thank you! We will reply soon.', cErr='Sending failed; please try again later.', cOff='The form is not enabled yet.',
@@ -321,7 +366,11 @@ T = {
   legend='Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.',
   st=[(NP, 'AI-written math preprints'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
   mGo='Open the mathematics index →', src='Source',
-  more='Other fields', soon='Coming soon', subs=['Physics', 'Chemistry', 'Life sciences', 'Computer science'],
+  secChem='Chemistry · Life sciences',
+  afTag='July 2021 · Protein structure', afH='From Anfinsen to AlphaFold: protein structure prediction',
+  afP=f'DeepMind’s AlphaFold 2 predicts protein structures with near-experimental accuracy, work recognised with half of the 2024 Nobel Prize in Chemistry. Its {AF_REFS} references run from Anfinsen’s “sequence determines structure” in 1973 to 2021.',
+  afGo='Open the AlphaFold page →',
+  more='Other fields', soon='Coming soon', subs=['Physics', 'Computer science'],
   foot='Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute.',
  ),
 }
@@ -373,6 +422,17 @@ for k, t in T.items():
 </section>
 
 <section class="sec">
+<span class="eyebrow">{t['secChem']}</span>
+<a class="card" href="{t['af']}">
+<span class="tag">{t['afTag']}</span>
+<h2>{t['afH']}</h2>
+<p>{t['afP']}</p>
+<div class="tl">{'<span class="arr">→</span>'.join(f'<span class="ms"><b>{esc(zh if k == "zh" else en)}</b><i>{y}</i></span>' for en, zh, y in AF_MS)}<span class="arr">→</span><span class="ms ai"><b>AlphaFold 2</b><i>2021</i></span></div>
+<span class="go">{t['afGo']}</span>
+</a>
+</section>
+
+<section class="sec">
 <span class="eyebrow">{t['more']}</span>
 <div class="grid">{''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])}</div>
 </section>
@@ -394,8 +454,8 @@ for k, t in T.items():
 </section>
 
 <footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a></footer>'''
-    cfg = dict(idx=t['idx'], math=t['math'], ns=t['ns'], key=WEB3FORMS_KEY, zh=k == 'zh',
-               s={x: t[x] for x in ('tOne', 'tDone', 'tCount', 'fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
+    cfg = dict(idx=t['idx'], math=t['math'], ns=t['ns'], af=t['af'], key=WEB3FORMS_KEY, zh=k == 'zh',
+               s={x: t[x] for x in ('fAf', 'fGoA', 'tOne', 'tDone', 'tCount', 'fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
                                     'cSending', 'cSend', 'cOk', 'cErr', 'cOff')})
     body += '<script>window.__CFG__=' + json.dumps(cfg, ensure_ascii=False).replace('</', '<\\/') + ';</script>\n<script>' + JS + '</script>'
     f = os.path.join(H, 'zh/index.html' if k == 'zh' else 'index.html')

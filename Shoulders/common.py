@@ -27,7 +27,7 @@ h2{font:900 clamp(1.45rem,4vw,1.9rem)/1.25 var(--f-display);margin:0 0 .5rem}
 .sec>.eyebrow{display:block;margin-bottom:.6rem}
 .tag{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.12rem .5rem;border-radius:3px}
 .chip{display:inline-block;font:500 .66rem/1.5 var(--f-mono);letter-spacing:.04em;padding:0 .4rem;border-radius:3px;vertical-align:.12em;margin-left:.3rem;white-space:nowrap}
-.chip.fm{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
+.chip.fm,.chip.nc{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.75rem;margin:1.6rem 0 0}
 .stat{border-left:3px solid var(--gold);padding:.1rem .8rem}
 .stat b{display:block;font:900 1.8rem/1.15 var(--f-display)}
@@ -84,12 +84,12 @@ def person_key(name):
     return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
 
 
-PRIZE = {'zh': {'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖'},
-         'en': {'fm': 'Fields', 'ab': 'Abel', 'wf': 'Wolf'}}
+PRIZE = {'zh': {'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖', 'nc': '诺贝尔化学奖'},
+         'en': {'fm': 'Fields', 'ab': 'Abel', 'wf': 'Wolf', 'nc': 'Nobel Chemistry'}}
 
 
 def chips(prizes, lang):
-    return ''.join(f'<span class="chip {k}">{PRIZE[lang][k]} {prizes[k]}</span>' for k in ('fm', 'ab', 'wf') if k in prizes)
+    return ''.join(f'<span class="chip {k}">{PRIZE[lang][k]} {prizes[k]}</span>' for k in ('nc', 'fm', 'ab', 'wf') if k in prizes)
 
 
 # ---- tributes: counted as GoatCounter events, read back through its public counter -------------
@@ -126,3 +126,86 @@ def tribute_button(path, label, done, count_label, title=''):
     return (f'<button type="button" class="tribute" data-path="{_html.escape(path)}" data-done="{_html.escape(done)}" data-title="{_html.escape(title or path)}">'
             f'<span class="ic">✦</span><span class="lb">{_html.escape(label)}</span></button>'
             f'<span class="tcount" hidden><b>0</b> {_html.escape(count_label)}</span>')
+
+
+# ---- topic pages (timeline column, ranking, reference lists) ------------------------------
+TOPIC_CSS = '''
+.thanks{margin:1.6rem 0 0 6rem}
+@media (max-width:560px){.thanks{margin-left:4.3rem}}
+.tl{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .5rem;margin:1.4rem 0 .4rem}
+.ms{display:inline-flex;flex-direction:column;align-items:center;line-height:1.2;padding:.3rem .55rem;border:1px solid var(--rule);border-radius:4px;background:var(--sheet)}
+.ms b{font:600 .95rem var(--f-display)}.ms i{font:.68rem var(--f-mono);font-style:normal;color:var(--muted)}
+.ms.now{background:var(--ink);border-color:var(--ink)}.ms.now b,.ms.now i{color:var(--paper)}
+.arr{color:var(--muted);font-size:.8rem}
+.links{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0 0}
+.links a{font:.78rem var(--f-mono);color:var(--ink);text-decoration:none;border:1px solid var(--rule);background:var(--sheet);border-radius:4px;padding:.35rem .7rem}
+.links a:hover{border-color:var(--use);color:var(--use)}
+.lead{color:var(--muted);max-width:42rem;margin:0 0 1.2rem}
+.col{position:relative;margin:0;padding:0;list-style:none}
+.col:before{content:"";position:absolute;left:4.6rem;top:2.6rem;bottom:1rem;width:2px;background:var(--rule)}
+.ai{position:relative;display:flex;align-items:center;gap:1rem;background:var(--ink);color:var(--paper);border-radius:6px;padding:.8rem 1.1rem;margin-bottom:1.2rem}
+.ai b{font:600 .95rem var(--f-mono);letter-spacing:.06em}
+.ai span{font-size:.88rem;opacity:.8}
+.ai em{font:600 .8rem var(--f-mono);font-style:normal;margin-left:auto;opacity:.75}
+.era{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .4rem 6rem;position:relative}
+.w{position:relative;display:grid;grid-template-columns:4.6rem 1fr;gap:0 1.4rem;padding:.55rem 0}
+.w:before{content:"";position:absolute;left:calc(4.6rem - 4px);top:1.05rem;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--muted)}
+.w.laur:before{border-color:var(--gold);background:var(--gold)}
+.yr{font:500 .9rem var(--f-mono);color:var(--muted);text-align:right;padding-right:.6rem;padding-top:.2rem}
+.who{font:600 1.08rem/1.4 var(--f-display)}
+.who .zh{font-weight:900}
+.who .lat{font:400 .8rem var(--f-body);color:var(--muted);margin-left:.25rem}
+.w.classic .who{font-size:1.5rem}.w.classic .yr{font-size:1.15rem;color:var(--ink);font-weight:600}
+.w.laur .who .nm.g{color:var(--gold)}
+.ti{font-size:.92rem;color:var(--muted);font-style:italic;margin:.1rem 0 .2rem}
+.ti a{color:inherit;text-decoration-color:var(--rule)}
+.by{font:.68rem var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.by i{font-style:normal;border:1px solid var(--rule);border-radius:3px;padding:0 .35rem;margin-left:.3rem}
+details{margin-top:.25rem}
+summary{cursor:pointer;font-size:.82rem;color:var(--use);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"＋ "}details[open] summary:before{content:"－ "}
+blockquote{margin:.4rem 0 .2rem;padding:.35rem .8rem;border-left:3px solid var(--use-soft);font-size:.9rem;color:var(--ink);background:var(--sheet)}
+blockquote small{display:block;font:.7rem var(--f-mono);color:var(--muted);margin-top:.15rem}
+.metsw{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.2rem 0 .9rem}
+.metsw button{font:.8rem var(--f-body);border:1px solid var(--rule);background:var(--sheet);color:var(--ink);border-radius:999px;padding:.2rem .75rem;cursor:pointer}
+.metsw button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.metsw .more{border-style:dashed;color:var(--muted)}
+.rank{list-style:none;margin:0;padding:0;counter-reset:r}
+.rank li{display:grid;grid-template-columns:2rem 1fr auto;align-items:baseline;gap:.6rem;padding:.42rem 0;border-bottom:1px solid var(--rule)}
+.rank li:before{counter-increment:r;content:counter(r);font:.8rem var(--f-mono);color:var(--muted);text-align:right}
+.rank .nm{font:600 1rem var(--f-display)}
+.rank .nm small{font:400 .78rem var(--f-body);color:var(--muted);margin-left:.3rem}
+.rank .ct{font:600 .95rem var(--f-mono)}
+.rank li.hide{display:none}
+.toggle{margin-top:.7rem;font:.85rem var(--f-body);background:none;border:0;color:var(--use);cursor:pointer;padding:0}
+.refs{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:1.5rem}
+.refs h3{font:600 1.05rem var(--f-display);margin:0 0 .5rem}
+.refs ol{margin:0;padding-left:1.8rem;font-size:.84rem;line-height:1.55}
+.refs li{margin:.35rem 0;color:var(--muted)}
+.refs li b{color:var(--ink);font-weight:500}
+.refs .n{float:right;font:.72rem var(--f-mono);color:var(--use);margin-left:.5rem}
+@media (max-width:560px){
+ .col:before{left:3.3rem}.w{grid-template-columns:3.3rem 1fr;gap:0 1rem}.w:before{left:calc(3.3rem - 4px)}
+ .era{margin-left:4.3rem}.yr{font-size:.8rem;padding-right:.5rem}.w.classic .who{font-size:1.25rem}.w.classic .yr{font-size:.95rem}
+ .ai{flex-wrap:wrap;gap:.2rem .8rem}.ai em{margin-left:0}
+}
+'''
+
+RANK_JS = '''<script>
+(function(){
+ var L=document.querySelector('.rank'),sw=document.querySelector('.metsw'),tg=document.querySelector('.toggle');
+ var M=JSON.parse(sw.dataset.m),met='r',more=false,all=false,TOP=20;
+ function draw(){
+  var rows=[].slice.call(L.children);
+  rows.sort(function(a,b){return b.dataset[met]-a.dataset[met]||b.dataset.r-a.dataset.r||b.dataset.t-a.dataset.t});
+  rows.forEach(function(li,i){L.appendChild(li);li.querySelector('.ct').textContent=li.dataset[met];li.classList.toggle('hide',!all&&i>=TOP)});
+  var ks=more?(M.ks||['r','t','p']):[met];
+  sw.innerHTML='<span class="eyebrow">'+M.l+'</span>'+ks.map(function(k){return '<button type="button" data-k="'+k+'" aria-pressed="'+(k===met)+'">'+M[k]+'</button>'}).join('')+'<button type="button" class="more">'+(more?M.less:M.more)+'</button>';
+  tg.textContent=all?tg.dataset.less:tg.dataset.all;
+ }
+ sw.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.classList.contains('more')){more=!more;if(!more)met='r'}else met=b.dataset.k;draw()});
+ tg.addEventListener('click',function(){all=!all;draw()});
+ draw();
+})();
+</script>'''

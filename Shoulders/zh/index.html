@@ -30,7 +30,7 @@ h2{font:900 clamp(1.45rem,4vw,1.9rem)/1.25 var(--f-display);margin:0 0 .5rem}
 .sec>.eyebrow{display:block;margin-bottom:.6rem}
 .tag{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.12rem .5rem;border-radius:3px}
 .chip{display:inline-block;font:500 .66rem/1.5 var(--f-mono);letter-spacing:.04em;padding:0 .4rem;border-radius:3px;vertical-align:.12em;margin-left:.3rem;white-space:nowrap}
-.chip.fm{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
+.chip.fm,.chip.nc{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.75rem;margin:1.6rem 0 0}
 .stat{border-left:3px solid var(--gold);padding:.1rem .8rem}
 .stat b{display:block;font:900 1.8rem/1.15 var(--f-display)}
@@ -173,8 +173,19 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </section>
 
 <section class="sec">
+<span class="eyebrow">化学 · 生命科学</span>
+<a class="card" href="../alphafold/zh/">
+<span class="tag">2021 年 7 月 · 蛋白质结构</span>
+<h2>从安芬森到 AlphaFold：蛋白质结构预测</h2>
+<p>DeepMind 的 AlphaFold 2 以接近实验的精度预测蛋白质结构，并因此获得 2024 年诺贝尔化学奖的一半。它的 84 条参考文献，从 1973 年安芬森的“序列决定结构”延续到 2021 年。</p>
+<div class="tl"><span class="ms"><b>安芬森</b><i>1973</i></span><span class="arr">→</span><span class="ms"><b>Altschuh · 克鲁格</b><i>1987</i></span><span class="arr">→</span><span class="ms"><b>CASP · Moult</b><i>1995</i></span><span class="arr">→</span><span class="ms"><b>Marks 等</b><i>2011</i></span><span class="arr">→</span><span class="ms"><b>AlphaFold 1</b><i>2020</i></span><span class="arr">→</span><span class="ms"><b>trRosetta · 大卫·贝克</b><i>2020</i></span><span class="arr">→</span><span class="ms ai"><b>AlphaFold 2</b><i>2021</i></span></div>
+<span class="go">进入 AlphaFold 专题 →</span>
+</a>
+</section>
+
+<section class="sec">
 <span class="eyebrow">其他学科</span>
-<div class="grid"><div class="soon"><b>物理</b>即将推出</div><div class="soon"><b>化学</b>即将推出</div><div class="soon"><b>生命科学</b>即将推出</div><div class="soon"><b>计算机科学</b>即将推出</div></div>
+<div class="grid"><div class="soon"><b>物理</b>即将推出</div><div class="soon"><b>计算机科学</b>即将推出</div></div>
 </section>
 <section class="sec" id="contact">
 <div class="contact">
@@ -193,7 +204,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </div>
 </section>
 
-<footer>引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。 · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "../search.json", "math": "../math/zh/", "ns": "../navier-stokes/zh/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": true, "s": {"tOne": "向 {n} 致敬", "tDone": "已致敬 · 谢谢你", "tCount": "次致敬", "fLoading": "正在载入索引…", "fNone": "没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。", "fMath": "数学全景：被 <b>{mp}<\/b> 篇 AI 数学预印本引用，共 <b>{me}<\/b> 条参考文献。", "fTop": "被引最多的著作：", "fPp": "篇引用", "fNs": "流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}<\/b> 条。", "fGoM": "在数学专题中查看 →", "fGoN": "查看流体方程专题 →", "prize": {"fm": "菲尔兹奖", "ab": "阿贝尔奖", "wf": "沃尔夫奖"}, "cSending": "发送中…", "cSend": "发送", "cOk": "已发送，谢谢！我们会尽快回复。", "cErr": "发送失败，请稍后再试。", "cOff": "表单尚未启用。"}};</script>
+<footer>引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。 · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "../search.json", "math": "../math/zh/", "ns": "../navier-stokes/zh/", "af": "../alphafold/zh/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": true, "s": {"fAf": "蛋白质结构：AlphaFold 2 论文引用了 <b>{ae}<\/b> 条。", "fGoA": "查看 AlphaFold 专题 →", "tOne": "向 {n} 致敬", "tDone": "已致敬 · 谢谢你", "tCount": "次致敬", "fLoading": "正在载入索引…", "fNone": "没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。", "fMath": "数学全景：被 <b>{mp}<\/b> 篇 AI 数学预印本引用，共 <b>{me}<\/b> 条参考文献。", "fTop": "被引最多的著作：", "fPp": "篇引用", "fNs": "流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}<\/b> 条。", "fGoM": "在数学专题中查看 →", "fGoN": "查看流体方程专题 →", "prize": {"fm": "菲尔兹奖", "ab": "阿贝尔奖", "wf": "沃尔夫奖", "nc": "诺贝尔化学奖"}, "cSending": "发送中…", "cSend": "发送", "cOk": "已发送，谢谢！我们会尽快回复。", "cErr": "发送失败，请稍后再试。", "cOff": "表单尚未启用。"}};</script>
 <script>
 (function(){
 const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);
@@ -207,7 +218,7 @@ const q=$('#q'),sug=$('#sug'),res=$('#res');let hits=[],on=0;
 const label=x=>C.zh&&x[1]?x[1]+' · '+x[0]:x[0];
 function find(v){v=fold(v.trim());if(!v)return Promise.resolve([]);
  return load().then(L=>{const a=[],b=[];for(const e of L){const i=e.k.indexOf(v);if(i<0)continue;(i===0||e.k[i-1]===' '?a:b).push(e.x);if(a.length>=8)break}return a.concat(b).slice(0,8)})}
-function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]}</small></button>`).join('')}
+function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]+(x[9]||0)}</small></button>`).join('')}
 function card(x){
  const pz=x[2]?x[2].split(' ').map(p=>`<span class="chip ${p.slice(0,2)}">${S.prize[p.slice(0,2)]} ${p.slice(2)}</span>`).join(''):'';
  let h=`<div class="who">${esc(C.zh&&x[1]?x[1]:x[0])}${C.zh&&x[1]?`<small>${esc(x[0])}</small>`:''}${pz}</div>`;
@@ -215,6 +226,7 @@ function card(x){
   if(x[6].length)h+=`<div>${S.fTop}</div><ul>${x[6].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''} · ${w[2]} ${S.fPp}</li>`).join('')}</ul>`;
   h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
  if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
+ if(x[9]){h+=`<p class="line">${fill(S.fAf,{ae:x[9]})}</p><ul>${x[10].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.af}">${S.fGoA}</a></p>`}
  const who=C.zh&&x[1]?x[1]:x[0],p='tribute/'+x[0];
  h+=`<div class="tb"><button type="button" class="tribute" data-path="${esc(p)}" data-done="${esc(S.tDone)}" data-title="${esc('Tribute: '+x[0])}"><span class="ic">✦</span><span class="lb">${esc(fill(S.tOne,{n:who}))}</span></button><span class="tcount" hidden><b>0</b> ${esc(S.tCount)}</span></div>`;
  res.innerHTML=h;sug.hidden=true;if(window.Tribute)Tribute.bind(res)}

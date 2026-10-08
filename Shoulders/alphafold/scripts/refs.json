@@ -1,0 +1,1827 @@
+{
+ "id": "af2",
+ "title": "Highly accurate protein structure prediction with AlphaFold",
+ "date": "2021-07-15",
+ "url": "https://www.nature.com/articles/s41586-021-03819-2",
+ "doi": "10.1038/s41586-021-03819-2",
+ "refs": [
+  {
+   "n": 1,
+   "a": [
+    "Michael C. Thompson",
+    "Todd O. Yeates",
+    "Jose A. Rodriguez"
+   ],
+   "etal": false,
+   "t": "Advances in methods for atomic resolution macromolecular structure determination",
+   "y": "2020",
+   "v": "F1000Res.",
+   "u": "https://doi.org/10.12688/f1000research.25097.1",
+   "raw": "Thompson, M. C., Yeates, T. O. & Rodriguez, J. A. Advances in methods for atomic resolution macromolecular structure determination. F1000Res. 9, 667 (2020).10.12688/f1000research.25097.1PMC733336132676184",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "a": [
+    "Xiao-chen Bai",
+    "Greg McMullan",
+    "Sjors H.W Scheres"
+   ],
+   "etal": false,
+   "t": "How cryo-EM is revolutionizing structural biology",
+   "y": "2015",
+   "v": "Trends Biochem. Sci.",
+   "u": "https://doi.org/10.1016/j.tibs.2014.10.005",
+   "raw": "Bai, X.-C., McMullan, G. & Scheres, S. H. W. How cryo-EM is revolutionizing structural biology. Trends Biochem. Sci. 40, 49–57 (2015).25544475 10.1016/j.tibs.2014.10.005",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "a": [
+    "Mariusz Jaskolski",
+    "Zbigniew Dauter",
+    "Alexander Wlodawer"
+   ],
+   "etal": false,
+   "t": "A brief history of macromolecular crystallography, illustrated by a family tree and its Nobel fruits",
+   "y": "2014",
+   "v": "FEBS J.",
+   "u": "https://doi.org/10.1111/febs.12796",
+   "raw": "Jaskolski, M., Dauter, Z. & Wlodawer, A. A brief history of macromolecular crystallography, illustrated by a family tree and its Nobel fruits. FEBS J. 281, 3985–4009 (2014).24698025 10.1111/febs.12796PMC6309182",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "a": [
+    "Kurt Wüthrich"
+   ],
+   "etal": false,
+   "t": "The way to NMR structures of proteins",
+   "y": "2001",
+   "v": "Nat. Struct. Biol.",
+   "u": "https://doi.org/10.1038/nsb1101-923",
+   "raw": "Wüthrich, K. The way to NMR structures of proteins. Nat. Struct. Biol. 8, 923–925 (2001).11685234 10.1038/nsb1101-923",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "a": [
+    "wwPDB Consortium"
+   ],
+   "etal": false,
+   "t": "Protein Data Bank: the single global archive for 3D macromolecular structure data",
+   "y": "2018",
+   "v": "Nucleic Acids Res.",
+   "u": "https://doi.org/10.1093/nar/gky949",
+   "raw": "wwPDB Consortium. Protein Data Bank: the single global archive for 3D macromolecular structure data. Nucleic Acids Res. 47, D520–D528 (2018).10.1093/nar/gky949PMC632405630357364",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    },
+    {
+     "s": "This bioinformatics approach has benefited greatly from the steady growth of experimental protein structures deposited in the Protein Data Bank (PDB) the explosion of genomic sequencing and the rapid development of deep learning techniques to interpret these correlations."
+    },
+    {
+     "s": "Our models were trained on a copy of the PDB downloaded on 28 August 2019."
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "a": [
+    "Alex L Mitchell",
+    "Alexandre Almeida",
+    "Martin Beracochea",
+    "Miguel Boland",
+    "Josephine Burgin",
+    "Guy Cochrane",
+    "Michael R Crusoe",
+    "Varsha Kale",
+    "Simon C Potter",
+    "Lorna J Richardson",
+    "Ekaterina Sakharova",
+    "Maxim Scheremetjew",
+    "Anton Korobeynikov",
+    "Alex Shlemov",
+    "Olga Kunyavskaya",
+    "Alla Lapidus",
+    "Robert D Finn"
+   ],
+   "etal": false,
+   "t": "MGnify: the microbiome analysis resource in 2020",
+   "y": "2020",
+   "v": "Nucleic Acids Res.",
+   "u": "https://doi.org/10.1093/nar/gkz1035",
+   "raw": "Mitchell, A. L. et al. MGnify: the microbiome analysis resource in 2020. Nucleic Acids Res. 48, D570–D578 (2020).31696235 10.1093/nar/gkz1035PMC7145632",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    },
+    {
+     "s": "For MSA lookup at both training and prediction time, we used Uniref90 v.2020_01, BFD, Uniclust30 v.2018_08 and MGnify v.2018_12."
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "a": [
+    "Martin Steinegger",
+    "Milot Mirdita",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold",
+   "y": "2019",
+   "v": "Nat. Methods",
+   "u": "https://doi.org/10.1038/s41592-019-0437-4",
+   "raw": "Steinegger, M., Mirdita, M. & Söding, J. Protein-level assembly increases protein sequence recovery from metagenomic samples manyfold. Nat. Methods16, 603–606 (2019).31235882 10.1038/s41592-019-0437-4",
+   "c": [
+    {
+     "s": "Through an enormous experimental effort the structures of around 100,000 unique proteins have been determined but this represents a small fraction of the billions of known protein sequences."
+    },
+    {
+     "s": "First, 2,423,213,294 protein sequences were collected from UniProt (Swiss-Prot&amp;TrEMBL, 2017-11) a soil reference protein catalogue and the marine eukaryotic reference catalogue and clustered to 30% sequence identity, while enforcing a 90% alignment coverage of the shorter sequences using MMseqs2/Linclust."
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "a": [
+    "Ken A. Dill",
+    "S. Banu Ozkan",
+    "M. Scott Shell",
+    "Thomas R. Weikl"
+   ],
+   "etal": false,
+   "t": "The protein folding problem",
+   "y": "2008",
+   "v": "Annu. Rev. Biophys.",
+   "u": "https://doi.org/10.1146/annurev.biophys.37.092707.153558",
+   "raw": "Dill, K. A., Ozkan, S. B., Shell, M. S. & Weikl, T. R. The protein folding problem. Annu. Rev. Biophys. 37, 289–316 (2008).18573083 10.1146/annurev.biophys.37.092707.153558PMC2443096",
+   "c": [
+    {
+     "s": "Predicting the three-dimensional structure that a protein will adopt based solely on its amino acid sequence—the structure prediction component of the ‘protein folding problem’ —has been an important open research problem for more than 50 years."
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "a": [
+    "Christian B. Anfinsen"
+   ],
+   "etal": false,
+   "t": "Principles that govern the folding of protein chains",
+   "y": "1973",
+   "v": "Science",
+   "u": "https://doi.org/10.1126/science.181.4096.223",
+   "raw": "Anfinsen, C. B. Principles that govern the folding of protein chains. Science181, 223–230 (1973).4124164 10.1126/science.181.4096.223",
+   "c": [
+    {
+     "s": "Predicting the three-dimensional structure that a protein will adopt based solely on its amino acid sequence—the structure prediction component of the ‘protein folding problem’ —has been an important open research problem for more than 50 years."
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "a": [
+    "Andrew W. Senior",
+    "Richard Evans",
+    "John Jumper",
+    "James Kirkpatrick",
+    "Laurent Sifre",
+    "Tim Green",
+    "Chongli Qin",
+    "Augustin Žídek",
+    "Alexander W. R. Nelson",
+    "Alex Bridgland",
+    "Hugo Penedones",
+    "Stig Petersen",
+    "Karen Simonyan",
+    "Steve Crossan",
+    "Pushmeet Kohli",
+    "David T. Jones",
+    "David Silver",
+    "Koray Kavukcuoglu",
+    "Demis Hassabis"
+   ],
+   "etal": false,
+   "t": "Improved protein structure prediction using potentials from deep learning",
+   "y": "2020",
+   "v": "Nature",
+   "u": "https://doi.org/10.1038/s41586-019-1923-7",
+   "raw": "Senior, A. W. et al. Improved protein structure prediction using potentials from deep learning. Nature577, 706–710 (2020).31942072 10.1038/s41586-019-1923-7",
+   "c": [
+    {
+     "s": "Despite recent progress existing methods fall far short of atomic accuracy, especially when no homologous structure is available."
+    },
+    {
+     "s": "The neural network AlphaFold that we developed was entered into the CASP14 assessment (May–July 2020; entered under the team name ‘AlphaFold2’ and a completely different model from our CASP13 AlphaFold system)."
+    },
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "a": [
+    "Sheng Wang",
+    "Siqi Sun",
+    "Zhen Li",
+    "Renyu Zhang",
+    "Jinbo Xu"
+   ],
+   "etal": false,
+   "t": "Accurate de novo prediction of protein contact map by ultra-deep learning model",
+   "y": "2017",
+   "v": "PLOS Comput. Biol.",
+   "u": "https://doi.org/10.1371/journal.pcbi.1005324",
+   "raw": "Wang, S., Sun, S., Li, Z., Zhang, R. & Xu, J. Accurate de novo prediction of protein contact map by ultra-deep learning model. PLOS Comput. Biol. 13, e1005324 (2017).28056090 10.1371/journal.pcbi.1005324PMC5249242",
+   "c": [
+    {
+     "s": "Despite recent progress existing methods fall far short of atomic accuracy, especially when no homologous structure is available."
+    },
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "a": [
+    "Wei Zheng",
+    "Yang Li",
+    "Chengxin Zhang",
+    "Robin Pearce",
+    "S. M. Mortuza",
+    "Yang Zhang"
+   ],
+   "etal": false,
+   "t": "Deep-learning contact-map guided protein structure prediction in CASP13",
+   "y": "2019",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.25792",
+   "raw": "Zheng, W. et al. Deep-learning contact-map guided protein structure prediction in CASP13. Proteins87, 1149–1164 (2019).31365149 10.1002/prot.25792PMC6851476",
+   "c": [
+    {
+     "s": "Despite recent progress existing methods fall far short of atomic accuracy, especially when no homologous structure is available."
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "a": [
+    "Luciano A. Abriata",
+    "Giorgio E. Tamò",
+    "Matteo Dal Peraro"
+   ],
+   "etal": false,
+   "t": "A further leap of improvement in tertiary structure prediction in CASP13 prompts new routes for future assessments",
+   "y": "2019",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.25787",
+   "raw": "Abriata, L. A., Tamò, G. E. & Dal Peraro, M. A further leap of improvement in tertiary structure prediction in CASP13 prompts new routes for future assessments. Proteins87, 1100–1112 (2019).31344267 10.1002/prot.25787",
+   "c": [
+    {
+     "s": "Despite recent progress existing methods fall far short of atomic accuracy, especially when no homologous structure is available."
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "a": [
+    "Robin Pearce",
+    "Yang Zhang"
+   ],
+   "etal": false,
+   "t": "Deep learning techniques have significantly impacted protein structure prediction and protein design",
+   "y": "2021",
+   "v": "Curr. Opin. Struct. Biol.",
+   "u": "https://doi.org/10.1016/j.sbi.2021.01.007",
+   "raw": "Pearce, R. & Zhang, Y. Deep learning techniques have significantly impacted protein structure prediction and protein design. Curr. Opin. Struct. Biol. 68, 194–207 (2021).33639355 10.1016/j.sbi.2021.01.007PMC8222070",
+   "c": [
+    {
+     "s": "Despite recent progress existing methods fall far short of atomic accuracy, especially when no homologous structure is available."
+    },
+    {
+     "s": "The prediction of protein structures has had a long and varied development, which is extensively covered in a number of reviews."
+    },
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "a": [
+    "J. Moult",
+    "K. Fidelis",
+    "A. Kryshtafovych",
+    "T. Schwede",
+    "M. Topf"
+   ],
+   "etal": false,
+   "t": "Critical assessment of techniques for protein structure prediction, fourteenth round",
+   "y": "2020",
+   "v": "",
+   "u": "",
+   "raw": "Moult, J., Fidelis, K., Kryshtafovych, A., Schwede, T. & Topf, M. Critical assessment of techniques for protein structure prediction, fourteenth round. CASP 14 Abstract Bookhttps://www.predictioncenter.org/casp14/doc/CASP14_Abstracts.pdf (2020).",
+   "c": [
+    {
+     "s": "We validated an entirely redesigned version of our neural network-based model, AlphaFold, in the challenging 14th Critical Assessment of protein Structure Prediction (CASP14) demonstrating accuracy competitive with experimental structures in a majority of cases and greatly outperforming other methods."
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "a": [
+    "Emiliano Brini",
+    "Carlos Simmerling",
+    "Ken Dill"
+   ],
+   "etal": false,
+   "t": "Protein storytelling through physics",
+   "y": "2020",
+   "v": "Science",
+   "u": "https://doi.org/10.1126/science.aaz3041",
+   "raw": "Brini, E., Simmerling, C. & Dill, K. Protein storytelling through physics. Science370, eaaz3041 (2020).33243857 10.1126/science.aaz3041PMC7945008",
+   "c": [
+    {
+     "s": "The physical interaction programme heavily integrates our understanding of molecular driving forces into either thermodynamic or kinetic simulation of protein physics or statistical approximations thereof."
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "a": [
+    "Manfred J. Sippl"
+   ],
+   "etal": false,
+   "t": "Calculation of conformational ensembles from potentials of mean force. An approach to the knowledge-based prediction of local structures in globular proteins",
+   "y": "1990",
+   "v": "J. Mol. Biol.",
+   "u": "https://doi.org/10.1016/S0022-2836(05)80269-4",
+   "raw": "Sippl, M. J. Calculation of conformational ensembles from potentials of mean force. An approach to the knowledge-based prediction of local structures in globular proteins. J. Mol. Biol. 213, 859–883 (1990).2359125 10.1016/s0022-2836(05)80269-4",
+   "c": [
+    {
+     "s": "The physical interaction programme heavily integrates our understanding of molecular driving forces into either thermodynamic or kinetic simulation of protein physics or statistical approximations thereof."
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "a": [
+    "Andrej Šali",
+    "Tom L. Blundell"
+   ],
+   "etal": false,
+   "t": "Comparative protein modelling by satisfaction of spatial restraints",
+   "y": "1993",
+   "v": "J. Mol. Biol.",
+   "u": "https://doi.org/10.1006/jmbi.1993.1626",
+   "raw": "Šali, A. & Blundell, T. L. Comparative protein modelling by satisfaction of spatial restraints. J. Mol. Biol. 234, 779–815 (1993).8254673 10.1006/jmbi.1993.1626",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "a": [
+    "Ambrish Roy",
+    "Alper Kucukural",
+    "Yang Zhang"
+   ],
+   "etal": false,
+   "t": "I-TASSER: a unified platform for automated protein structure and function prediction",
+   "y": "2010",
+   "v": "Nat. Protocols",
+   "u": "https://doi.org/10.1038/nprot.2010.5",
+   "raw": "Roy, A., Kucukural, A. & Zhang, Y. I-TASSER: a unified platform for automated protein structure and function prediction. Nat. Protocols5, 725–738 (2010).20360767 10.1038/nprot.2010.5PMC2849174",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "a": [
+    "D. Altschuh",
+    "A.M. Lesk",
+    "A.C. Bloomer",
+    "A. Klug"
+   ],
+   "etal": false,
+   "t": "Correlation of co-ordinated amino acid substitutions with function in viruses related to tobacco mosaic virus",
+   "y": "1987",
+   "v": "J. Mol. Biol.",
+   "u": "https://doi.org/10.1016/0022-2836(87)90352-4",
+   "raw": "Altschuh, D., Lesk, A. M., Bloomer, A. C. & Klug, A. Correlation of co-ordinated amino acid substitutions with function in viruses related to tobacco mosaic virus. J. Mol. Biol. 193, 693–707 (1987).3612789 10.1016/0022-2836(87)90352-4",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "a": [
+    "I.N. Shindyalov",
+    "N.A. Kolchanov",
+    "C. Sander"
+   ],
+   "etal": false,
+   "t": "Can three-dimensional contacts in protein structures be predicted by analysis of correlated mutations?",
+   "y": "1994",
+   "v": "Protein Eng.",
+   "u": "https://doi.org/10.1093/protein/7.3.349",
+   "raw": "Shindyalov, I. N., Kolchanov, N. A. & Sander, C. Can three-dimensional contacts in protein structures be predicted by analysis of correlated mutations? Protein Eng. 7, 349–358 (1994).8177884 10.1093/protein/7.3.349",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "a": [
+    "Martin Weigt",
+    "Robert A. White",
+    "Hendrik Szurmant",
+    "James A. Hoch",
+    "Terence Hwa"
+   ],
+   "etal": false,
+   "t": "Identification of direct residue contacts in protein–protein interaction by message passing",
+   "y": "2009",
+   "v": "Proc. Natl Acad. Sci. USA",
+   "u": "https://doi.org/10.1073/pnas.0805923106",
+   "raw": "Weigt, M., White, R. A., Szurmant, H., Hoch, J. A. & Hwa, T. Identification of direct residue contacts in protein–protein interaction by message passing. Proc. Natl Acad. Sci. USA106, 67–72 (2009).19116270 10.1073/pnas.0805923106PMC2629192",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    },
+    {
+     "s": "These approaches effectively leverage the rapid improvement in computer vision systems by treating the problem of protein structure prediction as converting an ‘image’ of evolutionary couplings to an ‘image’ of the protein distance matrix and then integrating the distance predictions into a heuristic system that produces the final 3D coordinate prediction."
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "a": [
+    "Debora S. Marks",
+    "Lucy J. Colwell",
+    "Robert Sheridan",
+    "Thomas A. Hopf",
+    "Andrea Pagnani",
+    "Riccardo Zecchina",
+    "Chris Sander"
+   ],
+   "etal": false,
+   "t": "Protein 3D structure computed from evolutionary sequence variation",
+   "y": "2011",
+   "v": "PLoS ONE",
+   "u": "https://doi.org/10.1371/journal.pone.0028766",
+   "raw": "Marks, D. S. et al. Protein 3D structure computed from evolutionary sequence variation. PLoS ONE6, e28766 (2011).22163331 10.1371/journal.pone.0028766PMC3233603",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    },
+    {
+     "s": "These approaches effectively leverage the rapid improvement in computer vision systems by treating the problem of protein structure prediction as converting an ‘image’ of evolutionary couplings to an ‘image’ of the protein distance matrix and then integrating the distance predictions into a heuristic system that produces the final 3D coordinate prediction."
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "a": [
+    "David T. Jones",
+    "Daniel W. A. Buchan",
+    "Domenico Cozzetto",
+    "Massimiliano Pontil"
+   ],
+   "etal": false,
+   "t": "PSICOV: precise structural contact prediction using sparse inverse covariance estimation on large multiple sequence alignments",
+   "y": "2012",
+   "v": "Bioinformatics",
+   "u": "https://doi.org/10.1093/bioinformatics/btr638",
+   "raw": "Jones, D. T., Buchan, D. W. A., Cozzetto, D. & Pontil, M. PSICOV: precise structural contact prediction using sparse inverse covariance estimation on large multiple sequence alignments. Bioinformatics28, 184–190 (2012).22101153 10.1093/bioinformatics/btr638",
+   "c": [
+    {
+     "s": "The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations."
+    },
+    {
+     "s": "These approaches effectively leverage the rapid improvement in computer vision systems by treating the problem of protein structure prediction as converting an ‘image’ of evolutionary couplings to an ‘image’ of the protein distance matrix and then integrating the distance predictions into a heuristic system that produces the final 3D coordinate prediction."
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "a": [
+    "John Moult",
+    "Jan T. Pedersen",
+    "Richard Judson",
+    "Krzysztof Fidelis"
+   ],
+   "etal": false,
+   "t": "A large-scale experiment to assess protein structure prediction methods",
+   "y": "1995",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.340230303",
+   "raw": "Moult, J., Pedersen, J. T., Judson, R. & Fidelis, K. A large-scale experiment to assess protein structure prediction methods. Proteins23, ii–iv (1995).8710822 10.1002/prot.340230303",
+   "c": [
+    {
+     "s": "The CASP assessment is carried out biennially using recently solved structures that have not been deposited in the PDB or publicly disclosed so that it is a blind test for the participating methods, and has long served as the gold-standard assessment for the accuracy of structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "a": [
+    "Andriy Kryshtafovych",
+    "Torsten Schwede",
+    "Maya Topf",
+    "Krzysztof Fidelis",
+    "John Moult"
+   ],
+   "etal": false,
+   "t": "Critical assessment of methods of protein structure prediction (CASP)-round XIII",
+   "y": "2019",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.25823",
+   "raw": "Kryshtafovych, A., Schwede, T., Topf, M., Fidelis, K. & Moult, J. Critical assessment of methods of protein structure prediction (CASP)-round XIII. Proteins87, 1011–1020 (2019).31589781 10.1002/prot.25823PMC6927249",
+   "c": [
+    {
+     "s": "The CASP assessment is carried out biennially using recently solved structures that have not been deposited in the PDB or publicly disclosed so that it is a blind test for the participating methods, and has long served as the gold-standard assessment for the accuracy of structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "a": [
+    "Yang Zhang",
+    "Jeffrey Skolnick"
+   ],
+   "etal": false,
+   "t": "Scoring function for automated assessment of protein structure template quality",
+   "y": "2004",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.20264",
+   "raw": "Zhang, Y. & Skolnick, J. Scoring function for automated assessment of protein structure template quality. Proteins57, 702–710 (2004).15476259 10.1002/prot.20264",
+   "c": [
+    {
+     "s": "We also find that the global superposition metric template modelling score (TM-score) can be accurately estimated (Fig. 2d)."
+    },
+    {
+     "s": "Domain accuracies in CASP are reported as GDT and the TM-score is used as a full chain global superposition metric."
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "a": [
+    "Zhuowen Tu",
+    "Xiang Bai"
+   ],
+   "etal": false,
+   "t": "Auto-context and its application to high-level vision tasks and 3D brain image segmentation",
+   "y": "2010",
+   "v": "IEEE Trans. Pattern Anal. Mach. Intell.",
+   "u": "https://doi.org/10.1109/TPAMI.2009.186",
+   "raw": "Tu, Z. & Bai, X. Auto-context and its application to high-level vision tasks and 3D brain image segmentation. IEEE Trans. Pattern Anal. Mach. Intell. 32, 1744–1757 (2010).20724753 10.1109/TPAMI.2009.186",
+   "c": [
+    {
+     "s": "The iterative refinement using the whole network (which we term ‘recycling’ and is related to approaches in computer vision) contributes markedly to accuracy with minor extra training time (see Supplementary Methods 1.8 for details)."
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "a": [
+    "J. Carreira",
+    "P. Agrawal",
+    "K. Fragkiadaki",
+    "J. Malik"
+   ],
+   "etal": false,
+   "t": "Human pose estimation with iterative error feedback",
+   "y": "2016",
+   "v": "",
+   "u": "",
+   "raw": "Carreira, J., Agrawal, P., Fragkiadaki, K. & Malik, J. Human pose estimation with iterative error feedback. In Proc. IEEE Conference on Computer Vision and Pattern Recognition 4733–4742 (2016).",
+   "c": [
+    {
+     "s": "The iterative refinement using the whole network (which we term ‘recycling’ and is related to approaches in computer vision) contributes markedly to accuracy with minor extra training time (see Supplementary Methods 1.8 for details)."
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "a": [
+    "Claudio Mirabello",
+    "Björn Wallner"
+   ],
+   "etal": false,
+   "t": "rawMSA: end-to-end deep learning using raw multiple sequence alignments",
+   "y": "2019",
+   "v": "PLoS ONE",
+   "u": "https://doi.org/10.1371/journal.pone.0220182",
+   "raw": "Mirabello, C. & Wallner, B. rawMSA: end-to-end deep learning using raw multiple sequence alignments. PLoS ONE14, e0220182 (2019).31415569 10.1371/journal.pone.0220182PMC6695225",
+   "c": [
+    {
+     "s": "In contrast to previous work this operation is applied within every block rather than once in the network, which enables the continuous communication from the evolving MSA representation to the pair representation."
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "a": [
+    "Z. Huang"
+   ],
+   "etal": true,
+   "t": "CCNet: criss-cross attention for semantic segmentation",
+   "y": "2019",
+   "v": "",
+   "u": "",
+   "raw": "Huang, Z. et al. CCNet: criss-cross attention for semantic segmentation. In Proc. IEEE/CVF International Conference on Computer Vision 603–612 (2019).",
+   "c": [
+    {
+     "s": "In particular, we add an extra logit bias to axial attention to include the ‘missing edge’ of the triangle and we define a non-attention update operation ‘triangle multiplicative update’ that uses two edges to update the missing third edge (see Supplementary Methods 1.6.5 for details)."
+    },
+    {
+     "s": "In parallel, the success of attention-based networks for language processing and, more recently, computer vision has inspired the exploration of attention-based methods for interpreting protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "a": [
+    "Viktor Hornak",
+    "Robert Abel",
+    "Asim Okur",
+    "Bentley Strockbine",
+    "Adrian Roitberg",
+    "Carlos Simmerling"
+   ],
+   "etal": false,
+   "t": "Comparison of multiple Amber force fields and development of improved protein backbone parameters",
+   "y": "2006",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.21123",
+   "raw": "Hornak, V. et al. Comparison of multiple Amber force fields and development of improved protein backbone parameters. Proteins65, 712–725 (2006).16981200 10.1002/prot.21123PMC4805110",
+   "c": [
+    {
+     "s": "Exact enforcement of peptide bond geometry is only achieved in the post-prediction relaxation of the structure by gradient descent in the Amber force field."
+    },
+    {
+     "s": "For constrained relaxation of structures, we used OpenMM v.7.3.1 with the Amber99sb force field."
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "a": [
+    "A. Zemla"
+   ],
+   "etal": false,
+   "t": "LGA: a method for finding 3D similarities in protein structures",
+   "y": "2003",
+   "v": "Nucleic Acids Res.",
+   "u": "https://doi.org/10.1093/nar/gkg571",
+   "raw": "Zemla, A. LGA: a method for finding 3D similarities in protein structures. Nucleic Acids Res. 31, 3370–3374 (2003).12824330 10.1093/nar/gkg571PMC168977",
+   "c": [
+    {
+     "s": "Empirically, this final relaxation does not improve the accuracy of the model as measured by the global distance test (GDT) or lDDT-Cα but does remove distracting stereochemical violations without the loss of accuracy."
+    },
+    {
+     "s": "Domain accuracies in CASP are reported as GDT and the TM-score is used as a full chain global superposition metric."
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "a": [
+    "Valerio Mariani",
+    "Marco Biasini",
+    "Alessandro Barbato",
+    "Torsten Schwede"
+   ],
+   "etal": false,
+   "t": "lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests",
+   "y": "2013",
+   "v": "Bioinformatics",
+   "u": "https://doi.org/10.1093/bioinformatics/btt473",
+   "raw": "Mariani, V., Biasini, M., Barbato, A. & Schwede, T. lDDT: a local superposition-free score for comparing protein structures and models using distance difference tests. Bioinformatics29, 2722–2728 (2013).23986568 10.1093/bioinformatics/btt473PMC3799472",
+   "c": [
+    {
+     "s": "Empirically, this final relaxation does not improve the accuracy of the model as measured by the global distance test (GDT) or lDDT-Cα but does remove distracting stereochemical violations without the loss of accuracy."
+    },
+    {
+     "s": "The predicted structure is compared to the true structure from the PDB in terms of lDDT metric as this metric reports the domain accuracy without requiring a domain segmentation of chain structures."
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "a": [
+    "Q. Xie",
+    "M.-T. Luong",
+    "E. Hovy",
+    "Q. V. Le"
+   ],
+   "etal": false,
+   "t": "Self-training with noisy student improves imagenet classification",
+   "y": "2020",
+   "v": "",
+   "u": "",
+   "raw": "Xie, Q., Luong, M.-T., Hovy, E. & Le, Q. V. Self-training with noisy student improves imagenet classification. In Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition 10687–10698 (2020).",
+   "c": [
+    {
+     "s": "The AlphaFold architecture is able to train to high accuracy using only supervised learning on PDB data, but we are able to enhance accuracy (Fig. 4a) using an approach similar to noisy student self-distillation."
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "a": [
+    "Milot Mirdita",
+    "Lars von den Driesch",
+    "Clovis Galiez",
+    "Maria J. Martin",
+    "Johannes Söding",
+    "Martin Steinegger"
+   ],
+   "etal": false,
+   "t": "Uniclust databases of clustered and deeply annotated protein sequences and alignments",
+   "y": "2017",
+   "v": "Nucleic Acids Res.",
+   "u": "https://doi.org/10.1093/nar/gkw1081",
+   "raw": "Mirdita, M. et al. Uniclust databases of clustered and deeply annotated protein sequences and alignments. Nucleic Acids Res. 45, D170–D176 (2017).27899574 10.1093/nar/gkw1081PMC5614098",
+   "c": [
+    {
+     "s": "In this procedure, we use a trained network to predict the structure of around 350,000 diverse sequences from Uniclust30 and make a new dataset of predicted structures filtered to a high-confidence subset."
+    },
+    {
+     "s": "Third, for each of the clusters, we computed an MSA using FAMSA and computed the HMMs following the Uniclust HH-suite database protocol."
+    },
+    {
+     "s": "For MSA lookup at both training and prediction time, we used Uniref90 v.2020_01, BFD, Uniclust30 v.2018_08 and MGnify v.2018_12."
+    },
+    {
+     "s": "For sequence distillation, we used Uniclust30 v.2018_08 to construct a distillation structure dataset."
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "a": [
+    "J. Devlin",
+    "M.-W. Chang",
+    "K. Lee",
+    "K. Toutanova"
+   ],
+   "etal": false,
+   "t": "BERT: pre-training of deep bidirectional transformers for language understanding",
+   "y": "2019",
+   "v": "",
+   "u": "",
+   "raw": "Devlin, J., Chang, M.-W., Lee, K. & Toutanova, K. BERT: pre-training of deep bidirectional transformers for language understanding. In Proc. 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies 1, 4171–4186 (2019).",
+   "c": [
+    {
+     "s": "Additionally, we randomly mask out or mutate individual residues within the MSA and have a Bidirectional Encoder Representations from Transformers (BERT)-style objective to predict the masked elements of the MSA sequences."
+    },
+    {
+     "s": "Second, we use random masking on the input MSAs and require the network to reconstruct the masked regions from the output MSA representation using a BERT-like loss."
+    }
+   ]
+  },
+  {
+   "n": 38,
+   "a": [
+    "R. Rao"
+   ],
+   "etal": true,
+   "t": "MSA transformer",
+   "y": "2021",
+   "v": "",
+   "u": "",
+   "raw": "Rao, R. et al. MSA transformer. In Proc. 38th International Conference on Machine Learning PMLR 139, 8844–8856 (2021).",
+   "c": [
+    {
+     "s": "The BERT objective is trained jointly with the normal PDB structure loss on the same training examples and is not pre-trained, in contrast to recent independent work."
+    }
+   ]
+  },
+  {
+   "n": 39,
+   "a": [
+    "K. Tunyasuvunakool"
+   ],
+   "etal": true,
+   "t": "Highly accurate protein structure prediction for the human proteome",
+   "y": "2021",
+   "v": "",
+   "u": "",
+   "raw": "Tunyasuvunakool, K. et al. Highly accurate protein structure prediction for the human proteome. Nature10.1038/s41586-021-03828-1 (2021).10.1038/s41586-021-03828-1PMC838724034293799",
+   "c": [
+    {
+     "s": "In the companion paper additional quantification of the reliability of pLDDT as a confidence measure is provided. d, Correlation between pTM and full chain TM-score."
+    },
+    {
+     "s": "The other substantial limitation that we have observed is that AlphaFold is much weaker for proteins that have few intra-chain or homotypic contacts compared to the number of heterotypic contacts (further details are provided in a companion paper)."
+    },
+    {
+     "s": "This opens up the exciting possibility of predicting structures at the proteome-scale and beyond—in a companion paper we demonstrate the application of AlphaFold to the entire human proteome."
+    }
+   ]
+  },
+  {
+   "n": 40,
+   "a": [
+    "Brian Kuhlman",
+    "Philip Bradley"
+   ],
+   "etal": false,
+   "t": "Advances in protein structure prediction and design",
+   "y": "2019",
+   "v": "Nat. Rev. Mol. Cell Biol.",
+   "u": "https://doi.org/10.1038/s41580-019-0163-x",
+   "raw": "Kuhlman, B. & Bradley, P. Advances in protein structure prediction and design. Nat. Rev. Mol. Cell Biol. 20, 681–697 (2019).31417196 10.1038/s41580-019-0163-xPMC7032036",
+   "c": [
+    {
+     "s": "The prediction of protein structures has had a long and varied development, which is extensively covered in a number of reviews."
+    }
+   ]
+  },
+  {
+   "n": 41,
+   "a": [
+    "Debora S Marks",
+    "Thomas A Hopf",
+    "Chris Sander"
+   ],
+   "etal": false,
+   "t": "Protein structure prediction from sequence variation",
+   "y": "2012",
+   "v": "Nat. Biotechnol.",
+   "u": "https://doi.org/10.1038/nbt.2419",
+   "raw": "Marks, D. S., Hopf, T. A. & Sander, C. Protein structure prediction from sequence variation. Nat. Biotechnol. 30, 1072–1080 (2012).23138306 10.1038/nbt.2419PMC4319528",
+   "c": [
+    {
+     "s": "The prediction of protein structures has had a long and varied development, which is extensively covered in a number of reviews."
+    }
+   ]
+  },
+  {
+   "n": 42,
+   "a": [
+    "Ning Qian",
+    "Terrence J. Sejnowski"
+   ],
+   "etal": false,
+   "t": "Predicting the secondary structure of globular proteins using neural network models",
+   "y": "1988",
+   "v": "J. Mol. Biol.",
+   "u": "https://doi.org/10.1016/0022-2836(88)90564-5",
+   "raw": "Qian, N. & Sejnowski, T. J. Predicting the secondary structure of globular proteins using neural network models. J. Mol. Biol. 202, 865–884 (1988).3172241 10.1016/0022-2836(88)90564-5",
+   "c": [
+    {
+     "s": "The prediction of protein structures has had a long and varied development, which is extensively covered in a number of reviews."
+    },
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 43,
+   "a": [
+    "Piero Fariselli",
+    "Osvaldo Olmea",
+    "Alfonso Valencia",
+    "Rita Casadio"
+   ],
+   "etal": false,
+   "t": "Prediction of contact maps with neural networks and correlated mutations",
+   "y": "2001",
+   "v": "Protein Eng.",
+   "u": "https://doi.org/10.1093/protein/14.11.835",
+   "raw": "Fariselli, P., Olmea, O., Valencia, A. & Casadio, R. Prediction of contact maps with neural networks and correlated mutations. Protein Eng. 14, 835–843 (2001).11742102 10.1093/protein/14.11.835",
+   "c": [
+    {
+     "s": "The prediction of protein structures has had a long and varied development, which is extensively covered in a number of reviews."
+    },
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 44,
+   "a": [
+    "Jianyi Yang",
+    "Ivan Anishchenko",
+    "Hahnbeom Park",
+    "Zhenling Peng",
+    "Sergey Ovchinnikov",
+    "David Baker"
+   ],
+   "etal": false,
+   "t": "Improved protein structure prediction using predicted interresidue orientations",
+   "y": "2020",
+   "v": "Proc. Natl Acad. Sci. USA",
+   "u": "https://doi.org/10.1073/pnas.1914677117",
+   "raw": "Yang, J. et al. Improved protein structure prediction using predicted interresidue orientations. Proc. Natl Acad. Sci. USA117, 1496–1503 (2020).31896580 10.1073/pnas.1914677117PMC6983395",
+   "c": [
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 45,
+   "a": [
+    "Yang Li",
+    "Chengxin Zhang",
+    "Eric W. Bell",
+    "Wei Zheng",
+    "Xiaogen Zhou",
+    "Dong-Jun Yu",
+    "Yang Zhang"
+   ],
+   "etal": false,
+   "t": "Deducing high-accuracy protein contact-maps from a triplet of coevolutionary matrices through deep residual convolutional networks",
+   "y": "2021",
+   "v": "PLOS Comput. Biol.",
+   "u": "https://doi.org/10.1371/journal.pcbi.1008865",
+   "raw": "Li, Y. et al. Deducing high-accuracy protein contact-maps from a triplet of coevolutionary matrices through deep residual convolutional networks. PLOS Comput. Biol. 17, e1008865 (2021).33770072 10.1371/journal.pcbi.1008865PMC8026059",
+   "c": [
+    {
+     "s": "Despite the long history of applying neural networks to structure prediction they have only recently come to improve structure prediction."
+    }
+   ]
+  },
+  {
+   "n": 46,
+   "a": [
+    "K. He",
+    "X. Zhang",
+    "S. Ren",
+    "J. Sun"
+   ],
+   "etal": false,
+   "t": "Deep residual learning for image recognition",
+   "y": "2016",
+   "v": "",
+   "u": "",
+   "raw": "He, K., Zhang, X., Ren, S. & Sun, J. Deep residual learning for image recognition. In Proc. IEEE Conference on Computer Vision and Pattern Recognition 770–778 (2016).",
+   "c": [
+    {
+     "s": "These approaches effectively leverage the rapid improvement in computer vision systems by treating the problem of protein structure prediction as converting an ‘image’ of evolutionary couplings to an ‘image’ of the protein distance matrix and then integrating the distance predictions into a heuristic system that produces the final 3D coordinate prediction."
+    }
+   ]
+  },
+  {
+   "n": 47,
+   "a": [
+    "Mohammed AlQuraishi"
+   ],
+   "etal": false,
+   "t": "End-to-end differentiable learning of protein structure",
+   "y": "2019",
+   "v": "Cell Syst.",
+   "u": "https://doi.org/10.1016/j.cels.2019.03.006",
+   "raw": "AlQuraishi, M. End-to-end differentiable learning of protein structure. Cell Syst. 8, 292–301 (2019).31005579 10.1016/j.cels.2019.03.006PMC6513320",
+   "c": [
+    {
+     "s": "A few recent studies have been developed to predict the 3D coordinates directly but the accuracy of these approaches does not match traditional, hand-crafted structure prediction pipelines."
+    }
+   ]
+  },
+  {
+   "n": 48,
+   "a": [
+    "Andrew W. Senior",
+    "Richard Evans",
+    "John Jumper",
+    "James Kirkpatrick",
+    "Laurent Sifre",
+    "Tim Green",
+    "Chongli Qin",
+    "Augustin Žídek",
+    "Alexander W. R. Nelson",
+    "Alex Bridgland",
+    "Hugo Penedones",
+    "Stig Petersen",
+    "Karen Simonyan",
+    "Steve Crossan",
+    "Pushmeet Kohli",
+    "David T. Jones",
+    "David Silver",
+    "Koray Kavukcuoglu",
+    "Demis Hassabis"
+   ],
+   "etal": false,
+   "t": "Protein structure prediction using multiple deep neural networks in the 13th Critical Assessment of Protein Structure Prediction (CASP13)",
+   "y": "2019",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.25834",
+   "raw": "Senior, A. W. et al. Protein structure prediction using multiple deep neural networks in the 13th Critical Assessment of Protein Structure Prediction (CASP13). Proteins87, 1141–1148 (2019).31602685 10.1002/prot.25834PMC7079254",
+   "c": [
+    {
+     "s": "A few recent studies have been developed to predict the 3D coordinates directly but the accuracy of these approaches does not match traditional, hand-crafted structure prediction pipelines."
+    }
+   ]
+  },
+  {
+   "n": 49,
+   "a": [
+    "J. Ingraham",
+    "A. J. Riesselman",
+    "C. Sander",
+    "D. S. Marks"
+   ],
+   "etal": false,
+   "t": "Learning protein structure with a differentiable simulator",
+   "y": "2019",
+   "v": "",
+   "u": "",
+   "raw": "Ingraham, J., Riesselman, A. J., Sander, C. & Marks, D. S. Learning protein structure with a differentiable simulator. in Proc. International Conference on Learning Representations (2019).",
+   "c": [
+    {
+     "s": "A few recent studies have been developed to predict the 3D coordinates directly but the accuracy of these approaches does not match traditional, hand-crafted structure prediction pipelines."
+    }
+   ]
+  },
+  {
+   "n": 50,
+   "a": [
+    "J. Li"
+   ],
+   "etal": false,
+   "t": "Universal transforming geometric network",
+   "y": "2019",
+   "v": "",
+   "u": "",
+   "raw": "Li, J. Universal transforming geometric network. Preprint at https://arxiv.org/abs/1908.00723 (2019).",
+   "c": [
+    {
+     "s": "A few recent studies have been developed to predict the 3D coordinates directly but the accuracy of these approaches does not match traditional, hand-crafted structure prediction pipelines."
+    }
+   ]
+  },
+  {
+   "n": 51,
+   "a": [
+    "Jinbo Xu",
+    "Matthew McPartlon",
+    "Jin Li"
+   ],
+   "etal": false,
+   "t": "Improved protein structure prediction by deep learning irrespective of co-evolution information",
+   "y": "2021",
+   "v": "Nat. Mach. Intell.",
+   "u": "https://doi.org/10.1038/s42256-021-00348-5",
+   "raw": "Xu, J., McPartlon, M. & Li, J. Improved protein structure prediction by deep learning irrespective of co-evolution information. Nat. Mach. Intell. 3, 601–609 (2021).34368623 10.1038/s42256-021-00348-5PMC8340610",
+   "c": [
+    {
+     "s": "A few recent studies have been developed to predict the 3D coordinates directly but the accuracy of these approaches does not match traditional, hand-crafted structure prediction pipelines."
+    }
+   ]
+  },
+  {
+   "n": 52,
+   "a": [
+    "A. Vaswani"
+   ],
+   "etal": true,
+   "t": "Attention is all you need",
+   "y": "2017",
+   "v": "",
+   "u": "",
+   "raw": "Vaswani, A. et al. Attention is all you need. In Advances in Neural Information Processing Systems 5998–6008 (2017).",
+   "c": [
+    {
+     "s": "In parallel, the success of attention-based networks for language processing and, more recently, computer vision has inspired the exploration of attention-based methods for interpreting protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 53,
+   "a": [
+    "H. Wang"
+   ],
+   "etal": true,
+   "t": "Axial-deeplab: stand-alone axial-attention for panoptic segmentation",
+   "y": "",
+   "v": "",
+   "u": "",
+   "raw": "Wang, H. et al. Axial-deeplab: stand-alone axial-attention for panoptic segmentation. in European Conference on Computer Vision 108–126 (Springer, 2020).",
+   "c": [
+    {
+     "s": "In parallel, the success of attention-based networks for language processing and, more recently, computer vision has inspired the exploration of attention-based methods for interpreting protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 54,
+   "a": [
+    "Ethan C. Alley",
+    "Grigory Khimulya",
+    "Surojit Biswas",
+    "Mohammed AlQuraishi",
+    "George M. Church"
+   ],
+   "etal": false,
+   "t": "Unified rational protein engineering with sequence-based deep representation learning",
+   "y": "2019",
+   "v": "Nat. Methods",
+   "u": "https://doi.org/10.1038/s41592-019-0598-1",
+   "raw": "Alley, E. C., Khimulya, G., Biswas, S., AlQuraishi, M. & Church, G. M. Unified rational protein engineering with sequence-based deep representation learning. Nat. Methods16, 1315–1322 (2019).31636460 10.1038/s41592-019-0598-1PMC7067682",
+   "c": [
+    {
+     "s": "In parallel, the success of attention-based networks for language processing and, more recently, computer vision has inspired the exploration of attention-based methods for interpreting protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 55,
+   "a": [
+    "Michael Heinzinger",
+    "Ahmed Elnaggar",
+    "Yu Wang",
+    "Christian Dallago",
+    "Dmitrii Nechaev",
+    "Florian Matthes",
+    "Burkhard Rost"
+   ],
+   "etal": false,
+   "t": "Modeling aspects of the language of life through transfer-learning protein sequences",
+   "y": "2019",
+   "v": "BMC Bioinformatics",
+   "u": "https://doi.org/10.1186/s12859-019-3220-8",
+   "raw": "Heinzinger, M. et al. Modeling aspects of the language of life through transfer-learning protein sequences. BMC Bioinformatics20, 723 (2019).31847804 10.1186/s12859-019-3220-8PMC6918593",
+   "c": [
+    {
+     "s": "In parallel, the success of attention-based networks for language processing and, more recently, computer vision has inspired the exploration of attention-based methods for interpreting protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 56,
+   "a": [
+    "Alexander Rives",
+    "Joshua Meier",
+    "Tom Sercu",
+    "Siddharth Goyal",
+    "Zeming Lin",
+    "Jason Liu",
+    "Demi Guo",
+    "Myle Ott",
+    "C. Lawrence Zitnick",
+    "Jerry Ma",
+    "Rob Fergus"
+   ],
+   "etal": false,
+   "t": "Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences",
+   "y": "2021",
+   "v": "Proc. Natl Acad. Sci. USA",
+   "u": "https://doi.org/10.1073/pnas.2016239118",
+   "raw": "Rives, A. et al. Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences. Proc. Natl Acad. Sci. USA118, e2016239118 (2021).33876751 10.1073/pnas.2016239118PMC8053943",
+   "c": [
+    {
+     "s": "In parallel, the success of attention-based networks for language processing and, more recently, computer vision has inspired the exploration of attention-based methods for interpreting protein sequences."
+    }
+   ]
+  },
+  {
+   "n": 57,
+   "a": [
+    "Joana Pereira",
+    "Adam J. Simpkin",
+    "Marcus D. Hartmann",
+    "Daniel J. Rigden",
+    "Ronan M. Keegan",
+    "Andrei N. Lupas"
+   ],
+   "etal": false,
+   "t": "High-accuracy protein structure prediction in CASP14",
+   "y": "2021",
+   "v": "Proteins",
+   "u": "https://doi.org/10.1002/prot.26171",
+   "raw": "Pereira, J. et al. High-accuracy protein structure prediction in CASP14. Proteins10.1002/prot.26171 (2021).34218458 10.1002/prot.26171",
+   "c": [
+    {
+     "s": "AlphaFold has already demonstrated its utility to the experimental community, both for molecular replacement and for interpreting cryogenic electron microscopy maps."
+    }
+   ]
+  },
+  {
+   "n": 58,
+   "a": [
+    "M. Gupta"
+   ],
+   "etal": true,
+   "t": "CryoEM and AI reveal a structure of SARS-CoV-2 Nsp2, a multifunctional protein involved in key host processes",
+   "y": "2021",
+   "v": "",
+   "u": "",
+   "raw": "Gupta, M. et al. CryoEM and AI reveal a structure of SARS-CoV-2 Nsp2, a multifunctional protein involved in key host processes. Preprint at 10.1101/2021.05.10.443524 (2021).",
+   "c": [
+    {
+     "s": "AlphaFold has already demonstrated its utility to the experimental community, both for molecular replacement and for interpreting cryogenic electron microscopy maps."
+    }
+   ]
+  },
+  {
+   "n": 59,
+   "a": [
+    "J. Ingraham",
+    "V. K. Garg",
+    "R. Barzilay",
+    "T. Jaakkola"
+   ],
+   "etal": false,
+   "t": "Generative models for graph-based protein design",
+   "y": "2019",
+   "v": "",
+   "u": "",
+   "raw": "Ingraham, J., Garg, V. K., Barzilay, R. & Jaakkola, T. Generative models for graph-based protein design. in Proc. 33rd Conference on Neural Information Processing Systems (2019).",
+   "c": [
+    {
+     "s": "A related construction that uses classic geometric invariants to construct pairwise features in place of the learned 3D points has been applied to protein design."
+    }
+   ]
+  },
+  {
+   "n": 60,
+   "a": [
+    "L Steven Johnson",
+    "Sean R Eddy",
+    "Elon Portugaly"
+   ],
+   "etal": false,
+   "t": "Hidden Markov model speed heuristic and iterative HMM search procedure",
+   "y": "2010",
+   "v": "BMC Bioinformatics",
+   "u": "https://doi.org/10.1186/1471-2105-11-431",
+   "raw": "Johnson, L. S., Eddy, S. R. & Portugaly, E. Hidden Markov model speed heuristic and iterative HMM search procedure. BMC Bioinformatics11, 431 (2010).20718988 10.1186/1471-2105-11-431PMC2931519",
+   "c": [
+    {
+     "s": "Inputs to the network are the primary sequence, sequences from evolutionarily related proteins in the form of a MSA created by standard tools including jackhmmer and HHBlits and 3D atom coordinates of a small number of homologous structures (templates) where available."
+    }
+   ]
+  },
+  {
+   "n": 61,
+   "a": [
+    "Michael Remmert",
+    "Andreas Biegert",
+    "Andreas Hauser",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "HHblits: lightning-fast iterative protein sequence searching by HMM-HMM alignment",
+   "y": "2012",
+   "v": "Nat. Methods",
+   "u": "https://doi.org/10.1038/nmeth.1818",
+   "raw": "Remmert, M., Biegert, A., Hauser, A. & Söding, J. HHblits: lightning-fast iterative protein sequence searching by HMM-HMM alignment. Nat. Methods9, 173–175 (2012).10.1038/nmeth.181822198341",
+   "c": [
+    {
+     "s": "Inputs to the network are the primary sequence, sequences from evolutionarily related proteins in the form of a MSA created by standard tools including jackhmmer and HHBlits and 3D atom coordinates of a small number of homologous structures (templates) where available."
+    },
+    {
+     "s": "For MSA search on BFD + Uniclust30, and template search against PDB70, we used HHBlits and HHSearch from hh-suite v.3.0-beta.3 (version 14/07/2017)."
+    }
+   ]
+  },
+  {
+   "n": 62,
+   "a": [
+    "The UniProt Consortium"
+   ],
+   "etal": false,
+   "t": "UniProt: the universal protein knowledgebase in 2021",
+   "y": "2020",
+   "v": "Nucleic Acids Res.",
+   "u": "https://doi.org/10.1093/nar/gkaa1100",
+   "raw": "The UniProt Consortium. UniProt: the universal protein knowledgebase in 2021. Nucleic Acids Res. 49, D480–D489 (2020).10.1093/nar/gkaa1100PMC777890833237286",
+   "c": [
+    {
+     "s": "First, 2,423,213,294 protein sequences were collected from UniProt (Swiss-Prot&amp;TrEMBL, 2017-11) a soil reference protein catalogue and the marine eukaryotic reference catalogue and clustered to 30% sequence identity, while enforcing a 90% alignment coverage of the shorter sequences using MMseqs2/Linclust."
+    }
+   ]
+  },
+  {
+   "n": 63,
+   "a": [
+    "Martin Steinegger",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "Clustering huge protein sequence sets in linear time",
+   "y": "2018",
+   "v": "Nat. Commun.",
+   "u": "https://doi.org/10.1038/s41467-018-04964-5",
+   "raw": "Steinegger, M. & Söding, J. Clustering huge protein sequence sets in linear time. Nat. Commun. 9, 2542 (2018).29959318 10.1038/s41467-018-04964-5PMC6026198",
+   "c": [
+    {
+     "s": "First, 2,423,213,294 protein sequences were collected from UniProt (Swiss-Prot&amp;TrEMBL, 2017-11) a soil reference protein catalogue and the marine eukaryotic reference catalogue and clustered to 30% sequence identity, while enforcing a 90% alignment coverage of the shorter sequences using MMseqs2/Linclust."
+    },
+    {
+     "s": "Second, we added 166,510,624 representative protein sequences from Metaclust NR (2017-05; discarding all sequences shorter than 150 residues) by aligning them against the cluster representatives using MMseqs2."
+    }
+   ]
+  },
+  {
+   "n": 64,
+   "a": [
+    "Martin Steinegger",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets",
+   "y": "2017",
+   "v": "Nat. Biotechnol.",
+   "u": "https://doi.org/10.1038/nbt.3988",
+   "raw": "Steinegger, M. & Söding, J. MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets. Nat. Biotechnol. 35, 1026–1028 (2017).29035372 10.1038/nbt.3988",
+   "c": [
+    {
+     "s": "Second, we added 166,510,624 representative protein sequences from Metaclust NR (2017-05; discarding all sequences shorter than 150 residues) by aligning them against the cluster representatives using MMseqs2."
+    }
+   ]
+  },
+  {
+   "n": 65,
+   "a": [
+    "Sebastian Deorowicz",
+    "Agnieszka Debudaj-Grabysz",
+    "Adam Gudyś"
+   ],
+   "etal": false,
+   "t": "FAMSA: fast and accurate multiple sequence alignment of huge protein families",
+   "y": "2016",
+   "v": "Sci. Rep.",
+   "u": "https://doi.org/10.1038/srep33964",
+   "raw": "Deorowicz, S., Debudaj-Grabysz, A. & Gudyś, A. FAMSA: fast and accurate multiple sequence alignment of huge protein families. Sci. Rep. 6, 33964 (2016).27670777 10.1038/srep33964PMC5037421",
+   "c": [
+    {
+     "s": "Third, for each of the clusters, we computed an MSA using FAMSA and computed the HMMs following the Uniclust HH-suite database protocol."
+    }
+   ]
+  },
+  {
+   "n": 66,
+   "a": [
+    "Martin Steinegger",
+    "Markus Meier",
+    "Milot Mirdita",
+    "Harald Vöhringer",
+    "Stephan J. Haunsberger",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "HH-suite3 for fast remote homology detection and deep protein annotation",
+   "y": "2019",
+   "v": "BMC Bioinformatics",
+   "u": "https://doi.org/10.1186/s12859-019-3019-7",
+   "raw": "Steinegger, M. et al. HH-suite3 for fast remote homology detection and deep protein annotation. BMC Bioinformatics20, 473 (2019).31521110 10.1186/s12859-019-3019-7PMC6744700",
+   "c": [
+    {
+     "s": "For finding template structures at prediction time, we used a copy of the PDB downloaded on 14 May 2020, and the PDB70 clustering database downloaded on 13 May 2020."
+    },
+    {
+     "s": "For MSA search on BFD + Uniclust30, and template search against PDB70, we used HHBlits and HHSearch from hh-suite v.3.0-beta.3 (version 14/07/2017)."
+    }
+   ]
+  },
+  {
+   "n": 67,
+   "a": [
+    "Baris E. Suzek",
+    "Yuqi Wang",
+    "Hongzhan Huang",
+    "Peter B. McGarvey",
+    "Cathy H. Wu",
+    "the UniProt Consortium"
+   ],
+   "etal": false,
+   "t": "UniRef clusters: a comprehensive and scalable alternative for improving sequence similarity searches",
+   "y": "2015",
+   "v": "Bioinformatics",
+   "u": "https://doi.org/10.1093/bioinformatics/btu739",
+   "raw": "Suzek, B. E., Wang, Y., Huang, H., McGarvey, P. B. & Wu, C. H. UniRef clusters: a comprehensive and scalable alternative for improving sequence similarity searches. Bioinformatics31, 926–932 (2015).25398609 10.1093/bioinformatics/btu739PMC4375400",
+   "c": [
+    {
+     "s": "For MSA lookup at both training and prediction time, we used Uniref90 v.2020_01, BFD, Uniclust30 v.2018_08 and MGnify v.2018_12."
+    }
+   ]
+  },
+  {
+   "n": 68,
+   "a": [
+    "Sean R. Eddy"
+   ],
+   "etal": false,
+   "t": "Accelerated profile HMM searches",
+   "y": "2011",
+   "v": "PLOS Comput. Biol.",
+   "u": "https://doi.org/10.1371/journal.pcbi.1002195",
+   "raw": "Eddy, S. R. Accelerated profile HMM searches. PLOS Comput. Biol. 7, e1002195 (2011).22039361 10.1371/journal.pcbi.1002195PMC3197634",
+   "c": [
+    {
+     "s": "For MSA search on Uniref90 and clustered MGnify, we used jackhmmer from HMMER3."
+    }
+   ]
+  },
+  {
+   "n": 69,
+   "a": [
+    "Peter Eastman",
+    "Jason Swails",
+    "John D. Chodera",
+    "Robert T. McGibbon",
+    "Yutong Zhao",
+    "Kyle A. Beauchamp",
+    "Lee-Ping Wang",
+    "Andrew C. Simmonett",
+    "Matthew P. Harrigan",
+    "Chaya D. Stern",
+    "Rafal P. Wiewiora",
+    "Bernard R. Brooks",
+    "Vijay S. Pande"
+   ],
+   "etal": false,
+   "t": "OpenMM 7: rapid development of high performance algorithms for molecular dynamics",
+   "y": "2017",
+   "v": "PLOS Comput. Biol.",
+   "u": "https://doi.org/10.1371/journal.pcbi.1005659",
+   "raw": "Eastman, P. et al. OpenMM 7: rapid development of high performance algorithms for molecular dynamics. PLOS Comput. Biol. 13, e1005659 (2017).28746339 10.1371/journal.pcbi.1005659PMC5549999",
+   "c": [
+    {
+     "s": "For constrained relaxation of structures, we used OpenMM v.7.3.1 with the Amber99sb force field."
+    }
+   ]
+  },
+  {
+   "n": 70,
+   "a": [
+    "Martín Abadi"
+   ],
+   "etal": true,
+   "t": "TensorFlow: large-scale machine learning on heterogeneous systems",
+   "y": "2015",
+   "v": "",
+   "u": "",
+   "raw": "Ashish, A. M. A. et al. TensorFlow: large-scale machine learning on heterogeneous systems. Preprint at https://arxiv.org/abs/1603.04467 (2015).",
+   "c": [
+    {
+     "s": "For neural network construction, running and other analyses, we used TensorFlow Sonnet NumPy Python and Colab."
+    }
+   ]
+  },
+  {
+   "n": 71,
+   "a": [
+    "M. Reynolds"
+   ],
+   "etal": true,
+   "t": "Open sourcing Sonnet – a new library for constructing neural networks",
+   "y": "",
+   "v": "",
+   "u": "",
+   "raw": "Reynolds, M. et al. Open sourcing Sonnet – a new library for constructing neural networks. DeepMindhttps://deepmind.com/blog/open-sourcing-sonnet/ (7 April 2017).",
+   "c": [
+    {
+     "s": "For neural network construction, running and other analyses, we used TensorFlow Sonnet NumPy Python and Colab."
+    }
+   ]
+  },
+  {
+   "n": 72,
+   "a": [
+    "Charles R. Harris",
+    "K. Jarrod Millman",
+    "Stéfan J. van der Walt",
+    "Ralf Gommers",
+    "Pauli Virtanen",
+    "David Cournapeau",
+    "Eric Wieser",
+    "Julian Taylor",
+    "Sebastian Berg",
+    "Nathaniel J. Smith",
+    "Robert Kern",
+    "Matti Picus",
+    "Stephan Hoyer",
+    "Marten H. van Kerkwijk",
+    "Matthew Brett",
+    "Allan Haldane",
+    "Jaime Fernández del Río",
+    "Mark Wiebe",
+    "Pearu Peterson",
+    "Pierre Gérard-Marchant",
+    "Kevin Sheppard",
+    "Tyler Reddy",
+    "Warren Weckesser",
+    "Hameer Abbasi",
+    "Christoph Gohlke",
+    "Travis E. Oliphant"
+   ],
+   "etal": false,
+   "t": "Array programming with NumPy",
+   "y": "2020",
+   "v": "Nature",
+   "u": "https://doi.org/10.1038/s41586-020-2649-2",
+   "raw": "Harris, C. R. et al. Array programming with NumPy. Nature585, 357–362 (2020).32939066 10.1038/s41586-020-2649-2PMC7759461",
+   "c": [
+    {
+     "s": "For neural network construction, running and other analyses, we used TensorFlow Sonnet NumPy Python and Colab."
+    }
+   ]
+  },
+  {
+   "n": 73,
+   "a": [
+    "G. Van Rossum",
+    "F. L. Drake"
+   ],
+   "etal": false,
+   "t": "Python 3 Reference Manual (CreateSpace, 2009).",
+   "y": "",
+   "v": "",
+   "u": "",
+   "raw": "Van Rossum, G. & Drake, F. L. Python 3 Reference Manual (CreateSpace, 2009).",
+   "c": [
+    {
+     "s": "For neural network construction, running and other analyses, we used TensorFlow Sonnet NumPy Python and Colab."
+    }
+   ]
+  },
+  {
+   "n": 74,
+   "a": [],
+   "etal": false,
+   "t": "Bisong, E",
+   "y": "",
+   "v": "",
+   "u": "",
+   "raw": "Bisong, E. in Building Machine Learning and Deep Learning Models on Google Cloud Platform: A Comprehensive Guide for Beginners 59–64 (Apress, 2019).",
+   "c": [
+    {
+     "s": "For neural network construction, running and other analyses, we used TensorFlow Sonnet NumPy Python and Colab."
+    }
+   ]
+  },
+  {
+   "n": 75,
+   "a": [],
+   "etal": false,
+   "t": "TensorFlow",
+   "y": "",
+   "v": "",
+   "u": "",
+   "raw": "TensorFlow. XLA: Optimizing Compiler for TensorFlow. https://www.tensorflow.org/xla (2018).",
+   "c": [
+    {
+     "s": "These timings are measured using our open-source code, and the open-source code is notably faster than the version we ran in CASP14 as we now use the XLA compiler."
+    }
+   ]
+  },
+  {
+   "n": 76,
+   "a": [
+    "Tianqi Wu",
+    "Jie Hou",
+    "Badri Adhikari",
+    "Jianlin Cheng"
+   ],
+   "etal": false,
+   "t": "Analysis of several key factors influencing deep learning-based inter-residue contact prediction",
+   "y": "2020",
+   "v": "Bioinformatics",
+   "u": "https://doi.org/10.1093/bioinformatics/btz679",
+   "raw": "Wu, T., Hou, J., Adhikari, B. & Cheng, J. Analysis of several key factors influencing deep learning-based inter-residue contact prediction. Bioinformatics36, 1091–1098 (2020).31504181 10.1093/bioinformatics/btz679PMC7703788",
+   "c": [
+    {
+     "s": "Per-residue Neff values were obtained by counting the number of non-gap residues in the MSA for this position and weighting the sequences using the Neff scheme with a threshold of 80% sequence identity measured on the region that is non-gap in either sequence."
+    }
+   ]
+  },
+  {
+   "n": 77,
+   "a": [
+    "Wangshu Jiang",
+    "Wimal Ubhayasekera",
+    "Michael C. Breed",
+    "Allison N. Norsworthy",
+    "Nina Serr",
+    "Harry L. T. Mobley",
+    "Melanie M. Pearson",
+    "Stefan D. Knight"
+   ],
+   "etal": false,
+   "t": "MrpH, a new class of metal-binding adhesin, requires zinc to mediate biofilm formation",
+   "y": "2020",
+   "v": "PLoS Pathog.",
+   "u": "https://doi.org/10.1371/journal.ppat.1008707",
+   "raw": "Jiang, W. et al. MrpH, a new class of metal-binding adhesin, requires zinc to mediate biofilm formation. PLoS Pathog. 16, e1008707 (2020).32780778 10.1371/journal.ppat.1008707PMC7444556",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 78,
+   "a": [
+    "M. Dunne",
+    "P. Ernst",
+    "A. Sobieraj",
+    "A. Pluckthun",
+    "M. J. Loessner"
+   ],
+   "etal": false,
+   "t": "The M23 peptidase domain of the Staphylococcal phage 2638A endolysin",
+   "y": "2020",
+   "v": "",
+   "u": "",
+   "raw": "Dunne, M., Ernst, P., Sobieraj, A., Pluckthun, A. & Loessner, M. J. The M23 peptidase domain of the Staphylococcal phage 2638A endolysin. PDB10.2210/pdb6YJ1/pdb (2020).",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 79,
+   "a": [
+    "Arina V. Drobysheva",
+    "Sofia A. Panafidina",
+    "Matvei V. Kolesnik",
+    "Evgeny I. Klimuk",
+    "Leonid Minakhin",
+    "Maria V. Yakunina",
+    "Sergei Borukhov",
+    "Emelie Nilsson",
+    "Karin Holmfeldt",
+    "Natalya Yutin",
+    "Kira S. Makarova",
+    "Eugene V. Koonin",
+    "Konstantin V. Severinov",
+    "Petr G. Leiman",
+    "Maria L. Sokolova"
+   ],
+   "etal": false,
+   "t": "Structure and function of virion RNA polymerase of a crAss-like phage",
+   "y": "2021",
+   "v": "Nature",
+   "u": "https://doi.org/10.1038/s41586-020-2921-5",
+   "raw": "Drobysheva, A. V. et al. Structure and function of virion RNA polymerase of a crAss-like phage. Nature589, 306–309 (2021).33208949 10.1038/s41586-020-2921-5PMC12127119",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 80,
+   "a": [
+    "Nicolas Flaugnatti",
+    "Chiara Rapisarda",
+    "Martial Rey",
+    "Solène G Beauvois",
+    "Viet Anh Nguyen",
+    "Stéphane Canaan",
+    "Eric Durand",
+    "Julia Chamot‐Rooke",
+    "Eric Cascales",
+    "Rémi Fronzes",
+    "Laure Journet"
+   ],
+   "etal": false,
+   "t": "Structural basis for loading and inhibition of a bacterial T6SS phospholipase effector by the VgrG spike",
+   "y": "2020",
+   "v": "EMBO J.",
+   "u": "https://doi.org/10.15252/embj.2019104129",
+   "raw": "Flaugnatti, N. et al. Structural basis for loading and inhibition of a bacterial T6SS phospholipase effector by the VgrG spike. EMBO J. 39, e104129 (2020).32350888 10.15252/embj.2019104129PMC7265238",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 81,
+   "a": [
+    "Mohammad ElGamacy",
+    "Murray Coles",
+    "Patrick Ernst",
+    "Hongbo Zhu",
+    "Marcus D. Hartmann",
+    "Andreas Plückthun",
+    "Andrei N. Lupas"
+   ],
+   "etal": false,
+   "t": "An interface-driven design strategy yields a novel, corrugated protein architecture",
+   "y": "2018",
+   "v": "ACS Synth. Biol.",
+   "u": "https://doi.org/10.1021/acssynbio.8b00224",
+   "raw": "ElGamacy, M. et al. An interface-driven design strategy yields a novel, corrugated protein architecture. ACS Synth. Biol. 7, 2226–2235 (2018).30148951 10.1021/acssynbio.8b00224",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 82,
+   "a": [
+    "Ci Ji Lim",
+    "Alexandra T. Barbour",
+    "Arthur J. Zaug",
+    "Karen J. Goodrich",
+    "Allison E. McKay",
+    "Deborah S. Wuttke",
+    "Thomas R. Cech"
+   ],
+   "etal": false,
+   "t": "The structure of human CST reveals a decameric assembly bound to telomeric DNA",
+   "y": "2020",
+   "v": "Science",
+   "u": "https://doi.org/10.1126/science.aaz9649",
+   "raw": "Lim, C. J. et al. The structure of human CST reveals a decameric assembly bound to telomeric DNA. Science368, 1081–1085 (2020).32499435 10.1126/science.aaz9649PMC7559292",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 83,
+   "a": [
+    "Vincent Debruycker",
+    "Andrew Hutchin",
+    "Matthieu Masureel",
+    "Emel Ficici",
+    "Chloé Martens",
+    "Pierre Legrand",
+    "Richard A. Stein",
+    "Hassane S. Mchaourab",
+    "José D. Faraldo-Gómez",
+    "Han Remaut",
+    "Cédric Govaerts"
+   ],
+   "etal": false,
+   "t": "An embedded lipid in the multidrug transporter LmrP suggests a mechanism for polyspecificity",
+   "y": "2020",
+   "v": "Nat. Struct. Mol. Biol.",
+   "u": "https://doi.org/10.1038/s41594-020-0464-y",
+   "raw": "Debruycker, V. et al. An embedded lipid in the multidrug transporter LmrP suggests a mechanism for polyspecificity. Nat. Struct. Mol. Biol. 27, 829–835 (2020).32719456 10.1038/s41594-020-0464-yPMC7951658",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  },
+  {
+   "n": 84,
+   "a": [
+    "Thomas G. Flower",
+    "Cosmo Z. Buffalo",
+    "Richard M. Hooy",
+    "Marc Allaire",
+    "Xuefeng Ren",
+    "James H. Hurley"
+   ],
+   "etal": false,
+   "t": "Structure of SARS-CoV-2 ORF8, a rapidly evolving immune evasion protein",
+   "y": "2021",
+   "v": "Proc. Natl Acad. Sci. USA",
+   "u": "https://doi.org/10.1073/pnas.2021785118",
+   "raw": "Flower, T. G. et al. Structure of SARS-CoV-2 ORF8, a rapidly evolving immune evasion protein. Proc. Natl Acad. Sci. USA118, e2021785118 (2021).33361333 10.1073/pnas.2021785118PMC7812859",
+   "c": [
+    {
+     "s": "We show experimental structures from the PDB with accession numbers 6Y4F 6YJ1 6VR4 6SK0 6FES 6W6W 6T1Z and 7JTL."
+    }
+   ]
+  }
+ ]
+}

@@ -30,7 +30,7 @@ h2{font:900 clamp(1.45rem,4vw,1.9rem)/1.25 var(--f-display);margin:0 0 .5rem}
 .sec>.eyebrow{display:block;margin-bottom:.6rem}
 .tag{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.12rem .5rem;border-radius:3px}
 .chip{display:inline-block;font:500 .66rem/1.5 var(--f-mono);letter-spacing:.04em;padding:0 .4rem;border-radius:3px;vertical-align:.12em;margin-left:.3rem;white-space:nowrap}
-.chip.fm{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
+.chip.fm,.chip.nc{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.75rem;margin:1.6rem 0 0}
 .stat{border-left:3px solid var(--gold);padding:.1rem .8rem}
 .stat b{display:block;font:900 1.8rem/1.15 var(--f-display)}
@@ -173,8 +173,19 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </section>
 
 <section class="sec">
+<span class="eyebrow">Chemistry · Life sciences</span>
+<a class="card" href="alphafold/">
+<span class="tag">July 2021 · Protein structure</span>
+<h2>From Anfinsen to AlphaFold: protein structure prediction</h2>
+<p>DeepMind’s AlphaFold 2 predicts protein structures with near-experimental accuracy, work recognised with half of the 2024 Nobel Prize in Chemistry. Its 84 references run from Anfinsen’s “sequence determines structure” in 1973 to 2021.</p>
+<div class="tl"><span class="ms"><b>Christian Anfinsen</b><i>1973</i></span><span class="arr">→</span><span class="ms"><b>Altschuh · Klug</b><i>1987</i></span><span class="arr">→</span><span class="ms"><b>CASP · Moult</b><i>1995</i></span><span class="arr">→</span><span class="ms"><b>Marks et al.</b><i>2011</i></span><span class="arr">→</span><span class="ms"><b>AlphaFold 1</b><i>2020</i></span><span class="arr">→</span><span class="ms"><b>trRosetta · Baker</b><i>2020</i></span><span class="arr">→</span><span class="ms ai"><b>AlphaFold 2</b><i>2021</i></span></div>
+<span class="go">Open the AlphaFold page →</span>
+</a>
+</section>
+
+<section class="sec">
 <span class="eyebrow">Other fields</span>
-<div class="grid"><div class="soon"><b>Physics</b>Coming soon</div><div class="soon"><b>Chemistry</b>Coming soon</div><div class="soon"><b>Life sciences</b>Coming soon</div><div class="soon"><b>Computer science</b>Coming soon</div></div>
+<div class="grid"><div class="soon"><b>Physics</b>Coming soon</div><div class="soon"><b>Computer science</b>Coming soon</div></div>
 </section>
 <section class="sec" id="contact">
 <div class="contact">
@@ -193,7 +204,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </div>
 </section>
 
-<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"tOne": "Pay tribute to {n}", "tDone": "Tribute paid · thank you", "tCount": "tributes", "fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
+<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "af": "alphafold/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"fAf": "Protein structure: cited <b>{ae}<\/b> times in the AlphaFold 2 paper.", "fGoA": "Open the AlphaFold page →", "tOne": "Pay tribute to {n}", "tDone": "Tribute paid · thank you", "tCount": "tributes", "fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf", "nc": "Nobel Chemistry"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
 <script>
 (function(){
 const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);
@@ -207,7 +218,7 @@ const q=$('#q'),sug=$('#sug'),res=$('#res');let hits=[],on=0;
 const label=x=>C.zh&&x[1]?x[1]+' · '+x[0]:x[0];
 function find(v){v=fold(v.trim());if(!v)return Promise.resolve([]);
  return load().then(L=>{const a=[],b=[];for(const e of L){const i=e.k.indexOf(v);if(i<0)continue;(i===0||e.k[i-1]===' '?a:b).push(e.x);if(a.length>=8)break}return a.concat(b).slice(0,8)})}
-function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]}</small></button>`).join('')}
+function showSug(){sug.hidden=!hits.length;sug.innerHTML=hits.map((x,i)=>`<button type="button" data-i="${i}" class="${i===on?'on':''}"><span>${esc(label(x))}</span><small>${x[3]+x[7]+(x[9]||0)}</small></button>`).join('')}
 function card(x){
  const pz=x[2]?x[2].split(' ').map(p=>`<span class="chip ${p.slice(0,2)}">${S.prize[p.slice(0,2)]} ${p.slice(2)}</span>`).join(''):'';
  let h=`<div class="who">${esc(C.zh&&x[1]?x[1]:x[0])}${C.zh&&x[1]?`<small>${esc(x[0])}</small>`:''}${pz}</div>`;
@@ -215,6 +226,7 @@ function card(x){
   if(x[6].length)h+=`<div>${S.fTop}</div><ul>${x[6].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''} · ${w[2]} ${S.fPp}</li>`).join('')}</ul>`;
   h+=`<p><a class="go" href="${C.math}#a${x[5]}">${S.fGoM}</a></p>`}
  if(x[7]){h+=`<p class="line">${fill(S.fNs,{ne:x[7]})}</p><ul>${x[8].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.ns}">${S.fGoN}</a></p>`}
+ if(x[9]){h+=`<p class="line">${fill(S.fAf,{ae:x[9]})}</p><ul>${x[10].map(w=>`<li><i>${esc(w[0])}</i>${w[1]?' ('+esc(w[1])+')':''}</li>`).join('')}</ul><p><a class="go" href="${C.af}">${S.fGoA}</a></p>`}
  const who=C.zh&&x[1]?x[1]:x[0],p='tribute/'+x[0];
  h+=`<div class="tb"><button type="button" class="tribute" data-path="${esc(p)}" data-done="${esc(S.tDone)}" data-title="${esc('Tribute: '+x[0])}"><span class="ic">✦</span><span class="lb">${esc(fill(S.tOne,{n:who}))}</span></button><span class="tcount" hidden><b>0</b> ${esc(S.tCount)}</span></div>`;
  res.innerHTML=h;sug.hidden=true;if(window.Tribute)Tribute.bind(res)}

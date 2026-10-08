@@ -4,12 +4,14 @@ AI 在科学前沿的每一项突破都依靠人类的智慧与努力。本站�
 
 - 首页 / Home：https://96kevinli29.github.io/Shoulders/ （中文：`/zh/`）
 - 流体方程 / Navier–Stokes & Euler：https://96kevinli29.github.io/Shoulders/navier-stokes/ （中文：`/navier-stokes/zh/`）
+- 蛋白质结构 / AlphaFold 2：https://96kevinli29.github.io/Shoulders/alphafold/ （中文：`/alphafold/zh/`）
 - 数学全景 / OpenAI Math Release：https://96kevinli29.github.io/Shoulders/math/ （中文：`/math/zh/`）
 
 ## 目录结构
 
 - `index.html`、`en/index.html`：总入口，由 `hub.py` 生成；新学科上线时在 `hub.py` 中加入卡片。
 - `navier-stokes/`：OpenAI 的 Navier–Stokes 与 Euler 方程有限时间爆破论文（2026-09-08）。`scripts/extract.py` 从两篇 PDF 解析参考文献与正文引用句（需 PyMuPDF），生成 `refs.json`；`scripts/build.py` 生成页面。
+- `alphafold/`：AlphaFold 2 论文（Jumper et al., Nature 2021）。`scripts/extract.py` 读取 Europe PMC 的开放获取全文（JATS），用 Crossref 补全被“et al.”省略的作者，生成 `refs.json`；`scripts/build.py` 生成页面。
 - `math/`：OpenAI Math Release 数学专题（页面与 `math/scripts/` 下的构建脚本）。
 - `common.py`：首页与专题页共用的样式和获奖者匹配。
 
