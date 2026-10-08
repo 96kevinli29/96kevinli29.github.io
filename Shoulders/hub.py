@@ -18,6 +18,7 @@ ent = collections.Counter({k: v for k, v in ent.items() if not A[k]['n'].startsw
 M_LAUR = sum(1 for k in ent if any(x in A[k] for x in ('fm', 'ab', 'wf')))
 NP = len(M['papers'])
 NF = len({p['fam'] for p in M['papers']})   # OpenAI groups the manuscripts into result families
+RELEASED = 722   # manuscripts in OpenAI's original release (6 Oct 2026); headlines keep this number, a note gives the current count
 ROWS = [3, 5, 8, 11, 14]
 TOP = ent.most_common(sum(ROWS))
 # Shown side by side in the middle of the third row, whatever their rank.
@@ -219,6 +220,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 .card h2{margin:.6rem 0 .4rem}
 .card p{margin:.3rem 0;max-width:44rem}
 .card .go{display:inline-block;margin-top:.9rem;font-weight:600;color:var(--use)}
+.card .upd{margin-top:.9rem;font-size:.82rem;color:var(--muted);border-left:2px solid var(--rule);padding-left:.6rem}
 .card .src{margin-top:.9rem;font:.78rem var(--f-mono);color:var(--muted)}
 .card .stats{margin-top:1.1rem}
 .tl{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .5rem;margin:1.1rem 0 .2rem}
@@ -317,11 +319,12 @@ T = {
   nsTag='最新 · 2026 年 9 月 · 流体方程', nsH='从欧拉到 AI：Navier–Stokes 与 Euler 方程',
   nsP=f'OpenAI 发布的 Navier–Stokes 与 Euler 方程两篇论文，附 Lean 形式化。它们的 {NS_REFS} 条参考文献，从 1757 年的欧拉一直延续到 2026 年。',
   nsGo='进入流体方程专题 →',
-  mTag='2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{NP} 篇 AI 数学稿件',
-  mP=f'OpenAI 发布了由其内部模型撰写的 {NP} 篇数学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字；字越大，被引用越多。',
-  aiS=f'{NP} 篇稿件 · {NF} 个成果',
+  mTag='2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{RELEASED} 篇 AI 数学稿件',
+  mP=f'OpenAI 发布了由其内部模型撰写的 {RELEASED} 篇数学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字；字越大，被引用越多。',
+  aiS=f'{RELEASED} 篇稿件 · {NF} 个成果',
+  upd=f'注：2026 年 10 月 7 日，OpenAI 撤回 3 篇稿件并修订了另外 14 篇。以上数字按当前的 {NP} 篇稿件统计，每天自动更新。' if NP != RELEASED else '',
   legend='字号 = 参考文献条目数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。',
-  st=[(NP, f'篇 AI 数学稿件（{NF} 个成果）'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
+  st=[(NP, f'篇当前稿件（{NF} 个成果）'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
   mGo='进入数学专题 →', src='数据来源',
   secChem='化学 · 生命科学',
   afTag='2021 年 7 月 · 蛋白质结构', afH='从安芬森到 AlphaFold：蛋白质结构预测',
@@ -354,11 +357,12 @@ T = {
   nsTag='Latest · September 2026 · Fluid equations', nsH='From Euler to AI: Navier–Stokes and Euler',
   nsP=f'OpenAI’s two papers on the Navier–Stokes and Euler equations, released with Lean formalizations. Their {NS_REFS} references run from Euler in 1757 to 2026.',
   nsGo='Open the fluid equations page →',
-  mTag='October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {NP} AI-written math manuscripts',
-  mP=f'OpenAI released {NP} mathematics manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below; the larger the name, the more often it is cited.',
-  aiS=f'{NP} manuscripts · {NF} results',
+  mTag='October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {RELEASED} AI-written math manuscripts',
+  mP=f'OpenAI released {RELEASED} mathematics manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below; the larger the name, the more often it is cited.',
+  aiS=f'{RELEASED} manuscripts · {NF} results',
+  upd=f'Note: on 7 October 2026 OpenAI withdrew 3 manuscripts and revised 14 others. The figures above count the {NP} current manuscripts and update daily.' if NP != RELEASED else '',
   legend='Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.',
-  st=[(NP, f'AI-written math manuscripts ({NF} results)'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
+  st=[(NP, f'current manuscripts ({NF} results)'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
   mGo='Open the mathematics index →', src='Source',
   secChem='Chemistry · Life sciences',
   afTag='July 2021 · Protein structure', afH='From Anfinsen to AlphaFold: protein structure prediction',
@@ -410,6 +414,7 @@ for k, t in T.items():
 </figure>
 <div class="stats">{''.join(f'<div class="stat"><b>{n:,}</b><span>{esc(l)}</span></div>' for n, l in t['st'])}</div>
 <a class="go" href="{t['math']}">{t['mGo']}</a>
+{f'<p class="upd">{t["upd"]}</p>' if t['upd'] else ''}
 <p class="src">{t['src']}: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
 </div>
 </section>
