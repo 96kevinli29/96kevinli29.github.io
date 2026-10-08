@@ -135,14 +135,15 @@ CSS = '''
 .res ul{margin:.2rem 0 0;padding-left:1.2rem;font-size:.9rem;color:var(--muted)}
 .res li i{color:var(--ink)}
 .res .go{font-weight:600;font-size:.9rem}
-.contact{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.3rem 1.4rem}
-.contact>p{color:var(--muted);margin:.2rem 0 1rem}
-.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.contact{max-width:34rem;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem}
+.contact h2{font-size:1.25rem;margin:0}
+.contact>p{color:var(--muted);margin:.15rem 0 .7rem;font-size:.9rem}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
 .contact label{display:flex;flex-direction:column;gap:.25rem;font:.78rem var(--f-mono);color:var(--muted);letter-spacing:.03em}
 .contact .full{grid-column:1/-1}
-.contact input,.contact select,.contact textarea{font:.95rem var(--f-body);padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
-.contact textarea{min-height:8rem;resize:vertical}
-.contact button[type=submit]{justify-self:start;font:600 .95rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.6rem 1.3rem;cursor:pointer}
+.contact input,.contact select,.contact textarea{font:.9rem var(--f-body);padding:.4rem .6rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
+.contact textarea{min-height:4.5rem;resize:vertical}
+.contact button[type=submit]{justify-self:start;font:600 .88rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.45rem 1.1rem;cursor:pointer}
 .contact button[disabled]{opacity:.5;cursor:default}
 .contact .msg{grid-column:1/-1;font-size:.88rem;margin:0}
 .contact .msg.ok{color:var(--use)}.contact .msg.err{color:#c25a4a}
@@ -236,16 +237,16 @@ T = {
   desc='向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。',
   eyebrow='巨人之肩 · On Whose Shoulders',
   h1='AI 的每一次突破，<br>都站在人类科学家的肩膀上',
-  dek='当 AI 证明一条定理、攻克一个难题，它用到的概念、方法和工具，来自几代科学家的积累。我们逐条整理 AI 成果的参考文献，找出其中的每一个名字，按学科分开，随每一次突破更新。',
-  manifesto='科学家是桥梁：一端连着几百年的人类知识，一端连着今天的 AI。这个项目向 AI 时代的人类科学家致敬。',
+  dek='AI 证明的每一条定理、攻克的每一道难题，都写在前人留下的纸页上。那些概念、方法与工具，是几代科学家用一生换来的。',
+  manifesto='我们找出 AI 成果引用的每一位科学家，写下他们的名字。他们是连接人类知识与 AI 的桥梁，也是我们永远尊敬的人。',
   team=('Sea-Fill 开源科学团队', '我们是 Sea-Fill，一个开源科学团队'),
-  fH='查一查：AI 站在谁的肩膀上', fP='输入一位科学家的名字，看看 AI 论文引用了他的哪些工作。目前收录数学全景与流体方程两期。',
+  fH='寻找一位巨人', fP='输入一位科学家的名字，看看 AI 站在了他们的哪些工作之上。',
   fPh='输入名字：陶哲轩、Grothendieck、欧拉……', fTry='试试：', fTries=['陶哲轩', '郭少明', 'Grothendieck', '欧拉', '王虹'],
   fLoading='正在载入索引…', fNone='没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。',
   fMath='数学全景：被 <b>{mp}</b> 篇 AI 数学预印本引用，共 <b>{me}</b> 条参考文献。', fTop='被引最多的著作：', fPp='篇引用',
   fNs='流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}</b> 条。', fGoM='在数学专题中查看 →', fGoN='查看流体方程专题 →',
   prize={'fm': '菲尔兹奖', 'ab': '阿贝尔奖', 'wf': '沃尔夫奖'},
-  cH='联系我们', cP='发现引用错误、想推荐下一期值得记录的 AI 科学突破，或者想参与合作，都可以写信给我们。',
+  cH='写信给我们', cP='纠正一处引用，推荐下一项值得铭记的 AI 科学突破，或与我们一起把这件事做下去。',
   cName='称呼（可选）', cEmail='你的邮箱（用于回复）', cType='类型', cTypes=['纠错', '推荐下一期 AI 突破', '合作', '其他'], cMsg='内容',
   cSend='发送', cSending='发送中…', cOk='已发送，谢谢！我们会尽快回复。', cErr='发送失败，请稍后再试。', cOff='表单尚未启用。',
   cFine='提交的内容经 Web3Forms 转发给 Sea-Fill 团队，只用于回复你。',
@@ -254,29 +255,29 @@ T = {
   nsP=f'OpenAI 公开两篇论文，给出三维 Navier–Stokes 方程与 Euler 方程有限时间爆破的构造，并附 Lean 形式化证明。两篇论文的 {NS_REFS} 条参考文献，从 1757 年的欧拉一直延续到 2026 年。',
   nsGo='进入流体方程专题 →',
   mTag='2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{NP} 篇 AI 数学预印本',
-  mP=f'OpenAI 公开了 {NP} 篇 AI 撰写的数学预印本及其 LaTeX 源码。下面的金字塔是被引用最多的数学家：顶端是 AI，托起它的是人类。',
+  mP=f'OpenAI 公开了 {NP} 篇由 AI 撰写的数学预印本。托起它们的，是下面这些名字；字越大，被引用越多。',
   aiS=f'{NP} 篇 AI 数学预印本',
   legend='字号 = 参考文献条目数；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。悬停查看详情。',
   st=[(NP, '篇 AI 数学预印本'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
   mGo='进入数学专题 →', src='数据来源',
   more='其他学科', soon='即将推出', subs=['物理', '化学', '生命科学', '计算机科学'],
-  foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属。',
+  foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。',
  ),
  'en': dict(
   lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', '../'), ns='../navier-stokes/en/', math='../math/en/', idx='../search.json',
   desc='A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.',
   eyebrow='On Whose Shoulders · 巨人之肩',
   h1='Every AI breakthrough<br>stands on human shoulders',
-  dek='When AI proves a theorem or settles an open problem, the ideas, methods and tools it uses come from generations of scientists. We go through the references of AI results entry by entry, find every name, and keep the record field by field, updated with each breakthrough.',
-  manifesto='Scientists are the bridge: one end rests on centuries of human knowledge, the other on today’s AI. This project is a tribute to the human scientists of the AI era.',
+  dek='Every theorem AI proves and every problem it settles is written on pages others left behind. Its ideas, methods and tools were paid for with lifetimes of human work.',
+  manifesto='We find every scientist an AI result cites and write down their name. They are the bridge between human knowledge and AI, and the people we will always honour.',
   team=('Sea-Fill · open-source science team', 'We are Sea-Fill, an open-source science team'),
-  fH='Look up: whose shoulders does AI stand on?', fP='Type a scientist’s name to see which of their works AI papers cite. Covers the mathematics overview and the fluid equations issue.',
+  fH='Find a giant', fP='Type a scientist’s name to see which of their works AI has built upon.',
   fPh='Type a name: Terence Tao, Grothendieck, Euler…', fTry='Try: ', fTries=['Terence Tao', 'Shaoming Guo', 'Grothendieck', 'Euler', 'Hong Wang'],
   fLoading='Loading the index…', fNone='No match. This name does not appear in the references of the AI papers covered so far.',
   fMath='Mathematics overview: cited by <b>{mp}</b> AI-written preprints, <b>{me}</b> reference entries in all.', fTop='Most-cited works:', fPp='citing preprints',
   fNs='Fluid equations: cited <b>{ne}</b> times in OpenAI’s Navier–Stokes / Euler papers.', fGoM='Open in the mathematics index →', fGoN='Open the fluid equations page →',
   prize={'fm': 'Fields', 'ab': 'Abel', 'wf': 'Wolf'},
-  cH='Contact us', cP='Spotted a citation error, want to suggest the next AI breakthrough in science worth recording, or want to collaborate? Write to us.',
+  cH='Write to us', cP='Correct a citation, suggest the next AI breakthrough worth remembering, or join us in carrying this on.',
   cName='Name (optional)', cEmail='Your email (for our reply)', cType='Topic', cTypes=['Correction', 'Suggest the next AI breakthrough', 'Collaboration', 'Other'], cMsg='Message',
   cSend='Send', cSending='Sending…', cOk='Sent, thank you! We will reply soon.', cErr='Sending failed; please try again later.', cOff='The form is not enabled yet.',
   cFine='Your message is forwarded to the Sea-Fill team by Web3Forms and used only to reply to you.',
@@ -285,13 +286,13 @@ T = {
   nsP=f'OpenAI released two papers constructing finite-time blowup for the three-dimensional Navier–Stokes and Euler equations, with Lean formalizations. Their {NS_REFS} references run from Euler in 1757 to 2026.',
   nsGo='Open the fluid equations page →',
   mTag='October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {NP} AI-written math preprints',
-  mP=f'OpenAI published {NP} AI-written mathematics preprints with their LaTeX sources. The pyramid shows the most-cited mathematicians: AI at the top, held up by people.',
+  mP=f'OpenAI published {NP} mathematics preprints written by AI. Holding them up are the names below; the larger the name, the more often it is cited.',
   aiS=f'{NP} AI-written math preprints',
   legend='Size = reference entries; <b>gold</b> = Fields / Abel / Wolf laureate. Hover for details.',
   st=[(NP, 'AI-written math preprints'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
   mGo='Open the mathematics index →', src='Source',
   more='Other fields', soon='Coming soon', subs=['Physics', 'Chemistry', 'Life sciences', 'Computer science'],
-  foot='Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results.',
+  foot='Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute.',
  ),
 }
 

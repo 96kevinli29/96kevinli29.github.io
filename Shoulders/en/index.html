@@ -58,14 +58,15 @@ footer a{color:var(--muted)}
 .res ul{margin:.2rem 0 0;padding-left:1.2rem;font-size:.9rem;color:var(--muted)}
 .res li i{color:var(--ink)}
 .res .go{font-weight:600;font-size:.9rem}
-.contact{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.3rem 1.4rem}
-.contact>p{color:var(--muted);margin:.2rem 0 1rem}
-.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.contact{max-width:34rem;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem}
+.contact h2{font-size:1.25rem;margin:0}
+.contact>p{color:var(--muted);margin:.15rem 0 .7rem;font-size:.9rem}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
 .contact label{display:flex;flex-direction:column;gap:.25rem;font:.78rem var(--f-mono);color:var(--muted);letter-spacing:.03em}
 .contact .full{grid-column:1/-1}
-.contact input,.contact select,.contact textarea{font:.95rem var(--f-body);padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
-.contact textarea{min-height:8rem;resize:vertical}
-.contact button[type=submit]{justify-self:start;font:600 .95rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.6rem 1.3rem;cursor:pointer}
+.contact input,.contact select,.contact textarea{font:.9rem var(--f-body);padding:.4rem .6rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
+.contact textarea{min-height:4.5rem;resize:vertical}
+.contact button[type=submit]{justify-self:start;font:600 .88rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.45rem 1.1rem;cursor:pointer}
 .contact button[disabled]{opacity:.5;cursor:default}
 .contact .msg{grid-column:1/-1;font-size:.88rem;margin:0}
 .contact .msg.ok{color:var(--use)}.contact .msg.err{color:#c25a4a}
@@ -114,15 +115,15 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 <div class="top"><span>On Whose Shoulders · 巨人之肩</span><a href="../">中文</a></div>
 <header class="hero">
 <h1>Every AI breakthrough<br>stands on human shoulders</h1>
-<p class="dek">When AI proves a theorem or settles an open problem, the ideas, methods and tools it uses come from generations of scientists. We go through the references of AI results entry by entry, find every name, and keep the record field by field, updated with each breakthrough.</p>
-<p class="manifesto">Scientists are the bridge: one end rests on centuries of human knowledge, the other on today’s AI. This project is a tribute to the human scientists of the AI era.</p>
+<p class="dek">Every theorem AI proves and every problem it settles is written on pages others left behind. Its ideas, methods and tools were paid for with lifetimes of human work.</p>
+<p class="manifesto">We find every scientist an AI result cites and write down their name. They are the bridge between human knowledge and AI, and the people we will always honour.</p>
 <a class="team" href="https://huggingface.co/SeaFill2025"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png" alt="" width="34" height="34"><span><b>Sea-Fill · open-source science team</b><small>We are Sea-Fill, an open-source science team</small></span></a>
 </header>
 
 <section class="finder" id="finder">
-<h2>Look up: whose shoulders does AI stand on?</h2>
-<p>Type a scientist’s name to see which of their works AI papers cite. Covers the mathematics overview and the fluid equations issue.</p>
-<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="Type a name: Terence Tao, Grothendieck, Euler…" aria-label="Look up: whose shoulders does AI stand on?"><div class="sug" id="sug" hidden></div></div>
+<h2>Find a giant</h2>
+<p>Type a scientist’s name to see which of their works AI has built upon.</p>
+<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="Type a name: Terence Tao, Grothendieck, Euler…" aria-label="Find a giant"><div class="sug" id="sug" hidden></div></div>
 <div class="try">Try: <button type="button" data-q="Terence Tao">Terence Tao</button> · <button type="button" data-q="Shaoming Guo">Shaoming Guo</button> · <button type="button" data-q="Grothendieck">Grothendieck</button> · <button type="button" data-q="Euler">Euler</button> · <button type="button" data-q="Hong Wang">Hong Wang</button></div>
 <div class="res" id="res" aria-live="polite"></div>
 </section>
@@ -141,7 +142,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 <div class="card">
 <span class="tag">October 2026 · Mathematics overview</span>
 <h2><a href="../math/en/" style="color:inherit;text-decoration:none">OpenAI Math Release: 722 AI-written math preprints</a></h2>
-<p>OpenAI published 722 AI-written mathematics preprints with their LaTeX sources. The pyramid shows the most-cited mathematicians: AI at the top, held up by people.</p>
+<p>OpenAI published 722 mathematics preprints written by AI. Holding them up are the names below; the larger the name, the more often it is cited.</p>
 <figure class="viz">
 <div class="aiblk">AI · OpenAI Math Release<small>722 AI-written math preprints</small></div>
 <div class="pyr">
@@ -165,8 +166,8 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </section>
 <section class="sec" id="contact">
 <div class="contact">
-<h2>Contact us</h2>
-<p>Spotted a citation error, want to suggest the next AI breakthrough in science worth recording, or want to collaborate? Write to us.</p>
+<h2>Write to us</h2>
+<p>Correct a citation, suggest the next AI breakthrough worth remembering, or join us in carrying this on.</p>
 <form id="cform" novalidate>
 <label>Name (optional)<input name="name" autocomplete="name" maxlength="80"></label>
 <label>Your email (for our reply)<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
@@ -180,7 +181,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </div>
 </section>
 
-<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "../search.json", "math": "../math/en/", "ns": "../navier-stokes/en/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
+<footer>Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute. · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "../search.json", "math": "../math/en/", "ns": "../navier-stokes/en/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": false, "s": {"fLoading": "Loading the index…", "fNone": "No match. This name does not appear in the references of the AI papers covered so far.", "fMath": "Mathematics overview: cited by <b>{mp}<\/b> AI-written preprints, <b>{me}<\/b> reference entries in all.", "fTop": "Most-cited works:", "fPp": "citing preprints", "fNs": "Fluid equations: cited <b>{ne}<\/b> times in OpenAI’s Navier–Stokes / Euler papers.", "fGoM": "Open in the mathematics index →", "fGoN": "Open the fluid equations page →", "prize": {"fm": "Fields", "ab": "Abel", "wf": "Wolf"}, "cSending": "Sending…", "cSend": "Send", "cOk": "Sent, thank you! We will reply soon.", "cErr": "Sending failed; please try again later.", "cOff": "The form is not enabled yet."}};</script>
 <script>
 (function(){
 const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);

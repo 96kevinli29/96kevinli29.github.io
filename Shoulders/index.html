@@ -58,14 +58,15 @@ footer a{color:var(--muted)}
 .res ul{margin:.2rem 0 0;padding-left:1.2rem;font-size:.9rem;color:var(--muted)}
 .res li i{color:var(--ink)}
 .res .go{font-weight:600;font-size:.9rem}
-.contact{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1.3rem 1.4rem}
-.contact>p{color:var(--muted);margin:.2rem 0 1rem}
-.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.contact{max-width:34rem;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem}
+.contact h2{font-size:1.25rem;margin:0}
+.contact>p{color:var(--muted);margin:.15rem 0 .7rem;font-size:.9rem}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
 .contact label{display:flex;flex-direction:column;gap:.25rem;font:.78rem var(--f-mono);color:var(--muted);letter-spacing:.03em}
 .contact .full{grid-column:1/-1}
-.contact input,.contact select,.contact textarea{font:.95rem var(--f-body);padding:.55rem .7rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
-.contact textarea{min-height:8rem;resize:vertical}
-.contact button[type=submit]{justify-self:start;font:600 .95rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.6rem 1.3rem;cursor:pointer}
+.contact input,.contact select,.contact textarea{font:.9rem var(--f-body);padding:.4rem .6rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink)}
+.contact textarea{min-height:4.5rem;resize:vertical}
+.contact button[type=submit]{justify-self:start;font:600 .88rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:.45rem 1.1rem;cursor:pointer}
 .contact button[disabled]{opacity:.5;cursor:default}
 .contact .msg{grid-column:1/-1;font-size:.88rem;margin:0}
 .contact .msg.ok{color:var(--use)}.contact .msg.err{color:#c25a4a}
@@ -114,15 +115,15 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 <div class="top"><span>巨人之肩 · On Whose Shoulders</span><a href="en/">English</a></div>
 <header class="hero">
 <h1>AI 的每一次突破，<br>都站在人类科学家的肩膀上</h1>
-<p class="dek">当 AI 证明一条定理、攻克一个难题，它用到的概念、方法和工具，来自几代科学家的积累。我们逐条整理 AI 成果的参考文献，找出其中的每一个名字，按学科分开，随每一次突破更新。</p>
-<p class="manifesto">科学家是桥梁：一端连着几百年的人类知识，一端连着今天的 AI。这个项目向 AI 时代的人类科学家致敬。</p>
+<p class="dek">AI 证明的每一条定理、攻克的每一道难题，都写在前人留下的纸页上。那些概念、方法与工具，是几代科学家用一生换来的。</p>
+<p class="manifesto">我们找出 AI 成果引用的每一位科学家，写下他们的名字。他们是连接人类知识与 AI 的桥梁，也是我们永远尊敬的人。</p>
 <a class="team" href="https://huggingface.co/SeaFill2025"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png" alt="" width="34" height="34"><span><b>Sea-Fill 开源科学团队</b><small>我们是 Sea-Fill，一个开源科学团队</small></span></a>
 </header>
 
 <section class="finder" id="finder">
-<h2>查一查：AI 站在谁的肩膀上</h2>
-<p>输入一位科学家的名字，看看 AI 论文引用了他的哪些工作。目前收录数学全景与流体方程两期。</p>
-<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="输入名字：陶哲轩、Grothendieck、欧拉……" aria-label="查一查：AI 站在谁的肩膀上"><div class="sug" id="sug" hidden></div></div>
+<h2>寻找一位巨人</h2>
+<p>输入一位科学家的名字，看看 AI 站在了他们的哪些工作之上。</p>
+<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="输入名字：陶哲轩、Grothendieck、欧拉……" aria-label="寻找一位巨人"><div class="sug" id="sug" hidden></div></div>
 <div class="try">试试：<button type="button" data-q="陶哲轩">陶哲轩</button> · <button type="button" data-q="郭少明">郭少明</button> · <button type="button" data-q="Grothendieck">Grothendieck</button> · <button type="button" data-q="欧拉">欧拉</button> · <button type="button" data-q="王虹">王虹</button></div>
 <div class="res" id="res" aria-live="polite"></div>
 </section>
@@ -141,7 +142,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 <div class="card">
 <span class="tag">2026 年 10 月 · 数学全景</span>
 <h2><a href="math/" style="color:inherit;text-decoration:none">OpenAI Math Release：722 篇 AI 数学预印本</a></h2>
-<p>OpenAI 公开了 722 篇 AI 撰写的数学预印本及其 LaTeX 源码。下面的金字塔是被引用最多的数学家：顶端是 AI，托起它的是人类。</p>
+<p>OpenAI 公开了 722 篇由 AI 撰写的数学预印本。托起它们的，是下面这些名字；字越大，被引用越多。</p>
 <figure class="viz">
 <div class="aiblk">AI · OpenAI Math Release<small>722 篇 AI 数学预印本</small></div>
 <div class="pyr">
@@ -165,8 +166,8 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </section>
 <section class="sec" id="contact">
 <div class="contact">
-<h2>联系我们</h2>
-<p>发现引用错误、想推荐下一期值得记录的 AI 科学突破，或者想参与合作，都可以写信给我们。</p>
+<h2>写信给我们</h2>
+<p>纠正一处引用，推荐下一项值得铭记的 AI 科学突破，或与我们一起把这件事做下去。</p>
 <form id="cform" novalidate>
 <label>称呼（可选）<input name="name" autocomplete="name" maxlength="80"></label>
 <label>你的邮箱（用于回复）<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
@@ -180,7 +181,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 </div>
 </section>
 
-<footer>引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属。 · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": true, "s": {"fLoading": "正在载入索引…", "fNone": "没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。", "fMath": "数学全景：被 <b>{mp}<\/b> 篇 AI 数学预印本引用，共 <b>{me}<\/b> 条参考文献。", "fTop": "被引最多的著作：", "fPp": "篇引用", "fNs": "流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}<\/b> 条。", "fGoM": "在数学专题中查看 →", "fGoN": "查看流体方程专题 →", "prize": {"fm": "菲尔兹奖", "ab": "阿贝尔奖", "wf": "沃尔夫奖"}, "cSending": "发送中…", "cSend": "发送", "cOk": "已发送，谢谢！我们会尽快回复。", "cErr": "发送失败，请稍后再试。", "cOff": "表单尚未启用。"}};</script>
+<footer>引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。 · <a href="https://huggingface.co/SeaFill2025">Sea-Fill</a></footer><script>window.__CFG__={"idx": "search.json", "math": "math/", "ns": "navier-stokes/", "key": "52178693-3a18-435c-84d2-5e32494c379e", "zh": true, "s": {"fLoading": "正在载入索引…", "fNone": "没有找到。这个名字暂未出现在已收录的 AI 论文参考文献中。", "fMath": "数学全景：被 <b>{mp}<\/b> 篇 AI 数学预印本引用，共 <b>{me}<\/b> 条参考文献。", "fTop": "被引最多的著作：", "fPp": "篇引用", "fNs": "流体方程：OpenAI 的 Navier–Stokes / Euler 论文引用了 <b>{ne}<\/b> 条。", "fGoM": "在数学专题中查看 →", "fGoN": "查看流体方程专题 →", "prize": {"fm": "菲尔兹奖", "ab": "阿贝尔奖", "wf": "沃尔夫奖"}, "cSending": "发送中…", "cSend": "发送", "cOk": "已发送，谢谢！我们会尽快回复。", "cErr": "发送失败，请稍后再试。", "cOff": "表单尚未启用。"}};</script>
 <script>
 (function(){
 const C=window.__CFG__,S=C.s,$=s=>document.querySelector(s);
