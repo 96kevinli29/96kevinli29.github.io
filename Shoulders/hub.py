@@ -148,39 +148,58 @@ with open(H + '/search.json', 'w', encoding='utf-8') as f:
 CHINESE_ALSO = {'Terence Tao'}
 chinese = lambda a: a.get('c') in ('CN', 'TW', 'HK', 'MO') or a['n'] in CHINESE_ALSO
 
-TIER_SIZE = {'zh': [1.55, 1.22, 0.97, 0.92, 0.88, 0.84, 0.8, 0.76],   # one size per row: tiers, not an exact ranking
-             'en': [1.55, 1.22, 0.97, 0.92, 0.88, 0.84, 0.8, 0.76]}      # Latin names run longer
+
+
+GROUPS = [['Terence Tao', 'Shing-Tung Yau', 'Shiing-Shen Chern'], ['Yu Deng', 'Hong Wang', 'Shaoming Guo']]
+MOUND_W = (380, 805)                            # target line widths (px), narrow at the top, widening downward
+
+
+def _w(name):
+    """Rough rendered width of a name in px at the pyramid's font size (Latin ~8.9 px, CJK ~18.3 px, gap 17.6 px)."""
+    return sum(18.3 if ord(c) > 0x2e80 else 8.9 for c in name) + 17.6
 
 
 def pyramid(lang):
-    out, i, seq = [], 0, 0
-    for r, n in enumerate(ROWS):
-        ks = [k for k, _ in TOP[i:i + n]]
-        i += n
-        # groups placed side by side stay together in the middle; the rest of the row is alphabetical
-        groups, cur = [], []
-        for k in ks:
-            if k in PINNED:
-                cur.append(k)
-            else:
-                if cur:
-                    groups.append(cur)
-                cur = []
-        if cur:
-            groups.append(cur)
-        grouped = {k for g in groups for k in g}
-        rest = sorted((k for k in ks if k not in grouped), key=lambda k: A[k]['n'].split()[-1])
-        mid = len(rest) // 2
-        order = rest[:mid] + [k for g in groups for k in g] + rest[mid:]
+    """A mound of names: one size, shuffled (fixed seed), so position says nothing about rank."""
+    import random
+    units = [[_k[n] for n in g if n in _k] for g in GROUPS]
+    grouped = {k for u in units for k in u}
+    units += [[k] for k, _ in TOP if k not in grouped]
+    random.Random(2026).shuffle(units)
+    # groups of names are never at the very top of the mound
+    for g in [u for u in units if len(u) > 1]:
+        if units.index(g) < len(units) // 4:
+            units.remove(g)
+            units.insert(len(units) // 3, g)
+    label = lambda k: A[k]['zh'] if lang == 'zh' and A[k].get('zh') and chinese(A[k]) else A[k]['n']
+    widths = [sum(_w(label(k)) for k in u) for u in units]
+    total = sum(widths)
+
+    def pack(lo, hi):
+        n = max(1, round(total / ((lo + hi) / 2)))
+        lines, cur, cw, li = [], [], 0, 0
+        for u, uw in zip(units, widths):
+            target = lo + (hi - lo) * min(li, n - 1) / max(n - 1, 1)
+            if cur and cw + uw > target:
+                lines.append((cur, cw)); cur, cw, li = [], 0, li + 1
+            cur, cw = cur + u, cw + uw
+        lines.append((cur, cw))
+        return lines
+
+    # pick the widest-base fit: the last line should be nearly full
+    best = max((pack(MOUND_W[0], hi) for hi in range(700, MOUND_W[1] + 1, 5)),
+               key=lambda L: (L[-1][1] / max(w for _, w in L)) - 0.002 * len(L))
+    lines = [ks for ks, _ in best]
+    out = []
+    for ks in lines:
         row = []
-        for k in order:
+        for k in ks:
             a = A[k]
             nm = a['zh'] if lang == 'zh' and a.get('zh') and chinese(a) else a['n']
             prize = [lab for x, lab in (('fm', 'Fields'), ('ab', 'Abel'), ('wf', 'Wolf')) if x in a]
             tip = a['n'] + (' · ' + ' / '.join(prize) if prize else '')
-            cjk = nm != a['n']
-            row.append(f'<span class="g{" laur" if prize else ""}{" cjk" if cjk else ""}" style="--s:{TIER_SIZE[lang][min(r, 7)]};--d:{seq * 45}ms" title="{esc(tip)}">{esc(nm)}</span>')
-            seq += 1
+            cls = 'g' + (' laur' if prize else '') + (' cjk' if nm != a['n'] else '')
+            row.append(f'<span class="{cls}" title="{esc(tip)}">{esc(nm)}</span>')
         out.append('<div class="row">' + ''.join(row) + '</div>')
     return '\n'.join(out)
 
@@ -256,14 +275,12 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
 .viz{margin:1.2rem 0 .4rem;text-align:center}
 .aiblk{display:inline-block;font:600 .85rem var(--f-mono);letter-spacing:.08em;color:var(--paper);background:var(--ink);padding:.4rem 1rem;border-radius:4px 4px 0 0}
 .aiblk small{display:block;font-size:.66rem;opacity:.75;letter-spacing:.04em}
-.pyr{border-top:3px solid var(--ink);padding-top:.5rem}
-.row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.1rem 1rem;padding:.28rem 0;margin:0 auto;border-bottom:1px solid var(--rule)}
+.pyr{--s:1.02;border-top:3px solid var(--ink);padding-top:.7rem}
+.row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.15rem 1.1rem;padding:.16rem 0;margin:0 auto}
 
 .g{font-size:calc(var(--s)*1rem);font-family:var(--f-display);font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap}
 .g.laur{color:var(--gold);font-weight:900}
 .g.cjk{font-size:calc(var(--s)*1.12rem)}
-.g{transition:color .5s var(--d),text-shadow .5s var(--d)}
-.lit .g{color:var(--gold);text-shadow:0 0 14px var(--gold-soft)}
 .thanks{text-align:center;margin:1.1rem 0 .2rem}
 .res .tb{margin-top:.8rem}
 .legend{font:.74rem var(--f-mono);color:var(--muted);margin-top:.7rem}
@@ -348,7 +365,7 @@ T = {
   mP=f'OpenAI 发布了由其内部模型撰写的 {RELEASED} 篇数学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字。',
   aiS=f'{RELEASED} 篇稿件 · {NF} 个成果',
   upd=f'注：2026 年 10 月 7 日，OpenAI 撤回 3 篇稿件并修订了另外 14 篇。以上数字按当前的 {NP} 篇稿件统计，每天自动更新。' if NP != RELEASED else '',
-  legend='按被引用情况大致分层；<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。',
+  legend='<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。',
   st=[(NP, f'篇当前稿件（{NF} 个成果）'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
   mGo='进入数学专题 →', src='数据来源',
   secChem='化学 · 生命科学',
@@ -386,7 +403,7 @@ T = {
   mP=f'OpenAI released {RELEASED} mathematics manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below.',
   aiS=f'{RELEASED} manuscripts · {NF} results',
   upd=f'Note: on 7 October 2026 OpenAI withdrew 3 manuscripts and revised 14 others. The figures above count the {NP} current manuscripts and update daily.' if NP != RELEASED else '',
-  legend='Loosely tiered by how often they are cited; <b>gold</b> = Fields / Abel / Wolf laureate.',
+  legend='<b>Gold</b> = Fields / Abel / Wolf laureate.',
   st=[(NP, f'current manuscripts ({NF} results)'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
   mGo='Open the mathematics index →', src='Source',
   secChem='Chemistry · Life sciences',
