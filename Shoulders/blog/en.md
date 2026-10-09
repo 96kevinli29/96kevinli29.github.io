@@ -22,6 +22,8 @@ Two groups of people go into a model like this. Engineers build the machine: the
 
 **Reinforcement learning.** Engineers build the loop: the model tries a problem many times, a verifier checks the attempts, and training makes the successful paths more likely. What the loop needs from outside is problems worth practising on, a precise definition of a correct answer, and someone to judge what comes out. Those still come from scientists, as we explain below.
 
+This is why the quality of scientific data matters so much. Reinforcement learning can only strengthen what the model already produces when it samples. If a model almost never writes a correct proof, almost every reward is zero and there is almost nothing to learn from; the search is too inefficient to get anywhere. What raises the chance of a correct attempt from almost never to sometimes is the quality of what came before: careful proofs in the pretraining text, clean chains of reasoning in fine-tuning. A model trained on sloppy or shallow mathematics samples sloppy, shallow attempts. High-quality scientific writing is what makes efficient sampling possible at all. How far reinforcement learning can go beyond what the base model already contains is still an open research question; that it starts from there is not.
+
 In all three stages, the engineers’ work is what makes learning possible. The scientists’ work is what there is to learn.
 
 ## What the references show
