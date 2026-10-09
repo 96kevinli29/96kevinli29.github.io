@@ -20,7 +20,11 @@ One of the AI manuscripts contains the step “by the splitting theorem for vect
 
 Mathematicians call it intuition when they know, facing a problem, which lemma to reach for next. They build it over years of reading, working and failing. A model’s version of it is a set of conditional probabilities between tokens, estimated from the next steps that people wrote down. In that sense, human intuition is mapped into the model’s distribution.
 
-Minimising prediction error is, in information-theoretic terms, compression. Pretraining compresses written human knowledge into parameters, and what the parameters can hold depends on what went in. People in our field call this the cold start. For mathematics, the cold start is the work of mathematicians.
+Minimising prediction error is, in information-theoretic terms, compression. Pretraining compresses a vast amount of unstructured human text into parameters, and what the parameters can hold depends on what went in.
+
+For reasoning models, pretraining is usually followed by two more stages. The first is often called the cold start: the model is fine-tuned on a smaller, carefully chosen set of long chains of reasoning that show, step by step, how problems are solved. DeepSeek’s public report on its R1 model, for example, describes such a stage.[^3] In mathematics, these chains of reasoning are what mathematicians have always written: proofs, derivations, the worked solutions in textbooks. They teach a model not only facts but how a mathematician gets from one step to the next.
+
+The second stage is reinforcement learning. It needs problems to practise on and a way to check the answers. We come back to it below, because both still come from people.
 
 ## What the references show
 
@@ -65,7 +69,7 @@ A reference list is the visible part. It does not show the textbooks nobody cite
 
 ## Where scientists come in next
 
-Pretraining gives a model its intuitions. To get new results at the frontier, the usual tool today is reinforcement learning. The model is given a problem and makes many attempts, called rollouts. A verifier checks which attempts are correct, and training makes the successful paths more likely. Successful trajectories can then become training data for the next round.
+Pretraining and the cold start give a model its intuitions and its way of reasoning. To get new results at the frontier, the usual tool today is reinforcement learning. The model is given a problem and makes many attempts, called rollouts. A verifier checks which attempts are correct, and training makes the successful paths more likely. Successful trajectories can then become training data for the next round.
 
 From a training point of view, human scientists sit at three points in this loop.
 
@@ -97,3 +101,4 @@ Scientists are the bridge between human knowledge and AI, and we want their name
 
 [^1]: OpenAI released 722 manuscripts on 6 October 2026. On 7 October it withdrew 3 and revised 14; our counts use the 719 current manuscripts. Data: github.com/openai/math (Apache 2.0).
 [^2]: I. Shumailov et al., “AI models collapse when trained on recursively generated data”, Nature 631, 755–759 (2024).
+[^3]: DeepSeek-AI, “DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning” (2025).
