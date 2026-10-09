@@ -101,7 +101,7 @@ That is why we do not see scientists being replaced. In the loop above, they cho
 
 ## If scientists step back, the signal fades
 
-Models do not create new human knowledge on their own. Research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade [@shumailov2024]. New problems, new ideas and new experimental data still have to come from people.
+Models can produce new results; this release shows it. But how far they reach depends on their instruments: the problems they are pointed at, the verifiers that recognise a correct answer, the data that shapes what they sample. Without good instruments, sampling does not land on new knowledge. And a model fed mainly on its own output loses ground: research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade [@shumailov2024]. New problems, new ideas, new experimental data, and the instruments to check them, still come largely from people.
 
 If the common story becomes “AI solves it, scientists are no longer needed”, that story will affect where research funding goes. It will also affect whether young people choose to spend years on a hard problem with no guaranteed result. Fewer of them would mean less of the material that models learn from, and fewer people to steer.
 
