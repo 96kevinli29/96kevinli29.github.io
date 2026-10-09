@@ -85,7 +85,7 @@ If the common story becomes “AI solves it, scientists are no longer needed”,
 
 ## What we built
 
-For most of history, the people who did this work did it alone, with no machine to ask. Many of them are in our list. Many more are not.
+For most of history, this was solitary work: the people who did it had no machine to ask. Many of them are in our list. Many more are not.
 
 So we built On Whose Shoulders, an open-source record of the human work that AI results in science build on, organised by field and updated as new results appear. You can type any scientist’s name and see which of their works the AI manuscripts use. It also covers OpenAI’s Navier–Stokes papers and AlphaFold.
 
