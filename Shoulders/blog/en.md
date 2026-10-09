@@ -1,14 +1,14 @@
 title: What AI’s mathematics is built on
 desc: We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,612 mathematicians. What that says about how models learn, and why scientists still steer.
-kicker: Essay · Sea-Fill · 9 October 2026
+kicker: Essay · Hongyang Li and the Sea-Fill team · 9 October 2026
 
 # What AI’s mathematics is built on
 
-After OpenAI released 722 AI-written mathematics manuscripts, we did the slow, careful work: we wrote code to extract every reference list, then checked them one by one.
+After OpenAI released 722 AI-written mathematics manuscripts [@openai_math], we did the slow, careful work: we wrote code to extract every reference list, then checked them one by one.
 
 The result: 11,067 human works by 9,612 mathematicians.[^1]
 
-One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The oldest is Besicovitch’s paper of 1928. After it come Davies, Wolff, Katz, Łaba, Tao and Guth, all the way to Hong Wang and Joshua Zahl’s work in 2026.
+One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The oldest is Besicovitch’s paper of 1928. After it come Davies, Wolff, Katz, Łaba, Tao and Guth, all the way to Hong Wang and Joshua Zahl’s work in 2026 [@besicovitch1928; @davies1971; @wolff1995; @klt2000; @guth2010; @wangzahl2026].
 
 We work in AI ourselves. We did this because results like these are often reported as “AI solves X”, as if no one stood behind them. We wanted to know who does.
 
@@ -16,9 +16,9 @@ We work in AI ourselves. We did this because results like these are often report
 
 Many people contribute to a model capable of scientific breakthroughs. Two groups are most closely tied to it. Engineers build the machine: the architecture, the training code, the data pipelines, the compute. Scientists supply much of what the machine learns from and what it aims at. Training has three stages, and both groups are present in each.
 
-**Pretraining.** Engineers build a system that learns to predict the next token from the text before it. Almost everything it learns at this stage comes from a vast amount of unstructured text that people wrote. One of the AI manuscripts contains the step “by the splitting theorem for vector bundles on the projective line, E is a direct sum of line bundles”. A model that writes this step has learned that the second half is very likely to follow the first. It did not discover the fact. Grothendieck proved it in 1957, and mathematicians have written that step in papers, textbooks and lecture notes ever since. That is where the probability comes from. Mathematicians call it intuition when they know which lemma to reach for next; a model’s version of it is a set of conditional probabilities estimated from the next steps that people wrote down. Minimising prediction error is, in information-theoretic terms, compression, and what the parameters can hold depends on what went in.
+**Pretraining.** Engineers build a system that learns to predict the next token from the text before it. Almost everything it learns at this stage comes from a vast amount of unstructured text that people wrote. One of the AI manuscripts contains the step “by the splitting theorem for vector bundles on the projective line, E is a direct sum of line bundles”. A model that writes this step has learned that the second half is very likely to follow the first. It did not discover the fact. Grothendieck proved it in 1957 [@grothendieck1957], and mathematicians have written that step in papers, textbooks and lecture notes ever since. That is where the probability comes from. Mathematicians call it intuition when they know which lemma to reach for next; a model’s version of it is a set of conditional probabilities estimated from the next steps that people wrote down. Minimising prediction error is, in information-theoretic terms, compression, and what the parameters can hold depends on what went in.
 
-**Supervised fine-tuning.** Post-training for reasoning models often begins with what is called a cold start: fine-tuning on a smaller, carefully chosen set of long chains of reasoning that show, step by step, how problems are solved. DeepSeek’s public report on its R1 model, for example, describes such a stage.[^3] Engineers assemble and run it. The chains themselves are a mix. Some are written by people: proofs, derivations, worked solutions, annotated reasoning. Many are synthesised by models. But the synthetic ones still start from problems and instructions that people wrote, imitate the way human proofs are written, and are kept or thrown away by checks that people designed. What the model learns here is how a mathematician gets from one step to the next.
+**Supervised fine-tuning.** Post-training for reasoning models often begins with what is called a cold start: fine-tuning on a smaller, carefully chosen set of long chains of reasoning that show, step by step, how problems are solved. DeepSeek’s public report on its R1 model, for example, describes such a stage [@deepseek2025]. Engineers assemble and run it. The chains themselves are a mix. Some are written by people: proofs, derivations, worked solutions, annotated reasoning. Many are synthesised by models. But the synthetic ones still start from problems and instructions that people wrote, imitate the way human proofs are written, and are kept or thrown away by checks that people designed. What the model learns here is how a mathematician gets from one step to the next.
 
 **Reinforcement learning.** Engineers build the loop: the model tries a problem many times, a verifier checks the attempts, and training makes the successful paths more likely. What the loop needs from outside is problems worth practising on, a precise definition of a correct answer, and someone to judge what comes out. Today those still come largely from scientists, as we explain below.
 
@@ -34,19 +34,19 @@ Put simply: the engineers’ work makes the learning possible, and much of what 
 
 We cannot see what a model learned from which text. A reference list is the one part we can see and check.
 
-They also reach a long way back. The oldest cited work is Descartes’s *La Géométrie* of 1637; the manuscript on a “quasi-Riemann hypothesis” cites Riemann’s own paper of 1859.
+They also reach a long way back. The oldest cited work is Descartes’s *La Géométrie* of 1637 [@descartes1637]; the manuscript on a “quasi-Riemann hypothesis” cites Riemann’s own paper of 1859 [@riemann1859].
 
 {{fig:decades}}
 
 The 11,067 works include 114 Fields, Abel and Wolf laureates. Most of the authors are not names from history books but mathematicians working today. And the citations are not decoration. In the citing sentences, the manuscripts use their work as tools:
 
-- A manuscript on local smoothing names exactly two external inputs to its proof: Kevin Ren and Hong Wang’s planar Furstenberg theorem, and the wave-envelope theorem of Larry Guth, Hong Wang and Ruixiang Zhang.
-- In arithmetic geometry, a manuscript identifies certain vector bundles with p-adic local systems “by [Fargues–Scholze 2024]”, the work of Laurent Fargues and Peter Scholze.
-- In birational geometry, one follows a recent strategy of Caucher Birkar and a coauthor, and another applies Birkar’s theorem on bounded complements; others build on Osamu Fujino’s inductions and on the work of Omprokash Das, Christopher Hacon and Mihai Păun.
-- In probability, manuscripts rely on the properties of the random-cluster model as set out by Hugo Duminil-Copin and his coauthors, and on the random-surface laws of Bertrand Duplantier, Jason Miller and Scott Sheffield.
-- A counterexample in graph theory uses László Lovász and Balázs Szegedy’s sampling construction for graphons; one in combinatorics follows the sum–product strategy of Jean Bourgain, Nets Katz and Terence Tao.
-- A manuscript on spin glasses uses Michel Talagrand’s cavity method.
-- In a Ricci-flow argument, one uses Grigori Perelman’s 2002 entropy monotonicity; in Hodge theory, one uses Pierre Deligne’s semisimplicity argument.
+- A manuscript on local smoothing names exactly two external inputs to its proof: Kevin Ren and Hong Wang’s planar Furstenberg theorem, and the wave-envelope theorem of Larry Guth, Hong Wang and Ruixiang Zhang [@renwang2025; @guthwangzhang2020].
+- In arithmetic geometry, a manuscript identifies certain vector bundles with p-adic local systems “by [Fargues–Scholze 2024]”, the work of Laurent Fargues and Peter Scholze [@farguesscholze2024].
+- In birational geometry, one follows a recent strategy of Caucher Birkar and a coauthor, and another applies Birkar’s theorem on bounded complements [@birkar2019]; others build on Osamu Fujino’s inductions and on the work of Omprokash Das, Christopher Hacon and Mihai Păun [@dashaconpaun2024].
+- In probability, manuscripts rely on the properties of the random-cluster model as set out by Hugo Duminil-Copin and his coauthors [@dchn2011], and on the random-surface laws of Bertrand Duplantier, Jason Miller and Scott Sheffield [@dms2021].
+- A counterexample in graph theory uses László Lovász and Balázs Szegedy’s sampling construction for graphons [@lovaszszegedy2006]; one in combinatorics follows the sum–product strategy of Jean Bourgain, Nets Katz and Terence Tao [@bkt2004].
+- A manuscript on spin glasses uses Michel Talagrand’s cavity method [@talagrand2011].
+- In a Ricci-flow argument, one uses Grigori Perelman’s 2002 entropy monotonicity [@perelman2002]; in Hodge theory, one uses Pierre Deligne’s semisimplicity argument [@deligne1982].
 
 ## Whose problems these are
 
@@ -54,24 +54,24 @@ Then there are the problems themselves.
 
 The first results in OpenAI’s catalogue are on Milne’s rationality conjecture, the Birch–Swinnerton-Dyer formula and a “quasi-Riemann hypothesis”. Further down are Kaplansky’s direct-finiteness conjecture, the Mahler conjectures, the Mézard–Parisi formula, Hilbert’s tenth problem over the rationals, the Kakeya conjecture and the Navier–Stokes equations. Almost every one carries the name of the person who asked it.
 
-Erdős’s 1957 list “Some unsolved problems” is cited by 5 manuscripts. Shing-Tung Yau’s 1994 “Open problems in geometry” is cited by 4. OpenAI’s repository says that they “evaluate our models on open research problems”. The supply of good open problems is something mathematicians have built up over centuries.
+Erdős’s 1957 list “Some unsolved problems” is cited by 5 manuscripts [@erdos1957]. Shing-Tung Yau’s 1994 “Open problems in geometry” is cited by 4 [@yau1994]. OpenAI’s repository says that they “evaluate our models on open research problems”. The supply of good open problems is something mathematicians have built up over centuries.
 
 ## A long relay
 
-The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s recent breakthrough on the Kakeya conjecture in three dimensions. That work in turn stands on the line from Besicovitch through Wolff, Katz, Łaba, Tao and Guth.
+The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s recent breakthrough on the Kakeya conjecture in three dimensions [@wangzahl2025; @wangzahl2026]. That work in turn stands on the line from Besicovitch through Wolff, Katz, Łaba, Tao and Guth [@wolff1995; @klt2000; @bct2006; @guth2010].
 
 {{fig:relay}}
 
-On the Bochner–Riesz problem, which is closely tied to Kakeya, AI manuscripts repeatedly cite the 2025 paper of Shaoming Guo with Changkeun Oh, Hong Wang, Shukun Wu and Ruixiang Zhang. They place it beside Tao’s 2003 bilinear restriction estimate as a source of the wave-packet method they use, and one of them adopts its pseudoconformal change of variables.
+On the Bochner–Riesz problem, which is closely tied to Kakeya, AI manuscripts repeatedly cite the 2025 paper of Shaoming Guo with Changkeun Oh, Hong Wang, Shukun Wu and Ruixiang Zhang [@gowwz2025]. They place it beside Tao’s 2003 bilinear restriction estimate [@tao2003] as a source of the wave-packet method they use, and one of them adopts its pseudoconformal change of variables.
 
 Chinese mathematicians are part of this relay:
 
-- A manuscript on the abundance conjecture follows the foliation criterion of Chenyang Xu and Lei Zhang.
-- A manuscript on hard-sphere gases imports estimates from Yu Deng, Zaher Hani and Xiao Ma’s derivation of the Boltzmann equation from particle dynamics. Deng received a Fields Medal this year.
-- Shing-Tung Yau’s 1978 proof of the Calabi conjecture is cited by 10 manuscripts.
-- Gang Tian’s book with John Morgan on the Ricci flow and the Poincaré conjecture, Jian Ding’s proof of the satisfiability conjecture with Allan Sly and Nike Sun, and C. N. Yang’s 1957 paper with T. D. Lee and Kerson Huang on the hard-sphere Bose gas are all in the references.
+- A manuscript on the abundance conjecture follows the foliation criterion of Chenyang Xu and Lei Zhang [@xuzhang2019].
+- A manuscript on hard-sphere gases imports estimates from Yu Deng, Zaher Hani and Xiao Ma’s derivation of the Boltzmann equation from particle dynamics [@denghanima2025]. Deng received a Fields Medal this year.
+- Shing-Tung Yau’s 1978 proof of the Calabi conjecture is cited by 10 manuscripts [@yau1978].
+- Gang Tian’s book with John Morgan on the Ricci flow and the Poincaré conjecture [@morgantian2007], Jian Ding’s proof of the satisfiability conjecture with Allan Sly and Nike Sun [@dingslysun2022], and C. N. Yang’s 1957 paper with T. D. Lee and Kerson Huang on the hard-sphere Bose gas [@leehuangyang1957] are all in the references.
 
-The same holds outside this release. OpenAI’s Navier–Stokes paper starts from the equations Euler wrote in 1757, then recalls Leray’s weak solutions of 1934 and the partial regularity theorem of Caffarelli, Kohn and Nirenberg. AlphaFold was trained on protein structures that structural biologists solved one at a time over decades; its premise goes back to Anfinsen’s 1973 finding that a protein’s sequence determines its shape.
+The same holds outside this release. OpenAI’s Navier–Stokes paper [@openai_ns] starts from the equations Euler wrote in 1757 [@euler1757], then recalls Leray’s weak solutions of 1934 [@leray1934] and the partial regularity theorem of Caffarelli, Kohn and Nirenberg [@ckn1982]. AlphaFold [@jumper2021] was trained on protein structures that structural biologists solved one at a time over decades; its premise goes back to Anfinsen’s 1973 finding that a protein’s sequence determines its shape [@anfinsen1973].
 
 ## What the references don’t show
 
@@ -85,7 +85,7 @@ From a training point of view, human scientists sit at three points in this loop
 
 **They choose the problems.** Reinforcement learning learns most from problems that are just within reach. If every rollout succeeds, there is no signal; if every rollout fails, the reward is zero and so is the gradient. The useful problems are the ones at the edge of what the model can do that also lead somewhere that matters. Good problems produce good seeds for the next round; poor problems produce poor ones. Picking them takes the judgement that mathematicians call taste. Lists like those of Erdős, Yau and Hilbert are exactly this kind of work.
 
-**They define what counts as correct.** If a reward is specified loosely, a model learns to exploit the gap. Mathematics works as a testing ground because mathematicians have defined proof precisely. OpenAI’s Navier–Stokes paper states that it establishes alternative (C) “in the Millennium problem statement for Navier–Stokes as stated by Fefferman”, and it checks a condition on the pressure that comes from the erratum to that statement. Its Lean formalization rests on Mathlib, an open library of formalized mathematics built over many years by mathematicians and programmers. The verifier is human work too.
+**They define what counts as correct.** If a reward is specified loosely, a model learns to exploit the gap. Mathematics works as a testing ground because mathematicians have defined proof precisely. OpenAI’s Navier–Stokes paper states that it establishes alternative (C) “in the Millennium problem statement for Navier–Stokes as stated by Fefferman” [@fefferman2000], and it checks a condition on the pressure that comes from the erratum to that statement. Its Lean formalization rests on Mathlib [@mathlib2020], an open library of formalized mathematics built over many years by mathematicians and programmers. The verifier is human work too.
 
 **They judge the results.** On 7 October, OpenAI withdrew 3 manuscripts after a sign error was found, and revised 14 others. Their repository notes that some of the unformalized results “could have issues”. Deciding which results hold, which matter and which directions deserve the next round of compute is still the work of the scientific community.
 
@@ -93,7 +93,7 @@ That is why we do not see scientists being replaced. In the loop above, they cho
 
 ## Why it matters now
 
-Models do not create new human knowledge on their own. Research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade.[^2] New problems, new ideas and new experimental data still have to come from people.
+Models do not create new human knowledge on their own. Research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade [@shumailov2024]. New problems, new ideas and new experimental data still have to come from people.
 
 If the common story becomes “AI solves it, scientists are no longer needed”, that story will affect where research funding goes. It will also affect whether young people choose to spend years on a hard problem with no guaranteed result. Fewer of them would mean less of the material that models learn from, and fewer people to steer.
 
@@ -110,5 +110,3 @@ Scientists are the bridge between human knowledge and AI, and we want their name
 [Explore On Whose Shoulders →](../)
 
 [^1]: OpenAI released 722 manuscripts on 6 October 2026. On 7 October it withdrew 3 and revised 14; our counts use the 719 current manuscripts. Data: github.com/openai/math (Apache 2.0).
-[^2]: I. Shumailov et al., “AI models collapse when trained on recursively generated data”, Nature 631, 755–759 (2024).
-[^3]: DeepSeek-AI, “DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning” (2025).
