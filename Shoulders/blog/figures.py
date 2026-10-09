@@ -70,7 +70,28 @@ T = {
          ('2006', 'Bennett · Carbery · Tao'), ('2010', 'Guth'), ('2025–26', 'Hong Wang · Joshua Zahl')],
   relay_ai=('2026', 'AI manuscript on four-dimensional Kakeya sets'),
   cap4='<b>Figure 4.</b> A selection of the human works cited by OpenAI’s manuscript on four-dimensional Kakeya sets, in order. The manuscript has 34 references in all.',
+  lang='en',
   hist_y='works', cap3='<b>Figure 3.</b> The {n:,} cited human works with a known year, by decade of publication. The oldest is Descartes’s <i>La Géométrie</i> (1637); the most recent decades hold the most, but the shoulders reach back centuries. Hover a bar for its count.',
+ ),
+ 'zh': dict(
+  lang='zh',
+  key_eng='工程师造的', key_sci='科学家提供的',
+  stages=[('预训练', '预测下一个 token',
+           '模型、训练代码、数据管线、算力。',
+           '论文、教材、证明：人类知识的文字记录。'),
+          ('监督微调', '冷启动',
+           '微调流程，以及合成推理链的工具。',
+           '完整的解答，以及合成推理链背后的题目、指令和检验。'),
+          ('强化学习', '多次尝试与奖励',
+           '循环本身：多次尝试、验证器、朝成功的方向更新。',
+           '值得解的题目，对“正确”的精确定义（如 Lean 的 Mathlib），对结果的评判。')],
+  loop='↻ 成功的尝试成为下一轮的种子',
+  cap1='<b>图 1.</b> 与一个能做出科学突破的模型关联最深的两类人。在训练的每个阶段，工程师让学习成为可能；可学的内容，很大一部分来自科学家。',
+  weak='起点弱的模型', strong='起点强的模型',
+  weak_p='64 次尝试中 <b>0 次</b>做对。奖励全为零，没有梯度，无从学起。',
+  strong_p='64 次尝试中 <b>9 次</b>做对。成功的路径可以被强化，并成为下一轮的种子。',
+  cap2='<b>图 2.</b> 示意，不是数据：两个模型对同一道题各尝试 64 次。强化学习只能强化模型本来就能采样到的东西。预训练和微调中的高质量科学数据，是让模型从左边走到右边的重要原因。',
+  hist_y='部', cap3='<b>图 3.</b> {n:,} 部有年份的被引人类著作，按出版年代统计。最早的是笛卡尔的《几何学》（1637）；越近的年代越多，但肩膀一直延伸到几个世纪以前。鼠标悬停可看每个年代的数量。',
  ),
 }
 
@@ -161,7 +182,12 @@ def tree(root, sub, branches, cap):
 
 def tree_fields(t):
     data = json.load(open(os.path.join(B, 'fields_tree.json'), encoding='utf-8'))
-    branches = [(f'{en if t is T["en"] else zh} · {n}', [(name, '') for name, _ in top]) for en, zh, n, top in data]
+    zhn = {'Shing-Tung Yau': '丘成桐', 'Terence Tao': '陶哲轩'}
+    zh = t['lang'] == 'zh'
+    branches = [(f'{z if zh else en} · {n}', [((zhn.get(name, name) if zh else name), '') for name, _ in top]) for en, z, n, top in data]
+    if zh:
+        return tree('AI · OpenAI Math Release', '719 篇稿件 · 稿件最多的九个学科', branches,
+                    '<b>Figure 0.</b> AI 稿件最多的九个学科（学科后的数字为稿件数），每个学科下是该学科中参考文献条目最多的三位人类数学家。每个领域，都站在不同的一群人身上。')
     return tree('AI · OpenAI Math Release', '719 manuscripts · the nine largest fields', branches,
                 '<b>Figure 0.</b> The nine fields with the most AI manuscripts (number after the field) and, under each, the three human mathematicians '
                 'with the most reference entries in that field. Every field rests on a different set of people.')
@@ -190,17 +216,52 @@ TREE_AF = [
 ]
 
 
+ZH_HEAD = {'Foundations': '奠基', 'Multilinear Kakeya': '多线性 Kakeya', 'Kakeya in 3 and 4 dimensions': '三维与四维 Kakeya',
+           'Oscillatory integrals': '振荡积分', 'Tools': '工具', 'The equations': '方程本身', 'Weak solutions & regularity': '弱解与正则性',
+           'The problem': '问题陈述', 'Blowup & non-uniqueness': '爆破与非唯一性', 'Instability & waves': '不稳定性与波',
+           'Folding principle': '折叠原理', 'Solving structures': '测定结构', 'Coevolution': '协同进化',
+           'Prediction & assessment': '预测与评测', 'Deep learning': '深度学习'}
+
+
+def zh_tree(branches, names):
+    """Chinese page: branch headings in Chinese, Chinese mathematicians in Chinese, other names in the original."""
+    out = []
+    for h, leaves in branches:
+        ls = []
+        for n, y in leaves:
+            for a, b in names:
+                n = n.replace(a, b)
+            ls.append((n, y))
+        out.append((ZH_HEAD[h], ls))
+    return out
+
+
 def tree_kakeya(t):
+    if t['lang'] == 'zh':
+        return tree('AI 稿件 · 四维 Kakeya 集', 'OpenAI，2026 · 34 条参考文献',
+                    zh_tree(TREE_KAKEYA, [('Hong Wang', '王虹'), ('Guo ·', '郭少明 ·'), ('· Zhang', '· 张瑞祥'), ('Tao', '陶哲轩'), (' (sticky)', '（sticky）')]),
+                    '<b>Figure 0.</b> OpenAI 四维 Kakeya 稿件 34 条参考文献的节选，按其所依托的工作脉络分组（分组由我们整理）。')
     return tree('AI manuscript · four-dimensional Kakeya sets', 'OpenAI, 2026 · 34 references', TREE_KAKEYA,
                 '<b>Figure 0.</b> A selection of the 34 works cited by OpenAI’s manuscript on four-dimensional Kakeya sets, grouped by us into the lines of work it draws on.')
 
 
 def tree_ns(t):
+    if t['lang'] == 'zh':
+        return tree('AI · OpenAI Navier–Stokes 与 Euler 论文', '2026 · 51 条参考文献',
+                    zh_tree(TREE_NS, [('Tao', '陶哲轩'), ('Hou', '侯一钊'), ('Kato', '加藤敏夫'), ('Euler', '欧拉'), ('Navier', '纳维'),
+                                      ('Stokes', '斯托克斯'), ('Leray', '勒雷'), (' (Clay statement)', '（克雷问题陈述）')]),
+                    '<b>Figure 0.</b> OpenAI Navier–Stokes 与 Euler 论文所引文献的节选，分组由我们整理：从欧拉到今天，269 年。')
     return tree('AI · OpenAI Navier–Stokes and Euler papers', '2026 · 51 references', TREE_NS,
                 '<b>Figure 0.</b> A selection of the works cited by OpenAI’s Navier–Stokes and Euler papers, grouped by us: 269 years from Euler to today.')
 
 
 def tree_af(t):
+    if t['lang'] == 'zh':
+        return tree('AI · AlphaFold 2', 'DeepMind，Nature 2021 · 84 条参考文献',
+                    zh_tree(TREE_AF, [('Anfinsen', '安芬森'), ('Zhang · Skolnick', '张阳 · Skolnick'), (' (NMR)', '（核磁共振）'),
+                                      (' (cryo-EM)', '（冷冻电镜）'), (' (CASP)', '（CASP）'), (' (AlphaFold 1)', '（AlphaFold 1）'),
+                                      (' (trRosetta)', '（trRosetta）'), (' (PSICOV)', '（PSICOV）'), (' (ResNet)', '（ResNet）'), (' (BERT)', '（BERT）')]),
+                    '<b>Figure 0.</b> AlphaFold 2 论文所引文献的节选，分组由我们整理：半个世纪的结构生物学、协同进化与机器学习。')
     return tree('AI · AlphaFold 2', 'DeepMind, Nature 2021 · 84 references', TREE_AF,
                 '<b>Figure 0.</b> A selection of the works cited by the AlphaFold 2 paper, grouped by us: half a century of structural biology, coevolution and machine learning.')
 

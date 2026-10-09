@@ -121,7 +121,8 @@ def render(md):
         else:
             body.append(f'<p>{inline(" ".join(b.split()))}</p>')
     k = iter(range(1, 100))
-    body = [re.sub(r'<b>Figure \d+\.</b>', lambda m: f'<b>Figure {next(k)}.</b>', x) for x in body]
+    fig = 'Figure' if LANG == 'en' else '图'
+    body = [re.sub(r'<b>(?:Figure|图) \d+\.</b>', lambda m: f'<b>{fig} {next(k)}.</b>', x) for x in body]
     if ORDER:
         body.append('<section class="refs"><h2>' + ('References' if LANG == 'en' else '参考文献') + '</h2><ol>'
                     + ''.join(f'<li id="ref-{k}">{fmt(REFS[k])}</li>' for k in ORDER) + '</ol></section>')
@@ -151,7 +152,7 @@ for lang, (src, out, back, alt) in LANGS.items():
     label = ('Cite this essay', 'All references as BibTeX: ') if lang == 'en' else ('引用本文', '全部参考文献的 BibTeX：')
     body += (f'<section class="cite-box"><h2>{label[0]}</h2><pre>{html.escape(me_bib)}</pre>'
              f'<p>{label[1]}<a href="references.bib" download>references.bib</a></p></section>')
-    open(os.path.join(B, 'references.bib'), 'w', encoding='utf-8').write(
+    open(os.path.join(os.path.dirname(os.path.join(B, out)), 'references.bib'), 'w', encoding='utf-8').write(
         '% References for "' + meta['title'] + '" (Hongyang Li and the Sea-Fill team, 2026)\n\n'
         + me_bib + '\n\n' + '\n\n'.join(bibtex(k, REFS[k]) for k in ORDER) + '\n')
     foot = '<footer>Sea-Fill · <a href="https://huggingface.co/SeaFill2025">Hugging Face</a></footer>'
