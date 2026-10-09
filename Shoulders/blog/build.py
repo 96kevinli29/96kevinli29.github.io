@@ -120,6 +120,8 @@ def render(md):
             body.append('<blockquote>' + inline(' '.join(l[2:] for l in b.split('\n'))) + '</blockquote>')
         else:
             body.append(f'<p>{inline(" ".join(b.split()))}</p>')
+    k = iter(range(1, 100))
+    body = [re.sub(r'<b>Figure \d+\.</b>', lambda m: f'<b>Figure {next(k)}.</b>', x) for x in body]
     if ORDER:
         body.append('<section class="refs"><h2>' + ('References' if LANG == 'en' else '参考文献') + '</h2><ol>'
                     + ''.join(f'<li id="ref-{k}">{fmt(REFS[k])}</li>' for k in ORDER) + '</ol></section>')

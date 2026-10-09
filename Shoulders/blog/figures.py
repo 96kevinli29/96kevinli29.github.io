@@ -132,3 +132,77 @@ FIGS = {'stages': stages, 'sampling': sampling, 'relay': relay, 'decades': decad
 
 def render(name, lang):
     return FIGS[name](T[lang])
+
+
+# ---- trees: a breakthrough at the root, branches of human work, names on the leaves -----------------
+CSS += '''
+.tree{--line:var(--rule)}
+.tree .root{width:fit-content;max-width:100%;margin:0 auto;background:var(--ink);color:var(--paper);border-radius:6px;padding:.5rem .9rem;text-align:center}
+.tree .root b{display:block;font:600 .95rem/1.3 var(--f-display)}
+.tree .root small{display:block;font:.7rem var(--f-mono);opacity:.75;margin-top:.15rem}
+.tree .trunk{width:2px;height:.9rem;background:var(--line);margin:0 auto .3rem}
+.tree .branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1rem .7rem}
+.tree .br{position:relative;border-top:2px solid var(--line);padding-top:.45rem}
+.tree .br h5{margin:0 0 .4rem;font:500 .68rem/1.35 var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--gold);text-align:center}
+.tree .br ul{list-style:none;margin:0;padding:0 0 0 .7rem;border-left:2px solid var(--line)}
+.tree .br li{position:relative;margin:.28rem 0;padding-left:.15rem;font:600 .82rem/1.3 var(--f-display);color:var(--ink)}
+.tree .br li:before{content:"";position:absolute;left:-.85rem;top:.62rem;width:.6rem;height:2px;background:var(--line)}
+.tree .br li i{font:400 .7rem var(--f-mono);font-style:normal;color:var(--muted);margin-left:.3rem}
+@media (max-width:520px){.tree .branches{grid-template-columns:1fr 1fr}}
+'''
+
+
+def tree(root, sub, branches, cap):
+    br = ''.join(f'<div class="br"><h5>{esc(h)}</h5><ul>' + ''.join(
+        f'<li>{esc(n)}<i>{esc(y)}</i></li>' for n, y in leaves) + '</ul></div>' for h, leaves in branches)
+    return (f'<figure class="fig tree"><div class="root"><b>{esc(root)}</b><small>{esc(sub)}</small></div>'
+            f'<div class="trunk"></div><div class="branches">{br}</div><figcaption>{cap}</figcaption></figure>')
+
+
+def tree_fields(t):
+    data = json.load(open(os.path.join(B, 'fields_tree.json'), encoding='utf-8'))
+    branches = [(f'{en if t is T["en"] else zh} · {n}', [(name, '') for name, _ in top]) for en, zh, n, top in data]
+    return tree('AI · OpenAI Math Release', '719 manuscripts · the nine largest fields', branches,
+                '<b>Figure 0.</b> The nine fields with the most AI manuscripts (number after the field) and, under each, the three human mathematicians '
+                'with the most reference entries in that field. Every field rests on a different set of people.')
+
+
+TREE_KAKEYA = [
+    ('Foundations', [('Besicovitch', '1928'), ('Davies', '1971'), ('Wolff', '1995'), ('Bourgain', '1999'), ('Katz · Łaba · Tao', '2000'), ('Katz · Tao', '2002')]),
+    ('Multilinear Kakeya', [('Bennett · Carbery · Tao', '2006'), ('Guth', '2010'), ('Bourgain · Guth', '2011'), ('Carbery · Valdimarsson', '2013')]),
+    ('Kakeya in 3 and 4 dimensions', [('Guth · Zahl', '2018'), ('Katz · Zahl', '2021'), ('Hong Wang · Zahl', '2025'), ('Hong Wang · Zahl (sticky)', '2026'), ('Guth · Hong Wang · Zahl', '2026')]),
+    ('Oscillatory integrals', [('Guo · Hong Wang · Zhang', '2024'), ('Gao · Liu · Xi', '2025'), ('Nadjimzadah', '2026')]),
+    ('Tools', [('Tao · Vu', '2006'), ('Basu · Pollack · Roy', '2006'), ('Cover · Thomas', '2006')]),
+]
+TREE_NS = [
+    ('The equations', [('Euler', '1757'), ('Navier', '1827'), ('Stokes', '1845')]),
+    ('Weak solutions & regularity', [('Leray', '1934'), ('Kato', '1972'), ('Caffarelli · Kohn · Nirenberg', '1982'), ('Beale · Kato · Majda', '1984'), ('Escauriaza · Seregin · Šverák', '2003')]),
+    ('The problem', [('Fefferman (Clay statement)', '2000')]),
+    ('Blowup & non-uniqueness', [('Tao', '2016'), ('Buckmaster · Vicol', '2019'), ('Elgindi', '2021'), ('Albritton · Brué · Colombo', '2022'), ('Chen · Hou', '2022'), ('Córdoba · Martínez-Zoroa', '2023')]),
+    ('Instability & waves', [('Leibovich · Stewartson', '1983'), ('Craik · Criminale', '1986'), ('Friedlander · Vishik', '1991'), ('Lifschitz · Hameiri', '1991')]),
+]
+TREE_AF = [
+    ('Folding principle', [('Anfinsen', '1973')]),
+    ('Solving structures', [('Wüthrich (NMR)', '2001'), ('Jaskolski · Dauter · Wlodawer', '2014'), ('Bai · McMullan · Scheres (cryo-EM)', '2015'), ('wwPDB', '2018')]),
+    ('Coevolution', [('Altschuh · Lesk · Bloomer · Klug', '1987'), ('Shindyalov · Kolchanov · Sander', '1994'), ('Weigt et al.', '2009'), ('Marks et al.', '2011'), ('Jones et al. (PSICOV)', '2012')]),
+    ('Prediction & assessment', [('Šali · Blundell', '1993'), ('Moult et al. (CASP)', '1995'), ('Zhang · Skolnick', '2004'), ('Senior et al. (AlphaFold 1)', '2020'), ('Yang · … · Baker (trRosetta)', '2020')]),
+    ('Deep learning', [('Qian · Sejnowski', '1988'), ('He et al. (ResNet)', '2016'), ('Devlin et al. (BERT)', '2019')]),
+]
+
+
+def tree_kakeya(t):
+    return tree('AI manuscript · four-dimensional Kakeya sets', 'OpenAI, 2026 · 34 references', TREE_KAKEYA,
+                '<b>Figure 0.</b> A selection of the 34 works cited by OpenAI’s manuscript on four-dimensional Kakeya sets, grouped by us into the lines of work it draws on.')
+
+
+def tree_ns(t):
+    return tree('AI · OpenAI Navier–Stokes and Euler papers', '2026 · 51 references', TREE_NS,
+                '<b>Figure 0.</b> A selection of the works cited by OpenAI’s Navier–Stokes and Euler papers, grouped by us: 269 years from Euler to today.')
+
+
+def tree_af(t):
+    return tree('AI · AlphaFold 2', 'DeepMind, Nature 2021 · 84 references', TREE_AF,
+                '<b>Figure 0.</b> A selection of the works cited by the AlphaFold 2 paper, grouped by us: half a century of structural biology, coevolution and machine learning.')
+
+
+FIGS.update({'tree_fields': tree_fields, 'tree_kakeya': tree_kakeya, 'tree_ns': tree_ns, 'tree_af': tree_af})

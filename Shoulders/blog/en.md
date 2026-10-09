@@ -48,6 +48,10 @@ The 11,067 works include 114 Fields, Abel and Wolf laureates. Most of the author
 - A manuscript on spin glasses uses Michel Talagrand’s cavity method [@talagrand2011].
 - In a Ricci-flow argument, one uses Grigori Perelman’s 2002 entropy monotonicity [@perelman2002]; in Hodge theory, one uses Pierre Deligne’s semisimplicity argument [@deligne1982].
 
+Each field rests on its own people.
+
+{{fig:tree_fields}}
+
 ## Whose problems these are
 
 Then there are the problems themselves.
@@ -60,7 +64,7 @@ Erdős’s 1957 list “Some unsolved problems” is cited by 5 manuscripts [@er
 
 The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s recent breakthrough on the Kakeya conjecture in three dimensions [@wangzahl2025; @wangzahl2026]. That work in turn stands on the line from Besicovitch through Wolff, Katz, Łaba, Tao and Guth [@wolff1995; @klt2000; @bct2006; @guth2010].
 
-{{fig:relay}}
+{{fig:tree_kakeya}}
 
 On the Bochner–Riesz problem, which is closely tied to Kakeya, AI manuscripts repeatedly cite the 2025 paper of Shaoming Guo with Changkeun Oh, Hong Wang, Shukun Wu and Ruixiang Zhang [@gowwz2025]. They place it beside Tao’s 2003 bilinear restriction estimate [@tao2003] as a source of the wave-packet method they use, and one of them adopts its pseudoconformal change of variables.
 
@@ -72,6 +76,10 @@ Chinese mathematicians are part of this relay:
 - Gang Tian’s book with John Morgan on the Ricci flow and the Poincaré conjecture [@morgantian2007], Jian Ding’s proof of the satisfiability conjecture with Allan Sly and Nike Sun [@dingslysun2022], and C. N. Yang’s 1957 paper with T. D. Lee and Kerson Huang on the hard-sphere Bose gas [@leehuangyang1957] are all in the references.
 
 The same holds outside this release. OpenAI’s Navier–Stokes paper [@openai_ns] starts from the equations Euler wrote in 1757 [@euler1757], then recalls Leray’s weak solutions of 1934 [@leray1934] and the partial regularity theorem of Caffarelli, Kohn and Nirenberg [@ckn1982]. AlphaFold [@jumper2021] was trained on protein structures that structural biologists solved one at a time over decades; its premise goes back to Anfinsen’s 1973 finding that a protein’s sequence determines its shape [@anfinsen1973].
+
+{{fig:tree_ns}}
+
+{{fig:tree_af}}
 
 ## What the references don’t show
 
