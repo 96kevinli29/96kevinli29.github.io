@@ -22,7 +22,11 @@ Many people contribute to a model capable of scientific breakthroughs. Two group
 
 **Reinforcement learning.** Engineers build the loop: the model tries a problem many times, a verifier checks the attempts, and training makes the successful paths more likely. What the loop needs from outside is problems worth practising on, a precise definition of a correct answer, and someone to judge what comes out. Today those still come largely from scientists, as we explain below.
 
+{{fig:stages}}
+
 This is why the quality of scientific data matters so much. Reinforcement learning can only strengthen what the model already produces when it samples. If a model almost never writes a correct proof, almost every reward is zero and there is almost nothing to learn from; the search is too inefficient to get anywhere. What raises the chance of a correct attempt from almost never to sometimes is the quality of what came before: careful proofs in the pretraining text, clean chains of reasoning in fine-tuning. A model trained on sloppy or shallow mathematics samples sloppy, shallow attempts. High-quality scientific writing is a large part of what makes efficient sampling possible. How far reinforcement learning can go beyond what the base model already contains is still an open research question; that it starts from there is not.
+
+{{fig:sampling}}
 
 Put simply: the engineers’ work makes the learning possible, and much of what there is to learn comes from scientists.
 
@@ -30,15 +34,19 @@ Put simply: the engineers’ work makes the learning possible, and much of what 
 
 We cannot see what a model learned from which text. A reference list is the one part we can see and check.
 
-The 11,067 works include 114 Fields, Abel and Wolf laureates. The citations are not decoration. In the citing sentences, the manuscripts use these works as tools:
+They also reach a long way back. The oldest cited work is Descartes’s *La Géométrie* of 1637; the manuscript on a “quasi-Riemann hypothesis” cites Riemann’s own paper of 1859.
 
-- To split a vector bundle, a manuscript uses Grothendieck’s theorem of 1957.
-- To confirm that a construction is algebraic, one invokes Serre’s GAGA of 1956. That paper is cited by 13 manuscripts.
-- In a Ricci-flow argument, one uses Perelman’s 2002 entropy monotonicity to carry a weighted Sobolev inequality forward in time.
-- To build obstructions on four-manifolds, several use the Chern–Simons transgression functional of Shiing-Shen Chern and James Simons, from 1974.
-- A counterexample in combinatorics follows the incidence and sum–product strategy of Bourgain, Katz and Tao.
-- To bound a variance in a percolation model, one applies the Brascamp–Lieb inequality of 1976.
-- To handle Hodge structures, one uses Deligne’s semisimplicity argument.
+{{fig:decades}}
+
+The 11,067 works include 114 Fields, Abel and Wolf laureates. Most of the authors are not names from history books but mathematicians working today. And the citations are not decoration. In the citing sentences, the manuscripts use their work as tools:
+
+- A manuscript on local smoothing names exactly two external inputs to its proof: Kevin Ren and Hong Wang’s planar Furstenberg theorem, and the wave-envelope theorem of Larry Guth, Hong Wang and Ruixiang Zhang.
+- In arithmetic geometry, a manuscript identifies certain vector bundles with p-adic local systems “by [Fargues–Scholze 2024]”, the work of Laurent Fargues and Peter Scholze.
+- In birational geometry, one follows a recent strategy of Caucher Birkar and a coauthor, and another applies Birkar’s theorem on bounded complements; others build on Osamu Fujino’s inductions and on the work of Omprokash Das, Christopher Hacon and Mihai Păun.
+- In probability, manuscripts rely on the properties of the random-cluster model as set out by Hugo Duminil-Copin and his coauthors, and on the random-surface laws of Bertrand Duplantier, Jason Miller and Scott Sheffield.
+- A counterexample in graph theory uses László Lovász and Balázs Szegedy’s sampling construction for graphons; one in combinatorics follows the sum–product strategy of Jean Bourgain, Nets Katz and Terence Tao.
+- A manuscript on spin glasses uses Michel Talagrand’s cavity method.
+- In a Ricci-flow argument, one uses Grigori Perelman’s 2002 entropy monotonicity; in Hodge theory, one uses Pierre Deligne’s semisimplicity argument.
 
 ## Whose problems these are
 
@@ -51,6 +59,8 @@ Erdős’s 1957 list “Some unsolved problems” is cited by 5 manuscripts. Shi
 ## A long relay
 
 The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s recent breakthrough on the Kakeya conjecture in three dimensions. That work in turn stands on the line from Besicovitch through Wolff, Katz, Łaba, Tao and Guth.
+
+{{fig:relay}}
 
 On the Bochner–Riesz problem, which is closely tied to Kakeya, AI manuscripts repeatedly cite the 2025 paper of Shaoming Guo with Changkeun Oh, Hong Wang, Shukun Wu and Ruixiang Zhang. They place it beside Tao’s 2003 bilinear restriction estimate as a source of the wave-packet method they use, and one of them adopts its pseudoconformal change of variables.
 

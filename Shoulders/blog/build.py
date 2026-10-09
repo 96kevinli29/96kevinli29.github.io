@@ -3,8 +3,9 @@ import os, sys, re, html
 B = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(B))
 from common import page
+import figures
 
-CSS = '''
+CSS = figures.CSS + '''
 article{max-width:40rem;margin:0 auto}
 .kicker{font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2.2rem}
 article h1{margin-top:.6rem;font-size:clamp(2rem,5.6vw,3rem);text-wrap:balance}
@@ -40,7 +41,9 @@ def render(md):
     lines = [l for l in lines if l not in notes]
     blocks = re.split(r'\n\s*\n', '\n'.join(lines).strip())
     for b in blocks:
-        if b.startswith('# '):
+        if b.startswith('{{fig:'):
+            body.append(figures.render(b[6:-2], LANG))
+        elif b.startswith('# '):
             body.append(f'<p class="kicker">{html.escape(meta.get("kicker", ""))}</p><h1>{inline(b[2:])}</h1>')
         elif b.startswith('## '):
             body.append(f'<h2>{inline(b[3:])}</h2>')
@@ -61,6 +64,7 @@ LANGS = {'en': ('en.md', 'index.html', ('← On Whose Shoulders', '../'), ('中�
          'zh': ('zh.md', 'zh/index.html', ('← 巨人之肩', '../../zh/'), ('English', '../'))}
 
 for lang, (src, out, back, alt) in LANGS.items():
+    LANG = lang
     f = os.path.join(B, src)
     if not os.path.exists(f):
         continue
