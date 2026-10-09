@@ -7,7 +7,11 @@ import figures
 from refs import REFS
 
 CSS = figures.CSS + '''
-article{max-width:40rem;margin:0 auto}
+main{max-width:76rem}
+article{max-width:46rem;margin:0 auto}
+@media (min-width:1000px){article p,article li{font-size:1.12rem}}
+figure.fig{position:relative;width:min(62rem,calc(100vw - 52px));left:50%;transform:translateX(-50%)}
+figure.fig.hist{width:auto;left:auto;transform:none}
 .kicker{font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2.2rem}
 article h1{margin-top:.6rem;font-size:clamp(2rem,5.6vw,3rem);text-wrap:balance}
 article h2{margin:2.6rem 0 .7rem}
