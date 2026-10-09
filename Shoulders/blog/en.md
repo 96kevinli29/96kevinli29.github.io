@@ -4,7 +4,7 @@ kicker: Essay · Sea-Fill · 9 October 2026
 
 # What AI’s mathematics is built on
 
-After OpenAI released 722 AI-written mathematics manuscripts, we did something unglamorous: we wrote code to extract every reference list, then checked them one by one.
+After OpenAI released 722 AI-written mathematics manuscripts, we did the slow, careful work: we wrote code to extract every reference list, then checked them one by one.
 
 The result: 11,067 human works by 9,612 mathematicians.[^1]
 
