@@ -12,7 +12,7 @@ One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The 
 
 We work in AI ourselves. We did this because results like these are often reported as “AI solves X”, as if no one stood behind them. We wanted to know who does.
 
-## How a model capable of scientific breakthroughs is built
+## Engineers build the machine; scientists give it something to learn
 
 Many people contribute to a model capable of scientific breakthroughs. Two groups are most closely tied to it. Engineers build the machine: the architecture, the training code, the data pipelines, the compute. Scientists supply much of what the machine learns from and what it aims at. Training has three stages, and both groups are present in each.
 
@@ -30,7 +30,7 @@ This is why the quality of scientific data matters so much. Reinforcement learni
 
 Put simply: the engineers’ work makes the learning possible, and much of what there is to learn comes from scientists.
 
-## What the references show
+## 11,067 works, used as tools
 
 We cannot see what a model learned from which text. A reference list is the one part we can see and check.
 
@@ -52,7 +52,7 @@ Each field rests on its own people.
 
 {{fig:tree_fields}}
 
-## Whose problems these are
+## The problems carry human names
 
 Then there are the problems themselves.
 
@@ -60,7 +60,7 @@ The first results in OpenAI’s catalogue are on Milne’s rationality conjectur
 
 Erdős’s 1957 list “Some unsolved problems” is cited by 5 manuscripts [@erdos1957]. Shing-Tung Yau’s 1994 “Open problems in geometry” is cited by 4 [@yau1994]. OpenAI’s repository says that they “evaluate our models on open research problems”. The supply of good open problems is something mathematicians have built up over centuries.
 
-## A long relay
+## A century-long relay
 
 The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s recent breakthrough on the Kakeya conjecture in three dimensions [@wangzahl2025; @wangzahl2026]. That work in turn stands on the line from Besicovitch through Wolff, Katz, Łaba, Tao and Guth [@wolff1995; @klt2000; @bct2006; @guth2010].
 
@@ -81,15 +81,15 @@ The same holds outside this release. OpenAI’s Navier–Stokes paper [@openai_n
 
 {{fig:tree_af}}
 
-## What the references don’t show
+## The names that are missing
 
 A reference list is the visible part. It does not show the textbooks nobody cites, the teachers who passed these ideas on, the referees who checked the papers, or the attempts that failed and were never published but taught others which roads lead nowhere. All of that went into the text that models learn from. None of it has a name in our data.
 
-## Where scientists come in next
+## Scientists supply the signal
 
 Pretraining and supervised fine-tuning give a model its intuitions and its way of reasoning. New results at the frontier come from sampling on a large scale: reinforcement learning during training, and search and agents at test time. In each, the model makes many attempts at a problem, called rollouts, and a verifier decides which ones count. Successful trajectories can then become training data for the next round [@zelikman2022].
 
-Whether the sampling happens in training or at test time, human scientists sit at three points in the loop.
+In the language of training, a gradient is what a model learns from one example, and it is only as good as the signal behind it. Much of the strong signal comes from scientists: carefully written proofs give pretraining clear next steps to learn; well-chosen problems keep rewards from being all zeros or all ones; precise verifiers make sure the signal points the right way. Whether the sampling happens in training or at test time, scientists sit at three points in the loop.
 
 **They choose the problems.** Training learns most, and test-time compute is best spent, on problems that are just within reach. If every rollout succeeds, there is no signal; if every rollout fails, the reward is zero and so is the gradient [@shao2024]. The useful problems are the ones at the edge of what the model can do that also lead somewhere that matters. Good problems produce good seeds for the next round; poor problems produce poor ones. Picking them takes the judgement that mathematicians call taste. Lists like those of Erdős, Yau and Hilbert are exactly this kind of work.
 
@@ -99,13 +99,13 @@ Whether the sampling happens in training or at test time, human scientists sit a
 
 That is why we do not see scientists being replaced. In the loop above, they choose the problems, define correctness and judge the results. We would call that navigating.
 
-## Why it matters now
+## If scientists step back, the signal fades
 
 Models do not create new human knowledge on their own. Research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade [@shumailov2024]. New problems, new ideas and new experimental data still have to come from people.
 
 If the common story becomes “AI solves it, scientists are no longer needed”, that story will affect where research funding goes. It will also affect whether young people choose to spend years on a hard problem with no guaranteed result. Fewer of them would mean less of the material that models learn from, and fewer people to steer.
 
-## What we built
+## Writing the names down
 
 For most of history, this was solitary work: the people who did it had no machine to ask. Many of them are in our list. Many more are not.
 
