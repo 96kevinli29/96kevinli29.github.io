@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What AI’s mathematics is built on · Sea-Fill</title>
+<meta name="description" content="We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,612 mathematicians. What that says about how models learn, and why scientists still steer.">
+<meta property="og:title" content="What AI’s mathematics is built on · Sea-Fill">
+<meta property="og:description" content="We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,612 mathematicians. What that says about how models learn, and why scientists still steer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#eef1f3;--sheet:#fbfcfc;--ink:#14212b;--muted:#5b6b76;--rule:#d3dadf;--gold:#a8791c;--gold-soft:#f3e7c9;--use:#1f6f68;--use-soft:#d6ebe8;--wolf:#7a4fa3;--bg2:#e3e8ec;
+--f-display:"Noto Serif SC","Songti SC","STSong",Georgia,serif;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11181e;--sheet:#182129;--ink:#e4e9ec;--muted:#93a3ae;--rule:#2b3741;--gold:#e0b351;--gold-soft:#3a3020;--use:#5cc2b6;--use-soft:#183a37;--wolf:#c3a3e6;--bg2:#1f2a33;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#11181e;--sheet:#182129;--ink:#e4e9ec;--muted:#93a3ae;--rule:#2b3741;--gold:#e0b351;--gold-soft:#3a3020;--use:#5cc2b6;--use-soft:#183a37;--wolf:#c3a3e6;--bg2:#1f2a33;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 var(--f-body);-webkit-text-size-adjust:100%}
+main{max-width:56rem;margin:0 auto;padding:2.2rem 16px 4rem}
+a{color:var(--use)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.top a{color:var(--muted);text-decoration:none}.top a:hover{color:var(--ink)}
+.eyebrow{font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:900 clamp(2.1rem,6.5vw,3.5rem)/1.12 var(--f-display);margin:2rem 0 .8rem;letter-spacing:-.01em}
+h2{font:900 clamp(1.45rem,4vw,1.9rem)/1.25 var(--f-display);margin:0 0 .5rem}
+.dek{font-size:1.08rem;color:var(--muted);max-width:40rem;margin:0 0 1rem}
+.dek b{color:var(--ink);font-weight:600}
+.sec{margin-top:3.2rem}
+.sec>.eyebrow{display:block;margin-bottom:.6rem}
+.tag{display:inline-block;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:.12rem .5rem;border-radius:3px}
+.chip{display:inline-block;font:500 .66rem/1.5 var(--f-mono);letter-spacing:.04em;padding:0 .4rem;border-radius:3px;vertical-align:.12em;margin-left:.3rem;white-space:nowrap}
+.chip.fm,.chip.nc{background:var(--gold-soft);color:var(--gold)}.chip.ab{background:var(--use-soft);color:var(--use)}.chip.wf{background:var(--bg2);color:var(--wolf)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.75rem;margin:1.6rem 0 0}
+.stat{border-left:3px solid var(--gold);padding:.1rem .8rem}
+.stat b{display:block;font:900 1.8rem/1.15 var(--f-display)}
+.stat span{font-size:.84rem;color:var(--muted);line-height:1.4;display:block}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+footer a{color:var(--muted)}
+:focus-visible{outline:2px solid var(--use);outline-offset:2px}
+
+.tribute{display:inline-flex;align-items:center;gap:.45rem;font:600 .92rem var(--f-body);color:var(--gold);background:transparent;border:1.5px solid var(--gold);border-radius:999px;padding:.42rem 1.1rem;cursor:pointer;transition:background .25s,color .25s}
+.tribute:hover{background:var(--gold-soft)}
+.tribute[aria-pressed="true"]{background:var(--gold);color:var(--paper);cursor:default}
+.tribute .ic{font-size:1.05em;line-height:1}
+.tcount{font:.8rem var(--f-mono);color:var(--muted);margin-left:.7rem}
+.tcount b{color:var(--ink);font-weight:600}
+
+article{max-width:40rem;margin:0 auto}
+.kicker{font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2.2rem}
+article h1{margin-top:.6rem;font-size:clamp(2rem,5.6vw,3rem);text-wrap:balance}
+article h2{margin:2.6rem 0 .7rem}
+article p,article li{font-size:1.06rem;line-height:1.8}
+article p{margin:0 0 1.05rem}
+article ul{padding-left:1.2rem;margin:0 0 1.2rem}
+article li{margin:.35rem 0}
+article blockquote{margin:1.2rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--gold);color:var(--ink)}
+article sup a{text-decoration:none;font-size:.75em}
+.notes{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
+.notes ol{padding-left:1.2rem}
+.cta{display:inline-block;margin-top:.6rem;font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><a href="../">← On Whose Shoulders</a></div><article><p class="kicker">Essay · Sea-Fill · 9 October 2026</p><h1>What AI’s mathematics is built on</h1>
+<p>After OpenAI released 722 AI-written mathematics manuscripts, we did something unglamorous: we wrote code to extract every reference list, then checked them one by one.</p>
+<p>The result: 11,067 human works by 9,612 mathematicians.<sup id="r1"><a href="#n1">1</a></sup></p>
+<p>One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The oldest is Besicovitch’s paper of 1928. After it come Davies, Wolff, Katz, Łaba, Tao and Guth, all the way to Hong Wang and Joshua Zahl’s work in 2026.</p>
+<p>We work in AI ourselves. We did this because results like these are often reported as “AI solves X”, as if no one stood behind them. We wanted to know who does.</p>
+<h2>What a model learns from</h2>
+<p>Pretraining a language model means teaching it to predict the next token from the text before it. Everything it learns at this stage, it learns from text that people wrote.</p>
+<p>One of the AI manuscripts contains the step “by the splitting theorem for vector bundles on the projective line, E is a direct sum of line bundles”. A model that writes this step has learned that the second half is very likely to follow the first. It did not discover the fact. Grothendieck proved it in 1957, and mathematicians have written that step in papers, textbooks and lecture notes ever since. That is where the probability comes from.</p>
+<p>Mathematicians call it intuition when they know, facing a problem, which lemma to reach for next. They build it over years of reading, working and failing. A model’s version of it is a set of conditional probabilities between tokens, estimated from the next steps that people wrote down. In that sense, human intuition is mapped into the model’s distribution.</p>
+<p>Minimising prediction error is, in information-theoretic terms, compression. Pretraining compresses written human knowledge into parameters, and what the parameters can hold depends on what went in. People in our field call this the cold start. For mathematics, the cold start is the work of mathematicians.</p>
+<h2>What the references show</h2>
+<p>We cannot see what a model learned from which text. A reference list is the one part we can see and check.</p>
+<p>The 11,067 works include 114 Fields, Abel and Wolf laureates. The citations are not decoration. In the citing sentences, the manuscripts use these works as tools:</p>
+<ul><li>To split a vector bundle, a manuscript uses Grothendieck’s theorem of 1957.</li><li>To confirm that a construction is algebraic, one invokes Serre’s GAGA of 1956. That paper is cited by 13 manuscripts.</li><li>In a Ricci-flow argument, one uses Perelman’s 2002 entropy monotonicity to carry a weighted Sobolev inequality forward in time.</li><li>To build obstructions on four-manifolds, several use the Chern–Simons transgression functional of Shiing-Shen Chern and James Simons, from 1974.</li><li>A counterexample in combinatorics follows the incidence and sum–product strategy of Bourgain, Katz and Tao.</li><li>To bound a variance in a percolation model, one applies the Brascamp–Lieb inequality of 1976.</li><li>To handle Hodge structures, one uses Deligne’s semisimplicity argument.</li></ul>
+<h2>Whose problems these are</h2>
+<p>Then there are the problems themselves.</p>
+<p>The first results in OpenAI’s catalogue are on Milne’s rationality conjecture, the Birch–Swinnerton-Dyer formula and a “quasi-Riemann hypothesis”. Further down are Kaplansky’s direct-finiteness conjecture, the Mahler conjectures, the Mézard–Parisi formula, Hilbert’s tenth problem over the rationals, the Kakeya conjecture and the Navier–Stokes equations. Almost every one carries the name of the person who asked it.</p>
+<p>Erdős’s 1957 list “Some unsolved problems” is cited by 5 manuscripts. Shing-Tung Yau’s 1994 “Open problems in geometry” is cited by 4. OpenAI’s repository says that they “evaluate our models on open research problems”. The supply of good open problems is something mathematicians have built up over centuries.</p>
+<h2>A long relay</h2>
+<p>The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s recent breakthrough on the Kakeya conjecture in three dimensions. That work in turn stands on the line from Besicovitch through Wolff, Katz, Łaba, Tao and Guth.</p>
+<p>On the Bochner–Riesz problem, which is closely tied to Kakeya, AI manuscripts repeatedly cite the 2025 paper of Shaoming Guo with Changkeun Oh, Hong Wang, Shukun Wu and Ruixiang Zhang. They place it beside Tao’s 2003 bilinear restriction estimate as a source of the wave-packet method they use, and one of them adopts its pseudoconformal change of variables.</p>
+<p>Chinese mathematicians are part of this relay:</p>
+<ul><li>A manuscript on the abundance conjecture follows the foliation criterion of Chenyang Xu and Lei Zhang.</li><li>A manuscript on hard-sphere gases imports estimates from Yu Deng, Zaher Hani and Xiao Ma’s derivation of the Boltzmann equation from particle dynamics. Deng received a Fields Medal this year.</li><li>Shing-Tung Yau’s 1978 proof of the Calabi conjecture is cited by 10 manuscripts.</li><li>Gang Tian’s book with John Morgan on the Ricci flow and the Poincaré conjecture, Jian Ding’s proof of the satisfiability conjecture with Allan Sly and Nike Sun, and C. N. Yang’s 1957 paper with T. D. Lee and Kerson Huang on the hard-sphere Bose gas are all in the references.</li></ul>
+<p>The same holds outside this release. OpenAI’s Navier–Stokes paper starts from the equations Euler wrote in 1757, then recalls Leray’s weak solutions of 1934 and the partial regularity theorem of Caffarelli, Kohn and Nirenberg. AlphaFold was trained on protein structures that structural biologists solved one at a time over decades; its premise goes back to Anfinsen’s 1973 finding that a protein’s sequence determines its shape.</p>
+<h2>What the references don’t show</h2>
+<p>A reference list is the visible part. It does not show the textbooks nobody cites, the teachers who passed these ideas on, the referees who checked the papers, or the attempts that failed and were never published but taught others which roads lead nowhere. All of that went into the text that models learn from. None of it has a name in our data.</p>
+<h2>Where scientists come in next</h2>
+<p>Pretraining gives a model its intuitions. To get new results at the frontier, the usual tool today is reinforcement learning. The model is given a problem and makes many attempts, called rollouts. A verifier checks which attempts are correct, and training makes the successful paths more likely. Successful trajectories can then become training data for the next round.</p>
+<p>From a training point of view, human scientists sit at three points in this loop.</p>
+<p><b>They choose the problems.</b> Reinforcement learning learns most from problems that are just within reach. If every rollout succeeds, there is no signal; if every rollout fails, the reward is zero and so is the gradient. The useful problems are the ones at the edge of what the model can do that also lead somewhere that matters. Good problems produce good seeds for the next round; poor problems produce poor ones. Picking them takes the judgement that mathematicians call taste. Lists like those of Erdős, Yau and Hilbert are exactly this kind of work.</p>
+<p><b>They define what counts as correct.</b> If a reward is specified loosely, a model learns to exploit the gap. Mathematics works as a testing ground because mathematicians have defined proof precisely. OpenAI’s Navier–Stokes paper states that it establishes alternative (C) “in the Millennium problem statement for Navier–Stokes as stated by Fefferman”, and it checks a condition on the pressure that comes from the erratum to that statement. Its Lean formalization rests on Mathlib, an open library of formalized mathematics built over many years by mathematicians and programmers. The verifier is human work too.</p>
+<p><b>They judge the results.</b> On 7 October, OpenAI withdrew 3 manuscripts after a sign error was found, and revised 14 others. Their repository notes that some of the unformalized results “could have issues”. Deciding which results hold, which matter and which directions deserve the next round of compute is still the work of the scientific community.</p>
+<p>That is why we do not see scientists being replaced. In the loop above, they choose the problems, define correctness and judge the results. We would call that navigating.</p>
+<h2>Why it matters now</h2>
+<p>Models do not create new human knowledge on their own. Research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade.<sup id="r2"><a href="#n2">2</a></sup> New problems, new ideas and new experimental data still have to come from people.</p>
+<p>If the common story becomes “AI solves it, scientists are no longer needed”, that story will affect where research funding goes. It will also affect whether young people choose to spend years on a hard problem with no guaranteed result. Fewer of them would mean less of the material that models learn from, and fewer people to steer.</p>
+<h2>What we built</h2>
+<p>For most of history, the people who did this work did it alone, with no machine to ask. Many of them are in our list. Many more are not.</p>
+<p>So we built On Whose Shoulders, an open-source record of the human work that AI results in science build on, organised by field and updated as new results appear. You can type any scientist’s name and see which of their works the AI manuscripts use. It also covers OpenAI’s Navier–Stokes papers and AlphaFold.</p>
+<p>If you write about AI results in science, please name the people behind them. Our data is open for that.</p>
+<p>Scientists are the bridge between human knowledge and AI, and we want their names to stay attached to what is built on them.</p>
+<p><a href="../" class=cta>Explore On Whose Shoulders →</a></p>
+<div class="notes"><ol><li id="n1">OpenAI released 722 manuscripts on 6 October 2026. On 7 October it withdrew 3 and revised 14; our counts use the 719 current manuscripts. Data: github.com/openai/math (Apache 2.0). <a href="#r1">↩</a></li><li id="n2">I. Shumailov et al., “AI models collapse when trained on recursively generated data”, Nature 631, 755–759 (2024). <a href="#r2">↩</a></li></ol></div></article><footer>Sea-Fill · <a href="https://huggingface.co/SeaFill2025">Hugging Face</a></footer>
+</main>
+<script>
+window.Tribute=(function(){
+ const B='https://96kevinli29.goatcounter.com/counter/';
+ const key=p=>'tribute:'+p;
+ const done=p=>{try{return !!localStorage.getItem(key(p))}catch(e){return false}};
+ function read(p,box){fetch(B+encodeURIComponent(p)+'.json').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.count){box.querySelector('b').textContent=j.count;box.hidden=false}}).catch(()=>{})}
+ function send(p,t,n){n=n||0;if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:t,event:true});else if(n<20)setTimeout(()=>send(p,t,n+1),500)}
+ function set(b){b.setAttribute('aria-pressed','true')}   // keeps its label; the filled gold shows it was given
+ function bind(root){(root||document).querySelectorAll('.tribute:not([data-bound])').forEach(b=>{
+  b.dataset.bound=1;const p=b.dataset.path,box=b.nextElementSibling&&b.nextElementSibling.classList.contains('tcount')?b.nextElementSibling:null;
+  if(done(p))set(b);if(box)read(p,box);
+  b.addEventListener('click',()=>{if(done(p))return;try{localStorage.setItem(key(p),'1')}catch(e){}
+   send(p,b.dataset.title||p);set(b);
+   if(box&&!box.hidden){const el=box.querySelector('b'),n=parseInt(el.textContent.replace(/\D/g,''),10);if(!isNaN(n))el.textContent=(n+1).toLocaleString('en-US')}
+   b.dispatchEvent(new CustomEvent('tribute',{bubbles:true}))})})}
+ return {bind};
+})();
+Tribute.bind();</script>
+<script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

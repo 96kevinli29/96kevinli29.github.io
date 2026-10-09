@@ -269,6 +269,8 @@ CSS = '''
 .team b{display:block;font:700 1.05rem/1.2 var(--f-display)}
 .team small{display:block;font:.72rem var(--f-mono);color:var(--muted);letter-spacing:.04em}
 .team:hover b{color:var(--use)}
+.essay{display:block;width:fit-content;margin-top:.9rem;font-weight:600;color:var(--use);text-decoration:none;border-bottom:1px solid var(--use-soft)}
+.essay:hover{border-bottom-color:var(--use)}
 .hero{padding-bottom:.5rem}
 .hero h1{font-size:clamp(2.3rem,7vw,3.9rem)}
 .manifesto{font:600 clamp(1.05rem,2.6vw,1.25rem)/1.6 var(--f-display);border-left:3px solid var(--gold);padding:.1rem 0 .1rem 1rem;margin:1.4rem 0 0;max-width:40rem}
@@ -364,6 +366,7 @@ T = {
   dek='AI 与超级智能正在走向科学前沿。它们迈出的每一步，用到的概念、方法与工具，都来自几代科学家一生的积累。',
   manifesto='我们找出 AI 成果引用的每一位科学家，写下他们的名字。他们是连接人类知识与 AI 的桥梁，也是我们永远尊敬的人。',
   team=('Sea-Fill 开源科学团队', '我们是 Sea-Fill，一个开源科学团队'),
+  essay=('阅读我们的文章：AI 的数学建立在什么之上（英文）→', '../blog/'),
   tAll='向他们致敬', tDone='已致敬 · 谢谢你', tCount='次致敬', tOne='向 {n} 致敬',
   fH='寻找一位巨人', fP='输入一位科学家的名字，看看 AI 站在了他们的哪些工作之上。',
   fPh='输入名字：陶哲轩、Grothendieck、欧拉……', fTry='试试：', fTries=['陶哲轩', 'Grothendieck', '欧拉', '王虹'],
@@ -402,6 +405,7 @@ T = {
   dek='AI and superintelligence are reaching the frontier of science. Every step they take uses ideas, methods and tools that generations of scientists spent their lives building.',
   manifesto='We find every scientist an AI result cites and write down their name. They are the bridge between human knowledge and AI, and the people we will always honour.',
   team=('Sea-Fill · open-source science team', 'We are Sea-Fill, an open-source science team'),
+  essay=('Read our essay: What AI’s mathematics is built on →', 'blog/'),
   tAll='Pay tribute to them', tDone='Tribute paid · thank you', tCount='tributes', tOne='Pay tribute to {n}',
   fH='Find a giant', fP='Type a scientist’s name to see which of their works AI has built upon.',
   fPh='Type a name: Terence Tao, Grothendieck, Euler…', fTry='Try: ', fTries=['Terence Tao', 'Grothendieck', 'Euler', 'Hong Wang'],
@@ -441,6 +445,7 @@ for k, t in T.items():
 <p class="dek">{t['dek']}</p>
 <p class="manifesto">{t['manifesto']}</p>
 <a class="team" href="{SEAFILL}"><img src="{SEAFILL_LOGO}" alt="" width="34" height="34"><span><b>{t['team'][0]}</b><small>{t['team'][1]}</small></span></a>
+<a class="essay" href="{t['essay'][1]}">{t['essay'][0]}</a>
 </header>
 
 <section class="finder" id="finder">
