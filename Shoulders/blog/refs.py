@@ -32,6 +32,10 @@ REFS = {
  'yue2025': dict(type='misc', author=['Yang Yue', 'others'], title='Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?', year='2025', url='https://arxiv.org/abs/2504.13837'),
  'amodei2016': dict(type='misc', author=['Dario Amodei', 'others'], title='Concrete Problems in AI Safety', year='2016', url='https://arxiv.org/abs/1606.06565'),
  'skalse2022': dict(type='misc', author=['Joar Skalse', 'others'], title='Defining and Characterizing Reward Hacking', year='2022', url='https://arxiv.org/abs/2209.13085'),
+ 'snell2024': dict(type='misc', author=['Charlie Snell', 'others'], title='Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters', year='2024', url='https://arxiv.org/abs/2408.03314'),
+ 'wang2022sc': dict(type='misc', author=['Xuezhi Wang', 'others'], title='Self-Consistency Improves Chain of Thought Reasoning in Language Models', year='2022', url='https://arxiv.org/abs/2203.11171'),
+ 'lightman2023': dict(type='misc', author=['Hunter Lightman', 'others'], title='Let’s Verify Step by Step', year='2023', url='https://arxiv.org/abs/2305.20050'),
+ 'yao2022': dict(type='misc', author=['Shunyu Yao', 'others'], title='ReAct: Synergizing Reasoning and Acting in Language Models', year='2022', url='https://arxiv.org/abs/2210.03629'),
  # ---- mathematics cited by the AI manuscripts ----
  'grothendieck1957': dict(type='article', author=['Alexander Grothendieck'], title='Sur la classification des fibrés holomorphes sur la sphère de Riemann',
                           journal='American Journal of Mathematics', year='1957', doi='10.2307/2372388', volume='79', pages='121'),
