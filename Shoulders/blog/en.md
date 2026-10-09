@@ -12,19 +12,17 @@ One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The 
 
 We work in AI ourselves. We did this because results like these are often reported as “AI solves X”, as if no one stood behind them. We wanted to know who does.
 
-## What a model learns from
+## How a model is built, and by whom
 
-Pretraining a language model means teaching it to predict the next token from the text before it. Everything it learns at this stage, it learns from text that people wrote.
+Two groups of people go into a model like this. Engineers build the machine: the architecture, the training code, the data pipelines, the compute. Scientists supply what the machine learns from and what it aims at. Training has three stages, and both groups are present in each.
 
-One of the AI manuscripts contains the step “by the splitting theorem for vector bundles on the projective line, E is a direct sum of line bundles”. A model that writes this step has learned that the second half is very likely to follow the first. It did not discover the fact. Grothendieck proved it in 1957, and mathematicians have written that step in papers, textbooks and lecture notes ever since. That is where the probability comes from.
+**Pretraining.** Engineers build a system that learns to predict the next token from the text before it. Everything it learns at this stage, it learns from a vast amount of unstructured text that people wrote. One of the AI manuscripts contains the step “by the splitting theorem for vector bundles on the projective line, E is a direct sum of line bundles”. A model that writes this step has learned that the second half is very likely to follow the first. It did not discover the fact. Grothendieck proved it in 1957, and mathematicians have written that step in papers, textbooks and lecture notes ever since. That is where the probability comes from. Mathematicians call it intuition when they know which lemma to reach for next; a model’s version of it is a set of conditional probabilities estimated from the next steps that people wrote down. Minimising prediction error is, in information-theoretic terms, compression, and what the parameters can hold depends on what went in.
 
-Mathematicians call it intuition when they know, facing a problem, which lemma to reach for next. They build it over years of reading, working and failing. A model’s version of it is a set of conditional probabilities between tokens, estimated from the next steps that people wrote down. In that sense, human intuition is mapped into the model’s distribution.
+**Supervised fine-tuning.** Post-training for reasoning models often begins with what is called a cold start: fine-tuning on a smaller, carefully chosen set of long chains of reasoning that show, step by step, how problems are solved. DeepSeek’s public report on its R1 model, for example, describes such a stage.[^3] Engineers assemble and run it. The chains themselves are a mix. Some are written by people: proofs, derivations, worked solutions, annotated reasoning. Many are synthesised by models. But the synthetic ones still start from problems and instructions that people wrote, imitate the way human proofs are written, and are kept or thrown away by checks that people designed. What the model learns here is how a mathematician gets from one step to the next.
 
-Minimising prediction error is, in information-theoretic terms, compression. Pretraining compresses a vast amount of unstructured human text into parameters, and what the parameters can hold depends on what went in.
+**Reinforcement learning.** Engineers build the loop: the model tries a problem many times, a verifier checks the attempts, and training makes the successful paths more likely. What the loop needs from outside is problems worth practising on, a precise definition of a correct answer, and someone to judge what comes out. Those still come from scientists, as we explain below.
 
-For reasoning models, pretraining is usually followed by two more stages. The first is often called the cold start: the model is fine-tuned on a smaller, carefully chosen set of long chains of reasoning that show, step by step, how problems are solved. DeepSeek’s public report on its R1 model, for example, describes such a stage.[^3] In practice these chains are a mix. Some are written by people: proofs, derivations, worked solutions, annotated reasoning. Many are synthesised by models. But the synthetic ones still start from problems and instructions that people wrote, imitate the way human proofs are written, and are kept or thrown away by checks that people designed. What the model learns at this stage is how a mathematician gets from one step to the next.
-
-The second stage is reinforcement learning. It needs problems to practise on and a way to check the answers. We come back to it below, because both still come from people.
+In all three stages, the engineers’ work is what makes learning possible. The scientists’ work is what there is to learn.
 
 ## What the references show
 
@@ -69,7 +67,7 @@ A reference list is the visible part. It does not show the textbooks nobody cite
 
 ## Where scientists come in next
 
-Pretraining and the cold start give a model its intuitions and its way of reasoning. To get new results at the frontier, the usual tool today is reinforcement learning. The model is given a problem and makes many attempts, called rollouts. A verifier checks which attempts are correct, and training makes the successful paths more likely. Successful trajectories can then become training data for the next round.
+Pretraining and supervised fine-tuning give a model its intuitions and its way of reasoning. New results at the frontier usually come from reinforcement learning: the model makes many attempts at a problem, called rollouts, a verifier checks them, and training makes the successful paths more likely. Successful trajectories can then become training data for the next round.
 
 From a training point of view, human scientists sit at three points in this loop.
 
