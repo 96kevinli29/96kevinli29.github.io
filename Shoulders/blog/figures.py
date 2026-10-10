@@ -98,10 +98,10 @@ T = {
 
 def stages(t):
     cols = ''.join(
-        f'<div class="stage"><h4>{esc(n)}<small>{esc(sub)}</small></h4>'
+        f'<div class="stage" style="--i:{i}"><h4>{esc(n)}<small>{esc(sub)}</small></h4>'
         f'<div class="cell eng"><b>{esc(t["key_eng"])}</b>{esc(e)}</div>'
         f'<div class="cell sci"><b>{esc(t["key_sci"])}</b>{esc(s)}</div></div>'
-        for n, sub, e, s in t['stages'])
+        for i, (n, sub, e, s) in enumerate(t['stages']))
     return (f'<figure class="fig"><div class="fig-key"><span><i class="k-eng"></i>{esc(t["key_eng"])}</span>'
             f'<span><i class="k-sci"></i>{esc(t["key_sci"])}</span></div>'
             f'<div class="stages">{cols}</div><div class="loop">{esc(t["loop"])}</div>'
@@ -112,7 +112,7 @@ def sampling(t):
     def dots(ok):
         on = {3, 12, 18, 27, 33, 41, 46, 55, 60} if ok else set()
         return '<div class="dots" role="img" aria-label="64 attempts">' + ''.join(
-            f'<i class="{"ok" if i in on else ""}"></i>' for i in range(64)) + '</div>'
+            f'<i class="{"ok" if i in on else ""}" style="--k:{i}"></i>' for i in range(64)) + '</div>'
     return (f'<figure class="fig"><div class="samp">'
             f'<div><h4>{esc(t["weak"])}</h4>{dots(False)}<p>{t["weak_p"]}</p></div>'
             f'<div><h4>{esc(t["strong"])}</h4>{dots(True)}<p>{t["strong_p"]}</p></div>'
@@ -136,7 +136,7 @@ def decades(t):
     for i, (y, n) in enumerate(data):
         h = (H - TOP - BOT) * n / mx
         x = L + i * bw
-        bars.append(f'<rect class="bar" x="{x + 1:.1f}" y="{H - BOT - h:.1f}" width="{bw - 2:.1f}" height="{max(h, 1):.1f}" rx="2">'
+        bars.append(f'<rect class="bar" style="--k:{i}" x="{x + 1:.1f}" y="{H - BOT - h:.1f}" width="{bw - 2:.1f}" height="{max(h, 1):.1f}" rx="2">'
                     f'<title>{y}s: {n:,} {t["hist_y"]}</title></rect>')
         if y % 50 == 0:
             labels.append(f'<text x="{x + bw / 2:.1f}" y="{H - 12}" text-anchor="middle">{y}</text>')
@@ -174,8 +174,9 @@ CSS += '''
 
 
 def tree(root, sub, branches, cap):
-    br = ''.join(f'<div class="br"><h5>{esc(h)}</h5><ul>' + ''.join(
-        f'<li>{esc(n)}<i>{esc(y)}</i></li>' for n, y in leaves) + '</ul></div>' for h, leaves in branches)
+    br = ''.join(f'<div class="br" style="--i:{i}"><h5>{esc(h)}</h5><ul>' + ''.join(
+        f'<li style="--j:{j}">{esc(n)}<i>{esc(y)}</i></li>' for j, (n, y) in enumerate(leaves)) + '</ul></div>'
+        for i, (h, leaves) in enumerate(branches))
     return (f'<figure class="fig tree"><div class="root"><b>{esc(root)}</b><small>{esc(sub)}</small></div>'
             f'<div class="trunk"></div><div class="branches">{br}</div><figcaption>{cap}</figcaption></figure>')
 
@@ -267,3 +268,65 @@ def tree_af(t):
 
 
 FIGS.update({'tree_fields': tree_fields, 'tree_kakeya': tree_kakeya, 'tree_ns': tree_ns, 'tree_af': tree_af})
+
+
+# ---- the navigation loop: scientists and AI, each turn producing data that carries signal ---------
+LOOP = {
+ 'zh': dict(steps=[('sci', '科学家', '提出值得解的问题，定下“正确”的标准'),
+                   ('ai', 'AI', '大规模采样：成千上万次尝试'),
+                   ('sci', '验证器', '人建立的标准，留下通过检验的尝试'),
+                   ('sci', '科学家', '评判哪些结果成立、哪些重要'),
+                   ('data', '新的数据', '带着学习信号，进入下一轮训练')],
+            back='↻ 下一个问题',
+            cap='<b>Figure 0.</b> 领航循环。AI 再强大，也需要有人指方向。科学家与 AI 合作，每转一圈，就产生一批带着学习信号的新数据。'),
+ 'en': dict(steps=[('sci', 'Scientists', 'pose a problem worth solving and define what counts as correct'),
+                   ('ai', 'AI', 'samples at scale: thousands of attempts'),
+                   ('sci', 'Verifier', 'built on human standards, keeps the attempts that pass'),
+                   ('sci', 'Scientists', 'judge which results hold and which matter'),
+                   ('data', 'New data', 'carrying a learning signal, feeds the next round of training')],
+            back='↻ the next problem',
+            cap='<b>Figure 0.</b> The navigation loop. However capable AI becomes, someone has to set the direction. Scientists and AI work together, and each turn of the loop produces new data that carries a learning signal.'),
+}
+
+
+def loop(t):
+    L = LOOP[t['lang']]
+    steps = ''.join(f'<li class="{c}" style="--i:{i}"><b>{esc(h)}</b><span>{esc(d)}</span></li>' for i, (c, h, d) in enumerate(L['steps']))
+    return (f'<figure class="fig loopfig"><ol class="loop5">{steps}</ol><div class="loopback">{esc(L["back"])}</div>'
+            f'<figcaption>{L["cap"]}</figcaption></figure>')
+
+
+FIGS['loop'] = loop
+
+CSS += """
+.loop5{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+.loop5 li{position:relative;border-radius:6px;padding:.6rem .65rem;line-height:1.4;border:1.5px solid var(--rule);background:var(--paper);margin:0}
+.loop5 li b{display:block;font:600 .92rem var(--f-display);margin-bottom:.15rem}
+.loop5 li span{font-size:.8rem;color:var(--muted)}
+.loop5 li.sci{background:var(--gold-soft);border-color:var(--gold-soft)}.loop5 li.sci b{color:var(--gold)}
+.loop5 li.ai{background:var(--ink);border-color:var(--ink)}.loop5 li.ai b{color:var(--paper)}.loop5 li.ai span{color:var(--paper);opacity:.8}
+.loop5 li.data{border-color:var(--use)}.loop5 li.data b{color:var(--use)}
+.loop5 li:not(:last-child):after{content:"→";position:absolute;right:-.52rem;top:50%;transform:translate(50%,-50%);color:var(--muted);font-size:.8rem;z-index:1}
+.loopback{margin-top:.5rem;border:1.5px dashed var(--rule);border-top:0;border-radius:0 0 8px 8px;text-align:center;font:.72rem var(--f-mono);color:var(--muted);padding:.25rem}
+@media (max-width:760px){.loop5{grid-template-columns:1fr}.loop5 li:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-.5rem;transform:translate(50%,50%)}}
+@keyframes lit{0%,16%{box-shadow:0 0 0 3px var(--use);transform:translateY(-3px)}22%,100%{box-shadow:none;transform:none}}
+/* motion: figures play once when scrolled into view (html.js is set by a script; without JS everything is simply visible) */
+@media (prefers-reduced-motion:no-preference){
+ .loopfig.in .loop5 li{animation:lit 10s calc(var(--i)*2s) infinite}
+ html.js figure.tree .root{opacity:0;transform:translateY(-8px);transition:opacity .5s,transform .5s}
+ html.js figure.tree .trunk{transform:scaleY(0);transform-origin:top;transition:transform .35s .35s}
+ html.js figure.tree .br{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;transition-delay:calc(.6s + var(--i)*.16s)}
+ html.js figure.tree .br li{opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .35s;transition-delay:calc(.85s + var(--i)*.16s + var(--j)*.08s)}
+ html.js figure.tree.in .root,html.js figure.tree.in .br,html.js figure.tree.in .br li{opacity:1;transform:none}
+ html.js figure.tree.in .trunk{transform:scaleY(1)}
+ html.js .stages .stage{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;transition-delay:calc(var(--i)*.25s)}
+ html.js figure.in .stages .stage{opacity:1;transform:none}
+ html.js .dots i{opacity:0;transform:scale(.3);transition:opacity .25s,transform .25s;transition-delay:calc(var(--k)*28ms)}
+ html.js figure.in .dots i{opacity:1;transform:none}
+ html.js .hist .bar{transform:scaleY(0);transform-box:fill-box;transform-origin:bottom;transition:transform .6s;transition-delay:calc(var(--k)*45ms)}
+ html.js .hist.in .bar{transform:scaleY(1)}
+}
+html.js.shown figure.fig:not(.in) *{opacity:1!important;transform:none!important}
+@media print{html.js figure.fig *{opacity:1!important;transform:none!important}}
+@media (max-width:760px){figure.fig{width:auto!important;left:auto!important;transform:none!important}}
+"""

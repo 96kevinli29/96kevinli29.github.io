@@ -97,7 +97,11 @@ In the language of training, a gradient is what a model learns from one example,
 
 **They judge the results.** On 7 October, OpenAI withdrew 3 manuscripts after a sign error was found, and revised 14 others. Their repository notes that some of the unformalized results “could have issues”. Deciding which results hold, which matter and which directions deserve the next round of compute is still the work of the scientific community.
 
-That is why we do not see scientists being replaced. In the loop above, they choose the problems, define correctness and judge the results. We would call that navigating.
+So however capable AI becomes, it needs navigators. Drilling for oil is a fair comparison: however powerful the rig, a geologist still decides where to drill and whether what comes up is oil. In the loop above, scientists choose the problems, define correctness and judge the results; AI makes attempts on a scale no person could.
+
+This is a collaboration. Each turn of the loop produces new data that carries a learning signal: proofs that pass, ideas that are ruled out, the next question worth asking. That data in turn makes the next model better. We do not see scientists being replaced. Their work has gained a role: navigating.
+
+{{fig:loop}}
 
 ## If scientists step back, the signal fades
 

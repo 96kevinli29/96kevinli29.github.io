@@ -159,9 +159,17 @@ for lang, (src, out, back, alt) in LANGS.items():
     open(os.path.join(os.path.dirname(os.path.join(B, out)), 'references.bib'), 'w', encoding='utf-8').write(
         '% References for "' + meta['title'] + '" (Hongyang Li and the Sea-Fill team, 2026)\n\n'
         + me_bib + '\n\n' + '\n\n'.join(bibtex(k, REFS[k]) for k in ORDER) + '\n')
+    # Figures animate once when they scroll into view. Position is checked directly (scroll, resize, a short poll),
+    # and after 3 s everything is shown regardless, so a figure can never stay hidden.
+    js = ("<script>document.documentElement.classList.add('js');(function(){var f=[].slice.call(document.querySelectorAll('figure.fig'));"
+          "function c(){f=f.filter(function(e){var r=e.getBoundingClientRect();"
+          "if(r.top<innerHeight*.88&&r.bottom>0){e.classList.add('in');return false}return true})}"
+          "addEventListener('scroll',c,{passive:true});addEventListener('resize',c);addEventListener('load',c);c();"
+          "var n=0,t=setInterval(function(){c();if(++n>40||!f.length)clearInterval(t)},250);"
+          "setTimeout(function(){document.documentElement.classList.add('shown')},3000)})()</script>")
     foot = '<footer>Sea-Fill · <a href="https://huggingface.co/SeaFill2025">Hugging Face</a></footer>'
     o = os.path.join(B, out)
     os.makedirs(os.path.dirname(o), exist_ok=True)
     open(o, 'w', encoding='utf-8').write(page(lang, meta['title'] + (' · Sea-Fill' if lang == 'en' else ' · Sea-Fill'), meta['desc'], CSS,
-                                              top + f'<article>{body}</article>' + foot))
+                                              top + f'<article>{body}</article>' + foot + js))
     print('ok', out)
