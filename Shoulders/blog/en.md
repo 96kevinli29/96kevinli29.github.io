@@ -105,7 +105,7 @@ This is a collaboration. Each turn of the loop produces new data that carries a 
 
 {{fig:loop}}
 
-## If scientists step back, the signal fades
+## If scientists step back, the gradient signal fades
 
 Models can produce new results; this release shows it. But how far they reach depends on their instruments: the problems they are pointed at, the verifiers that recognise a correct answer, the data that shapes what they sample. Without good instruments, sampling does not land on new knowledge. And a model fed mainly on its own output loses ground: research has found that models trained repeatedly on model-generated data lose the rare parts of their distribution and degrade [@shumailov2024]. New problems, new ideas, new experimental data, and the instruments to check them, still come largely from people.
 

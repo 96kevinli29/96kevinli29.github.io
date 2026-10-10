@@ -389,7 +389,7 @@ a:hover{text-decoration-thickness:2px}
 </article>
 <figure class="sf-fig sf-f8" aria-labelledby="f11-t"><div class="sf-fig-head"><span class="sf-fig-no">图 11</span><h3 id="f11-t">领航循环</h3><p>AI 再强大，也需要有人参与合成数据、指引方向。每转一圈，就产生一批带着学习信号的新数据。</p></div><ol class="sf-f8-steps"><li style="--i:0"><b>01</b><br><span class="sf-tag sci">科学家</span><p>提出值得解的问题，定下“正确”的标准</p></li><li style="--i:1"><b>02</b><br><span class="sf-tag ai">AI</span><p>大规模采样：成千上万次尝试</p></li><li style="--i:2"><b>03</b><br><span class="sf-tag ver">验证器</span><p>人建立的标准，留下通过检验的尝试</p></li><li style="--i:3"><b>04</b><br><span class="sf-tag sci">科学家</span><p>评判哪些结果成立、哪些重要</p></li><li style="--i:4"><b>05</b><br><span class="sf-tag data">新的数据</span><p>带着学习信号，进入下一轮训练</p></li></ol><div class="sf-loop" style="margin-top:20px"><span>↻ 下一个问题</span></div><p class="sf-loop-m">↻ 回到第 1 步：下一个问题</p><figcaption><b>图 11.</b> 领航循环。科学家挑选问题、定义正确、评判结果；AI 以人无法企及的规模去尝试。</figcaption></figure>
 <article class="sf-article">
-<h2>科学家退场，信号就会变弱</h2>
+<h2>科学家退后一步，梯度信号就会变弱</h2>
 <p>模型能够产生新的结果，这次发布就是证明。但它能走多远，取决于手中的“仪器”：被指向哪些问题，用什么验证器识别正确的答案，用什么数据塑造它的采样。没有好的仪器，采样就碰不到新的知识。而一个主要靠自己的输出喂养的模型会逐渐失去根基：已有研究发现，模型如果反复用模型生成的数据训练，会丢失分布中稀少的部分，逐渐退化 <span class="sf-cite">[<a href="#ref-shumailov2024">59</a>]</span>。新的问题、新的想法、新的实验数据，以及检验它们的仪器，仍然主要来自人。</p>
 <p>如果流行的说法变成“AI 都能解决，科学家不再被需要”，它会影响科研经费流向哪里，也会影响年轻人是否还愿意花上几年，去啃一个不保证有结果的难题。这样的人少了，模型可学的东西就少了，能领航的人也少了。</p>
 <h2>缺席的名字</h2>
