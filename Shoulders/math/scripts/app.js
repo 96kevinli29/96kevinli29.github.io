@@ -34,7 +34,7 @@ zh:{eyebrow:'<a href="../../zh/" style="color:inherit">← 巨人之肩</a> · �
  aiPaper:'AI 预印本',family:'论文族',openPdf:'在 GitHub 打开 PDF',humans:'位人类作者',selfRefs:'条引用同批预印本',unparsed:'OpenAI / 未解析作者',notitle:'（无题名）',pp:'篇',places:'处',cites:'次被引',
  atlasH:'基石地图',atlasP:'每个小点是一篇 AI 预印本，按学科聚成"大陆"；带圈的大点是被多篇预印本共同引用的人类论文，大小表示被引篇数，位置落在引用它的论文之间。悬停查看，点击打开详情，可拖动和缩放。',
  tgHA:'突出调和分析',tgEdges:'显示全部连线',tgReset:'复位',lgPP:'AI 预印本',lgStone:'人类基石论文',lgLau:'作者含获奖者',
- atlasNote:'基石论文取被引最多的约 110 篇，加上各学科和调和分析内部被引最多的若干篇。教材和经典专著也会出现在这里。',
+ atlasNote:'基石论文取被引最多的约 110 篇，加上各学科和调和分析内部被引最多的若干篇。教材和经典专著也会出现在这里。已成为教科书常识的基础工作（如陈类）常被直接使用而不被引用，这里统计不到。',
  ctyH:'各国数学家',ctyP:'被引最多的 300 位数学家与全部获奖者按出生地或原国籍标注（出生与成长地不同时，部分取成长地），长条为他们按当前排名依据的计数之和。点一行查看名单。',
  ctyNote:n=>`已标注 ${n} 位；标注依据公开资料，可能有误或不全。`,ctySheet:'按国家/地区',cnL:'工作单位',cn_only:'仅中国大陆当前活跃',cn_all:'全部按引用',mlTag:'中国大陆',ctyWho:'位被标注的数学家',stoneK:'人类基石论文',citedBy:'被以下 AI 预印本引用',authorsK:'作者'},
 en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · Mathematics · OpenAI Math Release',h1:'On Whose Shoulders',
@@ -64,7 +64,7 @@ en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · M
  aiPaper:'AI preprint',family:'family',openPdf:'Open the PDF on GitHub',humans:'human authors',selfRefs:'OpenAI self-references',unparsed:'OpenAI / unparsed authors',notitle:'(untitled)',pp:'papers',places:'sentences',cites:'citations',
  atlasH:'Foundations map',atlasP:'Each small dot is an AI preprint, grouped into "continents" by subject. Ringed nodes are human papers cited by several preprints; size shows how many, and each sits among the preprints that cite it. Hover to inspect, click for details, drag and zoom to explore.',
  tgHA:'Highlight harmonic analysis',tgEdges:'Show all links',tgReset:'Reset',lgPP:'AI preprint',lgStone:'Human cornerstone paper',lgLau:'Laureate author',
- atlasNote:'Cornerstones are the ~110 most-cited human works, plus the most-cited works inside each field and inside harmonic analysis. Textbooks and classic monographs appear too.',
+ atlasNote:'Cornerstones are the ~110 most-cited human works, plus the most-cited works inside each field and inside harmonic analysis. Textbooks and classic monographs appear too. Work that has become textbook knowledge (Chern classes, for example) is often used without a citation and is not counted here.',
  ctyH:'Mathematicians by country',ctyP:'The 300 most-cited mathematicians and all laureates are tagged by country of birth or original nationality (for some, where they grew up). Bars sum their counts under the current ranking. Open a row for the list.',
  ctyNote:n=>`${n} people tagged from public sources; some tags may be wrong or missing.`,ctySheet:'Country or region',cnL:'Affiliation',cn_only:'Currently active in mainland China',cn_all:'All by citations',mlTag:'Mainland China',ctyWho:'tagged mathematicians',stoneK:'Human cornerstone paper',citedBy:'Cited by these AI preprints',authorsK:'Authors'}};
 const T=k=>I[LANG][k];

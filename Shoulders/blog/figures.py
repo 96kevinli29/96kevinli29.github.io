@@ -114,7 +114,7 @@ T = {
   tl_marks=[(1637, 'Descartes', 'La Géométrie', 0, 0), (1757, 'Euler', 'Fluid equations', 0, 0), (1859, 'Riemann', 'Counting primes', 0, 0),
             (1928, 'Besicovitch', 'Kakeya problem', 0, 0), (1957, 'Grothendieck', 'Splitting theorem', 1, 0), (1978, 'Yau', 'Calabi conjecture', 2, 1),
             (2002, 'Perelman', 'Entropy formula', 3, 1), (2025, 'Wang · Zahl', 'Kakeya in 3D', 0, 1)],
-  tl_cap='Bars: the {n:,} cited human works with a known year, by decade; {e} of them predate 1850 and are not drawn. Dots: a few of the giants named in the references and the essay. Euler comes from OpenAI’s Navier–Stokes paper.',
+  tl_cap='Bars: the {n:,} cited human works with a known year, by decade; {e} of them predate 1850 and are not drawn. Dots: a few of the giants named in the references and the essay. Euler comes from OpenAI’s Navier–Stokes paper. Work that has become textbook knowledge (Chern classes, for example) is often used without a citation and is not counted here.',
   # key numbers and the Kakeya relay
   stats_aria='Key numbers',
   stats=['AI-written math manuscripts (current release)*', 'cited human works', 'mathematicians', 'Fields, Abel and Wolf laureates'],
@@ -156,7 +156,7 @@ T = {
   tl_marks=[(1637, '笛卡尔', '《几何学》', 0, 0), (1757, '欧拉', '流体运动方程', 0, 0), (1859, '黎曼', '素数个数', 0, 0),
             (1928, 'Besicovitch', 'Kakeya 问题', 0, 0), (1957, '格罗滕迪克', '向量丛分裂', 1, 0), (1978, '丘成桐', '卡拉比猜想', 2, 1),
             (2002, '佩雷尔曼', '熵公式', 3, 1), (2025, '王虹 · Zahl', '三维 Kakeya', 0, 1)],
-  tl_cap='柱：{n:,} 部有年份的被引人类著作按年代统计，其中 {e} 部早于 1850 年，未画出。点：参考文献与正文中提到的几位“巨人”。欧拉一条出自 OpenAI 的 Navier–Stokes 论文。',
+  tl_cap='柱：{n:,} 部有年份的被引人类著作按年代统计，其中 {e} 部早于 1850 年，未画出。点：参考文献与正文中提到的几位“巨人”。欧拉一条出自 OpenAI 的 Navier–Stokes 论文。已成为教科书常识的基础工作（如陈类）常被直接使用而不被引用，这里统计不到。',
   stats_aria='关键数字',
   stats=['篇 AI 撰写的数学稿件（当前版本）*', '部被引用的人类著作', '位数学家', '位菲尔兹、阿贝尔或沃尔夫奖得主'],
   relay_h='一篇稿件，一个世纪的接力：四维 Kakeya 集，34 条参考文献',
