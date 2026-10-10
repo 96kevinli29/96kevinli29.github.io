@@ -1,12 +1,12 @@
 title: What AI’s mathematics is built on
 desc: We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,612 mathematicians. What that says about how models learn, and why scientists still steer.
-kicker: Essay · Hongyang Li and the Sea-Fill team · 9 October 2026
+kicker: DATA ESSAY · 9 OCTOBER 2026
+dek: We wrote code to extract every reference in OpenAI’s 719 AI-written mathematics manuscripts, then checked them one by one. Behind them stand **11,067 human works by 9,612 mathematicians**.
+byline: By **Hongyang Li** and the Sea-Fill team
 
-# What AI’s mathematics is built on
+# What AI’s mathematics | is built on
 
 After OpenAI released 722 AI-written mathematics manuscripts [@openai_math], we did the slow, careful work: we wrote code to extract every reference list, then checked them one by one.
-
-The result: 11,067 human works by 9,612 mathematicians.[^1]
 
 One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The oldest is Besicovitch’s paper of 1928. After it come Davies, Wolff, Katz, Łaba, Tao and Guth, all the way to Hong Wang and Joshua Zahl’s work in 2026 [@besicovitch1928; @davies1971; @wolff1995; @klt2000; @guth2010; @wangzahl2026].
 
@@ -81,10 +81,6 @@ The same holds outside this release. OpenAI’s Navier–Stokes paper [@openai_n
 
 {{fig:tree_af}}
 
-## The names that are missing
-
-A reference list is the visible part. It does not show the textbooks nobody cites, the teachers who passed these ideas on, the referees who checked the papers, or the attempts that failed and were never published but taught others which roads lead nowhere. All of that went into the text that models learn from. None of it has a name in our data.
-
 ## Scientists supply the signal
 
 Pretraining and supervised fine-tuning give a model its intuitions and its way of reasoning. New results at the frontier come from sampling on a large scale: reinforcement learning during training, and search and agents at test time. In each, the model makes many attempts at a problem, called rollouts, and a verifier decides which ones count. Successful trajectories can then become training data for the next round [@zelikman2022].
@@ -109,16 +105,22 @@ Models can produce new results; this release shows it. But how far they reach de
 
 If the common story becomes “AI solves it, scientists are no longer needed”, that story will affect where research funding goes. It will also affect whether young people choose to spend years on a hard problem with no guaranteed result. Fewer of them would mean less of the material that models learn from, and fewer people to steer.
 
-## Writing the names down
+## The names that are missing
+
+A reference list is the visible part. It does not show the textbooks nobody cites, the teachers who passed these ideas on, the referees who checked the papers, or the attempts that failed and were never published but taught others which roads lead nowhere. All of that went into the text that models learn from. None of it has a name in our data.
 
 For most of history, this was solitary work: the people who did it had no machine to ask. Many of them are in our list. Many more are not.
 
-So we built On Whose Shoulders, an open-source record of the human work that AI results in science build on, organised by field and updated as new results appear. You can type any scientist’s name and see which of their works the AI manuscripts use. It also covers OpenAI’s Navier–Stokes papers and AlphaFold.
-
-If you write about AI results in science, please name the people behind them. Our data is open for that.
-
 Scientists are the bridge between human knowledge and AI, and we want their names to stay attached to what is built on them.
 
+{{cta}}
+
+## Writing the names down
+
+On Whose Shoulders is an open-source record of the human work that AI results in science build on. Type any scientist’s name and see which of their works the AI manuscripts use. If you write about AI results in science, please name the people behind them.
+
 [Explore On Whose Shoulders →](../)
+
+[Download all references (BibTeX)](references.bib)
 
 [^1]: OpenAI released 722 manuscripts on 6 October 2026. On 7 October it withdrew 3 and revised 14; our counts use the 719 current manuscripts. Data: github.com/openai/math (Apache 2.0).
