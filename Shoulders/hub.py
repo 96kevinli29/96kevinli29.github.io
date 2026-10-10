@@ -3,6 +3,12 @@ import os, sys, json, collections, html
 H = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, H)
 from common import page, laureates, person_key, tribute_button
+import common
+common.FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500'
+    '&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900'
+    '&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">')
 
 esc = html.escape
 
@@ -310,6 +316,172 @@ a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
  .g{font-size:calc(var(--s)*.78rem)}.g.cjk{font-size:calc(var(--s)*.87rem)}.row{gap:.1rem .7rem}.card{padding:1.2rem 1rem}
  .ms b{font-size:.85rem}.ms{padding:.25rem .45rem}.tl{gap:.35rem}.tl .arr{display:none}
  .hero h1{font-size:1.7rem}}
+
+/* ===== 新版首页 · 与博客、数学页同一设计系统（墨色 · 纸白 · 朱红） ===== */
+:root{--paper:#FAFAF8;--sheet:#FFFFFF;--ink:#12161C;--muted:#5C636B;--rule:#E3E1DC;--bg2:#F0EFEB;
+--accent:#B8321C;--accent-soft:#F8E6E1;--gold:#8E6410;--gold-soft:#F6EDD8;--use:#1D6A63;--use-soft:#DCEDEA;--wolf:#6B4797;
+--hero:#12161C;--on-hero:#F5F3EE;--on-hero-2:#B4BAC1;--hero-rule:#343C46;--hero-accent:#F06A4E;
+--shadow:0 1px 2px rgba(18,22,28,.05),0 8px 24px rgba(18,22,28,.07);--shadow-lg:0 2px 6px rgba(18,22,28,.08),0 24px 60px rgba(18,22,28,.18);
+--f-display:"Source Serif 4","Noto Serif SC","Songti SC","STSong",Georgia,serif;
+--f-body:"IBM Plex Sans","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#12161C;--sheet:#1A1F26;--ink:#ECEAE5;--muted:#A3AAB2;--rule:#2C333C;--bg2:#232A32;
+--accent:#F06A4E;--accent-soft:#3B231E;--gold:#E2B654;--gold-soft:#3A3020;--use:#5CC2B6;--use-soft:#183A37;--wolf:#C3A3E6;--hero:#0B0E12;--hero-rule:#2C333C;
+--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);--shadow-lg:0 24px 60px rgba(0,0,0,.5);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#12161C;--sheet:#1A1F26;--ink:#ECEAE5;--muted:#A3AAB2;--rule:#2C333C;--bg2:#232A32;
+--accent:#F06A4E;--accent-soft:#3B231E;--gold:#E2B654;--gold-soft:#3A3020;--use:#5CC2B6;--use-soft:#183A37;--wolf:#C3A3E6;--hero:#0B0E12;--hero-rule:#2C333C;color-scheme:dark}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
+main{max-width:none;margin:0;padding:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.wrap{padding:0 32px}}
+h1,h2{font-family:var(--f-display);font-weight:900;letter-spacing:.005em}
+html[lang="en"] h1,html[lang="en"] h2{font-weight:600;letter-spacing:-.01em}
+
+/* ---------- 首屏 ---------- */
+.hero{background:var(--hero);color:var(--on-hero);position:relative;isolation:isolate;overflow:hidden;padding:0 0 56px}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.55;background-image:radial-gradient(circle at 1px 1px,var(--hero-rule) 1px,transparent 1.4px);background-size:22px 22px;
+ -webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.hero .top{padding:22px 0;color:var(--on-hero-2)}
+.hero .top a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid var(--hero-rule);border-radius:999px;color:var(--on-hero);text-transform:none;letter-spacing:0;font-size:.82rem}
+.hero .top a:hover{border-color:var(--hero-accent)}
+.hero :focus-visible{outline-color:var(--hero-accent)}
+.hgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px 64px;align-items:end;margin-top:28px}
+.hero h1{font-size:clamp(2.5rem,6.2vw,4.6rem);line-height:1.1;margin:0 0 1.2rem;color:var(--on-hero)}
+html[lang="en"] .hero h1{font-size:clamp(2.3rem,5.4vw,4.1rem);line-height:1.06}
+.hero .dek{color:#C9CED4;font-size:1.1rem;line-height:1.75;max-width:36em;margin:0}
+
+/* 搜索（首屏主交互） */
+.finder{background:none;border:0;padding:0;margin-top:2rem;max-width:640px}
+.flabel{display:block;font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--hero-accent);margin-bottom:.6rem}
+.qwrap{position:relative}
+.qwrap::before{content:"";position:absolute;left:18px;top:29px;width:17px;height:17px;transform:translateY(-50%);z-index:1;pointer-events:none;background:#6B737C;
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") center/contain no-repeat;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") center/contain no-repeat}
+.qwrap input{height:58px;padding:0 52px 0 48px;font:1.05rem var(--f-body);border:1px solid transparent;border-radius:12px;background:#FAFAF8;color:#12161C;transition:box-shadow .2s,border-color .2s}
+.qwrap input::placeholder{color:#6B737C}
+.qwrap input:focus{outline:none;border-color:var(--hero-accent);box-shadow:0 0 0 4px rgba(240,106,78,.28)}
+.kbd{position:absolute;right:14px;top:29px;transform:translateY(-50%);font:12px/1 var(--f-mono);color:#5C636B;border:1px solid #D7D4CE;border-bottom-width:2px;border-radius:5px;padding:4px 7px;background:#fff;pointer-events:none}
+.qwrap:focus-within .kbd{opacity:0}
+.sug{top:calc(100% + 6px);border-radius:12px;box-shadow:var(--shadow-lg);padding:6px;border-color:var(--rule);background:var(--sheet)}
+.sug button{border:0;border-radius:8px;min-height:44px;padding:.55rem .8rem;align-items:center;color:var(--ink)}
+.sug button:hover,.sug button.on{background:var(--bg2)}
+.try{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;font-size:.84rem;color:var(--on-hero-2)}
+.try button{border:1px solid var(--hero-rule);background:rgba(255,255,255,.04);color:var(--on-hero);border-radius:999px;padding:0 14px;min-height:34px;font:.88rem var(--f-body);text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s}
+.try button:hover{border-color:var(--hero-accent);background:rgba(240,106,78,.12)}
+.res{margin-top:14px}
+.res:not(:empty){background:var(--sheet);color:var(--ink);border-radius:12px;padding:1.1rem 1.25rem;box-shadow:var(--shadow-lg);animation:rise .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){.res:not(:empty){animation:none}}
+.res .who{font-weight:900}
+html[lang="en"] .res .who{font-weight:600}
+.res .line b{color:var(--accent)}
+.res .go{color:var(--accent);text-decoration:none}
+.res .go:hover{text-decoration:underline}
+.res li i{color:var(--ink)}
+
+/* 首屏数字 */
+.hstats{border-top:1px solid var(--hero-rule)}
+.hstats .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0}
+.hstats .stat{border:0;border-bottom:1px solid var(--hero-rule);padding:18px 0 16px}
+.hstats .stat:nth-child(odd){padding-right:18px;border-right:1px solid var(--hero-rule)}
+.hstats .stat:nth-child(even){padding-left:18px}
+.hstats .stat b{font:600 clamp(2.2rem,4.2vw,3.2rem)/1.02 var(--f-display);color:var(--on-hero);font-variant-numeric:tabular-nums lining-nums}
+.hstats .stat:first-child b{color:var(--hero-accent)}
+.hstats .stat span{color:var(--on-hero-2);font-size:.84rem;margin-top:6px}
+.hcap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;font:.75rem var(--f-mono);letter-spacing:.04em;color:var(--on-hero-2)}
+.hcap a{color:var(--hero-accent);text-decoration:none;font-family:var(--f-body);font-size:.85rem;letter-spacing:0}
+.hcap a:hover{text-decoration:underline}
+
+.hfoot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;margin-top:48px;padding-top:28px;border-top:1px solid var(--hero-rule)}
+.manifesto{flex:1 1 420px;margin:0;border:0;padding:0;max-width:40rem;font:600 clamp(1.05rem,2.2vw,1.25rem)/1.65 var(--f-display);color:var(--on-hero)}
+.hlinks{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.team{margin:0;color:var(--on-hero)}
+.team small{color:var(--on-hero-2)}
+.team:hover b{color:var(--hero-accent)}
+.essay{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0 18px;border-radius:8px;background:var(--hero-accent);color:#12161C;border:0;text-decoration:none;font-weight:600}
+.essay:hover{background:#FF8B73}
+
+/* ---------- 分区 ---------- */
+.sec{margin-top:88px}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:18px;margin-bottom:22px;position:relative}
+.sechead::before{content:attr(data-n);position:absolute;top:-1px;left:0;transform:translateY(-100%);font:500 12px var(--f-mono);letter-spacing:.08em;color:#fff;background:var(--accent);padding:3px 8px 2px;border-radius:3px 3px 0 0}
+.sechead h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin:0}
+.sechead span{font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.card{position:relative;display:block;background:var(--sheet);border:1px solid var(--rule);border-top:1px solid var(--rule);border-radius:14px;padding:clamp(1.3rem,3vw,2.2rem);margin-top:20px;color:inherit;text-decoration:none;transition:border-color .18s,box-shadow .18s,transform .18s}
+a.card:hover,a.card:focus-visible{border-color:var(--ink);box-shadow:var(--shadow);transform:translateY(-2px);outline:none}
+.card h2{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.25;margin:.8rem 0 .5rem}
+.card h2 a:hover{color:var(--accent)!important}
+.card p{color:var(--muted);max-width:46rem;margin:.4rem 0}
+.tag{background:var(--bg2);color:var(--muted);border-radius:999px;padding:.18rem .7rem;font-size:.7rem}
+.tag.new{background:var(--accent);color:#fff}
+.card .go{display:inline-flex;align-items:center;gap:6px;margin-top:1.1rem;font-weight:600;color:var(--accent);text-decoration:none}
+a.card .go::after,.card a.go::after{content:"→";transition:transform .18s}
+a.card:hover .go::after,.card a.go:hover::after{transform:translateX(4px)}
+.card a.go{min-height:44px;padding:0 18px;border-radius:8px;background:var(--ink);color:var(--paper)}
+.card a.go:hover{background:var(--accent);color:#fff}
+.card.feature{padding-top:clamp(1.5rem,3.4vw,2.6rem)}
+.card .upd{border-left:2px solid var(--accent);color:var(--muted)}
+.card .src a{color:var(--muted)}
+
+/* 时间线 */
+.tl{gap:8px 6px;margin:1.4rem 0 .2rem}
+.ms{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:.4rem .7rem;transition:border-color .15s}
+a.card:hover .ms{border-color:color-mix(in srgb,var(--ink) 25%,var(--rule))}
+.ms b{font-weight:600}
+.ms i{color:var(--accent)}
+.ms.ai{background:var(--ink);border-color:var(--ink)}
+.ms.ai i{color:var(--hero-accent)}
+.arr{color:var(--rule);font-size:.9rem}
+
+/* 人名堆 */
+.viz{margin:1.8rem auto .6rem;max-width:880px}
+.aiblk{background:var(--ink);color:var(--paper);border-radius:8px 8px 0 0;padding:.5rem 1.2rem}
+.pyr{border-top:3px solid var(--ink);padding-top:.9rem}
+.g{transition:color .15s;cursor:default}
+.g:hover{color:var(--accent)}
+.g.laur{color:var(--gold)}
+.legend b{color:var(--gold)}
+
+/* 下一期 */
+.next{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.soon{border:1px dashed var(--rule);border-radius:14px;padding:1.3rem 1.4rem;color:var(--muted);background:transparent}
+.soon b{font-size:1.3rem;margin-bottom:.2rem}
+.soon.ask{border:1px solid var(--accent);background:var(--accent-soft);color:var(--ink);text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;gap:.6rem;transition:transform .15s}
+.soon.ask:hover{transform:translateY(-2px)}
+.soon.ask span{color:var(--accent);font-weight:600}
+@media (max-width:760px){.next{grid-template-columns:1fr 1fr}.soon.ask{grid-column:1/-1}}
+
+/* 联系表单 */
+.contact{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px 48px;border-radius:14px;padding:clamp(1.3rem,3vw,2.2rem)}
+.contact h2{font-size:clamp(1.6rem,3vw,2.1rem)}
+.contact>p{font-size:1rem;line-height:1.7}
+.contact .intro{grid-column:1}
+.contact form{grid-column:2;grid-row:1/span 2;gap:.8rem}
+.contact label{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.contact input,.contact select,.contact textarea{font-size:.98rem;padding:.65rem .8rem;border-radius:8px;min-height:44px;text-transform:none;letter-spacing:0;transition:border-color .15s,box-shadow .15s}
+.contact input:focus,.contact select:focus,.contact textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.contact textarea{min-height:7rem}
+.contact button[type=submit]{min-height:46px;padding:0 1.6rem;border-radius:8px;font-size:.95rem;transition:background .15s}
+.contact button[type=submit]:hover{background:var(--accent)}
+.contact .msg.ok{color:var(--use)}
+@media (max-width:820px){.contact{grid-template-columns:1fr}.contact form{grid-column:1;grid-row:auto}}
+
+footer.foot{margin-top:96px;padding:40px 0 calc(40px + env(safe-area-inset-bottom,0px));border:0;background:var(--hero);color:#C9CED4;font-size:.9rem}
+footer.foot a{color:var(--hero-accent)}
+
+@media (max-width:900px){.hgrid{grid-template-columns:1fr}}
+@media (max-width:560px){
+ .hero{padding-bottom:40px}.hgrid{margin-top:12px}
+ .hero h1{font-size:2.3rem}
+ html[lang="en"] .hero h1{font-size:2.1rem}
+ .qwrap input{height:54px}.qwrap::before,.kbd{top:27px}.kbd{display:none}
+ .sec{margin-top:72px}
+ .hfoot{margin-top:36px}
+}
 '''
 
 JS = r'''
@@ -362,7 +534,7 @@ T = {
   lang='zh-CN', title='巨人之肩 · On Whose Shoulders', alt=('English', '../'), ns='../navier-stokes/zh/', math='../math/zh/', af='../alphafold/zh/', idx='../search.json',
   desc='向 AI 时代的人类科学家致敬：逐条记录 AI 前沿成果引用的人类科学家，按学科分开，随每一次突破更新。',
   eyebrow='巨人之肩 · On Whose Shoulders',
-  h1='AI 的每一次科学突破，<br>都站在人类科学家的肩膀上',
+  h1='AI 的科学突破，<br>站在人类科学家的肩膀上',
   dek='AI 与超级智能正在走向科学前沿。它们迈出的每一步，用到的概念、方法与工具，都来自几代科学家一生的积累。',
   manifesto='我们找出 AI 成果引用的每一位科学家，写下他们的名字。他们是连接人类知识与 AI 的桥梁，也是我们永远尊敬的人。',
   team=('Sea-Fill 开源科学团队', '我们是 Sea-Fill，一个开源科学团队'),
@@ -380,12 +552,15 @@ T = {
   cSend='发送', cSending='发送中…', cOk='已发送，谢谢！我们会尽快回复。', cErr='发送失败，请稍后再试。', cOff='表单尚未启用。',
   cFine='提交的内容经 Web3Forms 转发给 Sea-Fill 团队，只用于回复你。',
   secMath='数学',
-  nsTag='最新 · 2026 年 9 月 · 流体方程', nsH='从欧拉到 AI：Navier–Stokes 与 Euler 方程',
+  nsTag='2026 年 9 月 · 流体方程', nsH='从欧拉到 AI：Navier–Stokes 与 Euler 方程',
   nsP=f'OpenAI 发布的 Navier–Stokes 与 Euler 方程两篇论文，附 Lean 形式化。它们的 {NS_REFS} 条参考文献，从 1757 年的欧拉一直延续到 2026 年。',
   nsGo='进入流体方程专题 →',
-  mTag='2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{RELEASED} 篇 AI 数学稿件',
-  mP=f'OpenAI 发布了由其内部模型撰写的 {RELEASED} 篇数学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字。',
-  aiS=f'{RELEASED} 篇稿件 · {NF} 个成果',
+  mTag='最新 · 2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{NP} 篇 AI 数学稿件',
+  mP=(f'OpenAI 于 2026 年 10 月 6 日发布了由其内部模型撰写的 {RELEASED} 篇数学稿件，现存 {NP} 篇，归为 {NF} 个成果。托起它们的，是下面这些名字。' if NP != RELEASED else f'OpenAI 发布了由其内部模型撰写的 {RELEASED} 篇数学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字。'),
+  fLabel='寻找一位巨人', kbdHint='按 / 搜索', hCap='OpenAI Math Release · 每天自动更新', hGo='查看数学全景 →',
+  nMath='01', nChem='02', nNext='03', nContact='04', more2='下一期',
+  askH='推荐下一项突破', askP='你觉得下一项值得记录的 AI 科学突破是什么？', askGo='告诉我们 →',
+  aiS=f'{NP} 篇稿件 · {NF} 个成果',
   upd=f'注：2026 年 10 月 7 日，OpenAI 撤回 3 篇稿件并修订了另外 14 篇。以上数字按当前的 {NP} 篇稿件统计，每天自动更新。' if NP != RELEASED else '',
   legend='<b>金色</b> = 菲尔兹 / 阿贝尔 / 沃尔夫奖得主。',
   st=[(NP, f'篇当前稿件（{NF} 个成果）'), (M['works'], '部被引用的人类著作'), (len(A), '位人类作者'), (M_LAUR, '位获奖数学家被引用')],
@@ -401,7 +576,7 @@ T = {
   lang='en', title='On Whose Shoulders · 巨人之肩', alt=('中文', 'zh/'), ns='navier-stokes/', math='math/', af='alphafold/', idx='search.json',
   desc='A tribute to the human scientists of the AI era: every human scientist cited by frontier AI results, field by field, updated with each breakthrough.',
   eyebrow='On Whose Shoulders · 巨人之肩',
-  h1='Every scientific breakthrough by AI<br>stands on human shoulders',
+  h1='AI’s scientific breakthroughs<br>stand on human shoulders',
   dek='AI and superintelligence are reaching the frontier of science. Every step they take uses ideas, methods and tools that generations of scientists spent their lives building.',
   manifesto='We find every scientist an AI result cites and write down their name. They are the bridge between human knowledge and AI, and the people we will always honour.',
   team=('Sea-Fill · open-source science team', 'We are Sea-Fill, an open-source science team'),
@@ -419,12 +594,15 @@ T = {
   cSend='Send', cSending='Sending…', cOk='Sent, thank you! We will reply soon.', cErr='Sending failed; please try again later.', cOff='The form is not enabled yet.',
   cFine='Your message is forwarded to the Sea-Fill team by Web3Forms and used only to reply to you.',
   secMath='Mathematics',
-  nsTag='Latest · September 2026 · Fluid equations', nsH='From Euler to AI: Navier–Stokes and Euler',
+  nsTag='September 2026 · Fluid equations', nsH='From Euler to AI: Navier–Stokes and Euler',
   nsP=f'OpenAI’s two papers on the Navier–Stokes and Euler equations, released with Lean formalizations. Their {NS_REFS} references run from Euler in 1757 to 2026.',
   nsGo='Open the fluid equations page →',
-  mTag='October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {RELEASED} AI-written math manuscripts',
-  mP=f'OpenAI released {RELEASED} mathematics manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below.',
-  aiS=f'{RELEASED} manuscripts · {NF} results',
+  mTag='Latest · October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {NP} AI-written math manuscripts',
+  mP=(f'On 6 October 2026 OpenAI released {RELEASED} mathematics manuscripts written by its internal model; {NP} remain current, grouped into {NF} results. Holding them up are the names below.' if NP != RELEASED else f'OpenAI released {RELEASED} mathematics manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below.'),
+  fLabel='Find a giant', kbdHint='Press / to search', hCap='OpenAI Math Release · updated daily', hGo='Open the mathematics index →',
+  nMath='01', nChem='02', nNext='03', nContact='04', more2='Next',
+  askH='Suggest the next breakthrough', askP='Which AI result in science should we record next?', askGo='Tell us →',
+  aiS=f'{NP} manuscripts · {NF} results',
   upd=f'Note: on 7 October 2026 OpenAI withdrew 3 manuscripts and revised 14 others. The figures above count the {NP} current manuscripts and update daily.' if NP != RELEASED else '',
   legend='<b>Gold</b> = Fields / Abel / Wolf laureate.',
   st=[(NP, f'current manuscripts ({NF} results)'), (M['works'], 'human works cited'), (len(A), 'human authors'), (M_LAUR, 'laureates cited')],
@@ -439,36 +617,41 @@ T = {
 }
 
 for k, t in T.items():
-    body = f'''<div class="top"><span>{t['eyebrow']}</span><a href="{t['alt'][1]}">{t['alt'][0]}</a></div>
-<header class="hero">
+    stats_html = ''.join(f'<div class="stat"><b>{n:,}</b><span>{esc(l)}</span></div>' for n, l in t['st'])
+    body = f'''<div class="hero"><div class="wrap">
+<div class="top"><span>{t['eyebrow']}</span><a href="{t['alt'][1]}" hreflang="{'en' if k == 'zh' else 'zh'}">{t['alt'][0]}</a></div>
+<div class="hgrid">
+<div>
 <h1>{t['h1']}</h1>
 <p class="dek">{t['dek']}</p>
-<p class="manifesto">{t['manifesto']}</p>
-<a class="team" href="{SEAFILL}"><img src="{SEAFILL_LOGO}" alt="" width="34" height="34"><span><b>{t['team'][0]}</b><small>{t['team'][1]}</small></span></a>
-<a class="essay" href="{t['essay'][1]}">{t['essay'][0]}</a>
-</header>
-
-<section class="finder" id="finder">
-<h2>{t['fH']}</h2>
-<p>{t['fP']}</p>
-<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="{esc(t['fPh'])}" aria-label="{esc(t['fH'])}"><div class="sug" id="sug" hidden></div></div>
-<div class="try">{t['fTry']}{' · '.join(f'<button type="button" data-q="{esc(x)}">{esc(x)}</button>' for x in t['fTries'])}</div>
+<section class="finder" id="finder" aria-label="{esc(t['fH'])}">
+<label class="flabel" for="q">{t['fLabel']}</label>
+<div class="qwrap"><input id="q" type="search" autocomplete="off" placeholder="{esc(t['fPh'])}" aria-describedby="fhelp"><span class="kbd" aria-hidden="true">/</span><div class="sug" id="sug" hidden></div></div>
+<p id="fhelp" hidden>{t['fP']}</p>
+<div class="try"><span>{t['fTry']}</span>{''.join(f'<button type="button" data-q="{esc(x)}">{esc(x)}</button>' for x in t['fTries'])}</div>
 <div class="res" id="res" aria-live="polite"></div>
 </section>
+</div>
+<aside class="hstats">
+<div class="stats">{stats_html}</div>
+<div class="hcap"><span>{t['hCap']}</span><a href="{t['math']}">{t['hGo']}</a></div>
+</aside>
+</div>
+<div class="hfoot">
+<p class="manifesto">{t['manifesto']}</p>
+<div class="hlinks">
+<a class="team" href="{SEAFILL}"><img src="{SEAFILL_LOGO}" alt="" width="34" height="34"><span><b>{t['team'][0]}</b><small>{t['team'][1]}</small></span></a>
+<a class="essay" href="{t['essay'][1]}">{t['essay'][0]}</a>
+</div>
+</div>
+</div></div>
 
-<section class="sec">
-<span class="eyebrow">{t['secMath']}</span>
+<div class="wrap">
+<section class="sec" id="math">
+<div class="sechead" data-n="{t['nMath']}"><h2>{t['secMath']}</h2></div>
 
-<a class="card" href="{t['ns']}">
-<span class="tag">{t['nsTag']}</span>
-<h2>{t['nsH']}</h2>
-<p>{t['nsP']}</p>
-{timeline(k)}
-<span class="go">{t['nsGo']}</span>
-</a>
-
-<div class="card">
-<span class="tag">{t['mTag']}</span>
+<div class="card feature">
+<span class="tag new">{t['mTag']}</span>
 <h2><a href="{t['math']}" style="color:inherit;text-decoration:none">{t['mH']}</a></h2>
 <p>{t['mP']}</p>
 <figure class="viz">
@@ -478,32 +661,40 @@ for k, t in T.items():
 </div>
 <figcaption class="legend">{t['legend']}</figcaption>
 </figure>
-<div class="stats">{''.join(f'<div class="stat"><b>{n:,}</b><span>{esc(l)}</span></div>' for n, l in t['st'])}</div>
-<a class="go" href="{t['math']}">{t['mGo']}</a>
+<a class="go" href="{t['math']}">{t['mGo'].rstrip(' →')}</a>
 {f'<p class="upd">{t["upd"]}</p>' if t['upd'] else ''}
 <p class="src">{t['src']}: <a href="https://github.com/openai/math">github.com/openai/math</a> (Apache 2.0)</p>
 </div>
+
+<a class="card" href="{t['ns']}">
+<span class="tag">{t['nsTag']}</span>
+<h2>{t['nsH']}</h2>
+<p>{t['nsP']}</p>
+{timeline(k)}
+<span class="go">{t['nsGo'].rstrip(' →')}</span>
+</a>
 </section>
 
-<section class="sec">
-<span class="eyebrow">{t['secChem']}</span>
+<section class="sec" id="chem">
+<div class="sechead" data-n="{t['nChem']}"><h2>{t['secChem']}</h2></div>
 <a class="card" href="{t['af']}">
 <span class="tag">{t['afTag']}</span>
 <h2>{t['afH']}</h2>
 <p>{t['afP']}</p>
 <div class="tl">{'<span class="arr">→</span>'.join(f'<span class="ms"><b>{esc(zh if k == "zh" else en)}</b><i>{y}</i></span>' for en, zh, y in AF_MS)}<span class="arr">→</span><span class="ms ai"><b>AlphaFold 2</b><i>2021</i></span></div>
-<span class="go">{t['afGo']}</span>
+<span class="go">{t['afGo'].rstrip(' →')}</span>
 </a>
 </section>
 
-<section class="sec">
-<span class="eyebrow">{t['more']}</span>
-<div class="grid">{''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])}</div>
+<section class="sec" id="next">
+<div class="sechead" data-n="{t['nNext']}"><h2>{t['more2']}</h2><span>{t['more']}</span></div>
+<div class="next">{''.join(f'<div class="soon"><b>{s}</b>{t["soon"]}</div>' for s in t['subs'])}<a class="soon ask" href="#contact"><b>{t['askH']}</b>{t['askP']}<span>{t['askGo']}</span></a></div>
 </section>
+
 <section class="sec" id="contact">
+<div class="sechead" data-n="{t['nContact']}"><h2>{t['cH']}</h2></div>
 <div class="contact">
-<h2>{t['cH']}</h2>
-<p>{t['cP']}</p>
+<p class="intro">{t['cP']}</p>
 <form id="cform" novalidate>
 <label>{t['cName']}<input name="name" autocomplete="name" maxlength="80"></label>
 <label>{t['cEmail']}<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
@@ -516,8 +707,10 @@ for k, t in T.items():
 </form>
 </div>
 </section>
+</div>
 
-<footer>{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a></footer>'''
+<footer class="foot"><div class="wrap">{t['foot']} · <a href="{SEAFILL}">Sea-Fill</a></div></footer>
+<script>document.addEventListener('keydown',function(e){{if(e.key!=='/'||e.metaKey||e.ctrlKey||e.altKey)return;var t=e.target;if(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable)return;e.preventDefault();var q=document.getElementById('q');q.focus({{preventScroll:true}});q.scrollIntoView({{block:'center',behavior:'smooth'}})}});</script>'''
     cfg = dict(idx=t['idx'], math=t['math'], ns=t['ns'], af=t['af'], key=WEB3FORMS_KEY, zh=k == 'zh',
                s={x: t[x] for x in ('fAf', 'fGoA', 'tOne', 'tDone', 'tCount', 'fLoading', 'fNone', 'fMath', 'fTop', 'fPp', 'fNs', 'fGoM', 'fGoN', 'prize',
                                     'cSending', 'cSend', 'cOk', 'cErr', 'cOff')})
