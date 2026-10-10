@@ -18,9 +18,15 @@ Many people contribute to a model capable of scientific breakthroughs. Two group
 
 **Pretraining.** Engineers build a system that learns to predict the next token from the text before it [@brown2020]. Almost everything it learns at this stage comes from a vast amount of unstructured text that people wrote. One of the AI manuscripts contains the step “by the splitting theorem for vector bundles on the projective line, E is a direct sum of line bundles”. A model that writes this step has learned that the second half is very likely to follow the first. It did not discover the fact. Grothendieck proved it in 1957 [@grothendieck1957], and mathematicians have written that step in papers, textbooks and lecture notes ever since. That is where the probability comes from. Mathematicians call it intuition when they know which lemma to reach for next; a model’s version of it is a set of conditional probabilities estimated from the next steps that people wrote down. Minimising prediction error is, in information-theoretic terms, compression [@shannon1948; @deletang2024], and what the parameters can hold depends on what went in.
 
+{{fig:stage_pre}}
+
 **Supervised fine-tuning.** Post-training usually pairs supervised fine-tuning with reinforcement learning [@ouyang2022]. For reasoning models it often begins with what is called a cold start: fine-tuning on a smaller, carefully chosen set of long chains of reasoning that show, step by step, how problems are solved. DeepSeek’s public report on its R1 model, for example, describes such a stage [@deepseek2025]. Engineers assemble and run it. The chains themselves are a mix. Some are written by people: proofs, derivations, worked solutions, annotated reasoning. Many are synthesised by models. But the synthetic ones still start from problems and instructions that people wrote, imitate the way human proofs are written, and are kept or thrown away by checks that people designed. What the model learns here is how a mathematician gets from one step to the next.
 
+{{fig:stage_sft}}
+
 **Reinforcement learning and search at test time.** Engineers build the loops. In training, the model tries a problem many times, a verifier checks the attempts, and training makes the successful paths more likely [@shao2024; @deepseek2025]. At test time, the same idea is spent as compute: sample many attempts, search among them, keep the ones a verifier accepts [@wang2022sc; @lightman2023; @snell2024]. Increasingly this is organised as agents that write code, call proof assistants and check one another’s work [@yao2022]. What these loops need from outside is problems worth practising on, a precise definition of a correct answer, and someone to judge what comes out. Today those still come largely from scientists, as we explain below.
+
+{{fig:stage_rl}}
 
 {{fig:stages}}
 

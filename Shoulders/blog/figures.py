@@ -46,6 +46,38 @@ CSS = '''
 .sf-tree-b ul{list-style:none;margin:0;padding:0}
 .sf-tree-b li{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45;font-weight:500}
 .sf-tree-b li i{font-style:normal;font-family:var(--mono);font-weight:400;font-size:12px;color:var(--muted);white-space:nowrap}
+/* stage figures: what scientists supply at each stage of training (left), what the model gets from it (right) */
+.sf-st{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:stretch}
+@media (min-width:880px){.sf-st{grid-template-columns:minmax(0,5fr) 44px minmax(0,6fr)}}
+.sf-st-c{border-radius:8px;padding:18px 20px;font-size:15px;line-height:1.65}
+.sf-st-c>i{display:block;font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.04em;margin-bottom:10px}
+.sf-st-c.sci{background:#B8321C;color:#fff}.sf-st-c.sci>i{color:#FFE2DA}
+.sf-st-c.mod{border:1px solid var(--line);background:var(--paper)}.sf-st-c.mod>i{color:var(--muted)}
+.sf-st-c ul{margin:0;padding:0;list-style:none}.sf-st-c li{padding:6px 0;border-top:1px solid rgba(255,255,255,.28)}.sf-st-c li:first-child{border-top:0;padding-top:0}
+.sf-st-c.mod li{border-top-color:var(--line)}
+.sf-st-a{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;line-height:1}
+.sf-st-a::before{content:"↓"}
+@media (min-width:880px){.sf-st-a::before{content:"→"}}
+.sf-st-q{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--soft);border-radius:6px;padding:10px 12px;margin-bottom:14px}
+.sf-st-q b{color:var(--accent);font-weight:500}
+.sf-st-bar{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin-top:10px;font-size:14px}
+.sf-st-bar span{display:block;height:10px;border-radius:2px;background:var(--text);width:calc(var(--w)*1%);transform-origin:left}
+.sf-st-bar.top span{background:var(--accent)}
+.sf-st-chain{display:flex;flex-wrap:wrap;gap:6px 4px;align-items:center;font-family:var(--mono);font-size:13px;margin-bottom:12px}
+.sf-st-chain b{font-weight:500;border:1px solid var(--line);border-radius:5px;padding:4px 9px;background:var(--soft)}
+.sf-st-chain b.end{background:var(--text);color:var(--paper);border-color:var(--text)}
+.sf-st-chain em{font-style:normal;color:var(--muted)}
+.sf-st-dots{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 12px}
+.sf-st-dots u{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--line);border-color:color-mix(in srgb,var(--muted) 45%,transparent)}
+.sf-st-dots u.ok{background:var(--accent);border-color:var(--accent)}
+@media screen and (prefers-reduced-motion:no-preference){
+ .sf-fig:not(.pre) .sf-st-bar span{transition:transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.2s + var(--k)*.15s)}
+ .sf-fig.pre .sf-st-bar span{transform:scaleX(0)}
+ .sf-fig:not(.pre) .sf-st-chain>*{transition:opacity .35s;transition-delay:calc(var(--k)*.12s)}
+ .sf-fig.pre .sf-st-chain>*{opacity:0}
+ .sf-fig:not(.pre) .sf-st-dots u{transition:opacity .25s,transform .25s;transition-delay:calc(var(--k)*30ms)}
+ .sf-fig.pre .sf-st-dots u{opacity:0;transform:scale(.3)}
+}
 /* motion. Figures play once when they scroll into view: a script marks figures below the fold with .pre and removes it
    when they arrive, so without the script, in print, or with reduced motion, everything is simply visible. */
 @keyframes sf-rise{from{transform:scaleY(0)}}
@@ -360,6 +392,75 @@ def loop(t, n):
 
 FIGS = {'stages': stages, 'sampling': sampling, 'decades': decades, 'tree_fields': tree_fields, 'tree_kakeya': tree_kakeya,
         'tree_ns': tree_ns, 'tree_af': tree_af, 'loop': loop}
+
+
+# ---- one figure per stage: the scientists' part in pretraining, fine-tuning, and reinforcement learning ----
+ST = {
+ 'en': dict(sci='SCIENTISTS SUPPLY', mod='WHAT THE MODEL GETS',
+  pre=dict(h='Pretraining: intuition is the next step people wrote down', sub='Illustration, not data: how one step of a proof becomes a probability',
+           left=['1957: Grothendieck proves the splitting theorem', 'Since then, the step is written again and again in papers, textbooks and lecture notes', 'Every careful proof adds clear “next steps” to the text'],
+           q='By the splitting theorem for vector bundles on the projective line, <b>▁</b>',
+           bars=[('E is a direct sum of line bundles', 92), ('E is trivial', 14), ('E is indecomposable', 5)], lab='Likely continuations',
+           cap='The model did not discover the fact. It learned that this step very probably comes next, because mathematicians wrote it that way.'),
+  sft=dict(h='Supervised fine-tuning: how to get from one step to the next', sub='The cold start: a small, carefully chosen set of long chains of reasoning',
+           left=['Chains written by people: proofs, derivations, worked solutions', 'For synthetic chains: the problems and the instructions they start from', 'The checks that decide which synthetic chains are kept'],
+           chain=['Problem', 'Step 1', 'Step 2', '…', 'Conclusion'], note='The model learns the path, not only the answer: which step follows which, and why.',
+           cap='Engineers assemble and run this stage. The way of reasoning it teaches is the way mathematicians write proofs.'),
+  rl=dict(h='Reinforcement learning and search: scientists set the target', sub='Illustration, not data: one problem, many attempts, a verifier',
+          left=['A problem worth solving, at the edge of what the model can do', 'A precise definition of “correct” (for example, a proof that checks in Lean)', 'Judgement: which of the results that pass matter'],
+          a='32 attempts', b='3 pass the verifier', note='Passing attempts are reinforced in training, or kept as the answer at test time.',
+          cap='Sampling can run without people. What it aims at, and what counts as a hit, still comes largely from scientists.')),
+ 'zh': dict(sci='科学家提供的', mod='模型得到的',
+  pre=dict(h='预训练：直觉，是人类写下的“下一步”', sub='示意，不是数据：证明里的一步，怎样变成一个概率',
+           left=['1957 年，格罗滕迪克证明分裂定理', '此后，这一步在论文、教材和讲义里被一遍遍写下', '每一个严谨的证明，都给文本添上清晰的“下一步”'],
+           q='由射影直线上向量丛的分裂定理，<b>▁</b>',
+           bars=[('E 是线丛的直和', 92), ('E 是平凡丛', 14), ('E 不可分解', 5)], lab='可能的下一步',
+           cap='这个事实不是模型发现的。它学到的是这一步极有可能紧跟在后面，因为数学家就是这样写的。'),
+  sft=dict(h='监督微调：怎样从一步走到下一步', sub='冷启动：一小批精选的长推理链',
+           left=['人写的推理链：证明、推导、完整的解答', '合成推理链所依据的题目和指令', '决定合成推理链去留的检验'],
+           chain=['题目', '第 1 步', '第 2 步', '…', '结论'], note='模型学的是路径，不只是答案：哪一步接哪一步，为什么。',
+           cap='这个阶段由工程师组织和运行。它教给模型的推理方式，是数学家写证明的方式。'),
+  rl=dict(h='强化学习与搜索：靶子由科学家立', sub='示意，不是数据：一道题，许多次尝试，一个验证器',
+          left=['一道值得解的题，处在模型能力的边缘', '对“正确”的精确定义（例如能在 Lean 里通过检验的证明）', '评判：通过检验的结果里，哪些重要'],
+          a='32 次尝试', b='3 次通过验证器', note='通过的尝试，在训练时被强化，在推理时被留下作为答案。',
+          cap='采样可以没有人参与。但朝哪里采、什么算命中，今天仍主要来自科学家。')),
+}
+
+
+def _stage(t, n, key, right):
+    L, d = ST[t['lang']], ST[t['lang']][key]
+    left = ''.join(f'<li>{esc(x)}</li>' for x in d['left'])
+    return fig(t, n, 'sf-stg', d['h'], d['sub'],
+               f'<div class="sf-st"><div class="sf-st-c sci"><i>{L["sci"]}</i><ul>{left}</ul></div><div class="sf-st-a" aria-hidden="true"></div>'
+               f'<div class="sf-st-c mod"><i>{L["mod"]}</i>{right(d)}</div></div>', esc(d['cap']))
+
+
+def stage_pre(t, n):
+    return _stage(t, n, 'pre', lambda d: f'<div class="sf-st-q">{d["q"]}</div><div style="font-size:13px;color:var(--muted)">{esc(d["lab"])}</div>' + ''.join(
+        f'<div class="sf-st-bar{" top" if k == 0 else ""}">{esc(x)}<span style="--w:{w};--k:{k}"></span></div>' for k, (x, w) in enumerate(d['bars'])))
+
+
+def stage_sft(t, n):
+    def right(d):
+        parts = []
+        for k, x in enumerate(d['chain']):
+            if k:
+                parts.append(f'<em style="--k:{2 * k - 1}">→</em>')
+            parts.append(f'<b{" class=end" if k == len(d["chain"]) - 1 else ""} style="--k:{2 * k}">{esc(x)}</b>')
+        return f'<div class="sf-st-chain">{"".join(parts)}</div><div>{esc(d["note"])}</div>'
+    return _stage(t, n, 'sft', right)
+
+
+def stage_rl(t, n):
+    def right(d):
+        ok = {5, 17, 26}
+        dots = ''.join(f'<u{" class=ok" if k in ok else ""} style="--k:{k}"></u>' for k in range(32))
+        return (f'<div style="font-size:13px;color:var(--muted)">{esc(d["a"])} · <b style="color:var(--accent)">{esc(d["b"])}</b></div>'
+                f'<div class="sf-st-dots">{dots}</div><div>{esc(d["note"])}</div>')
+    return _stage(t, n, 'rl', right)
+
+
+FIGS.update({'stage_pre': stage_pre, 'stage_sft': stage_sft, 'stage_rl': stage_rl})
 
 
 def render(name, lang, n):
