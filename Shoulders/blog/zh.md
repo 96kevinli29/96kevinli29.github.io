@@ -49,7 +49,7 @@ OpenAI 发布 722 篇 AI 撰写的数学稿件之后 [@openai_math]，我们下�
 - 一篇关于局部光滑化的稿件，明确写道证明只用了两个外部输入：Kevin Ren 与王虹的平面 Furstenberg 定理，以及 Larry Guth、王虹、张瑞祥的波包络定理 [@renwang2025; @guthwangzhang2020]。
 - 在算术几何里，一篇稿件“由 [Fargues–Scholze 2024]”把某些向量丛与 p 进局部系统对应起来，这是 Laurent Fargues 与舒尔茨的工作 [@farguesscholze2024]。
 - 在双有理几何里，有的稿件沿用 Caucher Birkar 与一位合作者近期的策略，有的应用 Birkar 关于有界补的定理 [@birkar2019]；还有的建立在 Osamu Fujino 的归纳法，以及 Omprokash Das、Christopher Hacon 与 Mihai Păun 的工作之上 [@dashaconpaun2024]。
-- 在概率论里，稿件依靠 Hugo Duminil-Copin 等人整理的随机簇模型性质 [@dchn2011]，以及 Bertrand Duplantier、Jason Miller 与 Scott Sheffield 的随机曲面定律 [@dms2021]。
+- 在概率论里，稿件依靠 Hugo Duminil-Copin 等人对随机簇模型的临界穿越估计 [@dchn2011]，以及 Bertrand Duplantier、Jason Miller 与 Scott Sheffield 的“树的配对”（mating of trees）定理 [@dms2021]。
 - 一个图论反例用了洛瓦斯与 Balázs Szegedy 的图极限采样构造 [@lovaszszegedy2006]；一个组合反例沿用了布尔甘、Nets Katz 与陶哲轩的和积方法 [@bkt2004]。
 - 一篇关于自旋玻璃的稿件，用的是 Michel Talagrand 的空腔方法 [@talagrand2011]。
 - 一个 Ricci 流论证用了佩雷尔曼 2002 年的熵单调性 [@perelman2002]；一个 Hodge 理论论证用了德利涅的半单性论证 [@deligne1982]。
@@ -74,7 +74,7 @@ OpenAI 目录里排在最前面的成果，是关于 Milne 的有理性猜想、
 
 华人数学家，以及在中国工作的数学家，也在这场接力里：
 
-- 丘成桐 1978 年证明卡拉比猜想的论文，被 10 篇工作引用 [@yau1978]。
+- 丘成桐 1978 年证明卡拉比猜想的论文，被 13 篇工作引用 [@yau1978]。
 - 陈省身 1944 年对高斯–博内公式的内蕴证明 [@chern1944]，以及他与 James Simons 1974 年提出的陈–西蒙斯形式 [@chernsimons1974]，各被三篇工作用到；其中一篇写道“我们使用陈–西蒙斯超渡泛函”。还有两篇工作研究的仿射极大曲面问题，正是陈省身 1979 年提出的。
 - 在与 Kakeya 紧密相连的 Bochner–Riesz 问题上，AI 稿件多次引用郭少明与 Changkeun Oh、王虹、Shukun Wu、张瑞祥 2025 年的论文 [@gowwz2025]，与陶哲轩 2003 年的双线性限制估计 [@tao2003] 并列，作为所用波包方法的出处；其中一篇还沿用了它的伪共形变量替换。
 - 四维 Kakeya 稿件最直接的出发点，是王虹与 Joshua Zahl 的工作；Zahl 现任教于南开大学。
@@ -82,7 +82,7 @@ OpenAI 目录里排在最前面的成果，是关于 Milne 的有理性猜想、
 - 一篇关于硬球气体的稿件，引入了邓煜、Zaher Hani 与 Xiao Ma 从粒子动力学推导 Boltzmann 方程的估计 [@denghanima2025]。邓煜今年获得了菲尔兹奖。
 - 田刚与 John Morgan 关于 Ricci 流与庞加莱猜想的专著 [@morgantian2007]，丁剑与 Allan Sly、Nike Sun 对可满足性猜想的证明 [@dingslysun2022]，以及杨振宁与李政道、黄克孙 1957 年关于硬球玻色气体的论文 [@leehuangyang1957]，也都在参考文献之中。
 
-这次发布之外也是一样。OpenAI 的 Navier–Stokes 论文 [@openai_ns] 从欧拉 1757 年写下的方程讲起 [@euler1757]，接着回顾勒雷 1934 年构造的弱解 [@leray1934]，以及 Caffarelli、Kohn 与 Nirenberg 的部分正则性定理 [@ckn1982]。AlphaFold [@jumper2021] 学习的蛋白质结构，是结构生物学家几十年里一个一个测出来的；它的前提，可以追溯到安芬森 1973 年的发现：蛋白质的序列决定它的形状 [@anfinsen1973]。
+这次发布之外也是一样。OpenAI 的 Navier–Stokes 论文 [@openai_ns] 从欧拉 1757 年写下的方程讲起 [@euler1757]，接着回顾勒雷 1934 年构造的弱解 [@leray1934]，以及 Caffarelli、Kohn 与 Nirenberg 的部分正则性定理 [@ckn1982]。AlphaFold [@jumper2021] 学习的蛋白质结构，是结构生物学家几十年里一个一个测出来的；它的前提，可以追溯到安芬森 1973 年总结的原理：蛋白质的序列决定它的形状 [@anfinsen1973]。
 
 {{fig:tree_ns}}
 

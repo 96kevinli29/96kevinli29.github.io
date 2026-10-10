@@ -49,7 +49,7 @@ The 11,067 works include 114 Fields, Abel and Wolf laureates. Most of the author
 - A manuscript on local smoothing names exactly two external inputs to its proof: Kevin Ren and Hong Wang’s planar Furstenberg theorem, and the wave-envelope theorem of Larry Guth, Hong Wang and Ruixiang Zhang [@renwang2025; @guthwangzhang2020].
 - In arithmetic geometry, a manuscript identifies certain vector bundles with p-adic local systems “by [Fargues–Scholze 2024]”, the work of Laurent Fargues and Peter Scholze [@farguesscholze2024].
 - In birational geometry, one follows a recent strategy of Caucher Birkar and a coauthor, and another applies Birkar’s theorem on bounded complements [@birkar2019]; others build on Osamu Fujino’s inductions and on the work of Omprokash Das, Christopher Hacon and Mihai Păun [@dashaconpaun2024].
-- In probability, manuscripts rely on the properties of the random-cluster model as set out by Hugo Duminil-Copin and his coauthors [@dchn2011], and on the random-surface laws of Bertrand Duplantier, Jason Miller and Scott Sheffield [@dms2021].
+- In probability, manuscripts rely on the critical crossing estimates for the random-cluster model of Hugo Duminil-Copin and his coauthors [@dchn2011], and on the mating-of-trees theorems of Bertrand Duplantier, Jason Miller and Scott Sheffield [@dms2021].
 - A counterexample in graph theory uses László Lovász and Balázs Szegedy’s sampling construction for graphons [@lovaszszegedy2006]; one in combinatorics follows the sum–product strategy of Jean Bourgain, Nets Katz and Terence Tao [@bkt2004].
 - A manuscript on spin glasses uses Michel Talagrand’s cavity method [@talagrand2011].
 - In a Ricci-flow argument, one uses Grigori Perelman’s 2002 entropy monotonicity [@perelman2002]; in Hodge theory, one uses Pierre Deligne’s semisimplicity argument [@deligne1982].
@@ -74,7 +74,7 @@ The four-dimensional Kakeya manuscript builds on Hong Wang and Joshua Zahl’s r
 
 Chinese mathematicians, and mathematicians working in China, are part of this relay:
 
-- Shing-Tung Yau’s 1978 proof of the Calabi conjecture is cited by 10 manuscripts [@yau1978].
+- Shing-Tung Yau’s 1978 proof of the Calabi conjecture is cited by 13 manuscripts [@yau1978].
 - Shiing-Shen Chern’s 1944 intrinsic proof of the Gauss–Bonnet formula [@chern1944] and the Chern–Simons forms he introduced with James Simons in 1974 [@chernsimons1974] are each used by three manuscripts; one of them writes “we use the Chern–Simons transgression functional”. Two more manuscripts study a problem on affine maximal surfaces that Chern posed in 1979.
 - On the Bochner–Riesz problem, which is closely tied to Kakeya, AI manuscripts repeatedly cite the 2025 paper of Shaoming Guo with Changkeun Oh, Hong Wang, Shukun Wu and Ruixiang Zhang [@gowwz2025], beside Terence Tao’s 2003 bilinear restriction estimate [@tao2003], as a source of the wave-packet method they use; one of them adopts its pseudoconformal change of variables.
 - The four-dimensional Kakeya manuscript starts most directly from the work of Hong Wang and Joshua Zahl; Zahl now works at Nankai University.
@@ -82,7 +82,7 @@ Chinese mathematicians, and mathematicians working in China, are part of this re
 - A manuscript on hard-sphere gases imports estimates from Yu Deng, Zaher Hani and Xiao Ma’s derivation of the Boltzmann equation from particle dynamics [@denghanima2025]. Deng received a Fields Medal this year.
 - Gang Tian’s book with John Morgan on the Ricci flow and the Poincaré conjecture [@morgantian2007], Jian Ding’s proof of the satisfiability conjecture with Allan Sly and Nike Sun [@dingslysun2022], and C. N. Yang’s 1957 paper with T. D. Lee and Kerson Huang on the hard-sphere Bose gas [@leehuangyang1957] are all in the references.
 
-The same holds outside this release. OpenAI’s Navier–Stokes paper [@openai_ns] starts from the equations Euler wrote in 1757 [@euler1757], then recalls Leray’s weak solutions of 1934 [@leray1934] and the partial regularity theorem of Caffarelli, Kohn and Nirenberg [@ckn1982]. AlphaFold [@jumper2021] was trained on protein structures that structural biologists solved one at a time over decades; its premise goes back to Anfinsen’s 1973 finding that a protein’s sequence determines its shape [@anfinsen1973].
+The same holds outside this release. OpenAI’s Navier–Stokes paper [@openai_ns] starts from the equations Euler wrote in 1757 [@euler1757], then recalls Leray’s weak solutions of 1934 [@leray1934] and the partial regularity theorem of Caffarelli, Kohn and Nirenberg [@ckn1982]. AlphaFold [@jumper2021] was trained on protein structures that structural biologists solved one at a time over decades; its premise goes back to the principle Anfinsen set out in 1973, that a protein’s sequence determines its shape [@anfinsen1973].
 
 {{fig:tree_ns}}
 
