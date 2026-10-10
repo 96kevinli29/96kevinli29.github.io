@@ -361,7 +361,7 @@ def tree_af(t, n):
 # ---- figure 8: the navigation loop -------------------------------------------------------------------
 LOOP = {
  'en': dict(h='The navigation loop',
-            sub='However capable AI becomes, someone has to point the way. Each turn produces new data that carries a learning signal.',
+            sub='However capable AI becomes, someone has to help synthesise the data and point the way. Each turn produces new data that carries a learning signal.',
             steps=[('sci', 'Scientists', 'pose problems worth solving and set the standard for “correct”'),
                    ('ai', 'AI', 'samples at scale: thousands of attempts'),
                    ('ver', 'Verifier', 'human-built standards keep the attempts that pass'),
@@ -370,7 +370,7 @@ LOOP = {
             back='↻ the next problem', back_m='↻ back to step 1: the next problem',
             cap='The navigation loop. Scientists choose the problems, define correctness and judge the results; AI tries at a scale no person can.'),
  'zh': dict(h='领航循环',
-            sub='AI 再强大，也需要有人指方向。每转一圈，就产生一批带着学习信号的新数据。',
+            sub='AI 再强大，也需要有人参与合成数据、指引方向。每转一圈，就产生一批带着学习信号的新数据。',
             steps=[('sci', '科学家', '提出值得解的问题，定下“正确”的标准'),
                    ('ai', 'AI', '大规模采样：成千上万次尝试'),
                    ('ver', '验证器', '人建立的标准，留下通过检验的尝试'),
