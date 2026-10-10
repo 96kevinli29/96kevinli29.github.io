@@ -35,7 +35,7 @@ zh:{eyebrow:'<a href="../../zh/" style="color:inherit">← 巨人之肩</a> · �
  tgHA:'突出调和分析',tgEdges:'显示全部连线',tgReset:'复位',lgPP:'AI 预印本',lgStone:'人类基石论文',lgLau:'作者含获奖者',
  atlasNote:'基石论文取被引最多的约 110 篇，加上各学科和调和分析内部被引最多的若干篇。教材和经典专著也会出现在这里。',
  ctyH:'各国数学家',ctyP:'被引最多的 300 位数学家与全部获奖者按出生地或原国籍标注（出生与成长地不同时，部分取成长地），长条为他们按当前排名依据的计数之和。点一行查看名单。',
- ctyNote:n=>`已标注 ${n} 位；标注依据公开资料，可能有误或不全。`,ctySheet:'按国家/地区',cnL:'工作单位',cn_only:'仅中国大陆',cn_all:'全部按引用',mlTag:'中国大陆',ctyWho:'位被标注的数学家',stoneK:'人类基石论文',citedBy:'被以下 AI 预印本引用',authorsK:'作者'},
+ ctyNote:n=>`已标注 ${n} 位；标注依据公开资料，可能有误或不全。`,ctySheet:'按国家/地区',cnL:'工作单位',cn_only:'仅中国大陆当前活跃',cn_all:'全部按引用',mlTag:'中国大陆',ctyWho:'位被标注的数学家',stoneK:'人类基石论文',citedBy:'被以下 AI 预印本引用',authorsK:'作者'},
 en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · Mathematics · OpenAI Math Release',h1:'On Whose Shoulders',
  thesis:'Every result AI reaches at the frontier of mathematics is built on generations of mathematicians. OpenAI has published all the mathematics manuscripts written by its internal model, with their LaTeX sources; we go through their references entry by entry: whom they cite, which work, and how it is used in the text. A tribute to the human mathematicians of the AI era, so their names stay visible. <a class="essay" href="../blog/">Read the essay: What AI’s mathematics is built on →</a>',
  searchLabel:'Search mathematicians',searchPh:'Search mathematicians: Terence Tao, Hong Wang, Bourgain…',
@@ -64,7 +64,7 @@ en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · M
  tgHA:'Highlight harmonic analysis',tgEdges:'Show all links',tgReset:'Reset',lgPP:'AI preprint',lgStone:'Human cornerstone paper',lgLau:'Laureate author',
  atlasNote:'Cornerstones are the ~110 most-cited human works, plus the most-cited works inside each field and inside harmonic analysis. Textbooks and classic monographs appear too.',
  ctyH:'Mathematicians by country',ctyP:'The 300 most-cited mathematicians and all laureates are tagged by country of birth or original nationality (for some, where they grew up). Bars sum their counts under the current ranking. Open a row for the list.',
- ctyNote:n=>`${n} people tagged from public sources; some tags may be wrong or missing.`,ctySheet:'Country or region',cnL:'Affiliation',cn_only:'Mainland China only',cn_all:'All by citations',mlTag:'Mainland China',ctyWho:'tagged mathematicians',stoneK:'Human cornerstone paper',citedBy:'Cited by these AI preprints',authorsK:'Authors'}};
+ ctyNote:n=>`${n} people tagged from public sources; some tags may be wrong or missing.`,ctySheet:'Country or region',cnL:'Affiliation',cn_only:'Currently active in mainland China',cn_all:'All by citations',mlTag:'Mainland China',ctyWho:'tagged mathematicians',stoneK:'Human cornerstone paper',citedBy:'Cited by these AI preprints',authorsK:'Authors'}};
 const T=k=>I[LANG][k];
 const CN={US:['美国','United States'],HU:['匈牙利','Hungary'],NZ:['新西兰','New Zealand'],BE:['比利时','Belgium'],AU:['澳大利亚','Australia'],FR:['法国','France'],JP:['日本','Japan'],IL:['以色列','Israel'],CN:['中国','China'],RU:['俄罗斯','Russia'],GB:['英国','United Kingdom'],DE:['德国','Germany'],IR:['伊朗','Iran'],RO:['罗马尼亚','Romania'],NL:['荷兰','Netherlands'],FI:['芬兰','Finland'],IT:['意大利','Italy'],CH:['瑞士','Switzerland'],IN:['印度','India'],RS:['塞尔维亚','Serbia'],CA:['加拿大','Canada'],GR:['希腊','Greece'],DK:['丹麦','Denmark'],SE:['瑞典','Sweden'],AT:['奥地利','Austria'],UA:['乌克兰','Ukraine'],AR:['阿根廷','Argentina'],PL:['波兰','Poland'],ES:['西班牙','Spain'],NO:['挪威','Norway'],KR:['韩国','South Korea'],VN:['越南','Vietnam'],BR:['巴西','Brazil'],SI:['斯洛文尼亚','Slovenia'],HR:['克罗地亚','Croatia'],PT:['葡萄牙','Portugal'],ZA:['南非','South Africa'],HK:['中国香港','Hong Kong'],TW:['中国台湾','Taiwan'],BG:['保加利亚','Bulgaria'],BY:['白俄罗斯','Belarus'],CL:['智利','Chile'],EE:['爱沙尼亚','Estonia'],GE:['格鲁吉亚','Georgia'],IS:['冰岛','Iceland'],LB:['黎巴嫩','Lebanon'],MA:['摩洛哥','Morocco'],MX:['墨西哥','Mexico'],SK:['斯洛伐克','Slovakia'],TJ:['塔吉克斯坦','Tajikistan'],TN:['突尼斯','Tunisia'],MD:['摩尔多瓦','Moldova'],LT:['立陶宛','Lithuania']};
 const cName=c=>CN[c]?CN[c][LANG==='zh'?0:1]:c;
@@ -300,7 +300,7 @@ function renderCountries(){
 }
 let CNMODE='all';
 function countryHTML(c){let L=A.map((a,i)=>i).filter(i=>A[i].c===c&&aPapers[i].size).sort((x,y)=>score(y)-score(x));
- if(c==='CN'&&CNMODE==='only')L=L.filter(i=>A[i].ml);
+ if(c==='CN'&&CNMODE==='only')L=L.filter(i=>A[i].ml&&!(A[i].af&&/已故/.test(A[i].af[0])));
  const cnsw=c==='CN'?`<div class="metbar" style="margin-top:12px"><div class="metsw" role="group"><span class="eyebrow">${T('cnL')}</span>${['all','only'].map(k=>`<button type="button" data-cn="${k}" aria-pressed="${k===CNMODE}">${T('cn_'+k)}</button>`).join('')}</div></div>`:'';
  return `<div class="eyebrow">${T('ctySheet')}</div><h2>${esc(cName(c))}</h2><div class="sub">${L.length} ${T('ctyWho')}</div>${cnsw}
  <ol class="board" style="margin-top:14px">${L.map((a,k)=>`<li class="${A[a].fm?'fm':A[a].ab?'ab':A[a].wf?'wf':''}" data-a="${a}" tabindex="0"><span class="rk">${k+1}</span><span class="nm">${esc(nm(a))}${LANG==='zh'&&A[a].zh?`<small>${esc(A[a].n)}</small>`:''}${stars(A[a])}${A[a].ml?`<span class="ctag ml">${T('mlTag')}</span>`:''}${aff(A[a])}</span><span class="bar"><i style="width:${(score(a)/(Math.max(...L.map(score))||1)*100).toFixed(1)}%"></i></span><span class="ct num">${score(a)}</span></li>`).join('')}</ol>`}
