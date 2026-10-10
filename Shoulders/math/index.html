@@ -603,6 +603,7 @@ zh:{eyebrow:'<a href="../../zh/" style="color:inherit">← 巨人之肩</a> · �
  none:'没有匹配的论文。换个关键词试试。',noName:'没有找到这个名字。可以试试英文拼写。',
  methodH:'数据与口径',footer:'巨人之肩 · 由 <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill 开源科学社区</a>制作，记录 AI 数学成果所依赖的人类工作。发现错误或漏掉的引用，欢迎通过<a href="../../zh/#contact">首页的联系表单</a>告诉我们。',
  method:g=>`<p style="margin:0">数据来自 <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a>（Apache 2.0 许可）的全部 ${P.length} 篇预印本源文件，最近一次重建于 ${g}，之后每天自动检查更新。每篇论文的参考文献从 BibTeX 或 <span class="m">\\bibitem</span> 中解析，正文引用句从 LaTeX 源码的 <span class="m">\\cite</span> 位置截取。</p><ul>
+ <li><b>教科书里的工作计数偏低。</b>越基础的工作越少被直接引用：用到陈类的人不引陈省身 1946 年的论文，用到希尔伯特空间、伽罗瓦群、勒贝格积分的人也不引原始文献。这里的计数只反映参考文献里列出的条目，会低估这些名字的实际分量。</li>
  <li><b>引用 ≠ 依赖。</b>人类论文同样大量引用前人；这里记录的是"站在谁的肩膀上"，不评判 AI 结果是否原创。</li>
  <li><b>人名消歧。</b>按"姓 + 名"合并，只有缩写的条目在无歧义时并入全名。常见姓氏（Wang、Li、Zhang 等）的缩写条目单独列出，不强行合并；少数学者的缩写条目按合作者和题目领域人工规则判定。</li>
  <li><b>引用方式</b>（直接使用 / 背景 / 提及）是按句子关键词的启发式分类，会有误判，请以原句为准。正文原句只为被引最多的约 60 位与菲尔兹奖、阿贝尔奖、沃尔夫奖得主抽取。</li>
@@ -632,6 +633,7 @@ en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · M
  none:'No papers match. Try another keyword.',noName:'No one by that name. Try the Latin spelling.',
  methodH:'Data and method',footer:'On Whose Shoulders · made by the <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill open-source science community</a>, recording the human work behind AI-produced mathematics. Found an error or a missing citation? Tell us through the <a href="../#contact">contact form</a>.',
  method:g=>`<p style="margin:0">Data come from the source files of all ${P.length} preprints in <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a> (Apache 2.0), last rebuilt on ${g} and checked for updates daily. References are parsed from BibTeX or <span class="m">\\bibitem</span>; citing sentences are taken from the <span class="m">\\cite</span> positions in the LaTeX source.</p><ul>
+ <li><b>Textbook work is undercounted.</b> The more basic a piece of work is, the less often it is cited directly: people who use Chern classes do not cite Chern’s 1946 paper, and people who use Hilbert spaces, Galois groups or the Lebesgue integral do not cite the originals. Counts here reflect only what reference lists name, and understate how much these names matter.</li>
  <li><b>A citation is not dependence.</b> Human papers cite heavily too. This index records whose shoulders the work stands on; it does not judge whether the AI results are original.</li>
  <li><b>Name disambiguation.</b> Names merge on surname plus given name; initial-only entries join a full name only when unambiguous. Initial-only entries with common surnames (Wang, Li, Zhang, …) stay separate, except for a few people resolved by co-author and topic rules.</li>
  <li><b>Usage labels</b> (uses / background / mention) come from keyword rules on the citing sentence and can be wrong; read the sentence itself. Sentences are extracted only for the ~60 most-cited people and Fields, Abel and Wolf laureates.</li>

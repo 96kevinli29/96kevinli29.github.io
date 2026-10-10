@@ -116,6 +116,8 @@ If the common story becomes “AI solves it, scientists are no longer needed”,
 
 A reference list is the visible part. It does not show the textbooks nobody cites, the teachers who passed these ideas on, the referees who checked the papers, or the attempts that failed and were never published but taught others which roads lead nowhere. All of that went into the text that models learn from. None of it has a name in our data.
 
+The more basic a piece of work is, the more easily it disappears this way: it becomes textbook knowledge, used directly without a citation to the original paper. People who use Chern classes do not cite Chern’s 1946 paper; people who use Hilbert spaces, Galois groups, the Lebesgue integral or Noetherian rings do not cite Hilbert, Galois, Lebesgue or Noether. In our counts, these names therefore weigh far less than they should.
+
 For most of history, this was solitary work: the people who did it had no machine to ask. Many of them are in our list. Many more are not.
 
 Scientists are the bridge between human knowledge and AI, and we want their names to stay attached to what is built on them.
