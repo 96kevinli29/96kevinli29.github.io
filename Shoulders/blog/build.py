@@ -175,6 +175,8 @@ JS = ("<script>(function(){document.querySelectorAll('.sf-tl .sf-scroll,.sf-dec 
       "addEventListener('scroll',c,{passive:true});addEventListener('resize',c);addEventListener('load',c);setTimeout(c,80);"
       "var t=setInterval(function(){c();if(!f.length)clearInterval(t)},300)})()</script>")
 
+EN_TITLE = open(os.path.join(B, 'en.md'), encoding='utf-8').readline().split(': ', 1)[1].strip()
+
 for lang, l in L10N.items():
     LANG = lang
     t = figures.T[lang]
@@ -184,13 +186,13 @@ for lang, l in L10N.items():
         assert f'{v:,}' in meta['dek'], (k, v)
     body = flow(parts)
 
-    me = dict(type='misc', author=['Hongyang Li', 'Sea-Fill Team'], title=meta['title'], year='2026', month='oct',
-              howpublished='Sea-Fill, On Whose Shoulders', url=l['url'])
+    me = dict(type='misc', author=['Hongyang Li', 'Sea-Fill Team'], title=EN_TITLE, year='2026', month='oct',
+              howpublished='Sea-Fill, On Whose Shoulders', url=L10N['en']['url'])   # one citation, in English, on both pages
     me_bib = bibtex('li2026shoulders', me)
     out = os.path.join(B, l['out'])
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(os.path.join(os.path.dirname(out), 'references.bib'), 'w', encoding='utf-8').write(
-        '% References for "' + meta['title'] + '" (Hongyang Li and the Sea-Fill team, 2026)\n\n'
+        '% References for "' + EN_TITLE + '" (Hongyang Li and the Sea-Fill team, 2026)\n\n'
         + me_bib + '\n\n' + '\n\n'.join(bibtex(k, REFS[k]) for k in ORDER) + '\n')
     body += ('\n<article class="sf-article">\n'
              f'<section class="sf-refs" id="refs"><h2>{l["refs"]}</h2><ol>'
