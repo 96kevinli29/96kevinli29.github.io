@@ -15,6 +15,23 @@ for _p in D['papers']:
         for (k,frag),(k2,n2) in SPLIT.items():
             if k in _r['a'] and frag in (_r['t'] or ''):
                 _r['a']=[k2 if a==k else a for a in _r['a']]; D['names'][k2]=n2
+# Initial-only entries that are one known person, checked entry by entry against titles and coauthors (12 Oct 2026):
+# "B. Green" and "Benjamin Green" are Ben Green (all with Tao, Ziegler or Sanders); "W.-K. Chen" is Wei-Kuo Chen (all on the
+# Parisi formula, mostly with Auffinger); "C. Xu" is Chenyang Xu except for two spin-glass papers with Brennecke and
+# H.-T. Yau, which are Changji Xu's.
+MERGE={'init:b|green':'ben|green','benjamin|green':'ben|green','init:wk|chen':'wei-kuo|chen',
+       'init:w|huang':'wen|huang'}   # the five 'W. Huang' entries are the Huang–Shao–Ye ergodic-average papers
+CXU_OTHER=('Spectral gap estimates for mixed','two point function of the SK model')
+for _p in D['papers']:
+    for _r in _p['refs']:
+        _a=[]
+        for a in _r['a']:
+            if a=='init:c|xu': a='changji|xu' if any(f in (_r['t'] or '') for f in CXU_OTHER) else 'chenyang|xu'
+            a=MERGE.get(a,a)
+            if a not in _a: _a.append(a)
+        _r['a']=_a
+for _k,_t in list(MERGE.items())+[('init:c|xu','chenyang|xu')]:
+    if _k in C: C.setdefault(_t,[]).extend(C.pop(_k))
 FM={}
 for line in open(S+'/fields_medal.txt'):
     y,ns=line.strip().split('|')
@@ -78,7 +95,7 @@ for k in keys:
     if n in AF:
         zh,c,az,ae=AF[n]; a['c']=c
         if az or ae: a['af']=[az,ae]
-        if any(x in az for x in ['清华','北京','中国科学院','浙江','西湖','上海','复旦','中国科学技术','南开']): a['ml']=1
+        if any(x in az for x in ['清华','北京','中国科学院','浙江','西湖','上海','复旦','中国科学技术','南开','南京','首都师范']): a['ml']=1
         if zh and 'zh' not in a: a['zh']=zh
     authors.append(a)
 fields=sorted({p['field'] for p in D['papers']})

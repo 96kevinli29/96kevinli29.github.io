@@ -1,7 +1,7 @@
 title: What AI’s mathematics is built on
-desc: We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,612 mathematicians. What that says about how models learn, and why scientists still steer.
+desc: We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,607 mathematicians. What that says about how models learn, and why scientists still steer.
 kicker: DATA ESSAY · 9 OCTOBER 2026
-dek: We wrote code to extract every reference in OpenAI’s 719 AI-written mathematics manuscripts, then checked them one by one. Behind them stand **11,067 human works by 9,612 mathematicians**.
+dek: We wrote code to extract every reference in OpenAI’s 719 AI-written mathematics manuscripts, then checked them one by one. Behind them stand **11,067 human works by 9,607 mathematicians**.
 byline: By **Hongyang Li** and the Sea-Fill team
 
 # What AI’s mathematics | is built on
