@@ -43,6 +43,13 @@ CSS = '''
 .sf-refs li:target{background:var(--soft);box-shadow:0 0 0 6px var(--soft);border-radius:2px}
 .sf-citebox pre{margin:0 0 12px;white-space:pre-wrap;word-break:break-word;background:var(--soft);border-radius:6px;padding:16px 18px;font:13px/1.6 var(--mono);color:var(--text)}
 .sf-citebox p{font-size:14px;color:var(--muted)}
+.sf-views b{color:var(--on-ink);font-weight:500}
+.sf-like{max-width:var(--read);margin:48px auto 0;padding:0 16px;display:flex;align-items:center;gap:14px;font-size:15px;color:var(--muted)}
+#sf-heart{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--paper);color:var(--text);font:500 15px var(--sans);cursor:pointer;transition:border-color .2s,transform .15s}
+#sf-heart svg{fill:none;stroke:var(--accent);stroke-width:1.8;transition:fill .2s}
+#sf-heart:hover{border-color:var(--accent)}#sf-heart:active{transform:scale(.96)}
+#sf-heart[aria-pressed="true"]{border-color:var(--accent);cursor:default}#sf-heart[aria-pressed="true"] svg{fill:var(--accent)}
+#sf-heart b{font-variant-numeric:tabular-nums}
 .sf-cta p.sf-foot{font-size:12px;color:var(--on-ink-muted);margin:64px 0 0;max-width:none}
 '''
 
@@ -157,10 +164,12 @@ def flow(parts):
 
 L10N = {
  'en': dict(out='index.html', hub='../', hub_label='← SEA-FILL · ON WHOSE SHOULDERS', nav='Site', url='https://seafill.info/Shoulders/blog/',
+            like=('Was this worth reading? Leave a heart.', 'Thank you.', 'hearts'), views='views',
             refs='References', cite='Cite this essay', bib='All references as BibTeX: ', hw=600,
             og='{w:,} human works by {a:,} mathematicians stand behind OpenAI’s {p} AI-written math manuscripts.',
             foot='OPEN DATA (APACHE 2.0 SOURCE)'),
  'zh': dict(out='zh/index.html', hub='../../zh/', hub_label='← SEA-FILL · 巨人之肩', nav='站点', url='https://seafill.info/Shoulders/blog/zh/',
+            like=('读完觉得有价值，点一颗心。', '谢谢你。', '颗心'), views='次阅读',
             refs='参考文献', cite='引用本文', bib='全部参考文献的 BibTeX：', hw=900,
             og='{w:,} 部人类著作，{a:,} 位数学家，撑起了 OpenAI {p} 篇 AI 数学稿件。',
             foot='数据开放（Apache 2.0 来源）'),
@@ -176,6 +185,19 @@ JS = ("<script>(function(){document.querySelectorAll('.sf-tl .sf-scroll,.sf-dec 
       "var t=setInterval(function(){c();if(!f.length)clearInterval(t)},300)})()</script>")
 
 EN_TITLE = open(os.path.join(B, 'en.md'), encoding='utf-8').readline().split(': ', 1)[1].strip()
+
+# Reads and hearts come from GoatCounter's public counter. Both stay hidden until a number arrives, so the page is
+# unchanged if the counter is switched off or blocked. A heart is one GoatCounter event per browser (remembered locally).
+COUNT_JS = '''<script>(function(){var B='https://96kevinli29.goatcounter.com/counter/',N=function(j){return j&&j.count?parseInt(String(j.count).replace(/\\D/g,''),10)||0:0};
+function get(p){return fetch(B+encodeURIComponent(p)+'.json').then(function(r){return r.ok?r.json():null}).then(N).catch(function(){return 0})}
+var v=document.querySelector('.sf-views');
+if(v)Promise.all([get('/Shoulders/blog/'),get('/Shoulders/blog/zh/')]).then(function(a){var n=a[0]+a[1];if(n){v.querySelector('b').textContent=n.toLocaleString('en-US');v.hidden=false}});
+var h=document.getElementById('sf-heart');if(!h)return;var c=h.querySelector('b'),t=h.nextElementSibling,K='sf-heart-essay',n=0,done=false;
+try{done=!!localStorage.getItem(K)}catch(e){}
+function show(){if(n){c.textContent=n.toLocaleString('en-US');c.hidden=false}h.setAttribute('aria-pressed',done);if(done)t.textContent=t.dataset.t}
+get('heart-essay').then(function(x){n=x+(done&&!x?1:0);show()});show();
+h.addEventListener('click',function(){if(done)return;done=true;n+=1;try{localStorage.setItem(K,'1')}catch(e){}show();
+(function s(k){if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:'heart-essay',title:'Heart: essay',event:true});else if(k<20)setTimeout(function(){s(k+1)},500)})(0)})})()</script>'''
 
 for lang, l in L10N.items():
     LANG = lang
@@ -194,6 +216,9 @@ for lang, l in L10N.items():
     open(os.path.join(os.path.dirname(out), 'references.bib'), 'w', encoding='utf-8').write(
         '% References for "' + EN_TITLE + '" (Hongyang Li and the Sea-Fill team, 2026)\n\n'
         + me_bib + '\n\n' + '\n\n'.join(bibtex(k, REFS[k]) for k in ORDER) + '\n')
+    body += (f'\n<div class="sf-like"><button type="button" id="sf-heart" aria-pressed="false" aria-label="{l["like"][0]}">'
+             '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
+             f'<b hidden></b></button><span data-t="{l["like"][1]}" data-u="{l["like"][2]}">{l["like"][0]}</span></div>')
     body += ('\n<article class="sf-article">\n'
              f'<section class="sf-refs" id="refs"><h2>{l["refs"]}</h2><ol>'
              + ''.join(f'<li id="ref-{k}">{fmt(REFS[k])}</li>' for k in ORDER) + '</ol></section>\n'
@@ -211,7 +236,7 @@ for lang, l in L10N.items():
 <p class="sf-kicker">{html.escape(meta['kicker'])}</p>
 <h1>{meta['h1']}</h1>
 <p class="sf-dek">{inline(meta['dek']).replace('<b>', '<strong>').replace('</b>', '</strong>')}</p>
-<p class="sf-byline">{inline(meta['byline'])}</p>
+<p class="sf-byline">{inline(meta['byline'])}<span class="sf-views" hidden> · <b></b> {l['views']}</span></p>
 {figures.timeline(t)}
 </div>
 </header>'''
@@ -259,6 +284,7 @@ for lang, l in L10N.items():
 {closing}
 {JS}
 {GC}
+{COUNT_JS}
 </body>
 </html>
 ''')
