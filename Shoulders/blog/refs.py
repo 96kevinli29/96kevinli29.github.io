@@ -81,6 +81,8 @@ REFS = {
                    journal='Annals of Mathematics', year='1944', doi='10.2307/1969302', volume='45', pages='747–752'),
  'chernsimons1974': dict(type='article', author=['Shiing-Shen Chern', 'James Simons'], title='Characteristic forms and geometric invariants',
                          journal='Annals of Mathematics', year='1974', doi='10.2307/1971013', volume='99', pages='48–69'),
+ 'gwz2024': dict(type='article', author=['Shaoming Guo', 'Hong Wang', 'Ruixiang Zhang'], title='A dichotomy for Hörmander-type oscillatory integral operators',
+                 journal='Inventiones Mathematicae', year='2024', doi='10.1007/s00222-024-01288-8', volume='238', pages='503–584'),
  'wangzahl2025': dict(type='misc', author=['Hong Wang', 'Joshua Zahl'], title='Volume estimates for unions of convex sets, and the Kakeya set conjecture in three dimensions',
                       year='2025', url='https://arxiv.org/abs/2502.17655'),
  'wangzahl2026': dict(type='article', author=['Hong Wang', 'Joshua Zahl'], title='Sticky Kakeya sets and the sticky Kakeya conjecture',

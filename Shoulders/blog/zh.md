@@ -76,8 +76,8 @@ OpenAI 目录里排在最前面的成果，是关于 Milne 的有理性猜想、
 
 - 丘成桐 1978 年证明卡拉比猜想的论文，被 13 篇工作引用 [@yau1978]。
 - 陈省身 1944 年对高斯–博内公式的内蕴证明 [@chern1944]，以及他与 James Simons 1974 年提出的陈–西蒙斯形式 [@chernsimons1974]，各被三篇工作用到；其中一篇写道“we use the Chern–Simons transgression functional”。还有两篇工作研究的仿射极大曲面问题，正是陈省身 1979 年提出的。
-- 在与 Kakeya 紧密相连的 Bochner–Riesz 问题上，AI 稿件多次引用郭少明与 Changkeun Oh、王虹、Shukun Wu、张瑞祥 2025 年的论文 [@gowwz2025]，与陶哲轩 2003 年的双线性限制估计 [@tao2003] 并列，作为所用波包方法的出处；其中一篇还沿用了它的伪共形变量替换。
-- 四维 Kakeya 稿件最直接的出发点，是王虹与 Joshua Zahl 的工作；Zahl 现任教于南开大学。
+- 在近年大热的调和分析里，王虹与 Joshua Zahl 2025 年公布了三维 Kakeya 集猜想的证明 [@wangzahl2025]；OpenAI 的四维 Kakeya 稿件正是建立在这一突破之上，证明中的 Bourgain 条件还直接采用了郭少明与王虹、张瑞祥 2024 年论文给出的不变形式 [@gwz2024]。Zahl 现任教于南开大学。
+- 在与之紧密相连的 Bochner–Riesz 问题上，三篇稿件把郭少明与 Changkeun Oh、王虹、Shukun Wu、张瑞祥 2025 年的论文 [@gowwz2025] 和陶哲轩 2003 年的双线性限制估计 [@tao2003] 并列，作为波包方法的出处，其中一篇还沿用了郭少明等人的伪共形变量替换。
 - 一篇关于丰度猜想的稿件，沿用了许晨阳与 Lei Zhang 的叶状结构判据 [@xuzhang2019]。
 - 一篇关于硬球气体的稿件，引入了邓煜、Zaher Hani 与 Xiao Ma 从粒子动力学推导 Boltzmann 方程的估计 [@denghanima2025]。邓煜今年获得了菲尔兹奖。
 - 田刚与 John Morgan 关于 Ricci 流与庞加莱猜想的专著 [@morgantian2007]，丁剑与 Allan Sly、Nike Sun 对可满足性猜想的证明 [@dingslysun2022]，以及杨振宁与李政道、黄克孙 1957 年关于硬球玻色气体的论文 [@leehuangyang1957]，也都在参考文献之中。
