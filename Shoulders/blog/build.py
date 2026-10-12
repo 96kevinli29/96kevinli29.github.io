@@ -164,12 +164,12 @@ def flow(parts):
 
 L10N = {
  'en': dict(out='index.html', hub='../', hub_label='← SEA-FILL · ON WHOSE SHOULDERS', nav='Site', url='https://seafill.info/Shoulders/blog/',
-            like=('Was this worth reading? Leave a heart.', 'Thank you.', 'hearts'), views='views',
+            like=('Was this worth reading? Leave a heart.', 'Thank you.', 'hearts'), views='visits to the site',
             refs='References', cite='Cite this essay', bib='All references as BibTeX: ', hw=600,
             og='{w:,} human works by {a:,} mathematicians stand behind OpenAI’s {p} AI-written math manuscripts.',
             foot='OPEN DATA (APACHE 2.0 SOURCE)'),
  'zh': dict(out='zh/index.html', hub='../../zh/', hub_label='← SEA-FILL · 巨人之肩', nav='站点', url='https://seafill.info/Shoulders/blog/zh/',
-            like=('读完觉得有价值，点一颗心。', '谢谢你。', '颗心'), views='次阅读',
+            like=('读完觉得有价值，点一颗心。', '谢谢你。', '颗心'), views='次全站访问',
             refs='参考文献', cite='引用本文', bib='全部参考文献的 BibTeX：', hw=900,
             og='{w:,} 部人类著作，{a:,} 位数学家，撑起了 OpenAI {p} 篇 AI 数学稿件。',
             foot='数据开放（Apache 2.0 来源）'),
@@ -186,12 +186,12 @@ JS = ("<script>(function(){document.querySelectorAll('.sf-tl .sf-scroll,.sf-dec 
 
 EN_TITLE = open(os.path.join(B, 'en.md'), encoding='utf-8').readline().split(': ', 1)[1].strip()
 
-# Reads and hearts come from GoatCounter's public counter. Both stay hidden until a number arrives, so the page is
+# The site-wide visit total and hearts come from GoatCounter's public counter. Both stay hidden until a number arrives, so the page is
 # unchanged if the counter is switched off or blocked. A heart is one GoatCounter event per browser (remembered locally).
 COUNT_JS = '''<script>(function(){var B='https://96kevinli29.goatcounter.com/counter/',N=function(j){return j&&j.count?parseInt(String(j.count).replace(/\\D/g,''),10)||0:0};
 function get(p){return fetch(B+encodeURIComponent(p)+'.json').then(function(r){return r.ok?r.json():null}).then(N).catch(function(){return 0})}
 var v=document.querySelector('.sf-views');
-if(v)Promise.all([get('/Shoulders/blog/'),get('/Shoulders/blog/zh/')]).then(function(a){var n=a[0]+a[1];if(n){v.querySelector('b').textContent=n.toLocaleString('en-US');v.hidden=false}});
+if(v)get('TOTAL').then(function(n){if(n){v.querySelector('b').textContent=n.toLocaleString('en-US');v.hidden=false}});
 var h=document.getElementById('sf-heart');if(!h)return;var c=h.querySelector('b'),t=h.nextElementSibling,K='sf-heart-essay',n=0,done=false;
 try{done=!!localStorage.getItem(K)}catch(e){}
 function show(){if(n){c.textContent=n.toLocaleString('en-US');c.hidden=false}h.setAttribute('aria-pressed',done);if(done)t.textContent=t.dataset.t}
