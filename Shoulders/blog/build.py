@@ -208,13 +208,13 @@ for lang, l in L10N.items():
         assert f'{v:,}' in meta['dek'], (k, v)
     body = flow(parts)
 
-    me = dict(type='misc', author=['Hongyang Li', 'Sea-Fill Team'], title=EN_TITLE, year='2026', month='oct',
+    me = dict(type='misc', author=['Qiongxiu Li', 'Sea-Fill Team'], title=EN_TITLE, year='2026', month='oct',
               howpublished='Sea-Fill, On Whose Shoulders', url=L10N['en']['url'])   # one citation, in English, on both pages
     me_bib = bibtex('li2026shoulders', me)
     out = os.path.join(B, l['out'])
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(os.path.join(os.path.dirname(out), 'references.bib'), 'w', encoding='utf-8').write(
-        '% References for "' + EN_TITLE + '" (Hongyang Li and the Sea-Fill team, 2026)\n\n'
+        '% References for "' + EN_TITLE + '" (Qiongxiu Li and the Sea-Fill team, 2026)\n\n'
         + me_bib + '\n\n' + '\n\n'.join(bibtex(k, REFS[k]) for k in ORDER) + '\n')
     body += (f'\n<div class="sf-like"><button type="button" id="sf-heart" aria-pressed="false" aria-label="{l["like"][0]}">'
              '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'

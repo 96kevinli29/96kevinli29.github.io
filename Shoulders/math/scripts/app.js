@@ -20,7 +20,7 @@ zh:{eyebrow:'<a href="../../zh/" style="color:inherit">← 巨人之肩</a> · �
  papersH:'全部预印本',papersP:'点一行查看这篇论文的完整参考文献，作者名可以点开。',pqLabel:'搜索论文',pqPh:'按标题搜索，例如 Kakeya、Penrose、Bochner',pfLabel:'领域',psLabel:'排序',
  sortD:'按日期',sortR:'按参考文献数',sortT:'按标题',thPaper:'论文',thField:'领域',thDate:'日期',thRefs:'引文',thSelf:'自引',more:'显示更多',
  none:'没有匹配的论文。换个关键词试试。',noName:'没有找到这个名字。可以试试英文拼写。',
- methodH:'数据与口径',footer:'巨人之肩 · 由 <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill 开源科学社区</a>制作，记录 AI 数学成果所依赖的人类工作。发现错误或漏掉的引用，欢迎通过<a href="../../zh/#contact">首页的联系表单</a>告诉我们。',
+ methodH:'数据与口径',footer:'巨人之肩 · 由李琼秀与 <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill 小组</a>制作，记录 AI 数学成果所依赖的人类工作。发现错误或漏掉的引用，欢迎通过<a href="../../zh/#contact">首页的联系表单</a>告诉我们。',
  method:g=>`<p style="margin:0">数据来自 <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a>（Apache 2.0 许可）的全部 ${P.length} 篇预印本源文件，最近一次重建于 ${g}，之后每天自动检查更新。每篇论文的参考文献从 BibTeX 或 <span class="m">\\bibitem</span> 中解析，正文引用句从 LaTeX 源码的 <span class="m">\\cite</span> 位置截取。</p><ul>
  <li><b>教科书里的工作计数偏低。</b>越基础的工作越少被直接引用：用到陈类的人不引陈省身 1946 年的论文，用到希尔伯特空间、伽罗瓦群、勒贝格积分的人也不引原始文献。这里的计数只反映参考文献里列出的条目，会低估这些名字的实际分量。</li>
  <li><b>引用 ≠ 依赖。</b>人类论文同样大量引用前人；这里记录的是"站在谁的肩膀上"，不评判 AI 结果是否原创。</li>
@@ -50,7 +50,7 @@ en:{eyebrow:'<a href="../" style="color:inherit">← On Whose Shoulders</a> · M
  papersH:'All preprints',papersP:'Open a row to see the full reference list. Author names are clickable.',pqLabel:'Search papers',pqPh:'Search titles, e.g. Kakeya, Penrose, Bochner',pfLabel:'Field',psLabel:'Sort',
  sortD:'By date',sortR:'By references',sortT:'By title',thPaper:'Paper',thField:'Field',thDate:'Date',thRefs:'Refs',thSelf:'Self',more:'Show more',
  none:'No papers match. Try another keyword.',noName:'No one by that name. Try the Latin spelling.',
- methodH:'Data and method',footer:'On Whose Shoulders · made by the <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill open-source science community</a>, recording the human work behind AI-produced mathematics. Found an error or a missing citation? Tell us through the <a href="../#contact">contact form</a>.',
+ methodH:'Data and method',footer:'On Whose Shoulders · made by Qiongxiu Li and the <a href="https://huggingface.co/SeaFill2025" target="_blank" rel="noopener">Sea-Fill team</a>, recording the human work behind AI-produced mathematics. Found an error or a missing citation? Tell us through the <a href="../#contact">contact form</a>.',
  method:g=>`<p style="margin:0">Data come from the source files of all ${P.length} preprints in <a href="https://github.com/openai/math" target="_blank" rel="noopener">github.com/openai/math</a> (Apache 2.0), last rebuilt on ${g} and checked for updates daily. References are parsed from BibTeX or <span class="m">\\bibitem</span>; citing sentences are taken from the <span class="m">\\cite</span> positions in the LaTeX source.</p><ul>
  <li><b>Textbook work is undercounted.</b> The more basic a piece of work is, the less often it is cited directly: people who use Chern classes do not cite Chern’s 1946 paper, and people who use Hilbert spaces, Galois groups or the Lebesgue integral do not cite the originals. Counts here reflect only what reference lists name, and understate how much these names matter.</li>
  <li><b>A citation is not dependence.</b> Human papers cite heavily too. This index records whose shoulders the work stands on; it does not judge whether the AI results are original.</li>
