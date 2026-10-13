@@ -171,7 +171,7 @@ L10N = {
  'zh': dict(out='zh/index.html', hub='../../zh/', hub_label='← SEA-FILL · 巨人之肩', nav='站点', url='https://seafill.info/Shoulders/blog/zh/',
             like=('读完觉得有价值，点一颗心。', '谢谢你。', '颗心'), views='次全站访问',
             refs='参考文献', cite='引用本文', bib='全部参考文献的 BibTeX：', hw=900,
-            og='{w:,} 部人类著作，{a:,} 位数学家，撑起了 OpenAI {p} 篇 AI 数学与理论计算机科学稿件。',
+            og='{w:,} 部人类著作，{a:,} 位数学家和理论计算机科学家，撑起了 OpenAI {p} 篇 AI 数学与理论计算机科学稿件。',
             foot='数据开放（Apache 2.0 来源）'),
 }
 
