@@ -1,12 +1,12 @@
-title: What AI’s mathematics is built on
-desc: We parsed the references of OpenAI’s 722 AI-written math manuscripts: 11,067 human works by 9,607 mathematicians. What that says about how models learn, and why scientists still steer.
+title: What AI’s science is built on
+desc: We parsed the references of OpenAI’s 722 AI-written mathematics and theoretical computer science manuscripts: 11,067 human works by 9,607 mathematicians and theoretical computer scientists. What that says about how models learn, and why scientists still steer.
 kicker: DATA ESSAY · 9 OCTOBER 2026
-dek: We wrote code to extract every reference in OpenAI’s 719 AI-written mathematics manuscripts, then checked them one by one. Behind them stand **11,067 human works by 9,607 mathematicians**.
+dek: We wrote code to extract every reference in OpenAI’s 719 AI-written mathematics and theoretical computer science manuscripts, then checked them one by one. Behind them stand **11,067 human works by 9,607 mathematicians and theoretical computer scientists**.
 byline: By **Qiongxiu Li** and the Sea-Fill team
 
-# What AI’s mathematics | is built on
+# What AI’s science | is built on
 
-After OpenAI released 722 AI-written mathematics manuscripts [@openai_math], we did the slow, careful work: we wrote code to extract every reference list, then checked them one by one.
+After OpenAI released 722 AI-written mathematics and theoretical computer science manuscripts [@openai_math], we did the slow, careful work: we wrote code to extract every reference list, then checked them one by one.
 
 One of the manuscripts, on four-dimensional Kakeya sets, has 34 references. The oldest is Besicovitch’s paper of 1928. After it come Davies, Wolff, Katz, Łaba, Tao and Guth, all the way to Hong Wang and Joshua Zahl’s work in 2026 [@besicovitch1928; @davies1971; @wolff1995; @klt2000; @guth2010; @wangzahl2026].
 

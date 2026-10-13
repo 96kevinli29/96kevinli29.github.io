@@ -166,7 +166,7 @@ L10N = {
  'en': dict(out='index.html', hub='../', hub_label='← SEA-FILL · ON WHOSE SHOULDERS', nav='Site', url='https://seafill.info/Shoulders/blog/',
             like=('Was this worth reading? Leave a heart.', 'Thank you.', 'hearts'), views='visits to the site',
             refs='References', cite='Cite this essay', bib='All references as BibTeX: ', hw=600,
-            og='{w:,} human works by {a:,} mathematicians stand behind OpenAI’s {p} AI-written math manuscripts.',
+            og='{w:,} human works by {a:,} mathematicians and theoretical computer scientists stand behind OpenAI’s {p} AI-written mathematics and theoretical computer science manuscripts.',
             foot='OPEN DATA (APACHE 2.0 SOURCE)'),
  'zh': dict(out='zh/index.html', hub='../../zh/', hub_label='← SEA-FILL · 巨人之肩', nav='站点', url='https://seafill.info/Shoulders/blog/zh/',
             like=('读完觉得有价值，点一颗心。', '谢谢你。', '颗心'), views='次全站访问',

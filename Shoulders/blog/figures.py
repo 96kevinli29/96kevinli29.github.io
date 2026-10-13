@@ -117,7 +117,7 @@ T = {
   tl_cap='Bars: the {n:,} cited human works with a known year, by decade; {e} of them predate 1850 and are not drawn. Dots: a few of the giants named in the references and the essay. Euler comes from OpenAI’s Navier–Stokes paper. Work that has become textbook knowledge (Chern classes, for example) is often used without a citation and is not counted here.',
   # key numbers and the Kakeya relay
   stats_aria='Key numbers',
-  stats=['AI-written math manuscripts (current release)*', 'cited human works', 'mathematicians', 'Fields, Abel and Wolf laureates'],
+  stats=['AI-written mathematics and theoretical computer science manuscripts (current release)*', 'cited human works', 'mathematicians and theoretical computer scientists', 'Fields, Abel and Wolf laureates'],
   relay_h='One manuscript, a century-long relay: four-dimensional Kakeya sets, 34 references',
   relay=[('1928', 'Besicovitch'), ('1971', 'Davies'), ('1995', 'Wolff'), ('2000', 'Katz · Łaba · Tao'), ('2010', 'Guth'), ('2025–26', 'Hong Wang · Zahl')],
   relay_ai=('2026', 'AI manuscript'),
