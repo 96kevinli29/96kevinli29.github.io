@@ -1,0 +1,1355 @@
+{
+ "papers": [
+  {
+   "id": "glt",
+   "arxiv": "2609.24739",
+   "date": "2026-09-21",
+   "title": "Counterexamples to Grad's conjecture",
+   "authors": [
+    "Javier Gómez-Serrano",
+    "Lukas Liehr",
+    "Mitchell A. Taylor"
+   ],
+   "nref": 56
+  },
+  {
+   "id": "lan",
+   "arxiv": "2609.26742",
+   "date": "2026-09-22",
+   "title": "Analytic toroidal 3D MHD equilibria and steady Euler flows with invariant surfaces",
+   "authors": [
+    "Matt Landreman"
+   ],
+   "nref": 23
+  },
+  {
+   "id": "gdm",
+   "arxiv": "2610.07304",
+   "date": "2026-10-05",
+   "title": "Analytic non-axisymmetric 3D MHD equilibria without stellarator symmetry",
+   "authors": [
+    "Opal Issan",
+    "Jonathan Citrin",
+    "Matt Landreman",
+    "Brendan Tracey"
+   ],
+   "nref": 13
+  }
+ ],
+ "works": [
+  {
+   "a": [
+    "John Nash"
+   ],
+   "t": "The imbedding problem for Riemannian manifolds",
+   "y": "1956",
+   "v": "Annals of Mathematics",
+   "doi": "10.2307/1969989",
+   "u": "https://doi.org/10.2307/1969989",
+   "by": {
+    "glt": [
+     "The Nash-Moser scheme and the resulting geometry. We apply Hamilton's Nash-Moser theorem [Hamilton 1982, Moser 1966, Moser 1966, Nash 1956] with eps and lambda as parameters."
+    ]
+   }
+  },
+  {
+   "a": [
+    "M. D. Kruskal",
+    "R. M. Kulsrud"
+   ],
+   "t": "Equilibrium of a magnetically confined plasma in a toroid",
+   "y": "1958",
+   "v": "The Physics of Fluids",
+   "doi": "10.1063/1.1705884",
+   "u": "https://doi.org/10.1063/1.1705884",
+   "by": {
+    "glt": [
+     "On each torus, the first equation imposes a solvability condition along the field lines [Hamada 1962, Kruskal 1958, Newcomb 1959], and this condition obstructs the construction of nonsymmetric equilibria with nonconstant pressure.",
+     "Near a torus with irrational rotational transform, the solvability condition of [Hamada 1962, Kruskal 1958, Newcomb 1959] must hold on a dense set of rational tori, and this appears to force the pressure to flatten."
+    ],
+    "lan": [
+     "endabstract sectionIntroduction Three-dimensional (3D) magnetohydrodynamic (MHD) equilibria are central to both the stellarator and tokamak concepts for magnetic-confinement fusion energy [Kruskal 1958]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "William A. Newcomb"
+   ],
+   "t": "Magnetic differential equations",
+   "y": "1959",
+   "v": "The Physics of Fluids",
+   "doi": "10.1063/1.1724405",
+   "u": "https://doi.org/10.1063/1.1724405",
+   "by": {
+    "glt": [
+     "On each torus, the first equation imposes a solvability condition along the field lines [Hamada 1962, Kruskal 1958, Newcomb 1959], and this condition obstructs the construction of nonsymmetric equilibria with nonconstant pressure.",
+     "Near a torus with irrational rotational transform, the solvability condition of [Hamada 1962, Kruskal 1958, Newcomb 1959] must hold on a dense set of rational tori, and this appears to force the pressure to flatten."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Shigeo Hamada"
+   ],
+   "t": "Hydromagnetic Equilibria and Their Proper Coordinates in a Torus with Inhomogeneous Magnetic Field",
+   "y": "1962",
+   "v": "Nuclear Fusion",
+   "doi": "10.1088/0029-5515/2/1-2/005",
+   "u": "https://doi.org/10.1088/0029-5515/2/1-2/005",
+   "by": {
+    "glt": [
+     "On each torus, the first equation imposes a solvability condition along the field lines [Hamada 1962, Kruskal 1958, Newcomb 1959], and this condition obstructs the construction of nonsymmetric equilibria with nonconstant pressure.",
+     "Near a torus with irrational rotational transform, the solvability condition of [Hamada 1962, Kruskal 1958, Newcomb 1959] must hold on a dense set of rational tori, and this appears to force the pressure to flatten."
+    ],
+    "gdm": [
+     "subsectionRotational transform, volume, and volume-averaged texorpdfstringbetabeta To avoid singular parallel currents on a rational flux surface with non-zero pressure gradient, an equilibrium must satisfy the Hamada condition [Hamada 1962], which requires the line integral øint dell/|Bvec| (where ell is arc length along a field line) to be identical for all closed field lines on that surface.",
+     "On any rational flux surface iota(psi) = m/n, where closed field lines complete m poloidal turns (Deltachi = 2pi m) in n toroidal turns, periodicity of sin^2(chi) yields which is a complete elliptic integral of the first kind that depends only on psi and m (and is independent of the initial field-line angle chi_0, as well as tau_1, epsilon, S, and lambda), confirming that the Hamada condition [Hamada 1962] is satisfied on all rational surfaces."
+    ]
+   }
+  },
+  {
+   "a": [
+    "C Mercier"
+   ],
+   "t": "Equilibrium and stability of a toroidal magnetohydrodynamic system in the neighbourhood of a magnetic axis",
+   "y": "1964",
+   "v": "NF",
+   "doi": "10.1088/0029-5515/4/3/008",
+   "u": "https://doi.org/10.1088/0029-5515/4/3/008",
+   "by": {
+    "lan": [
+     "For instance, expansions in small distance from the magnetic axis (high aspect ratio) led to approximate solutions by [Mercier 1964, Solov'ev 1970, Garren 1991]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Jürgen Moser"
+   ],
+   "t": "A rapidly convergent iteration method and non-linear partial differential equations. I",
+   "y": "1966",
+   "v": "Annali della Scuola Normale Superiore di Pisa, Classe di Scienze (3)",
+   "doi": "",
+   "u": "",
+   "by": {
+    "glt": [
+     "The Nash-Moser scheme and the resulting geometry. We apply Hamilton's Nash-Moser theorem [Hamilton 1982, Moser 1966, Moser 1966, Nash 1956] with eps and lambda as parameters."
+    ]
+   }
+  },
+  {
+   "a": [
+    "V. D. Shafranov"
+   ],
+   "t": "Plasma equilibrium in a magnetic field",
+   "y": "1966",
+   "v": "Reviews of Plasma Physics",
+   "doi": "",
+   "u": "",
+   "by": {
+    "gdm": [
+     "Using the vector identity (curlBvec)timesBvec = (Bveccdotgrad)Bvec - frac12grad|Bvec|^2, when the magnetic tension is the gradient of a scalar potential Q(xvec), the force balance equation in can be written as In axisymmetric geometry (partial_phi = 0), Eq. reduces to the two-dimensional Grad–Shafranov equation, which has well-known analytical solutions, most notably the Solov'ev family and its extensions [Shafranov 1966, Solov'ev 1968, Zheng 1996, Cerfon 2010]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Harold Grad"
+   ],
+   "t": "Toroidal containment of a plasma",
+   "y": "1967",
+   "v": "The Physics of Fluids",
+   "doi": "10.1063/1.1761965",
+   "u": "https://doi.org/10.1063/1.1761965",
+   "by": {
+    "glt": [
+     "Grad [Grad 1967, Grad 1985] argued that, outside the classical symmetric configurations, no smooth equilibrium with nested toroidal pressure surfaces should belong to a family depending smoothly on a parameter.",
+     "Grad's argument [Grad 1967] rests on the analysis of the real characteristics of the MHS system along field lines."
+    ],
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026]."
+    ],
+    "gdm": [
+     "Grad conjectured that smooth toroidal equilibria with non-constant pressure do not exist apart from specific configurations, such as axisymmetry or mirror-reflection symmetry with zero rotational transform (iota = 0) [Grad 1967, Lortz 1970]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "L. S. Solov'ev"
+   ],
+   "t": "The theory of hydromagnetic stability of toroidal plasma configurations",
+   "y": "1968",
+   "v": "Sov. Phys. JETP",
+   "doi": "",
+   "u": "https://www.jetp.ras.ru/cgi-bin/dn/e_026_02_0400.pdf",
+   "by": {
+    "lan": [
+     "The polynomial Psi_0 is a special case of equation (2.15) of [Solov'ev 1968]."
+    ],
+    "gdm": [
+     "Using the vector identity (curlBvec)timesBvec = (Bveccdotgrad)Bvec - frac12grad|Bvec|^2, when the magnetic tension is the gradient of a scalar potential Q(xvec), the force balance equation in can be written as In axisymmetric geometry (partial_phi = 0), Eq. reduces to the two-dimensional Grad–Shafranov equation, which has well-known analytical solutions, most notably the Solov'ev family and its extensions [Shafranov 1966, Solov'ev 1968, Zheng 1996, Cerfon 2010].",
+     "Additionally, [Landreman 2026] constructed the first explicit closed-form equilibria with finite rotational transform, consisting of (1) a constant-rotational-transform (iota = 2) family obtained by stretching an axisymmetric Solov'ev equilibrium [Solov'ev 1968] along the horizontal axes, and (2) a sheared-rotational-transform (iota'(psi) neq 0) family constructed in elliptic coordinates.",
+     "Section presents a constant-rotational-transform (iota = 2) family obtained by adding an odd-in-z term to the axisymmetric Solov'ev equilibrium [Solov'ev 1968] before stretching it along the horizontal axes.",
+     "[Landreman 2026] constructed the equilibrium by horizontally stretching an even-in-z Solov'ev equilibrium [Solov'ev 1968], which preserves stellarator symmetry.",
+     "In the constant-rotational-transform family of Section , including an odd-in-z term in the Solov'ev equilibrium [Solov'ev 1968] prior to horizontal coordinate stretching deforms both the magnetic axis and the surrounding flux surfaces."
+    ]
+   }
+  },
+  {
+   "a": [
+    "L S Solov'ev",
+    "V D Shafranov"
+   ],
+   "t": "Reviews of Plasma Physics 5",
+   "y": "1970",
+   "v": "Consultants Bureau",
+   "doi": "",
+   "u": "",
+   "by": {
+    "lan": [
+     "For instance, expansions in small distance from the magnetic axis (high aspect ratio) led to approximate solutions by [Mercier 1964, Solov'ev 1970, Garren 1991]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Dietrich Lortz"
+   ],
+   "t": "Über die Existenz toroidaler magnetohydrostatischer Gleichgewichte ohne Rotationstransformation",
+   "y": "1970",
+   "v": "Zeitschrift für angewandte Mathematik und Physik (ZAMP)",
+   "doi": "10.1007/BF01590644",
+   "u": "https://doi.org/10.1007/BF01590644",
+   "by": {
+    "glt": [
+     "Lortz [Lortz 1970] constructed toroidal equilibria with nonconstant pressure whose domains are symmetric with respect to a plane but otherwise have no symmetry."
+    ],
+    "lan": [
+     "[Lortz 1970] established the existence of finite-aspect-ratio nonsymmetric toroidal equilibria, but only for cases with mirror-reflection symmetry in which the rotational transform iota=0, which is not compatible with magnetic confinement.",
+     "The solutions here do not possess plane-reflection symmetry, which was used by [Lortz 1970] but which is not compatible with stellarator confinement."
+    ],
+    "gdm": [
+     "Grad conjectured that smooth toroidal equilibria with non-constant pressure do not exist apart from specific configurations, such as axisymmetry or mirror-reflection symmetry with zero rotational transform (iota = 0) [Grad 1967, Lortz 1970]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Richard S. Hamilton"
+   ],
+   "t": "The inverse function theorem of Nash and Moser",
+   "y": "1982",
+   "v": "Bulletin of the American Mathematical Society",
+   "doi": "10.1090/S0273-0979-1982-15004-2",
+   "u": "https://doi.org/10.1090/S0273-0979-1982-15004-2",
+   "by": {
+    "glt": [
+     "The Nash-Moser scheme and the resulting geometry. We apply Hamilton's Nash-Moser theorem [Hamilton 1982, Moser 1966, Moser 1966, Nash 1956] with eps and lambda as parameters.",
+     "We recall the terminology of Hamilton [Hamilton 1982] that we use below.",
+     "The bounded projections constructed above therefore make the constrained spaces tame as well, by [Hamilton 1982].",
+     "The Nash-Moser theorem in Hamilton's form [Hamilton 1982] therefore applies to (cG) at ((0,lambda_*,0)), where (widehatcF) vanishes by ."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. P. Hirshman",
+    "J. C. Whitson"
+   ],
+   "t": "Steepest-descent moment method for three-dimensional magnetohydrodynamic equilibria",
+   "y": "1983",
+   "v": "Physics of Fluids",
+   "doi": "10.1063/1.864116",
+   "u": "https://doi.org/10.1063/1.864116",
+   "by": {
+    "glt": [
+     "VMEC [Hirshman 1983] and, more recently, DESC [Dudt 2020] assume nested flux surfaces from the outset and minimize the energy or the force residual within this class."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. P. Hirshman",
+    "J. C. Whitson"
+   ],
+   "t": "Steepest-descent moment method for three-dimensional magnetohydrodynamic equilibria",
+   "y": "1983",
+   "v": "The Physics of Fluids",
+   "doi": "10.2172/5537804",
+   "u": "https://doi.org/10.2172/5537804",
+   "by": {
+    "gdm": [
+     "From a practical standpoint, in three-dimensional equilibrium solvers such as VMEC [Hirshman 1983], SPEC [Hudson 2012] or DESC [Dudt 2020], stellarator symmetry halves the number of independent Fourier coefficients in the solution representation, so testing solver performance in non-stellarator-symmetric regimes requires benchmarks that break this symmetry."
+    ]
+   }
+  },
+  {
+   "a": [
+    "H. K. Moffatt"
+   ],
+   "t": "Magnetostatic equilibria and analogous Euler flows of arbitrarily complex topology. Part 1. Fundamentals",
+   "y": "1985",
+   "v": "Journal of Fluid Mechanics",
+   "doi": "10.1017/S0022112085003251",
+   "u": "https://doi.org/10.1017/S0022112085003251",
+   "by": {
+    "lan": [
+     "The MHD equilibrium equations are also of interest due to their isomorphism with steady incompressible Euler flow [Moffatt 1985, Helander 2014], identifying the magnetic field with the fluid velocity."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Harold Grad"
+   ],
+   "t": "Theory and applications of the nonexistence of simple toroidal plasma equilibrium",
+   "y": "1985",
+   "v": "International Journal of Fusion Energy",
+   "doi": "",
+   "u": "",
+   "by": {
+    "glt": [
+     "Grad [Grad 1967, Grad 1985] argued that, outside the classical symmetric configurations, no smooth equilibrium with nested toroidal pressure surfaces should belong to a family depending smoothly on a parameter."
+    ],
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "A. Reiman",
+    "H. Greenside"
+   ],
+   "t": "Calculation of three-dimensional MHD equilibria with islands and stochastic regions",
+   "y": "1986",
+   "v": "Computer Physics Communications",
+   "doi": "10.1016/0010-4655(86)90059-7",
+   "u": "https://doi.org/10.1016/0010-4655(86)90059-7",
+   "by": {
+    "glt": [
+     "PIES [Reiman 1986], HINT [Harafuji 1989] and SIESTA [Hirshman 2011] drop the assumption of nested surfaces and resolve islands and stochastic regions, while SPEC [Hudson 2012] implements the stepped-pressure picture described above."
+    ]
+   }
+  },
+  {
+   "a": [
+    "K. Harafuji",
+    "T. Hayashi",
+    "T. Sato"
+   ],
+   "t": "Computational study of three-dimensional magnetohydrodynamic equilibria in toroidal helical systems",
+   "y": "1989",
+   "v": "Journal of Computational Physics",
+   "doi": "10.1016/0021-9991(89)90069-7",
+   "u": "https://doi.org/10.1016/0021-9991(89)90069-7",
+   "by": {
+    "glt": [
+     "PIES [Reiman 1986], HINT [Harafuji 1989] and SIESTA [Hirshman 2011] drop the assumption of nested surfaces and resolve islands and stochastic regions, while SPEC [Hudson 2012] implements the stepped-pressure picture described above."
+    ]
+   }
+  },
+  {
+   "a": [
+    "D. A. Garren",
+    "A. H. Boozer"
+   ],
+   "t": "Existence of quasihelically symmetric stellarators",
+   "y": "1991",
+   "v": "Physics of Fluids B: Plasma Physics",
+   "doi": "10.1063/1.859916",
+   "u": "https://doi.org/10.1063/1.859916",
+   "by": {
+    "glt": [
+     "For related work on MHS equilibria and their symmetry properties, we also refer to [Burby 2020, Cary 1997, Garren 1991, Landreman 2018]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "D A Garren",
+    "A H Boozer"
+   ],
+   "t": "Magnetic field strength of toroidal plasma equilibria",
+   "y": "1991",
+   "v": "PFB",
+   "doi": "10.1063/1.859915",
+   "u": "https://doi.org/10.1063/1.859915",
+   "by": {
+    "lan": [
+     "For instance, expansions in small distance from the magnetic axis (high aspect ratio) led to approximate solutions by [Mercier 1964, Solov'ev 1970, Garren 1991]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "R. Kaiser",
+    "A. Salat"
+   ],
+   "t": "Surface current equilibria from a geometric point of view",
+   "y": "1994",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.870830",
+   "u": "https://doi.org/10.1063/1.870830",
+   "by": {
+    "glt": [
+     "In their setting, the pressure jumps across finitely many interfaces carrying current sheets, and the rotational transform on each interface must be sufficiently irrational (see also Kaiser and Salat [Kaiser 1994])."
+    ]
+   }
+  },
+  {
+   "a": [
+    "A. Salat",
+    "R. Kaiser"
+   ],
+   "t": "Three-dimensional closed field line magnetohydrodynamic equilibria without symmetries",
+   "y": "1995",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.871077",
+   "u": "https://doi.org/10.1063/1.871077",
+   "by": {
+    "glt": [
+     "Salat and Kaiser [Salat 1995] produced exact equilibria in an infinite cylinder with a straight axis but no cylindrical, helical, or mirror symmetry.",
+     "Up to normalization, these maps describe a subfamily of solutions constructed by Salat and Kaiser [Salat 1995].",
+     "subsectionA family of solutions at zero curvature At zero curvature, the equations admit an explicit family of solutions that are linear in (y), including the straight-axis family of Salat and Kaiser [Salat 1995]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. B. Zheng",
+    "A. J. Wootton",
+    "E. R. Solano"
+   ],
+   "t": "Analytical tokamak equilibrium for shaped plasmas",
+   "y": "1996",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.871772",
+   "u": "https://doi.org/10.1063/1.871772",
+   "by": {
+    "gdm": [
+     "Using the vector identity (curlBvec)timesBvec = (Bveccdotgrad)Bvec - frac12grad|Bvec|^2, when the magnetic tension is the gradient of a scalar potential Q(xvec), the force balance equation in can be written as In axisymmetric geometry (partial_phi = 0), Eq. reduces to the two-dimensional Grad–Shafranov equation, which has well-known analytical solutions, most notably the Solov'ev family and its extensions [Shafranov 1966, Solov'ev 1968, Zheng 1996, Cerfon 2010]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Oscar P. Bruno",
+    "Peter Laurence"
+   ],
+   "t": "Existence of three-dimensional toroidal MHD equilibria with nonconstant pressure",
+   "y": "1996",
+   "v": "Communications on Pure and Applied Mathematics",
+   "doi": "10.1002/(SICI)1097-0312(199607)49:7<717::AID-CPA3>3.0.CO;2-C",
+   "u": "https://doi.org/10.1002/(SICI)1097-0312(199607)49:7<717::AID-CPA3>3.0.CO;2-C",
+   "by": {
+    "glt": [
+     "Bruno and Laurence [Bruno 1996] proved the existence of equilibria with piecewise constant pressure in tori that are small perturbations of an axisymmetric one.",
+     "In [Bruno 1996, Enciso 2025], the pressure is constant between the interfaces and the solutions are not C^1."
+    ],
+    "lan": [
+     "A different approach requires discontinuous pressure and current sheets [Bruno 1996, Enciso 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "R. Kaiser",
+    "A. Salat"
+   ],
+   "t": "New classes of three-dimensional ideal-MHD equilibria",
+   "y": "1997",
+   "v": "J. Plasma Phys.",
+   "doi": "10.1017/S0022377896004862",
+   "u": "https://doi.org/10.1017/S0022377896004862",
+   "by": {
+    "lan": [
+     "Explicit three-dimensional MHD equilibria with a straight magnetic axis were also obtained by [Kaiser 1997]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "John R. Cary",
+    "Svetlana G. Shasharina"
+   ],
+   "t": "Omnigenity and quasihelicity in helical plasma confinement systems",
+   "y": "1997",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.872473",
+   "u": "https://doi.org/10.1063/1.872473",
+   "by": {
+    "glt": [
+     "For related work on MHS equilibria and their symmetry properties, we also refer to [Burby 2020, Cary 1997, Garren 1991, Landreman 2018]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "R. L. Dewar",
+    "S. R. Hudson"
+   ],
+   "t": "Stellarator symmetry",
+   "y": "1998",
+   "v": "Physica D: Nonlinear Phenomena",
+   "doi": "",
+   "u": "",
+   "by": {
+    "gdm": [
+     "Both solutions in [Landreman 2026] are stellarator symmetric [Dewar 1998]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. R. Hudson",
+    "M. J. Hole",
+    "R. L. Dewar"
+   ],
+   "t": "Eigenvalue problems for Beltrami fields arising in a three-dimensional toroidal magnetohydrodynamic equilibrium problem",
+   "y": "2007",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.2722721",
+   "u": "https://doi.org/10.1063/1.2722721",
+   "by": {
+    "glt": [
+     "This picture underlies the equilibrium program of Hudson, Dewar, and their colleagues [Hudson 2012, Hudson 2007, Hudson 2017, Kraus 2017, MacKay 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "A. J. Cerfon",
+    "J. P. Freidberg"
+   ],
+   "t": "“One size fits all” analytic solutions to the Grad–Shafranov equation",
+   "y": "2010",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.3328818",
+   "u": "https://doi.org/10.1063/1.3328818",
+   "by": {
+    "gdm": [
+     "Using the vector identity (curlBvec)timesBvec = (Bveccdotgrad)Bvec - frac12grad|Bvec|^2, when the magnetic tension is the gradient of a scalar potential Q(xvec), the force balance equation in can be written as In axisymmetric geometry (partial_phi = 0), Eq. reduces to the two-dimensional Grad–Shafranov equation, which has well-known analytical solutions, most notably the Solov'ev family and its extensions [Shafranov 1966, Solov'ev 1968, Zheng 1996, Cerfon 2010]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. P. Hirshman",
+    "R. Sanchez",
+    "C. R. Cook"
+   ],
+   "t": "SIESTA: A scalable iterative equilibrium solver for toroidal applications",
+   "y": "2011",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.3597155",
+   "u": "https://doi.org/10.1063/1.3597155",
+   "by": {
+    "glt": [
+     "PIES [Reiman 1986], HINT [Harafuji 1989] and SIESTA [Hirshman 2011] drop the assumption of nested surfaces and resolve islands and stochastic regions, while SPEC [Hudson 2012] implements the stepped-pressure picture described above."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. R. Hudson",
+    "R. L. Dewar",
+    "G. Dennis",
+    "M. J. Hole",
+    "M. McGann",
+    "G. von Nessi",
+    "S. Lazerson"
+   ],
+   "t": "Computation of multi-region relaxed magnetohydrodynamic equilibria",
+   "y": "2012",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.4765691",
+   "u": "https://doi.org/10.1063/1.4765691",
+   "by": {
+    "glt": [
+     "This picture underlies the equilibrium program of Hudson, Dewar, and their colleagues [Hudson 2012, Hudson 2007, Hudson 2017, Kraus 2017, MacKay 2025].",
+     "PIES [Reiman 1986], HINT [Harafuji 1989] and SIESTA [Hirshman 2011] drop the assumption of nested surfaces and resolve islands and stochastic regions, while SPEC [Hudson 2012] implements the stepped-pressure picture described above."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. R. Hudson",
+    "R. L. Dewar",
+    "G. Dennis",
+    "M. J. Hole",
+    "M. McGann",
+    "G. von Nessi",
+    "S. Lazerson"
+   ],
+   "t": "Computation of multi-region relaxed magnetohydrodynamic equilibria",
+   "y": "2012",
+   "v": "Physics of Plasmas",
+   "doi": "10.2172/1072361",
+   "u": "https://doi.org/10.2172/1072361",
+   "by": {
+    "gdm": [
+     "From a practical standpoint, in three-dimensional equilibrium solvers such as VMEC [Hirshman 1983], SPEC [Hudson 2012] or DESC [Dudt 2020], stellarator symmetry halves the number of independent Fourier coefficients in the solution representation, so testing solver performance in non-stellarator-symmetric regimes requires benchmarks that break this symmetry."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Jeffrey P. Freidberg"
+   ],
+   "t": "Ideal MHD",
+   "y": "2014",
+   "v": "Cambridge University Press",
+   "doi": "10.1017/CBO9780511795046",
+   "u": "https://doi.org/10.1017/CBO9780511795046",
+   "by": {
+    "glt": [
+     "We refer to Freidberg [Freidberg 2014] and Helander [Helander 2014] for an account of the underlying physics."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Harold Weitzner"
+   ],
+   "t": "Ideal magnetohydrodynamic equilibrium in a non-symmetric topological torus",
+   "y": "2014",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.4867184",
+   "u": "https://doi.org/10.1063/1.4867184",
+   "by": {
+    "glt": [
+     "Weitzner obtained formal expansions of nonsymmetric MHS equilibria to all orders in doubly periodic domains [Weitzner 2014, Weitzner 2016] and about a circular magnetic axis [Weitzner 2016]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Per Helander"
+   ],
+   "t": "Theory of plasma confinement in non-axisymmetric magnetic fields",
+   "y": "2014",
+   "v": "Reports on Progress in Physics",
+   "doi": "10.1088/0034-4885/77/8/087001",
+   "u": "https://doi.org/10.1088/0034-4885/77/8/087001",
+   "by": {
+    "glt": [
+     "We refer to Freidberg [Freidberg 2014] and Helander [Helander 2014] for an account of the underlying physics."
+    ],
+    "lan": [
+     "The MHD equilibrium equations are also of interest due to their isomorphism with steady incompressible Euler flow [Moffatt 1985, Helander 2014], identifying the magnetic field with the fluid velocity."
+    ]
+   }
+  },
+  {
+   "a": [
+    "J. Loizu",
+    "S. R. Hudson",
+    "A. Bhattacharjee",
+    "S. Lazerson",
+    "P. Helander"
+   ],
+   "t": "Existence of three-dimensional ideal-magnetohydrodynamic equilibria with current sheets",
+   "y": "2015",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.4931094",
+   "u": "https://doi.org/10.1063/1.4931094",
+   "by": {
+    "glt": [
+     "Loizu, Hudson, Bhattacharjee and their collaborators [Loizu 2015, Loizu 2015] computed the singular currents that form at rational surfaces in the presence of a pressure gradient, and Zhou, Huang, Qin and Bhattacharjee [Zhou 2016] followed the formation of current singularities in topologically constrained plasmas."
+    ]
+   }
+  },
+  {
+   "a": [
+    "J. Loizu",
+    "S. Hudson",
+    "A. Bhattacharjee",
+    "P. Helander"
+   ],
+   "t": "Magnetic islands and singular currents at rational surfaces in three-dimensional magnetohydrodynamic equilibria",
+   "y": "2015",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.4906888",
+   "u": "https://doi.org/10.1063/1.4906888",
+   "by": {
+    "glt": [
+     "Loizu, Hudson, Bhattacharjee and their collaborators [Loizu 2015, Loizu 2015] computed the singular currents that form at rational surfaces in the presence of a pressure gradient, and Zhou, Huang, Qin and Bhattacharjee [Zhou 2016] followed the formation of current singularities in topologically constrained plasmas."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Alberto Enciso",
+    "Daniel Peralta-Salas"
+   ],
+   "t": "Beltrami fields with a nonconstant proportionality factor are rare",
+   "y": "2016",
+   "v": "Archive for Rational Mechanics and Analysis",
+   "doi": "10.1007/s00205-015-0931-5",
+   "u": "https://doi.org/10.1007/s00205-015-0931-5",
+   "by": {
+    "glt": [
+     "On the other hand, in [Perrella 2025] it is proved that an orientation-reversing isometry of an equilibrium with toroidally nested pressure surfaces forces all field lines to be periodic, and in [Clelland 2020, Enciso 2016, Peralta-Salas 2024] it is shown that Beltrami fields with nonconstant proportionality factor are rare."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Harold Weitzner"
+   ],
+   "t": "Expansions of non-symmetric toroidal magnetohydrodynamic equilibria",
+   "y": "2016",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.4954048",
+   "u": "https://doi.org/10.1063/1.4954048",
+   "by": {
+    "glt": [
+     "Weitzner obtained formal expansions of nonsymmetric MHS equilibria to all orders in doubly periodic domains [Weitzner 2014, Weitzner 2016] and about a circular magnetic axis [Weitzner 2016]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Y. Zhou",
+    "Y.-M. Huang",
+    "H. Qin",
+    "A. Bhattacharjee"
+   ],
+   "t": "Formation of current singularity in a topologically constrained plasma",
+   "y": "2016",
+   "v": "Physical Review E",
+   "doi": "10.1103/PhysRevE.93.023205",
+   "u": "https://doi.org/10.1103/PhysRevE.93.023205",
+   "by": {
+    "glt": [
+     "Loizu, Hudson, Bhattacharjee and their collaborators [Loizu 2015, Loizu 2015] computed the singular currents that form at rational surfaces in the presence of a pressure gradient, and Zhou, Huang, Qin and Bhattacharjee [Zhou 2016] followed the formation of current singularities in topologically constrained plasmas."
+    ]
+   }
+  },
+  {
+   "a": [
+    "B. F. Kraus",
+    "S. R. Hudson"
+   ],
+   "t": "Theory and discretization of ideal magnetohydrodynamic equilibria with fractal pressure profiles",
+   "y": "2017",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/1.4986493",
+   "u": "https://doi.org/10.1063/1.4986493",
+   "by": {
+    "glt": [
+     "This picture underlies the equilibrium program of Hudson, Dewar, and their colleagues [Hudson 2012, Hudson 2007, Hudson 2017, Kraus 2017, MacKay 2025].",
+     "Hudson and Kraus [Hudson 2017, Kraus 2017] have argued that nested surfaces with a smooth pressure profile produce infinite currents at the rational surfaces, so that the pressure gradient must vanish on an interval around each of them and the resulting profile is fractal."
+    ]
+   }
+  },
+  {
+   "a": [
+    "S. R. Hudson",
+    "B. F. Kraus"
+   ],
+   "t": "Three-dimensional magnetohydrodynamic equilibria with continuous magnetic fields",
+   "y": "2017",
+   "v": "Journal of Plasma Physics",
+   "doi": "10.1017/S0022377817000538",
+   "u": "https://doi.org/10.1017/S0022377817000538",
+   "by": {
+    "glt": [
+     "This picture underlies the equilibrium program of Hudson, Dewar, and their colleagues [Hudson 2012, Hudson 2007, Hudson 2017, Kraus 2017, MacKay 2025].",
+     "Hudson and Kraus [Hudson 2017, Kraus 2017] have argued that nested surfaces with a smooth pressure profile produce infinite currents at the rational surfaces, so that the pressure gradient must vanish on an interval around each of them and the resulting profile is fractal."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Matt Landreman",
+    "Wrick Sengupta"
+   ],
+   "t": "Direct construction of optimized stellarator shapes. Part 1. Theory in cylindrical coordinates",
+   "y": "2018",
+   "v": "Journal of Plasma Physics",
+   "doi": "10.1017/S0022377818001289",
+   "u": "https://doi.org/10.1017/S0022377818001289",
+   "by": {
+    "glt": [
+     "For related work on MHS equilibria and their symmetry properties, we also refer to [Burby 2020, Cary 1997, Garren 1991, Landreman 2018]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Naoki Sato"
+   ],
+   "t": "Existence of ideal magnetofluid equilibria without continuous Euclidean symmetries",
+   "y": "2019",
+   "v": "Plasma Physics and Controlled Fusion",
+   "doi": "10.1088/1361-6587/ab5001",
+   "u": "https://doi.org/10.1088/1361-6587/ab5001",
+   "by": {
+    "glt": [
+     "Sato [Sato 2019] obtained equilibria in bounded domains without continuous Euclidean symmetry, and Sato and Yamada [Sato 2023] constructed nested invariant tori without such symmetry for anisotropic magnetohydrodynamics."
+    ]
+   }
+  },
+  {
+   "a": [
+    "M. Raissi",
+    "P. Perdikaris",
+    "G. E. Karniadakis"
+   ],
+   "t": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+   "y": "2019",
+   "v": "Journal of Computational Physics",
+   "doi": "10.1016/j.jcp.2018.10.045",
+   "u": "https://doi.org/10.1016/j.jcp.2018.10.045",
+   "by": {
+    "glt": [
+     "More recently, physics-informed neural networks [Raissi 2019], which minimize the residual of the equations over a mesh-free parametrization of the unknowns, have been applied to the Grad–Shafranov equation [Jang 2024, Zhou 2025] and to fully three-dimensional stellarator equilibria with nested surfaces [Thun 2026], where they reach lower force residuals than the conventional solvers."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Jeanne N. Clelland",
+    "Taylor Klotz"
+   ],
+   "t": "Beltrami fields with nonconstant proportionality factor",
+   "y": "2020",
+   "v": "Archive for Rational Mechanics and Analysis",
+   "doi": "10.1007/s00205-019-01481-7",
+   "u": "https://doi.org/10.1007/s00205-019-01481-7",
+   "by": {
+    "glt": [
+     "On the other hand, in [Perrella 2025] it is proved that an orientation-reversing isometry of an equilibrium with toroidally nested pressure surfaces forces all field lines to be periodic, and in [Clelland 2020, Enciso 2016, Peralta-Salas 2024] it is shown that Beltrami fields with nonconstant proportionality factor are rare."
+    ]
+   }
+  },
+  {
+   "a": [
+    "D. W. Dudt",
+    "E. Kolemen"
+   ],
+   "t": "DESC: A stellarator equilibrium solver",
+   "y": "2020",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/5.0020743",
+   "u": "https://doi.org/10.1063/5.0020743",
+   "by": {
+    "glt": [
+     "VMEC [Hirshman 1983] and, more recently, DESC [Dudt 2020] assume nested flux surfaces from the outset and minimize the energy or the force residual within this class."
+    ],
+    "gdm": [
+     "From a practical standpoint, in three-dimensional equilibrium solvers such as VMEC [Hirshman 1983], SPEC [Hudson 2012] or DESC [Dudt 2020], stellarator symmetry halves the number of independent Fourier coefficients in the solution representation, so testing solver performance in non-stellarator-symmetric regimes requires benchmarks that break this symmetry."
+    ]
+   }
+  },
+  {
+   "a": [
+    "H. Weitzner",
+    "W. Sengupta"
+   ],
+   "t": "Exact non-symmetric closed line vacuum magnetic fields in a topological torus",
+   "y": "2020",
+   "v": "Phys. Plasmas",
+   "doi": "10.1063/1.5126688",
+   "u": "https://arxiv.org/abs/1909.01890",
+   "by": {
+    "lan": [
+     "[Weitzner 2020] found exact nonsymmetric closed-line vacuum fields in a topological torus instead of true toroidal geometry."
+    ]
+   }
+  },
+  {
+   "a": [
+    "GG Plunk"
+   ],
+   "t": "Perturbing an axisymmetric magnetic equilibrium to obtain a quasi-axisymmetric stellarator",
+   "y": "2020",
+   "v": "Journal of Plasma Physics",
+   "doi": "10.1017/s0022377820000902",
+   "u": "https://doi.org/10.1017/s0022377820000902",
+   "by": {
+    "lan": [
+     "Analytical descriptions based on linearizing about axisymmetry with a small 3D perturbation have also been investigated [Plunk 2020, Sorokina 2024]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "J. W. Burby",
+    "N. Kallinikos",
+    "R. S. MacKay"
+   ],
+   "t": "Some mathematics for quasi-symmetry",
+   "y": "2020",
+   "v": "Journal of Mathematical Physics",
+   "doi": "10.1063/1.5142487",
+   "u": "https://doi.org/10.1063/1.5142487",
+   "by": {
+    "glt": [
+     "For related work on MHS equilibria and their symmetry properties, we also refer to [Burby 2020, Cary 1997, Garren 1991, Landreman 2018]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Peter Constantin",
+    "Theodore D. Drivas",
+    "Daniel Ginsberg"
+   ],
+   "t": "Flexibility and rigidity in steady fluid motion",
+   "y": "2021",
+   "v": "Communications in Mathematical Physics",
+   "doi": "10.1007/s00220-021-04048-4",
+   "u": "https://doi.org/10.1007/s00220-021-04048-4",
+   "by": {
+    "glt": [
+     "A precise formulation of this conjecture was given by Constantin, Drivas and Ginsberg [Constantin 2021], and it states that a smooth unforced MHS equilibrium on a domain of toroidal or cylindrical topology, whose regular pressure surfaces foliate the domain, whose field does not vanish away from the magnetic axis, and which is not isolated, has plane-reflection, axial, or helical symmetry.",
+     "The formulation of Grad's conjecture stated above is due to Constantin, Drivas and Ginsberg [Constantin 2021].",
+     "This group has none of the plane-reflection, axial, or helical symmetries posited in [Constantin 2021], and thus refutes Grad's conjecture."
+    ],
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Peter Constantin",
+    "Theodore D. Drivas",
+    "Daniel Ginsberg"
+   ],
+   "t": "On quasisymmetric plasma equilibria sustained by small force",
+   "y": "2021",
+   "v": "Journal of Plasma Physics",
+   "doi": "10.1017/S0022377820001610",
+   "u": "https://doi.org/10.1017/S0022377820001610",
+   "by": {
+    "glt": [
+     "In [Constantin 2021], the same authors constructed smooth nonsymmetric equilibria with nested flux surfaces at the price of a small forcing term, and in [Constantin 2022] they studied the free boundary version of the problem."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Harold Weitzner",
+    "Wrick Sengupta"
+   ],
+   "t": "Steady plasma flows in a periodic non-symmetric domain",
+   "y": "2021",
+   "v": "Journal of Plasma Physics",
+   "doi": "10.1017/S0022377821001045",
+   "u": "https://doi.org/10.1017/S0022377821001045",
+   "by": {
+    "glt": [
+     "Weitzner and Sengupta [Weitzner 2021] treated nearly parallel plasma flows in a doubly periodic domain."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Vladimir I. Arnold",
+    "Boris A. Khesin"
+   ],
+   "t": "Topological Methods in Hydrodynamics",
+   "y": "2021",
+   "v": "Springer",
+   "doi": "10.1007/978-3-030-74278-2",
+   "u": "https://doi.org/10.1007/978-3-030-74278-2",
+   "by": {
+    "glt": [
+     "For structure theorems and steady Euler flows of low regularity, we refer to [Arnold 2021, Enciso 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Peter Constantin",
+    "Theodore D. Drivas",
+    "Daniel Ginsberg"
+   ],
+   "t": "Flexibility and rigidity of free boundary MHD equilibria",
+   "y": "2022",
+   "v": "Nonlinearity",
+   "doi": "10.1088/1361-6544/ac5d6a",
+   "u": "https://doi.org/10.1088/1361-6544/ac5d6a",
+   "by": {
+    "glt": [
+     "In [Constantin 2021], the same authors constructed smooth nonsymmetric equilibria with nested flux surfaces at the price of a small forcing term, and in [Constantin 2022] they studied the free boundary version of the problem."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Peter Constantin",
+    "Federico Pasqualotto"
+   ],
+   "t": "Magnetic relaxation of a Voigt–MHD system",
+   "y": "2023",
+   "v": "Communications in Mathematical Physics",
+   "doi": "10.1007/s00220-023-04770-1",
+   "u": "https://doi.org/10.1007/s00220-023-04770-1",
+   "by": {
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Naoki Sato",
+    "Michio Yamada"
+   ],
+   "t": "Nested invariant tori foliating a vector field and its curl: Toward MHD equilibria and steady Euler flows in toroidal domains without continuous Euclidean isometries",
+   "y": "2023",
+   "v": "Journal of Mathematical Physics",
+   "doi": "10.1063/5.0151955",
+   "u": "https://doi.org/10.1063/5.0151955",
+   "by": {
+    "glt": [
+     "Sato [Sato 2019] obtained equilibria in bounded domains without continuous Euclidean symmetry, and Sato and Yamada [Sato 2023] constructed nested invariant tori without such symmetry for anisotropic magnetohydrodynamics."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Daniel Peralta-Salas",
+    "Miguel Vaquero"
+   ],
+   "t": "Beltrami fields with Morse proportionality factor",
+   "y": "2024",
+   "v": "Journal of Mathematical Analysis and Applications",
+   "doi": "10.1016/j.jmaa.2024.128632",
+   "u": "https://doi.org/10.1016/j.jmaa.2024.128632",
+   "by": {
+    "glt": [
+     "On the other hand, in [Perrella 2025] it is proved that an orientation-reversing isometry of an equilibrium with toroidally nested pressure surfaces forces all field lines to be periodic, and in [Clelland 2020, Enciso 2016, Peralta-Salas 2024] it is shown that Beltrami fields with nonconstant proportionality factor are rare."
+    ]
+   }
+  },
+  {
+   "a": [
+    "E. A. Sorokina",
+    "V. I. Ilgisonis"
+   ],
+   "t": "Existence of true plasma equilibria in asymmetric magnetic fields",
+   "y": "2024",
+   "v": "Phys. Rev. E",
+   "doi": "10.1103/PhysRevE.110.065209",
+   "u": "https://doi.org/10.1103/PhysRevE.110.065209",
+   "by": {
+    "lan": [
+     "Analytical descriptions based on linearizing about axisymmetry with a small 3D perturbation have also been investigated [Plunk 2020, Sorokina 2024]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "B. Jang",
+    "A. A. Kaptanoglu",
+    "R. Gaur",
+    "S. Pan",
+    "M. Landreman",
+    "W. Dorland"
+   ],
+   "t": "Grad–Shafranov equilibria via data-free physics informed neural networks",
+   "y": "2024",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/5.0188634",
+   "u": "https://doi.org/10.1063/5.0188634",
+   "by": {
+    "glt": [
+     "More recently, physics-informed neural networks [Raissi 2019], which minimize the residual of the equations over a mesh-free parametrization of the unknowns, have been applied to the Grad–Shafranov equation [Jang 2024, Zhou 2025] and to fully three-dimensional stellarator equilibria with nested surfaces [Thun 2026], where they reach lower force residuals than the conventional solvers."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Robert Cardona",
+    "Nathan Duignan",
+    "David Perrella"
+   ],
+   "t": "Asymmetry of MHD equilibria for generic adapted metrics",
+   "y": "2025",
+   "v": "Archive for Rational Mechanics and Analysis",
+   "doi": "10.1007/s00205-024-02075-8",
+   "u": "https://doi.org/10.1007/s00205-024-02075-8",
+   "by": {
+    "glt": [
+     "Cardona, Duignan and Perrella showed in [Cardona 2025] that on a Riemannian manifold the absence of Killing symmetries is generic among adapted metrics."
+    ],
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026].",
+     "Together with the family in [Gómez-Serrano 2026], these solutions provide counterexamples to the formulation of Grad's conjecture in, for example, Conjecture 2.5 in [Cardona 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "David Perrella"
+   ],
+   "t": "Closed orbits of MHD equilibria with orientation-reversing symmetry",
+   "y": "2025",
+   "v": "Physica D: Nonlinear Phenomena",
+   "doi": "10.1016/j.physd.2025.134762",
+   "u": "https://doi.org/10.1016/j.physd.2025.134762",
+   "by": {
+    "glt": [
+     "On the other hand, in [Perrella 2025] it is proved that an orientation-reversing isometry of an equilibrium with toroidally nested pressure surfaces forces all field lines to be periodic, and in [Clelland 2020, Enciso 2016, Peralta-Salas 2024] it is shown that Beltrami fields with nonconstant proportionality factor are rare."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Robert S. MacKay"
+   ],
+   "t": "Invariant tori for the pressure-jump Hamiltonian",
+   "y": "2025",
+   "v": "Physics of Plasmas",
+   "doi": "10.1063/5.0258987",
+   "u": "https://doi.org/10.1063/5.0258987",
+   "by": {
+    "glt": [
+     "This picture underlies the equilibrium program of Hudson, Dewar, and their colleagues [Hudson 2012, Hudson 2007, Hudson 2017, Kraus 2017, MacKay 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Alberto Enciso",
+    "Willi Kepplinger",
+    "Daniel Peralta-Salas"
+   ],
+   "t": "Isolated steady solutions of the 3D Euler equations",
+   "y": "2025",
+   "v": "Proceedings of the National Academy of Sciences",
+   "doi": "10.1073/pnas.2414730122",
+   "u": "https://doi.org/10.1073/pnas.2414730122",
+   "by": {
+    "glt": [
+     "Interestingly, Enciso, Kepplinger and Peralta-Salas [Enciso 2025] found steady Euler flows on certain closed three-manifolds that are isolated in C^1, suggesting that the non-isolation hypothesis in the conjecture is not vacuous."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Alberto Enciso",
+    "Alejandro Luque",
+    "Daniel Peralta-Salas"
+   ],
+   "t": "MHD equilibria with nonconstant pressure in nondegenerate toroidal domains",
+   "y": "2025",
+   "v": "Journal of the European Mathematical Society",
+   "doi": "10.4171/JEMS/1410",
+   "u": "https://doi.org/10.4171/JEMS/1410",
+   "by": {
+    "glt": [
+     "Notably, Enciso, Luque and Peralta-Salas [Enciso 2025] recently constructed piecewise smooth equilibria with arbitrarily many current sheets in toroidal domains that need not be close to axisymmetric and may be knotted.",
+     "In [Bruno 1996, Enciso 2025], the pressure is constant between the interfaces and the solutions are not C^1."
+    ],
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026].",
+     "A different approach requires discontinuous pressure and current sheets [Bruno 1996, Enciso 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Theodore D. Drivas",
+    "Tarek M. Elgindi",
+    "Daniel Ginsberg"
+   ],
+   "t": "On the existence of fibered three-dimensional perfect fluid equilibria without continuous Euclidean symmetry",
+   "y": "2025",
+   "v": "arXiv:2510.02955",
+   "doi": "10.48550/arXiv.2510.02955",
+   "u": "https://arxiv.org/abs/2510.02955",
+   "by": {
+    "glt": [
+     "The closest result to ours is the construction by Drivas, Elgindi and Ginsberg [Drivas 2025] of smooth steady Euler flows in a periodic cylinder, fibered by invariant cylinders that are level sets of the Bernoulli function."
+    ],
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026].",
+     "Nonsymmetric steady Euler flows with closed trajectories have been constructed in periodic cylindrical geometry by [Drivas 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "C. Zhou",
+    "K. Zhu"
+   ],
+   "t": "Physics-informed neural networks for high-precision Grad–Shafranov equilibrium reconstruction",
+   "y": "2025",
+   "v": "Preprint, arXiv:2507.16636",
+   "doi": "",
+   "u": "",
+   "by": {
+    "glt": [
+     "More recently, physics-informed neural networks [Raissi 2019], which minimize the residual of the equations over a mesh-free parametrization of the unknowns, have been applied to the Grad–Shafranov equation [Jang 2024, Zhou 2025] and to fully three-dimensional stellarator equilibria with nested surfaces [Thun 2026], where they reach lower force residuals than the conventional solvers."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Alberto Enciso",
+    "Javier Peñafiel-Tomás",
+    "Daniel Peralta-Salas"
+   ],
+   "t": "Steady 3D Euler flows via a topology-preserving convex integration scheme",
+   "y": "2025",
+   "v": "arXiv:2501.13632",
+   "doi": "",
+   "u": "https://arxiv.org/abs/2501.13632",
+   "by": {
+    "glt": [
+     "For structure theorems and steady Euler flows of low regularity, we refer to [Arnold 2021, Enciso 2025]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Matthew J. Colbrook",
+    "George Stepaniants"
+   ],
+   "t": "A computer-assisted counterexample to the planar Pompeiu and Schiffer conjectures",
+   "y": "2026",
+   "v": "arXiv preprint arXiv:2608.01579",
+   "doi": "",
+   "u": "",
+   "by": {
+    "glt": [
+     "We also remark that our examples share some resemblances to the recent and spectacular counterexamples [Cao-Labora 2026, Colbrook 2026] to Schiffer's conjecture."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Daniel Peralta-Salas",
+    "Radu Slobodeanu"
+   ],
+   "t": "A symmetry theorem for localizable steady solutions of the 3D Euler equations",
+   "y": "2026",
+   "v": "arXiv preprint arXiv:2606.13462",
+   "doi": "",
+   "u": "",
+   "by": {
+    "lan": [
+     "The difficulty of satisfying this condition in non-symmetric geometry led [Grad 1967] to conjecture that smooth solutions with non-constant pressure do not exist unless there is an additional symmetry such as axisymmetry: “...we find it very unlikely that there exist a general class of toroidal equilibria with smooth p…” He elaborated on the conjecture in [Grad 1985]: “other than the stated symmetric exceptions, there are no families of solutions depending smoothly on a parameter.” Variations of these statements and related questions are subjects of active study [Constantin 2021, Constantin 2023, Enciso 2025, Cardona 2025, Drivas 2025, Peralta-Salas 2026]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "M. Landreman"
+   ],
+   "t": "Analytic 3D equilibria",
+   "y": "2026",
+   "v": "urlhttps://github.com/landreman/analytic_3d_equilibria",
+   "doi": "",
+   "u": "",
+   "by": {
+    "lan": [
+     "Scripts confirming that numerical equilibria match these analytic solutions can be found in the supplemental material [Landreman 2026].",
+     "section*Data availability statement Supplemental data associated with this work can be found at [Landreman 2026]."
+    ]
+   }
+  },
+  {
+   "a": [
+    "M. Landreman"
+   ],
+   "t": "Analytic toroidal 3D MHD equilibria and steady Euler flows with invariant surfaces",
+   "y": "2026",
+   "v": "arXiv preprint arXiv:2609.26742",
+   "doi": "",
+   "u": "https://arxiv.org/abs/2609.26742",
+   "by": {
+    "gdm": [
+     "Two families of non-axisymmetric solutions were recently discovered by [Landreman 2026] as counterexamples to Grad's conjecture, but both satisfy stellarator symmetry.",
+     "Additionally, [Landreman 2026] constructed the first explicit closed-form equilibria with finite rotational transform, consisting of (1) a constant-rotational-transform (iota = 2) family obtained by stretching an axisymmetric Solov'ev equilibrium [Solov'ev 1968] along the horizontal axes, and (2) a sheared-rotational-transform (iota'(psi) neq 0) family constructed in elliptic coordinates.",
+     "Both solutions in [Landreman 2026] are stellarator symmetric [Dewar 1998].",
+     "As noted in Section 4 of [Landreman 2026], constructing explicit analytical solutions that break stellarator symmetry has therefore remained an open problem.",
+     "In this paper, we construct two multi-parameter families of three-dimensional MHD equilibria that break stellarator symmetry and generalize the two solutions of [Landreman 2026].",
+     "Setting tau_0= 0 in Eqs. – recovers the stellarator-symmetric equilibrium of [Landreman 2026], whereas tau_0 neq 0 breaks stellarator symmetry.",
+     "[Landreman 2026] constructed the equilibrium by horizontally stretching an even-in-z Solov'ev equilibrium [Solov'ev 1968], which preserves stellarator symmetry.",
+     "The field-line to Cartesian coordinate map (u,v,zeta) mapsto (x,y,z) is The only difference between Eq. and [Landreman 2026] is that (x, y) are scaled by 1/Ømega, while z is shifted by z_c, scaled by 1/Ømega^2, and phase-shifted by gamma.",
+     "Moreover, similar to [Landreman 2026], the coordinate Jacobian determinant is a global constant: subsectionFlux surfaces and magnetic axis Using the field-line to Cartesian coordinate map in Eq. , we now express the flux function psi in field-line coordinates to identify the magnetic axis geometry.",
+     "Following the analysis in [Landreman 2026], the 2pi-periodicity of (x,y) and 2zeta poloidal winding in Eq. yield a uniform rotational transform iota(psi) = 2.",
+     "Figure shows tau_0=0 reproducing [Landreman 2026], where the phi = 0 and phi = pi/2 cross-sections are centered on and symmetric across z = 0, while the phi = pi/4 and phi = 3pi/4 slices are vertical reflections across z = 0.",
+     "sectionComplex-phase equilibrium with sheared texorpdfstringiota(psi)iota(psi) The second family of equilibria extends the solution by [Landreman 2026] with sheared rotational transform profile (iota'(psi) neq 0) and is parameterized by four scalars: the focal distance parameter epsilon > 0, the radial axis parameter S > 0, the vertical scale parameter lambda > 0, and the stellarator symmetry-breaking parameter tau_1 in R.",
+     "The magnetic field is The scalar function Q, flux function psi, and plasma pressure p satisfying Eqs. – are Setting tau_1 = 0 in Eq. recovers the stellarator-symmetric equilibrium of [Landreman 2026], whereas tau_1 neq 0 breaks stellarator symmetry.",
+     "[Landreman 2026] assumed a magnetic field that varies sinusoidally in the vertical direction, reducing the three-dimensional force balance in (x, y, z) to an analytically solvable two-dimensional differential equation in (x, y) for W (defined in Eq. ).",
+     "Whereas [Landreman 2026] took this constant to be real, we allow it to be complex, and its imaginary part breaks stellarator symmetry.",
+     "subsectionElliptic coordinates, flux surfaces, and magnetic axis To obtain an explicit parameterization of the flux surfaces and magnetic axis, we follow [Landreman 2026] and introduce elliptic coordinates (sigma, zeta) in (0, infty) times [0, 2pi) in the horizontal plane: Because psi is a sum of two squares, see Eq. , each flux surface becomes a circle psi = (X^2 + Y^2)/2 in with tildenu coloneq epsilonsin(2zeta)/2 + tau_1.",
+     "Unlike Section , where the newly introduced parameter tau_0 deforms the magnetic axis, here the magnetic axis is independent of tau_1, tracing the same planar ellipse as [Landreman 2026]: As seen from Eq. , the magnetic axis is independent of both tau_1 and lambda, and is only controlled by epsilon and S.",
+     "subsectionRotational transform Parameterizing (X, Y) = sqrt2psi (-cos(chi), sin(chi)) in Eq. by the poloidal angle chi in [0, 2pi) as in Section 3.3 of [Landreman 2026], the rotational transform on a flux surface is given by where chi(zeta) is obtained by integrating the field-line ordinary differential equation Note that iota(psi) depends only on S, epsilon, and tau_1 (as an even function of tau_1), and is independent of lambda.",
+     "subsectionEnclosed volume and volume-averaged texorpdfstringbetabeta Following Section 3.4 of [Landreman 2026], we define The enclosed volume and volume-averaged beta are given by where p_b = p(delta) is the boundary pressure and the dimensionless integrals M coloneq langle psi rangle_V, C coloneq langle X^2 rangle_V, and A coloneq langle B_x^2 + B_y^2 rangle_V take the identical form to Section 3.4 of [Landreman 2026] with nu replaced by tildenu.",
+     "Both families generalize the stellarator-symmetric solutions recently discovered by [Landreman 2026] through a single continuous symmetry-breaking parameter that recovers the corresponding stellarator-symmetric equilibrium when set to zero.",
+     "Given [Landreman 2026] and a list of the open questions it raised, the agents proposed the generalized solutions that remove the stellarator-symmetry assumption."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Javier Gómez-Serrano",
+    "Lukas Liehr",
+    "Mitchell A Taylor"
+   ],
+   "t": "Counterexamples to Grad's conjecture",
+   "y": "2026",
+   "v": "arXiv preprint arXiv:2609.24739",
+   "doi": "",
+   "u": "",
+   "by": {
+    "lan": [
+     "Very recently, [Gómez-Serrano 2026] falsified the conjecture by proving existence of non-axisymmetric solutions, with poloidally closed field lines everywhere and vanishing B on the magnetic axis.",
+     "Together with the family in [Gómez-Serrano 2026], these solutions provide counterexamples to the formulation of Grad's conjecture in, for example, Conjecture 2.5 in [Cardona 2025]."
+    ],
+    "gdm": [
+     "In particular, [Gómez-Serrano 2026] proved the existence of non-axisymmetric equilibria with infinite rotational transform (iota = infty).",
+     "In Cartesian coordinates, stellarator symmetry is an invariance under a pi-rotation about the x-axis, i.e., Although the equilibria of [Gómez-Serrano 2026] can break stellarator symmetry, they do not have an explicit closed-form expression, which limits their use for benchmarking MHD codes."
+    ]
+   }
+  },
+  {
+   "a": [
+    "Gonzalo Cao-Labora",
+    "Jaume de Dios Pont"
+   ],
+   "t": "Counterexamples to Schiffer's Conjecture",
+   "y": "2026",
+   "v": "arXiv preprint arXiv:2608.05114",
+   "doi": "",
+   "u": "",
+   "by": {
+    "glt": [
+     "We also remark that our examples share some resemblances to the recent and spectacular counterexamples [Cao-Labora 2026, Colbrook 2026] to Schiffer's conjecture.",
+     "Our approach is closer in spirit to that of [Cao-Labora 2026], but we also ran an independent computer-assisted approach."
+    ]
+   }
+  },
+  {
+   "a": [
+    "T. Thun",
+    "A. Merlo",
+    "R. Conlin",
+    "D. Panici",
+    "D. Böckenhoff"
+   ],
+   "t": "Improving ideal MHD equilibrium accuracy with physics-informed neural networks",
+   "y": "2026",
+   "v": "Nuclear Fusion",
+   "doi": "10.1088/1741-4326/ae2937",
+   "u": "https://doi.org/10.1088/1741-4326/ae2937",
+   "by": {
+    "glt": [
+     "More recently, physics-informed neural networks [Raissi 2019], which minimize the residual of the equations over a mesh-free parametrization of the unknowns, have been applied to the Grad–Shafranov equation [Jang 2024, Zhou 2025] and to fully three-dimensional stellarator equilibria with nested surfaces [Thun 2026], where they reach lower force residuals than the conventional solvers."
+    ]
+   }
+  }
+ ]
+}

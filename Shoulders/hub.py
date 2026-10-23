@@ -562,7 +562,10 @@ T = {
   mTag='最新 · 2026 年 10 月 · 数学全景', mH=f'OpenAI Math Release：{NP} 篇 AI 数学与理论计算机科学稿件',
   mP=(f'OpenAI 于 2026 年 10 月 6 日发布了由其内部模型撰写的 {RELEASED} 篇数学与理论计算机科学稿件，现存 {NP} 篇，归为 {NF} 个成果。托起它们的，是下面这些名字。' if NP != RELEASED else f'OpenAI 发布了由其内部模型撰写的 {RELEASED} 篇数学与理论计算机科学稿件，归为 {NF} 个成果。托起它们的，是下面这些名字。'),
   fLabel='寻找一位巨人', kbdHint='按 / 搜索', hCap='OpenAI Math Release · 每天自动更新', hGo='查看数学全景 →',
-  nMath='01', nChem='02', nNext='03', nContact='04', more2='下一期',
+  nMath='01', nChem='02', nPhys='03', nNext='04', nContact='05', more2='下一期', secPhys='物理',
+  grad='../grad/zh/', gradTag='2026 年 9—10 月 · 磁约束聚变', gradH='Grad 猜想：59 年后，两周内三篇反例',
+  gradP='Harold Grad 1967 年猜测仿星器式的光滑平衡大概不存在。2026 年秋，三篇用了 AI 的论文先后给出反例，分工各不相同：人定路线、模型补细节；模型找到解、人逐式核对；人选题、引导 AI 智能体。它们共同站在 Grad、Lortz 等人几十年的工作上。',
+  gradGo='进入 Grad 猜想专题 →',
   askH='推荐下一项突破', askP='你觉得下一项值得记录的 AI 科学突破是什么？', askGo='告诉我们 →',
   aiS=f'{NP} 篇稿件 · {NF} 个成果',
   upd=f'注：2026 年 10 月 7 日，OpenAI 撤回 3 篇稿件并修订了另外 14 篇。以上数字按当前的 {NP} 篇稿件统计，每天自动更新。' if NP != RELEASED else '',
@@ -576,7 +579,7 @@ T = {
   art='../art/zh/', artTag='2026 年 9 月 · 噬菌体里的新酶系统', artH='从逆转录子到 ART：AI 智能体找到的酶',
   artP=f'Anthropic 的 Claude 智能体在宏基因组数据里找到一类新的逆转录酶系统 ART，预印本尚未经过同行评审。它的 {ART_REFS} 条参考文献，从 1987 年第一次看到 CRISPR 重复序列，到近年对细菌逆转录酶的一项项实验；还有一支团队说自己更早研究过这批酶。',
   artGo='进入 ART 专题 →',
-  more='其他学科', soon='即将推出', subs=['物理', '计算机科学'],
+  more='其他学科', soon='即将推出', subs=['计算机科学'],
   foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。',
  ),
  'en': dict(
@@ -607,7 +610,10 @@ T = {
   mTag='Latest · October 2026 · Mathematics overview', mH=f'OpenAI Math Release: {NP} AI-written mathematics and theoretical computer science manuscripts',
   mP=(f'On 6 October 2026 OpenAI released {RELEASED} mathematics and theoretical computer science manuscripts written by its internal model; {NP} remain current, grouped into {NF} results. Holding them up are the names below.' if NP != RELEASED else f'OpenAI released {RELEASED} mathematics and theoretical computer science manuscripts written by its internal model, grouped into {NF} results. Holding them up are the names below.'),
   fLabel='Find a giant', kbdHint='Press / to search', hCap='OpenAI Math Release · updated daily', hGo='Open the mathematics index →',
-  nMath='01', nChem='02', nNext='03', nContact='04', more2='Next',
+  nMath='01', nChem='02', nPhys='03', nNext='04', nContact='05', more2='Next', secPhys='Physics',
+  grad='grad/', gradTag='September–October 2026 · Magnetic confinement fusion', gradH='Grad’s conjecture: 59 years on, three counterexamples in two weeks',
+  gradP='In 1967 Harold Grad argued that smooth stellarator-type equilibria probably do not exist. In autumn 2026 three papers that used AI gave counterexamples, each dividing the work differently: people set the route and models filled in; a model found the solutions and the author checked every equation; people chose the problem and steered AI agents. All three stand on decades of work by Grad, Lortz and others.',
+  gradGo='Open the Grad’s conjecture page →',
   askH='Suggest the next breakthrough', askP='Which AI result in science should we record next?', askGo='Tell us →',
   aiS=f'{NP} manuscripts · {NF} results',
   upd=f'Note: on 7 October 2026 OpenAI withdrew 3 manuscripts and revised 14 others. The figures above count the {NP} current manuscripts and update daily.' if NP != RELEASED else '',
@@ -621,7 +627,7 @@ T = {
   art='art/', artTag='September 2026 · A new enzyme system in phages', artH='From retrons to ART: an enzyme system found by AI agents',
   artP=f'Anthropic’s Claude agents found a new family of reverse-transcriptase systems, ART, in metagenomic data; the preprint is not yet peer reviewed. Its {ART_REFS} references run from the first sighting of CRISPR repeats in 1987 to recent experiments on bacterial reverse transcriptases, and another team says it studied these enzymes first.',
   artGo='Open the ART page →',
-  more='Other fields', soon='Coming soon', subs=['Physics', 'Computer science'],
+  more='Other fields', soon='Coming soon', subs=['Computer science'],
   foot='Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute.',
  ),
 }
@@ -700,6 +706,17 @@ for k, t in T.items():
 <p>{t['afP']}</p>
 <div class="tl">{'<span class="arr">→</span>'.join(f'<span class="ms"><b>{esc(zh if k == "zh" else en)}</b><i>{y}</i></span>' for en, zh, y in AF_MS)}<span class="arr">→</span><span class="ms ai"><b>AlphaFold 2</b><i>2021</i></span></div>
 <span class="go">{t['afGo'].rstrip(' →')}</span>
+</a>
+</section>
+
+<section class="sec" id="phys">
+<div class="sechead" data-n="{t['nPhys']}"><h2>{t['secPhys']}</h2></div>
+<a class="card" href="{t['grad']}">
+<span class="tag">{t['gradTag']}</span>
+<h2>{t['gradH']}</h2>
+<p>{t['gradP']}</p>
+<div class="tl">{'<span class="arr">→</span>'.join(f'<span class="ms"><b>{esc(n)}</b><i>{y}</i></span>' for n, y in [('Kruskal · Kulsrud', 1958), ('Grad', 1967), ('Lortz', 1970), ('Bruno · Laurence', 1996), ('Constantin · Drivas · Ginsberg', 2021)])}<span class="arr">→</span><span class="ms ai"><b>3 × AI</b><i>2026</i></span></div>
+<span class="go">{t['gradGo'].rstrip(' →')}</span>
 </a>
 </section>
 
