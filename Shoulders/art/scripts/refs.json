@@ -1,0 +1,2838 @@
+{
+ "id": "art",
+ "title": "Autonomous AI agents discover reverse transcriptases with tandem repeat arrays",
+ "date": "2026-10-11",
+ "url": "https://www.biorxiv.org/content/10.64898/2026.10.05.755809v1",
+ "doi": "10.64898/2026.10.05.755809",
+ "refs": [
+  {
+   "n": 1,
+   "a": [
+    "Kenneth Katz",
+    "Oleg Shutov",
+    "Richard Lapoint",
+    "Michael Kimelman",
+    "J Rodney Brister",
+    "Christopher O’Sullivan"
+   ],
+   "etal": false,
+   "t": "The Sequence Read Archive: a decade more of explosive growth",
+   "y": "2022",
+   "v": "Nucleic Acids Research 50(D1), D387–D390",
+   "u": "https://doi.org/10.1093/nar/gkab1053",
+   "raw": "K. Katz et al., The Sequence Read Archive: a decade more of explosive growth. Nucleic Acids Research 50(D1), D387–D390 (2022). doi:10.1093/nar/gkab1053",
+   "c": [
+    {
+     "s": "These findings indicate that LLMs can autonomously detect anomalies and drive analyses to initiate biological discoveries. †Correspondence: nicholasp@anthropic.com, mdurrant@anthropic.com Introduction Sequence databases have become the largest and fastest-growing record of biological diversity (1–4)."
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "a": [
+    "Mikhail Karasikov",
+    "Harun Mustafa",
+    "Daniel Danciu",
+    "Oleksandr Kulkov",
+    "Marc Zimmermann",
+    "Christopher Barber",
+    "Gunnar Rätsch",
+    "André Kahles"
+   ],
+   "etal": false,
+   "t": "Efficient and accurate search in petabase-scale sequence repositories",
+   "y": "2025",
+   "v": "Nature 647(8091), 1036–1044",
+   "u": "https://doi.org/10.1038/s41586-025-09603-w",
+   "raw": "M. Karasikov et al., Efficient and accurate search in petabase-scale sequence repositories. Nature 647(8091), 1036–1044 (2025). doi:10.1038/s41586-025-09603-w",
+   "c": [
+    {
+     "s": "These findings indicate that LLMs can autonomously detect anomalies and drive analyses to initiate biological discoveries. †Correspondence: nicholasp@anthropic.com, mdurrant@anthropic.com Introduction Sequence databases have become the largest and fastest-growing record of biological diversity (1–4)."
+    },
+    {
+     "s": "Driven by metagenomic sequencing, these databases now double every four years and hold billions of protein sequences, increasing not only the diversity available for discovery but also the volume of data that must be examined (2, 3, 11, 12)."
+    },
+    {
+     "s": "This placed 35,168 clusters in the seven known classes, namely retron (11,517), unknown group (UG; 10,759), group II intron (5,461), diversity-generating retroelement (DGR; 3,857), CRISPR-associated (2,067), group II-like (827), and abortive-infection (Abi; 680)."
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "a": [
+    "Lorna Richardson",
+    "Ben Allen",
+    "Germana Baldi",
+    "Martin Beracochea",
+    "Maxwell L Bileschi",
+    "Tony Burdett",
+    "Josephine Burgin",
+    "Juan Caballero-Pérez",
+    "Guy Cochrane",
+    "Lucy J Colwell",
+    "Tom Curtis",
+    "Alejandra Escobar-Zepeda",
+    "Tatiana A Gurbich",
+    "Varsha Kale",
+    "Anton Korobeynikov",
+    "Shriya Raj",
+    "Alexander B Rogers",
+    "Ekaterina Sakharova",
+    "Santiago Sanchez",
+    "Darren J Wilkinson",
+    "Robert D Finn"
+   ],
+   "etal": false,
+   "t": "MGnify: the microbiome sequence data analysis resource in 2023",
+   "y": "2023",
+   "v": "Nucleic Acids Research 51(D1), D753–D759",
+   "u": "https://doi.org/10.1093/nar/gkac1080",
+   "raw": "L. Richardson et al., MGnify: the microbiome sequence data analysis resource in 2023. Nucleic Acids Research 51(D1), D753–D759 (2023). doi:10.1093/nar/gkac1080",
+   "c": [
+    {
+     "s": "These findings indicate that LLMs can autonomously detect anomalies and drive analyses to initiate biological discoveries. †Correspondence: nicholasp@anthropic.com, mdurrant@anthropic.com Introduction Sequence databases have become the largest and fastest-growing record of biological diversity (1–4)."
+    },
+    {
+     "s": "Driven by metagenomic sequencing, these databases now double every four years and hold billions of protein sequences, increasing not only the diversity available for discovery but also the volume of data that must be examined (2, 3, 11, 12)."
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "a": [
+    "Rayan Chikhi",
+    "Téo Lemane",
+    "Raphaël Loll-Krippleber",
+    "Mercè Montoliu-Nerin",
+    "Brice Raffestin",
+    "Antonio Pedro Camargo",
+    "Carson J. Miller",
+    "Mateus Bernabe Fiamenghi",
+    "Daniel Paiva Agustinho",
+    "Sina Majidian",
+    "Greg Autric",
+    "Maxime Hugues",
+    "Junkyoung Lee",
+    "Roland Faure",
+    "Kristen D. Curry",
+    "Jorge A. Moura de Sousa",
+    "Eduardo P. C. Rocha",
+    "David Koslicki",
+    "Paul Medvedev",
+    "Purav Gupta",
+    "Jessica Shen",
+    "Alejandro Morales-Tapia",
+    "Kate Sihuta",
+    "Peter J. Roy",
+    "Grant W. Brown",
+    "Robert C. Edgar",
+    "Anton Korobeynikov",
+    "Martin Steinegger",
+    "Caleb A. Lareau",
+    "Pierre Peterlongo",
+    "Artem Babaian"
+   ],
+   "etal": false,
+   "t": "Logan: Planetary-Scale Genome Assembly Surveys Life’s Diversity",
+   "y": "2024",
+   "v": "bioRxiv [Preprint]",
+   "u": "https://doi.org/10.1101/2024.07.30.605881",
+   "raw": "R. Chikhi et al., Logan: Planetary-scale genome assembly surveys life’s diversity. bioRxiv [Preprint] (2024). doi:10.1101/2024.07.30.605881",
+   "c": [
+    {
+     "s": "These findings indicate that LLMs can autonomously detect anomalies and drive analyses to initiate biological discoveries. †Correspondence: nicholasp@anthropic.com, mdurrant@anthropic.com Introduction Sequence databases have become the largest and fastest-growing record of biological diversity (1–4)."
+    },
+    {
+     "s": "The database used in this study held predicted proteins from public metagenomic and genomic assemblies that spanned approximately 11 million biosamples, mainly from Logan (4), ENA, the Joint Genome Institute (JGI), and NCBI."
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "a": [
+    "Manuel Ferrer",
+    "Mónica Martínez‐Martínez",
+    "Rafael Bargiela",
+    "Wolfgang R. Streit",
+    "Olga V. Golyshina",
+    "Peter N. Golyshin"
+   ],
+   "etal": false,
+   "t": "Estimating the success of enzyme bioprospecting through metagenomics: current status and future trends",
+   "y": "2016",
+   "v": "Microbial Biotechnology 9(1), 22–34",
+   "u": "https://doi.org/10.1111/1751-7915.12309",
+   "raw": "M. Ferrer et al., Estimating the success of enzyme bioprospecting through metagenomics: current status and future trends. Microbial Biotechnology 9(1), 22–34 (2016). doi:10.1111/1751-7915.12309",
+   "c": [
+    {
+     "s": "Mining them has yielded industrial enzymes, new antibiotics, and genome-engineering tools (5–7)."
+    },
+    {
+     "s": "This placed 35,168 clusters in the seven known classes, namely retron (11,517), unknown group (UG; 10,759), group II intron (5,461), diversity-generating retroelement (DGR; 3,857), CRISPR-associated (2,067), group II-like (827), and abortive-infection (Abi; 680)."
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "a": [
+    "Marnix H. Medema",
+    "Tristan de Rond",
+    "Bradley S. Moore"
+   ],
+   "etal": false,
+   "t": "Mining genomes to illuminate the specialized chemistry of life",
+   "y": "2021",
+   "v": "Nature Reviews Genetics 22(9), 553–571",
+   "u": "https://doi.org/10.1038/s41576-021-00363-7",
+   "raw": "M. H. Medema, T. de Rond, B. S. Moore, Mining genomes to illuminate the specialized chemistry of life. Nature Reviews Genetics 22(9), 553–571 (2021). doi:10.1038/s41576-021-00363-7",
+   "c": [
+    {
+     "s": "Mining them has yielded industrial enzymes, new antibiotics, and genome-engineering tools (5–7)."
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "a": [
+    "Kira S. Makarova",
+    "Sergey A. Shmakov",
+    "Yuri I. Wolf",
+    "Pascal Mutz",
+    "Han Altae-Tran",
+    "Chase L. Beisel",
+    "Stan J. J. Brouns",
+    "Emmanuelle Charpentier",
+    "David Cheng",
+    "Jennifer Doudna",
+    "Daniel H. Haft",
+    "Philippe Horvath",
+    "Sylvain Moineau",
+    "Francisco J. M. Mojica",
+    "Patrick Pausch",
+    "Rafael Pinilla-Redondo",
+    "Shiraz A. Shah",
+    "Virginijus Siksnys",
+    "Michael P. Terns",
+    "Jesse Tordoff",
+    "Česlovas Venclovas",
+    "Malcolm F. White",
+    "Alexander F. Yakunin",
+    "Feng Zhang",
+    "Roger A. Garrett",
+    "Rolf Backofen",
+    "John van der Oost",
+    "Rodolphe Barrangou",
+    "Eugene V. Koonin"
+   ],
+   "etal": false,
+   "t": "An updated evolutionary classification of CRISPR–Cas systems including rare variants",
+   "y": "2025",
+   "v": "Nature Microbiology 10(12), 3346–3361",
+   "u": "https://doi.org/10.1038/s41564-025-02180-8",
+   "raw": "K. S. Makarova et al., An updated evolutionary classification of CRISPR–Cas systems including rare variants. Nature Microbiology 10(12), 3346–3361 (2025). doi:10.1038/s41564-025-02180-8",
+   "c": [
+    {
+     "s": "Mining them has yielded industrial enzymes, new antibiotics, and genome-engineering tools (5–7)."
+    },
+    {
+     "s": "A human expert examining the data can attend to features beyond the predefined set and flag anomalies, which is why even systematic surveys end in expert curation (7, 13, 14)."
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "a": [
+    "Y Ishino",
+    "H Shinagawa",
+    "K Makino",
+    "M Amemura",
+    "A Nakata"
+   ],
+   "etal": false,
+   "t": "Nucleotide sequence of the iap gene, responsible for alkaline phosphatase isozyme conversion in Escherichia coli, and identification of the gene product",
+   "y": "1987",
+   "v": "Journal of Bacteriology 169(12), 5429–5433",
+   "u": "https://doi.org/10.1128/jb.169.12.5429-5433.1987",
+   "raw": "Y. Ishino, H. Shinagawa, K. Makino, M. Amemura, A. Nakata, Nucleotide sequence of the iap gene, responsible for alkaline phosphatase isozyme conversion in Escherichia coli, and identification of the gene product. Journal of Bacteriology 169(12), 5429–5433 (1987). doi:10.1128/jb.169.12.5429-5433.1987",
+   "c": [
+    {
+     "s": "Many of these discoveries began with a researcher inspecting sequences and recognizing atypical features (8–10)."
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "a": [
+    "Matthew G. Durrant",
+    "Nicholas T. Perry",
+    "James J. Pai",
+    "Aditya R. Jangid",
+    "Januka S. Athukoralage",
+    "Masahiro Hiraizumi",
+    "John P. McSpedon",
+    "April Pawluk",
+    "Hiroshi Nishimasu",
+    "Silvana Konermann",
+    "Patrick D. Hsu"
+   ],
+   "etal": false,
+   "t": "Bridge RNAs direct programmable recombination of target and donor DNA",
+   "y": "2024",
+   "v": "Nature 630(8018), 984–993",
+   "u": "https://doi.org/10.1038/s41586-024-07552-4",
+   "raw": "M. G. Durrant et al., Bridge RNAs direct programmable recombination of target and donor DNA. Nature 630(8018), 984–993 (2024). doi:10.1038/s41586-024-07552-4",
+   "c": [
+    {
+     "s": "Many of these discoveries began with a researcher inspecting sequences and recognizing atypical features (8–10)."
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "a": [
+    "Peter H. Yoon",
+    "Kenneth J. Loi",
+    "Zeyuan Terry Zhang",
+    "Trevor A. Docter",
+    "Santiago C. Lopez",
+    "Conner J. Langeberg",
+    "Muhammad Moez Ur-Rehman",
+    "Kamakshi Vohra",
+    "Zehan Zhou",
+    "Isabel Esain-Garcia",
+    "Marena I. Trinidad",
+    "Honglue Shi",
+    "Ron Boger",
+    "Peter Y. Wang",
+    "Benjamin A. Adler",
+    "Stephen G. Brohawn",
+    "Jennifer A. Doudna"
+   ],
+   "etal": false,
+   "t": "A noncontiguous code for RNA-guided DNA recognition at the origin of CRISPR-Cas",
+   "y": "2026",
+   "v": "Science 393(6817), 1230–1235",
+   "u": "https://doi.org/10.1126/science.aei0498",
+   "raw": "P. H. Yoon et al., A noncontiguous code for RNA-guided DNA recognition at the origin of CRISPR-Cas. Science 393(6817), 1230–1235 (2026). doi:10.1126/science.aei0498",
+   "c": [
+    {
+     "s": "Many of these discoveries began with a researcher inspecting sequences and recognizing atypical features (8–10)."
+    },
+    {
+     "s": "These models can be used to detect repeat motifs in DNA (10), their embeddings can distinguish repeat families (49, 50), and a signal that responds to the spacers of CRISPR repeat arrays has been isolated in Evo 2 (49)."
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "a": [
+    "Georgios A. Pavlopoulos",
+    "Fotis A. Baltoumas",
+    "Sirui Liu",
+    "Oguz Selvitopi",
+    "Antonio Pedro Camargo",
+    "Stephen Nayfach",
+    "Ariful Azad",
+    "Simon Roux",
+    "Lee Call",
+    "Natalia N. Ivanova",
+    "I. Min Chen",
+    "David Paez-Espino",
+    "Evangelos Karatzas",
+    "Novel Metagenome Protein Families Consortium",
+    "Silvia G. Acinas",
+    "Nathan Ahlgren",
+    "Graeme Attwood",
+    "Petr Baldrian",
+    "Timothy Berry",
+    "Jennifer M. Bhatnagar",
+    "Devaki Bhaya",
+    "Kay D. Bidle",
+    "Jeffrey L. Blanchard",
+    "Eric S. Boyd",
+    "Jennifer L. Bowen",
+    "Jeff Bowman",
+    "Susan H. Brawley",
+    "Eoin L. Brodie",
+    "Andreas Brune",
+    "Donald A. Bryant",
+    "Alison Buchan",
+    "Hinsby Cadillo-Quiroz",
+    "Barbara J. Campbell",
+    "Ricardo Cavicchioli",
+    "Peter F. Chuckran",
+    "Maureen Coleman",
+    "Sean Crowe",
+    "Daniel R. Colman",
+    "Cameron R. Currie",
+    "Jeff Dangl",
+    "Nathalie Delherbe",
+    "Vincent J. Denef",
+    "Paul Dijkstra",
+    "Daniel D. Distel",
+    "Emiley Eloe-Fadrosh",
+    "Kirsten Fisher",
+    "Christopher Francis",
+    "Aaron Garoutte",
+    "Amelie Gaudin",
+    "Lena Gerwick",
+    "Filipa Godoy-Vitorino",
+    "Peter Guerra",
+    "Jiarong Guo",
+    "Mussie Y. Habteselassie",
+    "Steven J. Hallam",
+    "Roland Hatzenpichler",
+    "Ute Hentschel",
+    "Matthias Hess",
+    "Ann M. Hirsch",
+    "Laura A. Hug",
+    "Jenni Hultman",
+    "Dana E. Hunt",
+    "Marcel Huntemann",
+    "William P. Inskeep",
+    "Timothy Y. James",
+    "Janet Jansson",
+    "Eric R. Johnston",
+    "Marina Kalyuzhnaya",
+    "Charlene N. Kelly",
+    "Robert M. Kelly",
+    "Jonathan L. Klassen",
+    "Klaus Nüsslein",
+    "Joel E. Kostka",
+    "Steven Lindow",
+    "Erik Lilleskov",
+    "Mackenzie Lynes",
+    "Rachel Mackelprang",
+    "Francis M. Martin",
+    "Olivia U. Mason",
+    "R. Michael McKay",
+    "Katherine McMahon",
+    "David A. Mead",
+    "Monica Medina",
+    "Laura K. Meredith",
+    "Thomas Mock",
+    "William W. Mohn",
+    "Mary Ann Moran",
+    "Alison Murray",
+    "Josh D. Neufeld",
+    "Rebecca Neumann",
+    "Jeanette M. Norton",
+    "Laila P. Partida-Martinez",
+    "Nicole Pietrasiak",
+    "Dale Pelletier",
+    "T. B. K. Reddy",
+    "Brandi Kiel Reese",
+    "Nicholas J. Reichart",
+    "Rebecca Reiss",
+    "Mak A. Saito",
+    "Daniel P. Schachtman",
+    "Rekha Seshadri",
+    "Ashley Shade",
+    "David Sherman",
+    "Rachel Simister",
+    "Holly Simon",
+    "James Stegen",
+    "Ramunas Stepanauskas",
+    "Matthew Sullivan",
+    "Dawn Y. Sumner",
+    "Hanno Teeling",
+    "Kimberlee Thamatrakoln",
+    "Kathleen Treseder",
+    "Susannah Tringe",
+    "Parag Vaishampayan",
+    "David L. Valentine",
+    "Nicholas B. Waldo",
+    "Mark P. Waldrop",
+    "David A. Walsh",
+    "David M. Ward",
+    "Michael Wilkins",
+    "Thea Whitman",
+    "Jamie Woolet",
+    "Tanja Woyke",
+    "Ioannis Iliopoulos",
+    "Konstantinos Konstantinidis",
+    "James M. Tiedje",
+    "Jennifer Pett-Ridge",
+    "David Baker",
+    "Axel Visel",
+    "Christos A. Ouzounis",
+    "Sergey Ovchinnikov",
+    "Aydin Buluç",
+    "Nikos C. Kyrpides"
+   ],
+   "etal": false,
+   "t": "Unraveling the functional dark matter through global metagenomics",
+   "y": "2023",
+   "v": "Nature 622(7983), 594–602",
+   "u": "https://doi.org/10.1038/s41586-023-06583-7",
+   "raw": "G. A. Pavlopoulos et al., Unraveling the functional dark matter through global metagenomics. Nature 622(7983), 594–602 (2023). doi:10.1038/s41586-023-06583-7",
+   "c": [
+    {
+     "s": "Driven by metagenomic sequencing, these databases now double every four years and hold billions of protein sequences, increasing not only the diversity available for discovery but also the volume of data that must be examined (2, 3, 11, 12)."
+    },
+    {
+     "s": "This placed 35,168 clusters in the seven known classes, namely retron (11,517), unknown group (UG; 10,759), group II intron (5,461), diversity-generating retroelement (DGR; 3,857), CRISPR-associated (2,067), group II-like (827), and abortive-infection (Abi; 680)."
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "a": [
+    "Álvaro Rodríguez del Río",
+    "Joaquín Giner-Lamia",
+    "Carlos P. Cantalapiedra",
+    "Jorge Botas",
+    "Ziqi Deng",
+    "Ana Hernández-Plaza",
+    "Martí Munar-Palmer",
+    "Saray Santamaría-Hernando",
+    "José J. Rodríguez-Herva",
+    "Hans-Joachim Ruscheweyh",
+    "Lucas Paoli",
+    "Thomas S. B. Schmidt",
+    "Shinichi Sunagawa",
+    "Peer Bork",
+    "Emilia López-Solanilla",
+    "Luis Pedro Coelho",
+    "Jaime Huerta-Cepas"
+   ],
+   "etal": false,
+   "t": "Functional and evolutionary significance of unknown genes from uncultivated taxa",
+   "y": "2024",
+   "v": "Nature 626(7998), 377–384",
+   "u": "https://doi.org/10.1038/s41586-023-06955-z",
+   "raw": "Á. Rodríguez del Río et al., Functional and evolutionary significance of unknown genes from uncultivated taxa. Nature 626(7998), 377–384 (2024). doi:10.1038/s41586-023-06955-z",
+   "c": [
+    {
+     "s": "Driven by metagenomic sequencing, these databases now double every four years and hold billions of protein sequences, increasing not only the diversity available for discovery but also the volume of data that must be examined (2, 3, 11, 12)."
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "a": [
+    "Han Altae-Tran",
+    "Soumya Kannan",
+    "Anthony J. Suberski",
+    "Kepler S. Mears",
+    "F. Esra Demircioglu",
+    "Lukas Moeller",
+    "Selin Kocalar",
+    "Rachel Oshiro",
+    "Kira S. Makarova",
+    "Rhiannon K. Macrae",
+    "Eugene V. Koonin",
+    "Feng Zhang"
+   ],
+   "etal": false,
+   "t": "Uncovering the functional diversity of rare CRISPR-Cas systems with deep terascale clustering",
+   "y": "2023",
+   "v": "Science 382(6673), eadi1910",
+   "u": "https://doi.org/10.1126/science.adi1910",
+   "raw": "H. Altae-Tran et al., Uncovering the functional diversity of rare CRISPR-Cas systems with deep terascale clustering. Science 382(6673), eadi1910 (2023). doi:10.1126/science.adi1910",
+   "c": [
+    {
+     "s": "Systematic study of databases of this size is possible only through computational pipelines, which retrieve homologs of a known system’s components and sort the hits into classes by a set of predefined features (13)."
+    },
+    {
+     "s": "A human expert examining the data can attend to features beyond the predefined set and flag anomalies, which is why even systematic surveys end in expert curation (7, 13, 14)."
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "a": [
+    "Shany Doron",
+    "Sarah Melamed",
+    "Gal Ofir",
+    "Azita Leavitt",
+    "Anna Lopatina",
+    "Mai Keren",
+    "Gil Amitai",
+    "Rotem Sorek"
+   ],
+   "etal": false,
+   "t": "Systematic discovery of antiphage defense systems in the microbial pangenome",
+   "y": "2018",
+   "v": "Science 359(6379), eaar4120",
+   "u": "https://doi.org/10.1126/science.aar4120",
+   "raw": "S. Doron et al., Systematic discovery of antiphage defense systems in the microbial pangenome. Science 359(6379), eaar4120 (2018). doi:10.1126/science.aar4120",
+   "c": [
+    {
+     "s": "A human expert examining the data can attend to features beyond the predefined set and flag anomalies, which is why even systematic surveys end in expert curation (7, 13, 14)."
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "a": [
+    "S. Yao"
+   ],
+   "etal": true,
+   "t": "ReAct: Synergizing reasoning and acting in language models",
+   "y": "2023",
+   "v": "in The Eleventh International Conference on Learning Representations",
+   "u": "",
+   "raw": "S. Yao et al., ReAct: Synergizing reasoning and acting in language models, in The Eleventh International Conference on Learning Representations (ICLR, 2023).",
+   "c": [
+    {
+     "s": "Large language models (LLMs) can now write and run code, operate analysis tools and databases, and com- plete long tasks with little supervision (15–18)."
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "a": [
+    "Timo Schick",
+    "Jane Dwivedi-Yu",
+    "Roberto Dessi",
+    "Roberta Raileanu",
+    "Maria Lomeli",
+    "Eric Hambro",
+    "Luke Zettlemoyer",
+    "Nicola Cancedda",
+    "Thomas Scialom"
+   ],
+   "etal": false,
+   "t": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+   "y": "2023",
+   "v": "in Advances in Neural Information Processing Systems 36",
+   "u": "https://doi.org/10.52202/075280-2997",
+   "raw": "T. Schick et al., Toolformer: Language models can teach themselves to use tools, in Advances in Neural Information Processing Systems 36 (NeurIPS, 2023), pp. 68539–68551. doi:10.52202/075280-2997",
+   "c": [
+    {
+     "s": "Large language models (LLMs) can now write and run code, operate analysis tools and databases, and com- plete long tasks with little supervision (15–18)."
+    },
+    {
+     "s": "A B Closest retron clade (32) NART (29) ART (103) C NART ART Aligned block, 44 columns ART NTD profile, 4 of 29 Reverse search, 0 of 71 100 residues D Closest retron clade NART ART Repeat array 0 of 5 0 of 17 23 of 50 Non-coding ≥ 500 nt 1 of 10 0 of 28 21 of 41 ART partner 0 of 5 0 of 29 56 of 67 RNA polymerase 0 of 10 8 of 28 0 of 41 E Closest retron clade NART, 54-kb contig NART, 333-kb contig NART, 14-kb contig ART, L0050 ART, MarsHill 1 kb NTD RT Repeat array Repeat ART partner RNA polymerase Other gene F Closest retron clade NART ART, type II ART, type I ART, type I ART, type I ART, type III NTD Start of the RT domain G Closest retron clade (16) NART (29) ART (87) TM-score H N region Rest of the RT NTD, 164 RT NTD, 209 RT RT domain, % Identity to nearest relative NTD, % Identity N region (aa) 0.4 ≥ 0.8 Closest retron clade (32) NART (29) ART (103) Mean pLDDT Supp."
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "a": [
+    "C. E. Jimenez"
+   ],
+   "etal": true,
+   "t": "SWE-bench: Can language models resolve real-world GitHub issues?",
+   "y": "2024",
+   "v": "in The Twelfth International Conference on Learning Representations",
+   "u": "",
+   "raw": "C. E. Jimenez et al., SWE-bench: Can language models resolve real-world GitHub issues?, in The Twelfth International Conference on Learning Representations (ICLR, 2024).",
+   "c": [
+    {
+     "s": "Large language models (LLMs) can now write and run code, operate analysis tools and databases, and com- plete long tasks with little supervision (15–18)."
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "a": [
+    "Thomas Kwa",
+    "Ben West",
+    "Joel Becker",
+    "Amy Deng",
+    "Katharyn Garcia",
+    "Max Hasin",
+    "Sami Jawhar",
+    "Megan Kinniment",
+    "Nate Rush",
+    "Sydney Von Arx",
+    "Ryan Bloom",
+    "Thomas Broadley",
+    "Haoxing Du",
+    "Brian Goodrich",
+    "Nikola Jurkovic",
+    "Luke Miles",
+    "Seraphina Nix",
+    "Tao Lin",
+    "Neev Parikh",
+    "David Rein",
+    "Lucas Jun Koba Sato",
+    "Hjalmar Wijk",
+    "Daniel Ziegler",
+    "Elizabeth Barnes",
+    "Lawrence Chan"
+   ],
+   "etal": false,
+   "t": "Measuring AI Ability to Complete Long Software Tasks",
+   "y": "2025",
+   "v": "in Advances in Neural Information Processing Systems 38",
+   "u": "https://doi.org/10.52202/085713-3086",
+   "raw": "T. Kwa et al., Measuring AI ability to complete long software tasks, in Advances in Neural Information Processing Systems 38 (NeurIPS, 2025), pp. 102382–102435. doi:10.52202/085713-3086",
+   "c": [
+    {
+     "s": "Large language models (LLMs) can now write and run code, operate analysis tools and databases, and com- plete long tasks with little supervision (15–18)."
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "a": [
+    "John Yang",
+    "Carlos Jimenez",
+    "Alexander Wettig",
+    "Kilian Lieret",
+    "Shunyu Yao",
+    "Karthik Narasimhan",
+    "Ofir Press"
+   ],
+   "etal": false,
+   "t": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+   "y": "2024",
+   "v": "in Advances in Neural Information Processing Systems 37",
+   "u": "https://doi.org/10.52202/079017-1601",
+   "raw": "J. Yang et al., SWE-agent: Agent-computer interfaces enable automated software engineering, in Advances in Neural Information Processing Systems 37 (NeurIPS, 2024), pp. 50528–50652. doi:10.52202/079017-1601",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "a": [
+    "J. S. Chan"
+   ],
+   "etal": true,
+   "t": "MLE-bench: Evaluating machine learning agents on machine learning engineering",
+   "y": "2025",
+   "v": "in The Thirteenth International Conference on Learning Representations",
+   "u": "",
+   "raw": "J. S. Chan et al., MLE-bench: Evaluating machine learning agents on machine learning engineering, in The Thirteenth International Conference on Learning Representations (ICLR, 2025).",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "a": [
+    "J. Gottweis"
+   ],
+   "etal": true,
+   "t": "Accelerating scientific discovery with Co-Scientist",
+   "y": "2026",
+   "v": "Nature 655(8122), 487–496",
+   "u": "",
+   "raw": "J. Gottweis et al., Accelerating scientific discovery with Co-Scientist. Nature 655(8122), 487–496 (2026). doi:10 .1038/s41586-026-10644-y",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    },
+    {
+     "s": "The 19 reports of the campaign were ranked in a tournament of pairwise compar- isons, a design that was used previously to rank machine-generated hypotheses (21, 24, 84)."
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "a": [
+    "José R. Penadés",
+    "Juraj Gottweis",
+    "Lingchen He",
+    "Jonasz B. Patkowski",
+    "Alexander Daryin",
+    "Wei-Hung Weng",
+    "Tao Tu",
+    "Anil Palepu",
+    "Artiom Myaskovsky",
+    "Annalisa Pawlosky",
+    "Vivek Natarajan",
+    "Alan Karthikesalingam",
+    "Tiago R.D. Costa"
+   ],
+   "etal": false,
+   "t": "AI mirrors experimental science to uncover a mechanism of gene transfer crucial to bacterial evolution",
+   "y": "2025",
+   "v": "Cell 188(23), 6654–6665.e2",
+   "u": "https://doi.org/10.1016/j.cell.2025.08.018",
+   "raw": "J. R. Penadés et al., AI mirrors experimental science to uncover a mechanism of gene transfer crucial to bacterial evolution. Cell 188(23), 6654–6665.e2 (2025). doi:10.1016/j.cell.2025.08.018",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "a": [
+    "Kyle Swanson",
+    "Wesley Wu",
+    "Nash L. Bulaong",
+    "John E. Pak",
+    "James Zou"
+   ],
+   "etal": false,
+   "t": "The Virtual Lab of AI agents designs new SARS-CoV-2 nanobodies",
+   "y": "2025",
+   "v": "Nature 646(8085), 716–723",
+   "u": "https://doi.org/10.1038/s41586-025-09442-9",
+   "raw": "K. Swanson, W. Wu, N. L. Bulaong, J. E. Pak, J. Zou, The Virtual Lab of AI agents designs new SARS-CoV-2 nanobodies. Nature 646(8085), 716–723 (2025). doi:10.1038/s41586-025-09442-9",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "a": [
+    "Ali E. Ghareeb",
+    "Benjamin Chang",
+    "Ludovico Mitchener",
+    "Angela Yiu",
+    "Caralyn J. Szostkiewicz",
+    "Dmytro Shved",
+    "Gavin J. Gyimesi",
+    "Jon M. Laurent",
+    "Samantha M. Wright",
+    "Muhammed T. Razzak",
+    "Andrew D. White",
+    "Silvia C. Finnemann",
+    "Michaela M. Hinks",
+    "Samuel G. Rodriques"
+   ],
+   "etal": false,
+   "t": "A multi-agent system for automating scientific discovery",
+   "y": "2026",
+   "v": "Nature 655(8122), 497–505",
+   "u": "https://doi.org/10.1038/s41586-026-10652-y",
+   "raw": "A. E. Ghareeb et al., A multi-agent system for automating scientific discovery. Nature 655(8122), 497–505 (2026). doi:10.1038/s41586-026-10652-y",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    },
+    {
+     "s": "The 19 reports of the campaign were ranked in a tournament of pairwise compar- isons, a design that was used previously to rank machine-generated hypotheses (21, 24, 84)."
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "a": [
+    "Yuanhao Qu",
+    "Kaixuan Huang",
+    "Ming Yin",
+    "Kanghong Zhan",
+    "Dyllan Liu",
+    "Di Yin",
+    "Henry C. Cousins",
+    "William A. Johnson",
+    "Xiaotong Wang",
+    "Mihir Shah",
+    "Russ B. Altman",
+    "Denny Zhou",
+    "Mengdi Wang",
+    "Le Cong"
+   ],
+   "etal": false,
+   "t": "CRISPR-GPT for agentic automation of gene-editing experiments",
+   "y": "2026",
+   "v": "Nature Biomedical Engineering 10(2), 245–258",
+   "u": "https://doi.org/10.1038/s41551-025-01463-z",
+   "raw": "Y. Qu et al., CRISPR-GPT for agentic automation of gene-editing experiments. Nature Biomedical Engineering 10(2), 245–258 (2026). doi:10.1038/s41551-025-01463-z",
+   "c": [
+    {
+     "s": "LLMs are automating parts of software engineering and data analysis (19, 20), and accelerating biological research, where multi-agent systems have originated drug candidates, protein designs, gene-editing experiments, and mechanistic hypotheses that were confirmed at the bench (21–25)."
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "a": [
+    "Daniil A. Boiko",
+    "Robert MacKnight",
+    "Ben Kline",
+    "Gabe Gomes"
+   ],
+   "etal": false,
+   "t": "Autonomous chemical research with large language models",
+   "y": "2023",
+   "v": "Nature 624(7992), 570–578",
+   "u": "https://doi.org/10.1038/s41586-023-06792-0",
+   "raw": "D. A. Boiko, R. MacKnight, B. Kline, G. Gomes, Autonomous chemical research with large language models. Nature 624(7992), 570–578 (2023). doi:10.1038/s41586-023-06792-0",
+   "c": [
+    {
+     "s": "More recently, autonomous agents have planned and executed chemical syntheses, machine-learning studies, and biological data analyses end to end, from a stated objective to a written report (26–30)."
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "a": [
+    "Chris Lu",
+    "Cong Lu",
+    "Robert Tjarko Lange",
+    "Yutaro Yamada",
+    "Shengran Hu",
+    "Jakob Foerster",
+    "David Ha",
+    "Jeff Clune"
+   ],
+   "etal": false,
+   "t": "Towards end-to-end automation of AI research",
+   "y": "2026",
+   "v": "Nature 651(8107), 914–919",
+   "u": "https://doi.org/10.1038/s41586-026-10265-5",
+   "raw": "C. Lu et al., Towards end-to-end automation of AI research. Nature 651(8107), 914–919 (2026). doi:10.1038/s4 1586-026-10265-5",
+   "c": [
+    {
+     "s": "More recently, autonomous agents have planned and executed chemical syntheses, machine-learning studies, and biological data analyses end to end, from a stated objective to a written report (26–30)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "a": [
+    "Kexin Huang",
+    "Serena Zhang",
+    "Hanchen Wang",
+    "Yuanhao Qu",
+    "Yingzhou Lu",
+    "Ryan Li",
+    "Yusuf Roohani",
+    "Lin Qiu",
+    "Shiyi Cao",
+    "Gavin Li",
+    "Junze Zhang",
+    "Di Yin",
+    "Rick Wierenga",
+    "Deniz Kavi",
+    "Sherry Liu",
+    "Tianwei She",
+    "Shruti Marwaha",
+    "Jennefer N. Carter",
+    "Xin Zhou",
+    "Matthew T. Wheeler",
+    "Jonathan A. Bernstein",
+    "Mengdi Wang",
+    "Peng He",
+    "Jingtian Zhou",
+    "Michael P. Snyder",
+    "Le Cong",
+    "Aviv Regev",
+    "Jure Leskovec"
+   ],
+   "etal": false,
+   "t": "Autonomous biomedical research with an artificial intelligence agent",
+   "y": "2026",
+   "v": "Science 393(6813), eadz4351",
+   "u": "https://doi.org/10.1126/science.adz4351",
+   "raw": "K. Huang et al., Autonomous biomedical research with an artificial intelligence agent. Science 393(6813), eadz4351 (2026). doi:10.1126/science.adz4351",
+   "c": [
+    {
+     "s": "More recently, autonomous agents have planned and executed chemical syntheses, machine-learning studies, and biological data analyses end to end, from a stated objective to a written report (26–30)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "a": [
+    "Samuel Alber",
+    "Bowen Chen",
+    "Eric Sun",
+    "Alina Isakova",
+    "Aaron J. Wilk",
+    "James Zou"
+   ],
+   "etal": false,
+   "t": "CellVoyager: AI CompBio agent generates new insights by autonomously analyzing biological data",
+   "y": "2026",
+   "v": "Nature Methods 23(4), 749–759",
+   "u": "https://doi.org/10.1038/s41592-026-03029-6",
+   "raw": "S. Alber et al., CellVoyager: AI CompBio agent generates new insights by autonomously analyzing biological data. Nature Methods 23(4), 749–759 (2026). doi:10.1038/s41592-026-03029-6",
+   "c": [
+    {
+     "s": "More recently, autonomous agents have planned and executed chemical syntheses, machine-learning studies, and biological data analyses end to end, from a stated objective to a written report (26–30)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    },
+    {
+     "s": "A B Closest retron clade (32) NART (29) ART (103) C NART ART Aligned block, 44 columns ART NTD profile, 4 of 29 Reverse search, 0 of 71 100 residues D Closest retron clade NART ART Repeat array 0 of 5 0 of 17 23 of 50 Non-coding ≥ 500 nt 1 of 10 0 of 28 21 of 41 ART partner 0 of 5 0 of 29 56 of 67 RNA polymerase 0 of 10 8 of 28 0 of 41 E Closest retron clade NART, 54-kb contig NART, 333-kb contig NART, 14-kb contig ART, L0050 ART, MarsHill 1 kb NTD RT Repeat array Repeat ART partner RNA polymerase Other gene F Closest retron clade NART ART, type II ART, type I ART, type I ART, type I ART, type III NTD Start of the RT domain G Closest retron clade (16) NART (29) ART (87) TM-score H N region Rest of the RT NTD, 164 RT NTD, 209 RT RT domain, % Identity to nearest relative NTD, % Identity N region (aa) 0.4 ≥ 0.8 Closest retron clade (32) NART (29) ART (103) Mean pLDDT Supp."
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "a": [
+    "L. Mitchener"
+   ],
+   "etal": true,
+   "t": "Kosmos: An AI scientist for autonomous discovery",
+   "y": "2025",
+   "v": "arXiv:2511.02824 [Preprint]",
+   "u": "",
+   "raw": "L. Mitchener et al., Kosmos: An AI scientist for autonomous discovery. arXiv:2511.02824 [Preprint] (2025).",
+   "c": [
+    {
+     "s": "More recently, autonomous agents have planned and executed chemical syntheses, machine-learning studies, and biological data analyses end to end, from a stated objective to a written report (26–30)."
+    },
+    {
+     "s": "Recent AI-powered methods allow agents to screen their own hypotheses for novelty, but a scientist still sets the expectation and makes the final judgment (21, 23, 24, 27–30)."
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "a": [
+    "Andrew V. Anzalone",
+    "Peyton B. Randolph",
+    "Jessie R. Davis",
+    "Alexander A. Sousa",
+    "Luke W. Koblan",
+    "Jonathan M. Levy",
+    "Peter J. Chen",
+    "Christopher Wilson",
+    "Gregory A. Newby",
+    "Aditya Raguram",
+    "David R. Liu"
+   ],
+   "etal": false,
+   "t": "Search-and-replace genome editing without double-strand breaks or donor DNA",
+   "y": "2019",
+   "v": "Nature 576(7785), 149–157",
+   "u": "https://doi.org/10.1038/s41586-019-1711-4",
+   "raw": "A. V. Anzalone et al., Search-and-replace genome editing without double-strand breaks or donor DNA. Nature 576(7785), 149–157 (2019). doi:10.1038/s41586-019-1711-4",
+   "c": [
+    {
+     "s": "As a test case we chose reverse transcriptases (RTs), a widespread enzyme family that canonically copies RNA into DNA, an activity that underpins biotechnologies from cDNA synthesis to genome engineering (31–34)."
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "a": [
+    "M. G. Schubert"
+   ],
+   "etal": true,
+   "t": "High-throughput functional variant screens via in vivo production of single-stranded DNA",
+   "y": "2021",
+   "v": "Proceedings of the National Academy of Sciences 118(18), e2018181118",
+   "u": "https://doi.org/10.1073/pnas.20181",
+   "raw": "M. G. Schubert et al., High-throughput functional variant screens via in vivo production of single-stranded DNA. Proceedings of the National Academy of Sciences 118(18), e2018181118 (2021). doi:10.1073/pnas.20181",
+   "c": [
+    {
+     "s": "As a test case we chose reverse transcriptases (RTs), a widespread enzyme family that canonically copies RNA into DNA, an activity that underpins biotechnologies from cDNA synthesis to genome engineering (31–34)."
+    },
+    {
+     "s": "A B Closest retron clade (32) NART (29) ART (103) C NART ART Aligned block, 44 columns ART NTD profile, 4 of 29 Reverse search, 0 of 71 100 residues D Closest retron clade NART ART Repeat array 0 of 5 0 of 17 23 of 50 Non-coding ≥ 500 nt 1 of 10 0 of 28 21 of 41 ART partner 0 of 5 0 of 29 56 of 67 RNA polymerase 0 of 10 8 of 28 0 of 41 E Closest retron clade NART, 54-kb contig NART, 333-kb contig NART, 14-kb contig ART, L0050 ART, MarsHill 1 kb NTD RT Repeat array Repeat ART partner RNA polymerase Other gene F Closest retron clade NART ART, type II ART, type I ART, type I ART, type I ART, type III NTD Start of the RT domain G Closest retron clade (16) NART (29) ART (87) TM-score H N region Rest of the RT NTD, 164 RT NTD, 209 RT RT domain, % Identity to nearest relative NTD, % Identity N region (aa) 0.4 ≥ 0.8 Closest retron clade (32) NART (29) ART (103) Mean pLDDT Supp."
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "a": [
+    "Santiago C. Lopez",
+    "Kate D. Crawford",
+    "Sierra K. Lear",
+    "Santi Bhattarai-Kline",
+    "Seth L. Shipman"
+   ],
+   "etal": false,
+   "t": "Precise genome editing across kingdoms of life using retron-derived DNA",
+   "y": "2022",
+   "v": "Nature Chemical Biology 18(2), 199–206",
+   "u": "https://doi.org/10.1038/s41589-021-00927-y",
+   "raw": "S. C. Lopez, K. D. Crawford, S. K. Lear, S. Bhattarai-Kline, S. L. Shipman, Precise genome editing across kingdoms of life using retron-derived DNA. Nature Chemical Biology 18(2), 199–206 (2022). doi:10.1038/s41589-0 21-00927-y",
+   "c": [
+    {
+     "s": "As a test case we chose reverse transcriptases (RTs), a widespread enzyme family that canonically copies RNA into DNA, an activity that underpins biotechnologies from cDNA synthesis to genome engineering (31–34)."
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "a": [
+    "Xiaozhu Zhang",
+    "Briana Van Treeck",
+    "Connor A. Horton",
+    "Jeremy J. R. McIntyre",
+    "Sarah M. Palm",
+    "Justin L. Shumate",
+    "Kathleen Collins"
+   ],
+   "etal": false,
+   "t": "Harnessing eukaryotic retroelement proteins for transgene insertion into human safe-harbor loci",
+   "y": "2025",
+   "v": "Nature Biotechnology 43(1), 42–51",
+   "u": "https://doi.org/10.1038/s41587-024-02137-y",
+   "raw": "X. Zhang et al., Harnessing eukaryotic retroelement proteins for transgene insertion into human safe-harbor loci. Nature Biotechnology 43(1), 42–51 (2025). doi:10.1038/s41587-024-02137-y",
+   "c": [
+    {
+     "s": "As a test case we chose reverse transcriptases (RTs), a widespread enzyme family that canonically copies RNA into DNA, an activity that underpins biotechnologies from cDNA synthesis to genome engineering (31–34)."
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "a": [
+    "Steven Zimmerly",
+    "Li Wu"
+   ],
+   "etal": false,
+   "t": "An Unexplored Diversity of Reverse Transcriptases in Bacteria",
+   "y": "2015",
+   "v": "Microbiology Spectrum 3(2), MDNA3-0058-2014",
+   "u": "https://doi.org/10.1128/microbiolspec.mdna3-0058-2014",
+   "raw": "S. Zimmerly, L. Wu, An unexplored diversity of reverse transcriptases in bacteria. Microbiology Spectrum 3(2), MDNA3-0058-2014 (2015). doi:10.1128/microbiolspec.mdna3-0058-2014",
+   "c": [
+    {
+     "s": "In prokaryotes, RTs are often co-expressed with a partner protein and non-coding RNAs (ncRNAs) encoded in the same locus (35, 36)."
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "a": [
+    "Linyi Gao",
+    "Han Altae-Tran",
+    "Francisca Böhning",
+    "Kira S. Makarova",
+    "Michael Segel",
+    "Jonathan L. Schmid-Burgk",
+    "Jeremy Koob",
+    "Yuri I. Wolf",
+    "Eugene V. Koonin",
+    "Feng Zhang"
+   ],
+   "etal": false,
+   "t": "Diverse enzymatic activities mediate antiviral immunity in prokaryotes",
+   "y": "2020",
+   "v": "Science 369(6507), 1077– 1084",
+   "u": "https://doi.org/10.1126/science.aba0372",
+   "raw": "L. Gao et al., Diverse enzymatic activities mediate antiviral immunity in prokaryotes. Science 369(6507), 1077– 1084 (2020). doi:10.1126/science.aba0372",
+   "c": [
+    {
+     "s": "In prokaryotes, RTs are often co-expressed with a partner protein and non-coding RNAs (ncRNAs) encoded in the same locus (35, 36)."
+    },
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "a": [
+    "Adi Millman",
+    "Aude Bernheim",
+    "Avigail Stokar-Avihail",
+    "Taya Fedorenko",
+    "Maya Voichek",
+    "Azita Leavitt",
+    "Yaara Oppenheimer-Shaanan",
+    "Rotem Sorek"
+   ],
+   "etal": false,
+   "t": "Bacterial Retrons Function In Anti-Phage Defense",
+   "y": "2020",
+   "v": "Cell 183(6), 1551–1561.e12",
+   "u": "https://doi.org/10.1016/j.cell.2020.09.065",
+   "raw": "A. Millman et al., Bacterial retrons function in anti-phage defense. Cell 183(6), 1551–1561.e12 (2020). doi:10.1 016/j.cell.2020.09.065",
+   "c": [
+    {
+     "s": "In retrons, for example, the RT copies a dedicated ncRNA into single- stranded DNA that functions with an effector protein in antiphage defense (37, 38)."
+    },
+    {
+     "s": "These effectors are diverse, including an N-glycosidase that hydrolyzes NAD+ in Retron-Eco1 and a membrane protein pre- dicted to disrupt the membrane in Retron-Eco6 (37, 39, 40)."
+    },
+    {
+     "s": "In retrons the RT and the single- stranded DNA that it produces (msDNA) hold the effector in an inactive complex until phage infection or damage to the msDNA releases it, killing the cell (37, 38)."
+    },
+    {
+     "s": "Unlike CRISPR spacers, the ART units are conserved between related phages, and they are transcribed in large excess over the enzyme, suggesting one enzyme supplied with a repertoire of templates or baits (37, 38, 41, 42)."
+    }
+   ]
+  },
+  {
+   "n": 38,
+   "a": [
+    "Jacob Bobonis",
+    "Karin Mitosch",
+    "André Mateus",
+    "Nicolai Karcher",
+    "George Kritikos",
+    "Joel Selkrig",
+    "Matylda Zietek",
+    "Vivian Monzon",
+    "Birgit Pfalz",
+    "Sarela Garcia-Santamarina",
+    "Marco Galardini",
+    "Anna Sueki",
+    "Callie Kobayashi",
+    "Frank Stein",
+    "Alex Bateman",
+    "Georg Zeller",
+    "Mikhail M. Savitski",
+    "Johanna R. Elfenbein",
+    "Helene L. Andrews-Polymenis",
+    "Athanasios Typas"
+   ],
+   "etal": false,
+   "t": "Bacterial retrons encode phage-defending tripartite toxin–antitoxin systems",
+   "y": "2022",
+   "v": "Nature 609(7925), 144–150",
+   "u": "https://doi.org/10.1038/s41586-022-05091-4",
+   "raw": "J. Bobonis et al., Bacterial retrons encode phage-defending tripartite toxin–antitoxin systems. Nature 609(7925), 144–150 (2022). doi:10.1038/s41586-022-05091-4",
+   "c": [
+    {
+     "s": "In retrons, for example, the RT copies a dedicated ncRNA into single- stranded DNA that functions with an effector protein in antiphage defense (37, 38)."
+    },
+    {
+     "s": "In retrons the RT and the single- stranded DNA that it produces (msDNA) hold the effector in an inactive complex until phage infection or damage to the msDNA releases it, killing the cell (37, 38)."
+    },
+    {
+     "s": "The differences between these RNAs may in turn allow the system to respond to different triggers, given that phage proteins trigger retrons by directly perturbing the msDNA (38)."
+    },
+    {
+     "s": "Unlike CRISPR spacers, the ART units are conserved between related phages, and they are transcribed in large excess over the enzyme, suggesting one enzyme supplied with a repertoire of templates or baits (37, 38, 41, 42)."
+    }
+   ]
+  },
+  {
+   "n": 39,
+   "a": [
+    "Mario Rodríguez Mestre",
+    "Alejandro González-Delgado",
+    "Luis I Gutiérrez-Rus",
+    "Francisco Martínez-Abarca",
+    "Nicolás Toro"
+   ],
+   "etal": false,
+   "t": "Systematic prediction of genes functionally associated with bacterial retrons and classification of the encoded tripartite systems",
+   "y": "2020",
+   "v": "Nucleic Acids Research 48(22), 12632–12647",
+   "u": "https://doi.org/10.1093/nar/gkaa1149",
+   "raw": "M. R. Mestre, A. González-Delgado, L. I. Gutiérrez-Rus, F. Martínez-Abarca, N. Toro, Systematic prediction of genes functionally associated with bacterial retrons and classification of the encoded tripartite systems. Nucleic Acids Research 48(22), 12632–12647 (2020). doi:10.1093/nar/gkaa1149",
+   "c": [
+    {
+     "s": "These effectors are diverse, including an N-glycosidase that hydrolyzes NAD+ in Retron-Eco1 and a membrane protein pre- dicted to disrupt the membrane in Retron-Eco6 (37, 39, 40)."
+    },
+    {
+     "s": "The 957-sequence set, which was used to compare N-terminal lengths across RT classes, comprised 633 labeled RTs from published classifications (39, 43, 82), 294 classified representatives from our database, and 30 ART RTs."
+    },
+    {
+     "s": "Of the retron RTs, 325 came from published classifications (39, 82) and 292 were retron-classified representatives from our database."
+    }
+   ]
+  },
+  {
+   "n": 40,
+   "a": [
+    "Arturo Carabias",
+    "Sarah Camara-Wilpert",
+    "Mario Rodríguez Mestre",
+    "Blanca Lopéz-Méndez",
+    "Ivo A. Hendriks",
+    "Ruiliang Zhao",
+    "Tillmann Pape",
+    "Anders Fuglsang",
+    "Sean Hoi-Ching Luk",
+    "Michael L. Nielsen",
+    "Rafael Pinilla-Redondo",
+    "Guillermo Montoya"
+   ],
+   "etal": false,
+   "t": "Retron-Eco1 assembles NAD+-hydrolyzing filaments that provide immunity against bacteriophages",
+   "y": "2024",
+   "v": "Molecular Cell 84(11), 2185–2202.e12",
+   "u": "https://doi.org/10.1016/j.molcel.2024.05.001",
+   "raw": "A. Carabias et al., Retron-Eco1 assembles NAD+-hydrolyzing filaments that provide immunity against bacteriophages. Molecular Cell 84(11), 2185–2202.e12 (2024). doi:10.1016/j.molcel.2024.05.001",
+   "c": [
+    {
+     "s": "These effectors are diverse, including an N-glycosidase that hydrolyzes NAD+ in Retron-Eco1 and a membrane protein pre- dicted to disrupt the membrane in Retron-Eco6 (37, 39, 40)."
+    }
+   ]
+  },
+  {
+   "n": 41,
+   "a": [
+    "Stephen Tang",
+    "Valentin Conte",
+    "Dennis J. Zhang",
+    "Rimantė Žedaveinytė",
+    "George D. Lampe",
+    "Tanner Wiegand",
+    "Lauren C. Tang",
+    "Megan Wang",
+    "Matt W. G. Walker",
+    "Jerrin Thomas George",
+    "Luke E. Berchowitz",
+    "Marko Jovanovic",
+    "Samuel H. Sternberg"
+   ],
+   "etal": false,
+   "t": "De novo gene synthesis by an antiviral reverse transcriptase",
+   "y": "2024",
+   "v": "Science 386(6717), eadq0876",
+   "u": "https://doi.org/10.1126/science.adq0876",
+   "raw": "S. Tang et al., De novo gene synthesis by an antiviral reverse transcriptase. Science 386(6717), eadq0876 (2024). doi:10.1126/science.adq0876",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    },
+    {
+     "s": "Unlike CRISPR spacers, the ART units are conserved between related phages, and they are transcribed in large excess over the enzyme, suggesting one enzyme supplied with a repertoire of templates or baits (37, 38, 41, 42)."
+    }
+   ]
+  },
+  {
+   "n": 42,
+   "a": [
+    "Max E. Wilkinson",
+    "David Li",
+    "Alex Gao",
+    "Rhiannon K. Macrae",
+    "Feng Zhang"
+   ],
+   "etal": false,
+   "t": "Phage-triggered reverse transcription assembles a toxic repetitive gene from a noncoding RNA",
+   "y": "2024",
+   "v": "Science 386(6717), eadq3977",
+   "u": "https://doi.org/10.1126/science.adq3977",
+   "raw": "M. E. Wilkinson, D. Li, A. Gao, R. K. Macrae, F. Zhang, Phage-triggered reverse transcription assembles a toxic repetitive gene from a noncoding RNA. Science 386(6717), eadq3977 (2024). doi:10.1126/science.adq3977",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    },
+    {
+     "s": "Unlike CRISPR spacers, the ART units are conserved between related phages, and they are transcribed in large excess over the enzyme, suggesting one enzyme supplied with a repertoire of templates or baits (37, 38, 41, 42)."
+    }
+   ]
+  },
+  {
+   "n": 43,
+   "a": [
+    "Mario Rodríguez Mestre",
+    "Linyi Alex Gao",
+    "Shiraz A Shah",
+    "Adrián López-Beltrán",
+    "Alejandro González-Delgado",
+    "Francisco Martínez-Abarca",
+    "Jaime Iranzo",
+    "Modesto Redrejo-Rodríguez",
+    "Feng Zhang",
+    "Nicolás Toro"
+   ],
+   "etal": false,
+   "t": "UG/Abi: a highly diverse family of prokaryotic reverse transcriptases associated with defense functions",
+   "y": "2022",
+   "v": "Nucleic Acids Research 50(11), 6084–6101",
+   "u": "https://doi.org/10.1093/nar/gkac467",
+   "raw": "M. R. Mestre et al., UG/Abi: a highly diverse family of prokaryotic reverse transcriptases associated with defense functions. Nucleic Acids Research 50(11), 6084–6101 (2022). doi:10.1093/nar/gkac467",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    },
+    {
+     "s": "The 957-sequence set, which was used to compare N-terminal lengths across RT classes, comprised 633 labeled RTs from published classifications (39, 43, 82), 294 classified representatives from our database, and 30 ART RTs."
+    }
+   ]
+  },
+  {
+   "n": 44,
+   "a": [
+    "Stephen Tang",
+    "Rimantė Žedaveinytė",
+    "Nathaniel Burman",
+    "Shishir Pandey",
+    "Josephine L. Ramirez",
+    "Louie M. Kulber",
+    "Tanner Wiegand",
+    "Royce A. Wilkinson",
+    "Yanzhe Ma",
+    "Dennis J. Zhang",
+    "George D. Lampe",
+    "Mirela Berisa",
+    "Marko Jovanovic",
+    "Blake Wiedenheft",
+    "Samuel H. Sternberg"
+   ],
+   "etal": false,
+   "t": "Protein-primed homopolymer synthesis by an antiviral reverse transcriptase",
+   "y": "2025",
+   "v": "Nature 643(8074), 1352–1362",
+   "u": "https://doi.org/10.1038/s41586-025-09179-5",
+   "raw": "S. Tang et al., Protein-primed homopolymer synthesis by an antiviral reverse transcriptase. Nature 643(8074), 1352–1362 (2025). doi:10.1038/s41586-025-09179-5",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    }
+   ]
+  },
+  {
+   "n": 45,
+   "a": [
+    "Xin-Yi Song",
+    "Yushan Xia",
+    "Jun-Tao Zhang",
+    "Yu-Jun Liu",
+    "Hua Qi",
+    "Xin-Yang Wei",
+    "Hailiang Hu",
+    "Yu Xia",
+    "Xue Liu",
+    "Ying-Fei Ma",
+    "Ning Jia"
+   ],
+   "etal": false,
+   "t": "Bacterial reverse transcriptase synthesizes long poly(A)-rich cDNA for antiphage defense",
+   "y": "2025",
+   "v": "Science 388(6753), eads4639",
+   "u": "https://doi.org/10.1126/science.ads4639",
+   "raw": "X.-Y. Song et al., Bacterial reverse transcriptase synthesizes long poly(A)-rich cDNA for antiphage defense. Science 388(6753), eads4639 (2025). doi:10.1126/science.ads4639",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    }
+   ]
+  },
+  {
+   "n": 46,
+   "a": [
+    "Pujuan Deng",
+    "Hyunbin Lee",
+    "Carlo Armijo",
+    "Haoqing Wang",
+    "Alex Gao"
+   ],
+   "etal": false,
+   "t": "Protein-templated synthesis of dinucleotide repeat DNA by an antiphage reverse transcriptase",
+   "y": "2026",
+   "v": "Science 392(6804), 1274–1281",
+   "u": "https://doi.org/10.1126/science.aed1656",
+   "raw": "P. Deng, H. Lee, C. Armijo, H. Wang, A. Gao, Protein-templated synthesis of dinucleotide repeat DNA by an antiphage reverse transcriptase. Science 392(6804), 1274–1281 (2026). doi:10.1126/science.aed1656",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    }
+   ]
+  },
+  {
+   "n": 47,
+   "a": [
+    "Megan Wang",
+    "Kanta Yoneyama",
+    "Rimantė Žedaveinytė",
+    "Junichiro Ishikawa",
+    "Stephen Tang",
+    "Hoang C. Le",
+    "Tanner Wiegand",
+    "Josephine L. Ramirez",
+    "Naoto Nagahata",
+    "Yanzhe Ma",
+    "Dennis J. Zhang",
+    "Erick Helmeczi",
+    "Mirela Berisa",
+    "Marko Jovanovic",
+    "Masahiro Hiraizumi",
+    "Keitaro Yamashita",
+    "Hiroshi Nishimasu",
+    "Samuel H. Sternberg"
+   ],
+   "etal": false,
+   "t": "Coordinated RNA- and protein-templated synthesis of double-stranded DNA by a dual reverse transcriptase immune system",
+   "y": "2026",
+   "v": "Cell 189(16), 4997–5011.e11",
+   "u": "https://doi.org/10.1016/j.cell.2026.07.012",
+   "raw": "M. Wang et al., Coordinated RNA- and protein-templated synthesis of double-stranded DNA by a dual reverse transcriptase immune system. Cell 189(16), 4997–5011.e11 (2026). doi:10.1016/j.cell.2026.07.012",
+   "c": [
+    {
+     "s": "New RT systems that act with novel ncRNAs and partner genes continue to be reported (36, 41–47), suggesting that more remain among RT loci that have yet to be examined."
+    }
+   ]
+  },
+  {
+   "n": 48,
+   "a": [
+    "Bingyan Zhang",
+    "Jiayi Xu",
+    "Xiaoqi He",
+    "Yigang Tong",
+    "Huiying Ren"
+   ],
+   "etal": false,
+   "t": "Interactions between Jumbo Phage SA1 and Staphylococcus: A Global Transcriptomic Analysis",
+   "y": "2022",
+   "v": "Microorganisms 10(8), 1590",
+   "u": "https://doi.org/10.3390/microorganisms10081590",
+   "raw": "B. Zhang, J. Xu, X. He, Y. Tong, H. Ren, Interactions between jumbo phage SA1 and Staphylococcus: A global transcriptomic analysis. Microorganisms 10(8), 1590 (2022). doi:10.3390/microorganisms10081590",
+   "c": [
+    {
+     "s": "The session autonomously identified and retrieved RNA reads from a published infection time-course study of Staphylococcus phage SA1 (48), which contains an ART system (Fig. 3, A and B)."
+    },
+    {
+     "s": "Loci were taken from the GenBank records of phages MarsHill (MW248466.1) (61) and SA1 (MW218148.1) (48)."
+    },
+    {
+     "s": "RNA-seq reads of SA1 infection of Staphylococcus lentus (BioProject PRJNA836150 (48); 12 paired-end, strand-specific libraries from three cultures sampled before infection and at 5, 15, and 55 min after infection) were downloaded from ENA."
+    }
+   ]
+  },
+  {
+   "n": 49,
+   "a": [
+    "Garyk Brixi",
+    "Matthew G. Durrant",
+    "Jerome Ku",
+    "Mohsen Naghipourfar",
+    "Michael Poli",
+    "Gwanggyu Sun",
+    "Greg Brockman",
+    "Daniel Chang",
+    "Alison Fanton",
+    "Gabriel A. Gonzalez",
+    "Samuel H. King",
+    "David B. Li",
+    "Aditi T. Merchant",
+    "Eric Nguyen",
+    "Chiara Ricci-Tam",
+    "David W. Romero",
+    "Jonathan C. Schmok",
+    "Ali Taghibakhshi",
+    "Anton Vorontsov",
+    "Brandon Yang",
+    "Myra Deng",
+    "Liv Gorton",
+    "Nam Nguyen",
+    "Nicholas K. Wang",
+    "Michael T. Pearce",
+    "Elana Simon",
+    "Etowah Adams",
+    "Zachary J. Amador",
+    "Euan A. Ashley",
+    "Stephen A. Baccus",
+    "Haoyu Dai",
+    "Steven Dillmann",
+    "Stefano Ermon",
+    "Daniel Guo",
+    "Michael H. Herschl",
+    "Rajesh Ilango",
+    "Ken Janik",
+    "Amy X. Lu",
+    "Reshma Mehta",
+    "Mohammad R. K. Mofrad",
+    "Madelena Y. Ng",
+    "Jaspreet Pannu",
+    "Christopher Ré",
+    "John St. John",
+    "Jeremy Sullivan",
+    "Joseph Tey",
+    "Ben Viggiano",
+    "Kevin Zhu",
+    "Greg Zynda",
+    "Daniel Balsam",
+    "Patrick Collison",
+    "Anthony B. Costa",
+    "Tina Hernandez-Boussard",
+    "Eric Ho",
+    "Ming-Yu Liu",
+    "Thomas McGrath",
+    "Kimberly Powell",
+    "Sudarshan Pinglay",
+    "Dave P. Burke",
+    "Hani Goodarzi",
+    "Patrick D. Hsu",
+    "Brian L. Hie"
+   ],
+   "etal": false,
+   "t": "Genome modelling and design across all domains of life with Evo 2",
+   "y": "2026",
+   "v": "Nature 652(8112), 1349–1361",
+   "u": "https://doi.org/10.1038/s41586-026-10176-5",
+   "raw": "G. Brixi et al., Genome modelling and design across all domains of life with Evo 2. Nature 652(8112), 1349–1361 (2026). doi:10.1038/s41586-026-10176-5",
+   "c": [
+    {
+     "s": "These models can be used to detect repeat motifs in DNA (10), their embeddings can distinguish repeat families (49, 50), and a signal that responds to the spacers of CRISPR repeat arrays has been isolated in Evo 2 (49)."
+    },
+    {
+     "s": "The 2,900-nt flank of locus L0050, as returned to the worker in task t0062, was evaluated with gLM2 (50) and Evo 2 (49)."
+    }
+   ]
+  },
+  {
+   "n": 50,
+   "a": [
+    "A. Cornman"
+   ],
+   "etal": true,
+   "t": "The OMG dataset: An open metagenomic corpus for mixed-modality genomic language modeling",
+   "y": "2025",
+   "v": "in The Thirteenth International Conference on Learning Representations",
+   "u": "",
+   "raw": "A. Cornman et al., The OMG dataset: An open metagenomic corpus for mixed-modality genomic language modeling, in The Thirteenth International Conference on Learning Representations (ICLR, 2025).",
+   "c": [
+    {
+     "s": "These models can be used to detect repeat motifs in DNA (10), their embeddings can distinguish repeat families (49, 50), and a signal that responds to the spacers of CRISPR repeat arrays has been isolated in Evo 2 (49)."
+    },
+    {
+     "s": "The 2,900-nt flank of locus L0050, as returned to the worker in task t0062, was evaluated with gLM2 (50) and Evo 2 (49)."
+    }
+   ]
+  },
+  {
+   "n": 51,
+   "a": [
+    "Trieu H. Trinh",
+    "Yuhuai Wu",
+    "Quoc V. Le",
+    "He He",
+    "Thang Luong"
+   ],
+   "etal": false,
+   "t": "Solving olympiad geometry without human demonstrations",
+   "y": "2024",
+   "v": "Nature 625(7995), 476–482",
+   "u": "https://doi.org/10.1038/s41586-023-06747-5",
+   "raw": "T. H. Trinh, Y. Wu, Q. V. Le, H. He, T. Luong, Solving olympiad geometry without human demonstrations. Nature 625(7995), 476–482 (2024). doi:10.1038/s41586-023-06747-5",
+   "c": [
+    {
+     "s": "This is exemplified by LLM-derived solutions to long-standing open problems (51–53)."
+    }
+   ]
+  },
+  {
+   "n": 52,
+   "a": [
+    "Bernardino Romera-Paredes",
+    "Mohammadamin Barekatain",
+    "Alexander Novikov",
+    "Matej Balog",
+    "M. Pawan Kumar",
+    "Emilien Dupont",
+    "Francisco J. R. Ruiz",
+    "Jordan S. Ellenberg",
+    "Pengming Wang",
+    "Omar Fawzi",
+    "Pushmeet Kohli",
+    "Alhussein Fawzi"
+   ],
+   "etal": false,
+   "t": "Mathematical discoveries from program search with large language models",
+   "y": "2024",
+   "v": "Nature 625(7995), 468–475",
+   "u": "https://doi.org/10.1038/s41586-023-06924-6",
+   "raw": "B. Romera-Paredes et al., Mathematical discoveries from program search with large language models. Nature 625(7995), 468–475 (2024). doi:10.1038/s41586-023-06924-6",
+   "c": [
+    {
+     "s": "This is exemplified by LLM-derived solutions to long-standing open problems (51–53)."
+    }
+   ]
+  },
+  {
+   "n": 53,
+   "a": [
+    "OpenAI"
+   ],
+   "etal": false,
+   "t": "On the Navier–Stokes Millennium Prize Problem (8 September 2026)",
+   "y": "2026",
+   "v": "https://openai.com/index/n avier-stokes-solution/ [company report with the manus",
+   "u": "https://openai.com/index/n",
+   "raw": "OpenAI, On the Navier–Stokes Millennium Prize Problem (8 September 2026). https://openai.com/index/n avier-stokes-solution/ [company report with the manuscript ”Finite Time Blowup for Navier–Stokes” and a Lean formalization, not peer reviewed, accessed 19 September 2026]",
+   "c": [
+    {
+     "s": "This is exemplified by LLM-derived solutions to long-standing open problems (51–53)."
+    }
+   ]
+  },
+  {
+   "n": 54,
+   "a": [
+    "Ross D. King",
+    "Jem Rowland",
+    "Stephen G. Oliver",
+    "Michael Young",
+    "Wayne Aubrey",
+    "Emma Byrne",
+    "Maria Liakata",
+    "Magdalena Markham",
+    "Pinar Pir",
+    "Larisa N. Soldatova",
+    "Andrew Sparkes",
+    "Kenneth E. Whelan",
+    "Amanda Clare"
+   ],
+   "etal": false,
+   "t": "The Automation of Science",
+   "y": "2009",
+   "v": "Science 324(5923), 85–89",
+   "u": "https://doi.org/10.1126/science.1165620",
+   "raw": "R. D. King et al., The automation of science. Science 324(5923), 85–89 (2009). doi:10.1126/science.1165620",
+   "c": [
+    {
+     "s": "Whereas a mathematician can work entirely from first principles, a biologist often must test their ideas in the laboratory (54, 55)."
+    },
+    {
+     "s": "In earlier attempts to automate scientific discovery, both the expectation and the judgment of novelty were supplied by human experts (54, 55, 60)."
+    }
+   ]
+  },
+  {
+   "n": 55,
+   "a": [
+    "Hiroaki Kitano"
+   ],
+   "etal": false,
+   "t": "Nobel Turing Challenge: creating the engine for scientific discovery",
+   "y": "2021",
+   "v": "npj Systems Biology and Applications 7(1), 29",
+   "u": "https://doi.org/10.1038/s41540-021-00189-3",
+   "raw": "H. Kitano, Nobel Turing Challenge: Creating the engine for scientific discovery. npj Systems Biology and Applications 7(1), 29 (2021). doi:10.1038/s41540-021-00189-3",
+   "c": [
+    {
+     "s": "Whereas a mathematician can work entirely from first principles, a biologist often must test their ideas in the laboratory (54, 55)."
+    },
+    {
+     "s": "In earlier attempts to automate scientific discovery, both the expectation and the judgment of novelty were supplied by human experts (54, 55, 60)."
+    }
+   ]
+  },
+  {
+   "n": 56,
+   "a": [
+    "David B. Li",
+    "Garyk Brixi",
+    "Alexandra S. Kim",
+    "Mateus B. Fiamenghi",
+    "Claudia L. Driscoll",
+    "Simone A. Evans",
+    "Alex Gao",
+    "Natalia N. Ivanova",
+    "Nikos C. Kyrpides",
+    "Karl Deisseroth",
+    "Max E. Wilkinson",
+    "Michael A. Fischbach",
+    "Brian L. Hie"
+   ],
+   "etal": false,
+   "t": "Coevolutionary mining of prokaryotic non-coding elements with a genome language model",
+   "y": "2026",
+   "v": "bioRxiv [Preprint]",
+   "u": "https://doi.org/10.64898/2026.09.22.753630",
+   "raw": "D. B. Li et al., Coevolutionary mining of prokaryotic non-coding elements with a genome language model. bioRxiv [Preprint] (2026). doi:10.64898/2026.09.22.753630",
+   "c": [
+    {
+     "s": "Arrays of ncRNAs were recently discovered beside the unrelated UG27 RTs using a bespoke genome language model developed to mine non-coding elements (56), suggesting that this architecture arose more than once in nature."
+    }
+   ]
+  },
+  {
+   "n": 57,
+   "a": [
+    "Thomas S. Kuhn"
+   ],
+   "etal": false,
+   "t": "The Structure of Scientific Revolutions",
+   "y": "1962",
+   "v": "doi:10.7208/chicago/9780226458106.001.0001",
+   "u": "https://doi.org/10.7208/chicago/9780226458106.001.0001",
+   "raw": "T. S. Kuhn, The Structure of Scientific Revolutions (University of Chicago Press, 1996; first published 1962). doi:10.7208/chicago/9780226458106.001.0001",
+   "c": [
+    {
+     "s": "Awareness of anomaly is proposed to be at the start of scientific discovery (57), and an anomaly exists only against an expectation."
+    }
+   ]
+  },
+  {
+   "n": 58,
+   "a": [
+    "Varun Chandola",
+    "Arindam Banerjee",
+    "Vipin Kumar"
+   ],
+   "etal": false,
+   "t": "Anomaly detection",
+   "y": "2009",
+   "v": "ACM Computing Surveys 41(3), 1–58",
+   "u": "https://doi.org/10.1145/1541880.1541882",
+   "raw": "V. Chandola, A. Banerjee, V. Kumar, Anomaly detection: A survey. ACM Computing Surveys 41(3), 1–58 (2009). doi:10.1145/1541880.1541882",
+   "c": [
+    {
+     "s": "For statisticians that expectation is an explicit model of the data, whereas for biologists that expectation is often derived from contextual and tacit knowledge (58, 59)."
+    }
+   ]
+  },
+  {
+   "n": 59,
+   "a": [
+    "A. Silberschatz",
+    "A. Tuzhilin"
+   ],
+   "etal": false,
+   "t": "What makes patterns interesting in knowledge discovery systems",
+   "y": "1996",
+   "v": "IEEE Transactions on Knowledge and Data Engineering 8(6), 970–974",
+   "u": "https://doi.org/10.1109/69.553165",
+   "raw": "A. Silberschatz, A. Tuzhilin, What makes patterns interesting in knowledge discovery systems. IEEE Transactions on Knowledge and Data Engineering 8(6), 970–974 (1996). doi:10.1109/69.553165",
+   "c": [
+    {
+     "s": "For statisticians that expectation is an explicit model of the data, whereas for biologists that expectation is often derived from contextual and tacit knowledge (58, 59)."
+    }
+   ]
+  },
+  {
+   "n": 60,
+   "a": [
+    "Raúl E. Valdés-Pérez"
+   ],
+   "etal": false,
+   "t": "Principles of human—computer collaboration for knowledge discovery in science",
+   "y": "1999",
+   "v": "Artificial Intelligence 107(2), 335–346",
+   "u": "https://doi.org/10.1016/s0004-3702(98)00116-7",
+   "raw": "R. E. Valdés-Pérez, Principles of human-computer collaboration for knowledge discovery in science. Artificial Intelligence 107(2), 335–346 (1999). doi:10.1016/s0004-3702(98)00116-7",
+   "c": [
+    {
+     "s": "In earlier attempts to automate scientific discovery, both the expectation and the judgment of novelty were supplied by human experts (54, 55, 60)."
+    }
+   ]
+  },
+  {
+   "n": 61,
+   "a": [
+    "Abby M. Korn",
+    "Andrew E. Hillhouse",
+    "Lichang Sun",
+    "Jason J. Gill"
+   ],
+   "etal": false,
+   "t": "Comparative Genomics of Three Novel Jumbo Bacteriophages Infecting Staphylococcus aureus",
+   "y": "2021",
+   "v": "Journal of Virology 95(19), e02391-20",
+   "u": "https://doi.org/10.1128/jvi.02391-20",
+   "raw": "A. M. Korn, A. E. Hillhouse, L. Sun, J. J. Gill, Comparative genomics of three novel jumbo bacteriophages infecting Staphylococcus aureus. Journal of Virology 95(19), e02391-20 (2021). doi:10.1128/jvi.02391-20",
+   "c": [
+    {
+     "s": "The MarsHill ART locus is an example, as its original genome report identified the RT and proposed a 5′ ncRNA, yet described neither the repeats nor the partner gene (61)."
+    },
+    {
+     "s": "Loci were taken from the GenBank records of phages MarsHill (MW248466.1) (61) and SA1 (MW218148.1) (48)."
+    }
+   ]
+  },
+  {
+   "n": 62,
+   "a": [
+    "Zeming Lin",
+    "Halil Akin",
+    "Roshan Rao",
+    "Brian Hie",
+    "Zhongkai Zhu",
+    "Wenting Lu",
+    "Nikita Smetanin",
+    "Robert Verkuil",
+    "Ori Kabeli",
+    "Yaniv Shmueli",
+    "Allan dos Santos Costa",
+    "Maryam Fazel-Zarandi",
+    "Tom Sercu",
+    "Salvatore Candido",
+    "Alexander Rives"
+   ],
+   "etal": false,
+   "t": "Evolutionary-scale prediction of atomic-level protein structure with a language model",
+   "y": "2023",
+   "v": "Science 379(6637), 1123–1130",
+   "u": "https://doi.org/10.1126/science.ade2574",
+   "raw": "Z. Lin et al., Evolutionary-scale prediction of atomic-level protein structure with a language model. Science 379(6637), 1123–1130 (2023). doi:10.1126/science.ade2574",
+   "c": [
+    {
+     "s": "Structure predictions were dispatched to NVIDIA A100 and L4 GPUs (19 jobs) and used either ESMFold (esmfold_v1) (62) or ColabFold 1.6.1 with AlphaFold2-ptm models (63)."
+    }
+   ]
+  },
+  {
+   "n": 63,
+   "a": [
+    "Milot Mirdita",
+    "Konstantin Schütze",
+    "Yoshitaka Moriwaki",
+    "Lim Heo",
+    "Sergey Ovchinnikov",
+    "Martin Steinegger"
+   ],
+   "etal": false,
+   "t": "ColabFold: making protein folding accessible to all",
+   "y": "2022",
+   "v": "Nature Methods 19(6), 679–682",
+   "u": "https://doi.org/10.1038/s41592-022-01488-1",
+   "raw": "M. Mirdita et al., ColabFold: making protein folding accessible to all. Nature Methods 19(6), 679–682 (2022). doi:10.1038/s41592-022-01488-1",
+   "c": [
+    {
+     "s": "Structure predictions were dispatched to NVIDIA A100 and L4 GPUs (19 jobs) and used either ESMFold (esmfold_v1) (62) or ColabFold 1.6.1 with AlphaFold2-ptm models (63)."
+    },
+    {
+     "s": "AlphaFold2 (91) models were built with ColabFold 1.6.1 (63) for the 95 ART mem- bers, the RTs of the 8 further GenBank phage ART loci, 29 NART RTs, and 32 retron RTs that are closely related to them."
+    }
+   ]
+  },
+  {
+   "n": 64,
+   "a": [
+    "Sean R. Eddy"
+   ],
+   "etal": false,
+   "t": "Accelerated Profile HMM Searches",
+   "y": "2011",
+   "v": "PLoS Computational Biology 7(10), e1002195",
+   "u": "https://doi.org/10.1371/journal.pcbi.1002195",
+   "raw": "S. R. Eddy, Accelerated profile HMM searches. PLoS Computational Biology 7(10), e1002195 (2011). doi:10.1 371/journal.pcbi.1002195",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    }
+   ]
+  },
+  {
+   "n": 65,
+   "a": [
+    "Martin Steinegger",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets",
+   "y": "2017",
+   "v": "Nature Biotechnology 35(11), 1026–1028",
+   "u": "https://doi.org/10.1038/nbt.3988",
+   "raw": "M. Steinegger, J. Söding, MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets. Nature Biotechnology 35(11), 1026–1028 (2017). doi:10.1038/nbt.3988",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    },
+    {
+     "s": "The interface also ran MMseqs2 searches (65) either against the database representatives or against a reference set of 365 million proteins (UniProt and NCBI nr, clustered at 90% identity)."
+    }
+   ]
+  },
+  {
+   "n": 66,
+   "a": [
+    "Christiam Camacho",
+    "George Coulouris",
+    "Vahram Avagyan",
+    "Ning Ma",
+    "Jason Papadopoulos",
+    "Kevin Bealer",
+    "Thomas L Madden"
+   ],
+   "etal": false,
+   "t": "BLAST+: architecture and applications",
+   "y": "2009",
+   "v": "BMC Bioinformatics 10(1), 421",
+   "u": "https://doi.org/10.1186/1471-2105-10-421",
+   "raw": "C. Camacho et al., BLAST+: architecture and applications. BMC Bioinformatics 10(1), 421 (2009). doi:10.1186/ 1471-2105-10-421",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    },
+    {
+     "s": "Homologs of the MarsHill RT (GenBank QQM14740.1) were collected from GenBank with BLASTP (66) and from our metagenomic database with a profile HMM."
+    }
+   ]
+  },
+  {
+   "n": 67,
+   "a": [
+    "K. Katoh",
+    "D. M. Standley"
+   ],
+   "etal": false,
+   "t": "MAFFT Multiple Sequence Alignment Software Version 7: Improvements in Performance and Usability",
+   "y": "2013",
+   "v": "Molecular Biology and Evolution 30(4), 772–780",
+   "u": "https://doi.org/10.1093/molbev/mst010",
+   "raw": "K. Katoh, D. M. Standley, MAFFT multiple sequence alignment software version 7: Improvements in performance and usability. Molecular Biology and Evolution 30(4), 772–780 (2013). doi:10.1093/molbev/mst010",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    },
+    {
+     "s": "The first tier used 38 lineage-specific HMMs that were built from myRT (mafft --auto, hmmbuild) (67), with a class-specific bit-score floor and a margin of at least 10 bits over every other class (precision 0.997 in five-fold cross-validation)."
+    },
+    {
+     "s": "This placed 35,168 clusters in the seven known classes, namely retron (11,517), unknown group (UG; 10,759), group II intron (5,461), diversity-generating retroelement (DGR; 3,857), CRISPR-associated (2,067), group II-like (827), and abortive-infection (Abi; 680)."
+    },
+    {
+     "s": "RT-domain sequences of the 774-sequence set (taken as the Pfam RVT_1 envelope (81) ex- tended by 40 residues on each side) were aligned with MAFFT L-INS-i (67) and trimmed with trimAl (-gappyout) (86), which left 254 columns."
+    }
+   ]
+  },
+  {
+   "n": 68,
+   "a": [
+    "Morgan N. Price",
+    "Paramvir S. Dehal",
+    "Adam P. Arkin"
+   ],
+   "etal": false,
+   "t": "FastTree 2 – Approximately Maximum-Likelihood Trees for Large Alignments",
+   "y": "2010",
+   "v": "PLoS ONE 5(3), e9490",
+   "u": "https://doi.org/10.1371/journal.pone.0009490",
+   "raw": "M. N. Price, P. S. Dehal, A. P. Arkin, FastTree 2 – Approximately maximum-likelihood trees for large alignments. PLoS ONE 5(3), e9490 (2010). doi:10.1371/journal.pone.0009490",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    },
+    {
+     "s": "The third used a FastTree tree (-lg -gamma) (68) of 2,241 RT domains that were aligned to RVT_1, which required agreement among the five nearest labeled leaves."
+    },
+    {
+     "s": "Representatives were aligned with FAMSA (85), and a tree was inferred with FastTree under the LG model (68)."
+    }
+   ]
+  },
+  {
+   "n": 69,
+   "a": [
+    "Wei Shen",
+    "Botond Sipos",
+    "Liuyang Zhao"
+   ],
+   "etal": false,
+   "t": "SeqKit2: A Swiss army knife for sequence and alignment processing",
+   "y": "2024",
+   "v": "iMeta 3(3), e191",
+   "u": "https://doi.org/10.1002/imt2.191",
+   "raw": "W. Shen, B. Sipos, L. Zhao, SeqKit2: A Swiss army knife for sequence and alignment processing. iMeta 3(3), e191 (2024). doi:10.1002/imt2.191",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    }
+   ]
+  },
+  {
+   "n": 70,
+   "a": [
+    "Jim Shaw",
+    "Yun William Yu"
+   ],
+   "etal": false,
+   "t": "Fast and robust metagenomic sequence comparison through sparse chaining with skani",
+   "y": "2023",
+   "v": "Nature Methods 20(11), 1661–1665",
+   "u": "https://doi.org/10.1038/s41592-023-02018-3",
+   "raw": "J. Shaw, Y. W. Yu, Fast and robust metagenomic sequence comparison through sparse chaining with skani. Nature Methods 20(11), 1661–1665 (2023). doi:10.1038/s41592-023-02018-3",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    }
+   ]
+  },
+  {
+   "n": 71,
+   "a": [
+    "Antonio Pedro Camargo",
+    "Simon Roux",
+    "Frederik Schulz",
+    "Michal Babinski",
+    "Yan Xu",
+    "Bin Hu",
+    "Patrick S. G. Chain",
+    "Stephen Nayfach",
+    "Nikos C. Kyrpides"
+   ],
+   "etal": false,
+   "t": "Identification of mobile genetic elements with geNomad",
+   "y": "2024",
+   "v": "Nature Biotechnology 42(8), 1303–1312",
+   "u": "https://doi.org/10.1038/s41587-023-01953-y",
+   "raw": "A. P. Camargo et al., Identification of mobile genetic elements with geNomad. Nature Biotechnology 42(8), 1303–1312 (2024). doi:10.1038/s41587-023-01953-y",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    },
+    {
+     "s": "Genes were predicted with prodigal-gv 2.10.0 (71, 77) under default parameters in unannotated assemblies of Logan, ENA, and NCBI, and the source gene calls were retained for annotated assemblies of NCBI and JGI."
+    },
+    {
+     "s": "Contigs were classified as virus, plasmid, or chromosome with geNomad 1.12.0 (database release 1.9, end-to-end workflow, default settings) (71), and gene calls on database contigs were taken from the database annotation."
+    }
+   ]
+  },
+  {
+   "n": 72,
+   "a": [
+    "Eric P. Nawrocki",
+    "Sean R. Eddy"
+   ],
+   "etal": false,
+   "t": "Infernal 1.1: 100-fold faster RNA homology searches",
+   "y": "2013",
+   "v": "Bioinformatics 29(22), 2933– 2935",
+   "u": "https://doi.org/10.1093/bioinformatics/btt509",
+   "raw": "E. P. Nawrocki, S. R. Eddy, Infernal 1.1: 100-fold faster RNA homology searches. Bioinformatics 29(22), 2933– 2935 (2013). doi:10.1093/bioinformatics/btt509",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    }
+   ]
+  },
+  {
+   "n": 73,
+   "a": [
+    "Ronny Lorenz",
+    "Stephan H Bernhart",
+    "Christian Höner zu Siederdissen",
+    "Hakim Tafer",
+    "Christoph Flamm",
+    "Peter F Stadler",
+    "Ivo L Hofacker"
+   ],
+   "etal": false,
+   "t": "ViennaRNA Package 2.0",
+   "y": "2011",
+   "v": "Algorithms for Molecular Biology 6(1), 26",
+   "u": "https://doi.org/10.1186/1748-7188-6-26",
+   "raw": "R. Lorenz et al., ViennaRNA Package 2.0. Algorithms for Molecular Biology 6(1), 26 (2011). doi:10.1186/1748 -7188-6-26",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    },
+    {
+     "s": "Minimum-free-energy structures were predicted with RNAfold of ViennaRNA 2.7.2 (73) at 37 °C with default parameters and drawn at one scale within a panel."
+    }
+   ]
+  },
+  {
+   "n": 74,
+   "a": [
+    "Martin Šošić",
+    "Mile Šikić"
+   ],
+   "etal": false,
+   "t": "Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance",
+   "y": "2017",
+   "v": "Šikić, Edlib: a C/C++ library for fast, exact sequence alignment using edit dist",
+   "u": "https://doi.org/10.1093/bioinformatics/btw753",
+   "raw": "M. Šošić, M. Šikić, Edlib: a C/C++ library for fast, exact sequence alignment using edit distance. Bioinformatics 33(9), 1394–1395 (2017). doi:10.1093/bioinformatics/btw753",
+   "c": [
+    {
+     "s": "For sequence and RNA analysis, the agents ran HMMER 3.3.2 (64), MMseqs2 release 17-b804f (65), BLAST+ 2.16.0 (66), MAFFT 7.490 (67), FastTree 2.1.11 (68), SeqKit 2.8.2 (69), skani 0.3.2 (70), geNomad 1.12.0 (71), Infernal 1.1.5 (72), ViennaRNA 2.7.2 (73), and edlib 1.3.9 (74)."
+    }
+   ]
+  },
+  {
+   "n": 75,
+   "a": [
+    "Y. Zhang"
+   ],
+   "etal": false,
+   "t": "TM-align: a protein structure alignment algorithm based on the TM-score",
+   "y": "2005",
+   "v": "Nucleic Acids Research 33(7), 2302–2309",
+   "u": "https://doi.org/10.1093/nar/gki524",
+   "raw": "Y. Zhang, J. Skolnick, TM-align: a protein structure alignment algorithm based on the TM-score. Nucleic Acids Research 33(7), 2302–2309 (2005). doi:10.1093/nar/gki524",
+   "c": [
+    {
+     "s": "For structure analysis, they ran TM-align (75) through tmtools 0.3.0 and the Foldseek web server (76)."
+    },
+    {
+     "s": "The RVT_1 ranges of Ec86, BPP-1, and the GsI-IIC group II intron RT (PDB 6AR1, chain A) were superposed on the MarsHill RT domain with TM-align (75)."
+    }
+   ]
+  },
+  {
+   "n": 76,
+   "a": [
+    "Michel van Kempen",
+    "Stephanie S. Kim",
+    "Charlotte Tumescheit",
+    "Milot Mirdita",
+    "Jeongjae Lee",
+    "Cameron L. M. Gilchrist",
+    "Johannes Söding",
+    "Martin Steinegger"
+   ],
+   "etal": false,
+   "t": "Fast and accurate protein structure search with Foldseek",
+   "y": "2024",
+   "v": "Nature Biotechnology 42(2), 243–246",
+   "u": "https://doi.org/10.1038/s41587-023-01773-0",
+   "raw": "M. van Kempen et al., Fast and accurate protein structure search with Foldseek. Nature Biotechnology 42(2), 243–246 (2024). doi:10.1038/s41587-023-01773-0",
+   "c": [
+    {
+     "s": "For structure analysis, they ran TM-align (75) through tmtools 0.3.0 and the Foldseek web server (76)."
+    },
+    {
+     "s": "The MarsHill RT core (residues 211 to 501) and N-terminal region (residues 1 to 210) were each searched against a panel of 16 solved RT structures with Foldseek 10.941cd33 (easy-search --exhaustive-search 1 -e 10) (76)."
+    }
+   ]
+  },
+  {
+   "n": 77,
+   "a": [
+    "Doug Hyatt",
+    "Gwo-Liang Chen",
+    "Philip F LoCascio",
+    "Miriam L Land",
+    "Frank W Larimer",
+    "Loren J Hauser"
+   ],
+   "etal": false,
+   "t": "Prodigal: prokaryotic gene recognition and translation initiation site identification",
+   "y": "2010",
+   "v": "BMC Bioinformatics 11(1), 119",
+   "u": "https://doi.org/10.1186/1471-2105-11-119",
+   "raw": "D. Hyatt et al., Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics 11(1), 119 (2010). doi:10.1186/1471-2105-11-119",
+   "c": [
+    {
+     "s": "Genes were predicted with prodigal-gv 2.10.0 (71, 77) under default parameters in unannotated assemblies of Logan, ENA, and NCBI, and the source gene calls were retained for annotated assemblies of NCBI and JGI."
+    }
+   ]
+  },
+  {
+   "n": 78,
+   "a": [
+    "Martin C. Frith"
+   ],
+   "etal": false,
+   "t": "A new repeat-masking method enables specific detection of homologous sequences",
+   "y": "2011",
+   "v": "Nucleic Acids Research 39(4), e23",
+   "u": "https://doi.org/10.1093/nar/gkq1212",
+   "raw": "M. C. Frith, A new repeat-masking method enables specific detection of homologous sequences. Nucleic Acids Research 39(4), e23 (2011). doi:10.1093/nar/gkq1212",
+   "c": [
+    {
+     "s": "Proteins were deduplicated, and were excluded if they had incomplete coding sequences, non-standard amino acids, more than 8,000 residues, degenerate k-mer repeats, or at least 50% low-complexity sequence as masked by tantan (78)."
+    }
+   ]
+  },
+  {
+   "n": 79,
+   "a": [
+    "Benjamin Buchfink",
+    "Klaus Reuter",
+    "Hajk-Georg Drost"
+   ],
+   "etal": false,
+   "t": "Sensitive protein alignments at tree-of-life scale using DIAMOND",
+   "y": "2021",
+   "v": "Nature Methods 18(4), 366–368",
+   "u": "https://doi.org/10.1038/s41592-021-01101-x",
+   "raw": "B. Buchfink, K. Reuter, H.-G. Drost, Sensitive protein alignments at tree-of-life scale using DIAMOND. Nature Methods 18(4), 366–368 (2021). doi:10.1038/s41592-021-01101-x",
+   "c": [
+    {
+     "s": "The remaining proteins (approximately 15.8 billion) were clustered with DIAMOND (79, 80)."
+    },
+    {
+     "s": "The pooled set was compared all against all with DIAMOND blastp (--very-sensitive, E ≤1 × 10−5) (79), and proteins were linked at bit scores of at least 140."
+    },
+    {
+     "s": "The published retron RTs spanned retron clades 1 to 11 and the retron-like RTs of these classifi- cations, and included the 13 references that were most similar to MarsHill RT homologs in a DIAMOND search (79)."
+    }
+   ]
+  },
+  {
+   "n": 80,
+   "a": [
+    "Benjamin Buchfink",
+    "Haim Ashkenazy",
+    "Klaus Reuter",
+    "John A. Kennedy",
+    "Hajk-Georg Drost"
+   ],
+   "etal": false,
+   "t": "Sensitive clustering of protein sequences at tree-of-life scale using DIAMOND DeepClust",
+   "y": "2023",
+   "v": "bioRxiv [Preprint]",
+   "u": "https://doi.org/10.1101/2023.01.24.525373",
+   "raw": "B. Buchfink, H. Ashkenazy, K. Reuter, J. A. Kennedy, H.-G. Drost, Sensitive clustering of protein sequences at tree-of-life scale using DIAMOND DeepClust. bioRxiv [Preprint] (2023). doi:10.1101/2023.01.24.525373",
+   "c": [
+    {
+     "s": "The remaining proteins (approximately 15.8 billion) were clustered with DIAMOND (79, 80)."
+    }
+   ]
+  },
+  {
+   "n": 81,
+   "a": [
+    "Jaina Mistry",
+    "Sara Chuguransky",
+    "Lowri Williams",
+    "Matloob Qureshi",
+    "Gustavo A Salazar",
+    "Erik L L Sonnhammer",
+    "Silvio C E Tosatto",
+    "Lisanna Paladin",
+    "Shriya Raj",
+    "Lorna J Richardson",
+    "Robert D Finn",
+    "Alex Bateman"
+   ],
+   "etal": false,
+   "t": "Pfam: The protein families database in 2021",
+   "y": "2021",
+   "v": "Nucleic Acids Research 49(D1), D412–D419",
+   "u": "https://doi.org/10.1093/nar/gkaa913",
+   "raw": "J. Mistry et al., Pfam: The protein families database in 2021. Nucleic Acids Research 49(D1), D412–D419 (2021). doi:10.1093/nar/gkaa913",
+   "c": [
+    {
+     "s": "Agents accessed the database through a programmatic interface that returned the members of a cluster, protein and nucleotide sequences, gene neighborhoods, biosample records, and precomputed Pfam-A annotations (81)."
+    },
+    {
+     "s": "RT census by the agents. 52 profile hidden Markov models (HMMs) were assembled from six Pfam profiles (RVT_1, RVT_2, RVT_3, RVT_N, GIIM, and Intron_maturas2) (81), the 45 class-specific profiles of myRT (82), and one profile that was built from an alignment from Toro (83)."
+    },
+    {
+     "s": "RT-domain sequences of the 774-sequence set (taken as the Pfam RVT_1 envelope (81) ex- tended by 40 residues on each side) were aligned with MAFFT L-INS-i (67) and trimmed with trimAl (-gappyout) (86), which left 254 columns."
+    },
+    {
+     "s": "Thirty-six partner sequences of the three types were searched against Pfam-A (81) with hmmsearch at gathering thresholds (--cut_ga), with the search-space size set to the number of models."
+    }
+   ]
+  },
+  {
+   "n": 82,
+   "a": [
+    "Fatemeh Sharifi",
+    "Yuzhen Ye"
+   ],
+   "etal": false,
+   "t": "Identification and classification of reverse transcriptases in bacterial genomes and metagenomes",
+   "y": "2022",
+   "v": "Nucleic Acids Research 50(5), e29",
+   "u": "https://doi.org/10.1093/nar/gkab1207",
+   "raw": "F. Sharifi, Y. Ye, Identification and classification of reverse transcriptases in bacterial genomes and metagenomes. Nucleic Acids Research 50(5), e29 (2022). doi:10.1093/nar/gkab1207",
+   "c": [
+    {
+     "s": "RT census by the agents. 52 profile hidden Markov models (HMMs) were assembled from six Pfam profiles (RVT_1, RVT_2, RVT_3, RVT_N, GIIM, and Intron_maturas2) (81), the 45 class-specific profiles of myRT (82), and one profile that was built from an alignment from Toro (83)."
+    },
+    {
+     "s": "Hits of 350 to 900 residues (n = 4,379) were pooled with the 12 phage RTs and 2,019 reference RTs of the myRT classification (82)."
+    },
+    {
+     "s": "The 957-sequence set, which was used to compare N-terminal lengths across RT classes, comprised 633 labeled RTs from published classifications (39, 43, 82), 294 classified representatives from our database, and 30 ART RTs."
+    },
+    {
+     "s": "Of the retron RTs, 325 came from published classifications (39, 82) and 292 were retron-classified representatives from our database."
+    }
+   ]
+  },
+  {
+   "n": 83,
+   "a": [
+    "Nicolás Toro",
+    "Rafael Nisa-Martínez"
+   ],
+   "etal": false,
+   "t": "Comprehensive Phylogenetic Analysis of Bacterial Reverse Transcriptases",
+   "y": "2014",
+   "v": "PLoS ONE 9(11), e114083",
+   "u": "https://doi.org/10.1371/journal.pone.0114083",
+   "raw": "N. Toro, R. Nisa-Martínez, Comprehensive phylogenetic analysis of bacterial reverse transcriptases. PLoS ONE 9(11), e114083 (2014). doi:10.1371/journal.pone.0114083",
+   "c": [
+    {
+     "s": "RT census by the agents. 52 profile hidden Markov models (HMMs) were assembled from six Pfam profiles (RVT_1, RVT_2, RVT_3, RVT_N, GIIM, and Intron_maturas2) (81), the 45 class-specific profiles of myRT (82), and one profile that was built from an alignment from Toro (83)."
+    }
+   ]
+  },
+  {
+   "n": 84,
+   "a": [
+    "C. Si",
+    "D. Yang",
+    "T. Hashimoto"
+   ],
+   "etal": false,
+   "t": "Can LLMs generate novel research ideas?",
+   "y": "2025",
+   "v": "A large-scale human study with 100+ NLP researchers, in The Thirteenth Internati",
+   "u": "",
+   "raw": "C. Si, D. Yang, T. Hashimoto, Can LLMs generate novel research ideas? A large-scale human study with 100+ NLP researchers, in The Thirteenth International Conference on Learning Representations (ICLR, 2025).",
+   "c": [
+    {
+     "s": "The 19 reports of the campaign were ranked in a tournament of pairwise compar- isons, a design that was used previously to rank machine-generated hypotheses (21, 24, 84)."
+    }
+   ]
+  },
+  {
+   "n": 85,
+   "a": [
+    "Sebastian Deorowicz",
+    "Agnieszka Debudaj-Grabysz",
+    "Adam Gudyś"
+   ],
+   "etal": false,
+   "t": "FAMSA: Fast and accurate multiple sequence alignment of huge protein families",
+   "y": "2016",
+   "v": "Gudyś, FAMSA: Fast and accurate multiple sequence alignment of huge protein fami",
+   "u": "https://doi.org/10.1038/srep33964",
+   "raw": "S. Deorowicz, A. Debudaj-Grabysz, A. Gudyś, FAMSA: Fast and accurate multiple sequence alignment of huge protein families. Scientific Reports 6(1), 33964 (2016). doi:10.1038/srep33964",
+   "c": [
+    {
+     "s": "Representatives were aligned with FAMSA (85), and a tree was inferred with FastTree under the LG model (68)."
+    }
+   ]
+  },
+  {
+   "n": 86,
+   "a": [
+    "Salvador Capella-Gutiérrez",
+    "José M. Silla-Martínez",
+    "Toni Gabaldón"
+   ],
+   "etal": false,
+   "t": "trimAl: a tool for automated alignment trimming in large-scale phylogenetic analyses",
+   "y": "2009",
+   "v": "Bioinformatics 25(15), 1972–1973",
+   "u": "https://doi.org/10.1093/bioinformatics/btp348",
+   "raw": "S. Capella-Gutiérrez, J. M. Silla-Martínez, T. Gabaldón, trimAl: A tool for automated alignment trimming in large-scale phylogenetic analyses. Bioinformatics 25(15), 1972–1973 (2009). doi:10.1093/bioinformatics/btp348",
+   "c": [
+    {
+     "s": "RT-domain sequences of the 774-sequence set (taken as the Pfam RVT_1 envelope (81) ex- tended by 40 residues on each side) were aligned with MAFFT L-INS-i (67) and trimmed with trimAl (-gappyout) (86), which left 254 columns."
+    }
+   ]
+  },
+  {
+   "n": 87,
+   "a": [
+    "Thomas K F Wong",
+    "Nhan Ly-Trong",
+    "Huaiyan Ren",
+    "Piyumal Demotte",
+    "Hector Baños",
+    "Andrew J Roger",
+    "Edward Susko",
+    "Chris Bielow",
+    "Nicola De Maio",
+    "Nick Goldman",
+    "Matthew W Hahn",
+    "Mario dos Reis",
+    "Le Sy Vinh",
+    "Gavin Huttley",
+    "Robert Lanfear",
+    "Bui Quang Minh"
+   ],
+   "etal": false,
+   "t": "IQ-TREE 3: phylogenomic inference software using complex evolutionary models",
+   "y": "2026",
+   "v": "Molecular Biology and Evolution 43(5), msag117",
+   "u": "https://doi.org/10.1093/molbev/msag117",
+   "raw": "T. K. F. Wong et al., IQ-TREE 3: Phylogenomic inference software using complex evolutionary models. Molecular Biology and Evolution 43(5), msag117 (2026). doi:10.1093/molbev/msag117",
+   "c": [
+    {
+     "s": "A B Closest retron clade (32) NART (29) ART (103) C NART ART Aligned block, 44 columns ART NTD profile, 4 of 29 Reverse search, 0 of 71 100 residues D Closest retron clade NART ART Repeat array 0 of 5 0 of 17 23 of 50 Non-coding ≥ 500 nt 1 of 10 0 of 28 21 of 41 ART partner 0 of 5 0 of 29 56 of 67 RNA polymerase 0 of 10 8 of 28 0 of 41 E Closest retron clade NART, 54-kb contig NART, 333-kb contig NART, 14-kb contig ART, L0050 ART, MarsHill 1 kb NTD RT Repeat array Repeat ART partner RNA polymerase Other gene F Closest retron clade NART ART, type II ART, type I ART, type I ART, type I ART, type III NTD Start of the RT domain G Closest retron clade (16) NART (29) ART (87) TM-score H N region Rest of the RT NTD, 164 RT NTD, 209 RT RT domain, % Identity to nearest relative NTD, % Identity N region (aa) 0.4 ≥ 0.8 Closest retron clade (32) NART (29) ART (103) Mean pLDDT Supp."
+    },
+    {
+     "s": "A maximum-likelihood tree was inferred with IQ-TREE 3.1.2 (87) under the model that ModelFinder (88) selected by BIC (Q.pfam+F+R6), with 1,000 ultrafast bootstrap (89) and 1,000 SH-aLRT (90) replicates, and was midpoint-rooted."
+    }
+   ]
+  },
+  {
+   "n": 88,
+   "a": [
+    "Subha Kalyaanamoorthy",
+    "Bui Quang Minh",
+    "Thomas K F Wong",
+    "Arndt von Haeseler",
+    "Lars S Jermiin"
+   ],
+   "etal": false,
+   "t": "ModelFinder: fast model selection for accurate phylogenetic estimates",
+   "y": "2017",
+   "v": "Nature Methods 14(6), 587–589",
+   "u": "https://doi.org/10.1038/nmeth.4285",
+   "raw": "S. Kalyaanamoorthy, B. Q. Minh, T. K. F. Wong, A. von Haeseler, L. S. Jermiin, ModelFinder: Fast model selection for accurate phylogenetic estimates. Nature Methods 14(6), 587–589 (2017). doi:10.1038/nmeth.4285",
+   "c": [
+    {
+     "s": "A maximum-likelihood tree was inferred with IQ-TREE 3.1.2 (87) under the model that ModelFinder (88) selected by BIC (Q.pfam+F+R6), with 1,000 ultrafast bootstrap (89) and 1,000 SH-aLRT (90) replicates, and was midpoint-rooted."
+    }
+   ]
+  },
+  {
+   "n": 89,
+   "a": [
+    "Diep Thi Hoang",
+    "Olga Chernomor",
+    "Arndt von Haeseler",
+    "Bui Quang Minh",
+    "Le Sy Vinh"
+   ],
+   "etal": false,
+   "t": "UFBoot2: Improving the Ultrafast Bootstrap Approximation",
+   "y": "2018",
+   "v": "Molecular Biology and Evolution 35(2), 518–522",
+   "u": "https://doi.org/10.1093/molbev/msx281",
+   "raw": "D. T. Hoang, O. Chernomor, A. von Haeseler, B. Q. Minh, L. S. Vinh, UFBoot2: Improving the ultrafast bootstrap approximation. Molecular Biology and Evolution 35(2), 518–522 (2018). doi:10.1093/molbev/msx281",
+   "c": [
+    {
+     "s": "A maximum-likelihood tree was inferred with IQ-TREE 3.1.2 (87) under the model that ModelFinder (88) selected by BIC (Q.pfam+F+R6), with 1,000 ultrafast bootstrap (89) and 1,000 SH-aLRT (90) replicates, and was midpoint-rooted."
+    }
+   ]
+  },
+  {
+   "n": 90,
+   "a": [
+    "Stéphane Guindon",
+    "Jean-François Dufayard",
+    "Vincent Lefort",
+    "Maria Anisimova",
+    "Wim Hordijk",
+    "Olivier Gascuel"
+   ],
+   "etal": false,
+   "t": "New Algorithms and Methods to Estimate Maximum-Likelihood Phylogenies: Assessing the Performance of PhyML 3.0",
+   "y": "2010",
+   "v": "Systematic Biology 59(3), 307–321",
+   "u": "https://doi.org/10.1093/sysbio/syq010",
+   "raw": "S. Guindon et al., New algorithms and methods to estimate maximum-likelihood phylogenies: Assessing the performance of PhyML 3.0. Systematic Biology 59(3), 307–321 (2010). doi:10.1093/sysbio/syq010",
+   "c": [
+    {
+     "s": "A maximum-likelihood tree was inferred with IQ-TREE 3.1.2 (87) under the model that ModelFinder (88) selected by BIC (Q.pfam+F+R6), with 1,000 ultrafast bootstrap (89) and 1,000 SH-aLRT (90) replicates, and was midpoint-rooted."
+    }
+   ]
+  },
+  {
+   "n": 91,
+   "a": [
+    "John Jumper",
+    "Richard Evans",
+    "Alexander Pritzel",
+    "Tim Green",
+    "Michael Figurnov",
+    "Olaf Ronneberger",
+    "Kathryn Tunyasuvunakool",
+    "Russ Bates",
+    "Augustin Žídek",
+    "Anna Potapenko",
+    "Alex Bridgland",
+    "Clemens Meyer",
+    "Simon A. A. Kohl",
+    "Andrew J. Ballard",
+    "Andrew Cowie",
+    "Bernardino Romera-Paredes",
+    "Stanislav Nikolov",
+    "Rishub Jain",
+    "Jonas Adler",
+    "Trevor Back",
+    "Stig Petersen",
+    "David Reiman",
+    "Ellen Clancy",
+    "Michal Zielinski",
+    "Martin Steinegger",
+    "Michalina Pacholska",
+    "Tamas Berghammer",
+    "Sebastian Bodenstein",
+    "David Silver",
+    "Oriol Vinyals",
+    "Andrew W. Senior",
+    "Koray Kavukcuoglu",
+    "Pushmeet Kohli",
+    "Demis Hassabis"
+   ],
+   "etal": false,
+   "t": "Highly accurate protein structure prediction with AlphaFold",
+   "y": "2021",
+   "v": "Nature 596(7873), 583–589",
+   "u": "https://doi.org/10.1038/s41586-021-03819-2",
+   "raw": "J. Jumper et al., Highly accurate protein structure prediction with AlphaFold. Nature 596(7873), 583–589 (2021). doi:10.1038/s41586-021-03819-2",
+   "c": [
+    {
+     "s": "AlphaFold2 (91) models were built with ColabFold 1.6.1 (63) for the 95 ART mem- bers, the RTs of the 8 further GenBank phage ART loci, 29 NART RTs, and 32 retron RTs that are closely related to them."
+    }
+   ]
+  },
+  {
+   "n": 92,
+   "a": [
+    "Shifu Chen",
+    "Yanqing Zhou",
+    "Yaru Chen",
+    "Jia Gu"
+   ],
+   "etal": false,
+   "t": "fastp: an ultra-fast all-in-one FASTQ preprocessor",
+   "y": "2018",
+   "v": "Bioinformatics 34(17), i884–i890",
+   "u": "https://doi.org/10.1093/bioinformatics/bty560",
+   "raw": "S. Chen, Y. Zhou, Y. Chen, J. Gu, fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics 34(17), i884–i890 (2018). doi:10.1093/bioinformatics/bty560",
+   "c": [
+    {
+     "s": "Reads were trimmed with fastp 1.3.6 (minimum length 30 nt) (92) and aligned with Bowtie 2 v2.5.5 (--very-sensitive -X 1000 -- no-unal) (93) to the SA1 genome (MW218148.1) together with the S. lentus chromosome (NZ_CP059679.1)."
+    }
+   ]
+  },
+  {
+   "n": 93,
+   "a": [
+    "Ben Langmead",
+    "Steven L Salzberg"
+   ],
+   "etal": false,
+   "t": "Fast gapped-read alignment with Bowtie 2",
+   "y": "2012",
+   "v": "Nature Methods 9(4), 357–359",
+   "u": "https://doi.org/10.1038/nmeth.1923",
+   "raw": "B. Langmead, S. L. Salzberg, Fast gapped-read alignment with Bowtie 2. Nature Methods 9(4), 357–359 (2012). doi:10.1038/nmeth.1923",
+   "c": [
+    {
+     "s": "Reads were trimmed with fastp 1.3.6 (minimum length 30 nt) (92) and aligned with Bowtie 2 v2.5.5 (--very-sensitive -X 1000 -- no-unal) (93) to the SA1 genome (MW218148.1) together with the S. lentus chromosome (NZ_CP059679.1)."
+    }
+   ]
+  },
+  {
+   "n": 94,
+   "a": [
+    "Petr Danecek",
+    "James K Bonfield",
+    "Jennifer Liddle",
+    "John Marshall",
+    "Valeriu Ohan",
+    "Martin O Pollard",
+    "Andrew Whitwham",
+    "Thomas Keane",
+    "Shane A McCarthy",
+    "Robert M Davies",
+    "Heng Li"
+   ],
+   "etal": false,
+   "t": "Twelve years of SAMtools and BCFtools",
+   "y": "2021",
+   "v": "GigaScience 10(2), giab008",
+   "u": "https://doi.org/10.1093/gigascience/giab008",
+   "raw": "P. Danecek et al., Twelve years of SAMtools and BCFtools. GigaScience 10(2), giab008 (2021). doi:10.1093/gi gascience/giab008",
+   "c": [
+    {
+     "s": "Alignments were sorted and indexed with SAMtools 1.24 (94)."
+    },
+    {
+     "s": "Alignments were sorted with SAMtools 1.24 (94)."
+    }
+   ]
+  },
+  {
+   "n": 95,
+   "a": [
+    "Mark B. Stead",
+    "Ankit Agrawal",
+    "Katherine E. Bowden",
+    "Rakia Nasir",
+    "Bijoy K. Mohanty",
+    "Richard B. Meagher",
+    "Sidney R. Kushner"
+   ],
+   "etal": false,
+   "t": "RNA snap ™: a rapid, quantitative and inexpensive, method for isolating total RNA from bacteria",
+   "y": "2012",
+   "v": "Nucleic Acids Research 40(20), e156",
+   "u": "https://doi.org/10.1093/nar/gks680",
+   "raw": "M. B. Stead et al., RNAsnap™: a rapid, quantitative and inexpensive, method for isolating total RNA from bacteria. Nucleic Acids Research 40(20), e156 (2012). doi:10.1093/nar/gks680",
+   "c": [
+    {
+     "s": "RNA was extracted with hot formamide as previously described (95, 96)."
+    }
+   ]
+  },
+  {
+   "n": 96,
+   "a": [
+    "Peter H. Yoon",
+    "Zeyuan Zhang",
+    "Kenneth J. Loi",
+    "Benjamin A. Adler",
+    "Arushi Lahiri",
+    "Kamakshi Vohra",
+    "Honglue Shi",
+    "Daniel Bellieny Rabelo",
+    "Marena Trinidad",
+    "Ron S. Boger",
+    "Muntathar J. Al-Shimary",
+    "Jennifer A. Doudna"
+   ],
+   "etal": false,
+   "t": "Structure-guided discovery of ancestral CRISPR-Cas13 ribonucleases",
+   "y": "2024",
+   "v": "Science 385(6708), 538– 543",
+   "u": "https://doi.org/10.1126/science.adq0553",
+   "raw": "P. H. Yoon et al., Structure-guided discovery of ancestral CRISPR-Cas13 ribonucleases. Science 385(6708), 538– 543 (2024). doi:10.1126/science.adq0553",
+   "c": [
+    {
+     "s": "RNA was extracted with hot formamide as previously described (95, 96)."
+    }
+   ]
+  },
+  {
+   "n": 97,
+   "a": [
+    "Martin Steinegger",
+    "Markus Meier",
+    "Milot Mirdita",
+    "Harald Vöhringer",
+    "Stephan J. Haunsberger",
+    "Johannes Söding"
+   ],
+   "etal": false,
+   "t": "HH-suite3 for fast remote homology detection and deep protein annotation",
+   "y": "2019",
+   "v": "BMC Bioinformatics 20(1), 473",
+   "u": "https://doi.org/10.1186/s12859-019-3019-7",
+   "raw": "M. Steinegger et al., HH-suite3 for fast remote homology detection and deep protein annotation. BMC Bioinformatics 20(1), 473 (2019). doi:10.1186/s12859-019-3019-7",
+   "c": [
+    {
+     "s": "Proteins that were encoded in the 230 representative loci were clustered with MMseqs2 cluster (--cluster-mode 1 -e 0.01 -s 7.5 -c 0.5), and the cluster alignments were compared all against all with HHblits (2 iterations, E ≤0.01) (97)."
+    }
+   ]
+  },
+  {
+   "n": 98,
+   "a": [
+    "Richard Evans",
+    "Michael O’Neill",
+    "Alexander Pritzel",
+    "Natasha Antropova",
+    "Andrew Senior",
+    "Tim Green",
+    "Augustin Žídek",
+    "Russ Bates",
+    "Sam Blackwell",
+    "Jason Yim",
+    "Olaf Ronneberger",
+    "Sebastian Bodenstein",
+    "Michal Zielinski",
+    "Alex Bridgland",
+    "Anna Potapenko",
+    "Andrew Cowie",
+    "Kathryn Tunyasuvunakool",
+    "Rishub Jain",
+    "Ellen Clancy",
+    "Pushmeet Kohli",
+    "John Jumper",
+    "Demis Hassabis"
+   ],
+   "etal": false,
+   "t": "Protein complex prediction with AlphaFold-Multimer",
+   "y": "2021",
+   "v": "bioRxiv [Preprint]",
+   "u": "https://doi.org/10.1101/2021.10.04.463034",
+   "raw": "R. Evans et al., Protein complex prediction with AlphaFold-Multimer. bioRxiv [Preprint] (2021). doi:10.1101/ 2021.10.04.463034",
+   "c": [
+    {
+     "s": "Type I RT-partner pairs from five environmental loci and one shuffled non-cognate pair were co-folded with AlphaFold2-multimer v3 (98) in ColabFold 1.6.1 on locus-paired MSAs (3 models per pair, 3 recycles, 1 seed, no templates)."
+    }
+   ]
+  },
+  {
+   "n": 99,
+   "a": [
+    "Saro Passaro",
+    "Gabriele Corso",
+    "Jeremy Wohlwend",
+    "Mateo Reveiz",
+    "Stephan Thaler",
+    "Vignesh Ram Somnath",
+    "Noah Getz",
+    "Tally Portnoi",
+    "Julien Roy",
+    "Hannes Stark",
+    "David Kwabi-Addo",
+    "Dominique Beaini",
+    "Tommi Jaakkola",
+    "Regina Barzilay"
+   ],
+   "etal": false,
+   "t": "Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction",
+   "y": "2025",
+   "v": "bioRxiv [Preprint]",
+   "u": "https://doi.org/10.1101/2025.06.14.659707",
+   "raw": "S. Passaro et al., Boltz-2: Towards accurate and efficient binding affinity prediction. bioRxiv [Preprint] (2025). doi:10.1101/2025.06.14.659707",
+   "c": [
+    {
+     "s": "AlphaFold2- multimer v3 was run in ColabFold 1.6.1 (5 models × 3 seeds, 3 recycles, no templates), and Boltz-2 v2.2.1 (99) was run with 3 recycling steps and 5 diffusion samples × 2 seeds."
+    }
+   ]
+  },
+  {
+   "n": 100,
+   "a": [
+    "Wolfgang Kabsch",
+    "Christian Sander"
+   ],
+   "etal": false,
+   "t": "Dictionary of protein secondary structure: Pattern recognition of hydrogen‐bonded and geometrical features",
+   "y": "1983",
+   "v": "Biopolymers 22(12), 2577–2637",
+   "u": "https://doi.org/10.1002/bip.360221211",
+   "raw": "W. Kabsch, C. Sander, Dictionary of protein secondary structure: Pattern recognition of hydrogen-bonded and geometrical features. Biopolymers 22(12), 2577–2637 (1983). doi:10.1002/bip.360221211",
+   "c": [
+    {
+     "s": "Strands were assigned on 1QSR with DSSP (100)."
+    }
+   ]
+  },
+  {
+   "n": 101,
+   "a": [
+    "Chengxin Zhang",
+    "Morgan Shine",
+    "Anna Marie Pyle",
+    "Yang Zhang"
+   ],
+   "etal": false,
+   "t": "US-align: universal structure alignments of proteins, nucleic acids, and macromolecular complexes",
+   "y": "2022",
+   "v": "Nature Methods 19(9), 1109–1115",
+   "u": "https://doi.org/10.1038/s41592-022-01585-1",
+   "raw": "C. Zhang, M. Shine, A. M. Pyle, Y. Zhang, US-align: universal structure alignments of proteins, nucleic acids, and macromolecular complexes. Nature Methods 19(9), 1109–1115 (2022). doi:10.1038/s41592-022-01585-1",
+   "c": [
+    {
+     "s": "Level 4 added a predicted structure for every open reading frame, Foldseek with a local reference structure database, PyMOL, and US-align (101)."
+    }
+   ]
+  },
+  {
+   "n": 102,
+   "a": [
+    "T. Bricken"
+   ],
+   "etal": true,
+   "t": "Towards monosemanticity: Decomposing language models with dictionary learning",
+   "y": "2023",
+   "v": "Transformer Circuits Thread",
+   "u": "https://transformer-circuits.pub/2023/monosemantic-features/index.ht",
+   "raw": "T. Bricken et al., Towards monosemanticity: Decomposing language models with dictionary learning. Transformer Circuits Thread (2023). https://transformer-circuits.pub/2023/monosemantic-features/index.ht ml",
+   "c": [
+    {
+     "s": "The model’s activity at one layer (one of its successive processing stages) was decomposed with a sparse dictionary (102, 103): a set of recurring activity patterns learned without supervision from the model’s own activity, each with an automatic description generated from the texts on which it is strongest."
+    }
+   ]
+  },
+  {
+   "n": 103,
+   "a": [
+    "A. Templeton"
+   ],
+   "etal": true,
+   "t": "Scaling monosemanticity: Extracting interpretable features from Claude 3 Sonnet",
+   "y": "2024",
+   "v": "Transformer Circuits Thread",
+   "u": "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.h",
+   "raw": "A. Templeton et al., Scaling monosemanticity: Extracting interpretable features from Claude 3 Sonnet. Transformer Circuits Thread (2024). https://transformer-circuits.pub/2024/scaling-monosemanticity/index.h tml",
+   "c": [
+    {
+     "s": "A B Closest retron clade (32) NART (29) ART (103) C NART ART Aligned block, 44 columns ART NTD profile, 4 of 29 Reverse search, 0 of 71 100 residues D Closest retron clade NART ART Repeat array 0 of 5 0 of 17 23 of 50 Non-coding ≥ 500 nt 1 of 10 0 of 28 21 of 41 ART partner 0 of 5 0 of 29 56 of 67 RNA polymerase 0 of 10 8 of 28 0 of 41 E Closest retron clade NART, 54-kb contig NART, 333-kb contig NART, 14-kb contig ART, L0050 ART, MarsHill 1 kb NTD RT Repeat array Repeat ART partner RNA polymerase Other gene F Closest retron clade NART ART, type II ART, type I ART, type I ART, type I ART, type III NTD Start of the RT domain G Closest retron clade (16) NART (29) ART (87) TM-score H N region Rest of the RT NTD, 164 RT NTD, 209 RT RT domain, % Identity to nearest relative NTD, % Identity N region (aa) 0.4 ≥ 0.8 Closest retron clade (32) NART (29) ART (103) Mean pLDDT Supp."
+    },
+    {
+     "s": "The model’s activity at one layer (one of its successive processing stages) was decomposed with a sparse dictionary (102, 103): a set of recurring activity patterns learned without supervision from the model’s own activity, each with an automatic description generated from the texts on which it is strongest."
+    }
+   ]
+  }
+ ]
+}

@@ -74,6 +74,10 @@ MILESTONES = [('Leonhard Euler', '欧拉', 1757), ('Claude Navier', '纳维', 18
 
 # ---- AlphaFold 2 (chemistry / life sciences) ---------------------------------------
 AF = json.load(open(H + '/alphafold/scripts/refs.json', encoding='utf-8'))
+ART = json.load(open(H + '/art/scripts/refs.json', encoding='utf-8'))
+ART_REFS = len(ART['refs'])
+ART_MS = [('Ishino · CRISPR repeats', '石野良纯 · CRISPR 重复', 1987), ('Doron · anti-phage systems', 'Doron · 抗噬菌体系统', 2018),
+          ('Millman · retrons', 'Millman · 逆转录子', 2020), ('Mestre · UG/Abi', 'Mestre · UG/Abi', 2022), ('Tang · Wilkinson', 'Tang · Wilkinson', 2024)]
 AF_REFS = len(AF['refs'])
 AF_MS = [('Christian Anfinsen', '安芬森', 1973), ('Altschuh · Klug', 'Altschuh · 克鲁格', 1987), ('CASP · Moult', 'CASP · Moult', 1995),
          ('Marks et al.', 'Marks 等', 2011), ('AlphaFold 1', 'AlphaFold 1', 2020), ('trRosetta · Baker', 'trRosetta · 大卫·贝克', 2020)]
@@ -569,6 +573,9 @@ T = {
   afTag='2021 年 7 月 · 蛋白质结构', afH='从安芬森到 AlphaFold：蛋白质结构预测',
   afP=f'DeepMind 的 AlphaFold 2 以接近实验的精度预测蛋白质结构，并因此获得 2024 年诺贝尔化学奖的一半。它的 {AF_REFS} 条参考文献，从 1973 年安芬森的“序列决定结构”延续到 2021 年。',
   afGo='进入 AlphaFold 专题 →',
+  art='../art/zh/', artTag='2026 年 9 月 · 噬菌体里的新酶系统', artH='从逆转录子到 ART：AI 智能体找到的酶',
+  artP=f'Anthropic 的 Claude 智能体在宏基因组数据里找到一类新的逆转录酶系统 ART，预印本尚未经过同行评审。它的 {ART_REFS} 条参考文献，从 1987 年第一次看到 CRISPR 重复序列，到近年对细菌逆转录酶的一项项实验；还有一支团队说自己更早研究过这批酶。',
+  artGo='进入 ART 专题 →',
   more='其他学科', soon='即将推出', subs=['物理', '计算机科学'],
   foot='引用不等于依赖；本项目不评判 AI 结果的正确性、原创性或归属，只记下名字，向他们致敬。',
  ),
@@ -611,6 +618,9 @@ T = {
   afTag='July 2021 · Protein structure', afH='From Anfinsen to AlphaFold: protein structure prediction',
   afP=f'DeepMind’s AlphaFold 2 predicts protein structures with near-experimental accuracy, work recognised with half of the 2024 Nobel Prize in Chemistry. Its {AF_REFS} references run from Anfinsen’s “sequence determines structure” in 1973 to 2021.',
   afGo='Open the AlphaFold page →',
+  art='art/', artTag='September 2026 · A new enzyme system in phages', artH='From retrons to ART: an enzyme system found by AI agents',
+  artP=f'Anthropic’s Claude agents found a new family of reverse-transcriptase systems, ART, in metagenomic data; the preprint is not yet peer reviewed. Its {ART_REFS} references run from the first sighting of CRISPR repeats in 1987 to recent experiments on bacterial reverse transcriptases, and another team says it studied these enzymes first.',
+  artGo='Open the ART page →',
   more='Other fields', soon='Coming soon', subs=['Physics', 'Computer science'],
   foot='Citation is not dependence; this project does not judge the correctness, originality or attribution of AI results. It records names, in tribute.',
  ),
@@ -677,6 +687,13 @@ for k, t in T.items():
 
 <section class="sec" id="chem">
 <div class="sechead" data-n="{t['nChem']}"><h2>{t['secChem']}</h2></div>
+<a class="card" href="{t['art']}">
+<span class="tag">{t['artTag']}</span>
+<h2>{t['artH']}</h2>
+<p>{t['artP']}</p>
+<div class="tl">{'<span class="arr">→</span>'.join(f'<span class="ms"><b>{esc(zh if k == "zh" else en)}</b><i>{y}</i></span>' for en, zh, y in ART_MS)}<span class="arr">→</span><span class="ms ai"><b>ART</b><i>2026</i></span></div>
+<span class="go">{t['artGo'].rstrip(' →')}</span>
+</a>
 <a class="card" href="{t['af']}">
 <span class="tag">{t['afTag']}</span>
 <h2>{t['afH']}</h2>
