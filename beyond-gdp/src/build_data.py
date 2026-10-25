@@ -81,7 +81,7 @@ for c in lst:
 put("gdp", "EUU", gdp_pc.get("EUU"))
 for c in ECON:
     put("pop", c, pop.get(c))
-for key, code in [("life", "SP.DYN.LE00.IN"), ("imr", "SP.DYN.IMRT.IN"), ("net", "IT.NET.USER.ZS"), ("bb", "IT.NET.BBND.P2")]:
+for key, code in [("life", "SP.DYN.LE00.IN"), ("imr", "SP.DYN.IMRT.IN"), ("net", "IT.NET.USER.ZS"), ("bb", "IT.NET.BBND.P2"), ("hom", "VC.IHR.PSRC.P5")]:
     r = wb(code)
     for c in lst:
         put(key, c, r.get(c))
@@ -186,7 +186,7 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf8") as f:
     json.dump({"rows": rows, "years": years}, f, ensure_ascii=False, indent=1)
 print(f"{len(ECON)} economies -> {os.path.relpath(OUT, HERE)}")
-for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5"]:
+for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5", "hom"]:
     gaps = [ZH[c] for c in ECON if rows[c].get(key) is None]
     if gaps:
         print(f"  missing {key}: {', '.join(gaps)}")

@@ -4,6 +4,7 @@ Inputs:
   data/indicators.json  output of build_data.py
   data/area.json        housing floor area per person, hand-collected (m2, year, source)
   data/rail.json        high-speed rail pkm, light rail / tram trips, China urban-rail pkm
+  data/night_safety.json  Gallup: % who feel safe walking alone at night (2024)
   data/findings.html    the hand-written findings shown under the scatter chart
 
 Usage: python3 build_page.py
@@ -28,14 +29,15 @@ def load(name):
 ind = load("indicators.json")
 rows, yrs = ind["rows"], ind["years"]
 area, rail, findings = load("area.json"), load("rail.json"), load("findings.html")
+night = load("night_safety.json")
 
 DATA = []
 for c, r in rows.items():
     if c in EXCLUDE:
         continue
-    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars"]}
+    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars", "hom"]}
     d["gdpY"], d["carsY"] = yrs["gdp"][c], yrs.get("cars", {}).get(c)
-    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec"]:
+    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec", "hom"]:
         if d[k] is not None:
             d[k] = round(d[k], 1)
     d["gdp"] = round(d["gdp"])
@@ -46,6 +48,7 @@ for c, r in rows.items():
     d["hsr"] = rail["hsr"].get(c, {}).get("v")
     d["urbanTrips"] = round((r.get("metroTrips") or 0) + rail["lrt"].get(c, 0), 1)
     d["urbanPkm"] = rail.get("urbanPkm", {}).get(c)
+    d["night"] = night["values"].get(c)
     DATA.append(d)
 
 
@@ -72,6 +75,8 @@ YEARS = [y for y in [
     year_summary("互联网用户比例", pick("net")),
     year_summary("固定宽带", pick("bb")),
     year_summary("5G 覆盖率", pick("g5")),
+    year_summary("命案率", pick("hom")),
+    year_summary("夜间独自走路感到安全（盖洛普）", {c: night["year"] for c in night["values"] if c in shown}),
 ] if y]
 AREASRC = [{"name": rows[c]["name"], "raw": a["v"], "y": a["y"], "note": a["note"], "url": a["url"]}
            for c, a in sorted(area.items(), key=lambda t: -t[1]["use"]) if c in shown]

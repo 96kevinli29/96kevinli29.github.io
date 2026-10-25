@@ -14,7 +14,7 @@
 /* Layout: a single reading column (~68ch) with charts allowed to widen to 960px; meter-panel feel for the data. */
 :root{
   --bg:#f6f7f8; --surface:#ffffff; --ink:#18212b; --muted:#5d6b78; --rule:#d9dee3; --accent:#c4661f;
-  --c-elec:#d0841f; --c-food:#4f8a3a; --c-house:#8a5a3c; --c-move:#2c68b0; --c-health:#b2406a; --c-net:#6a58a8;
+  --c-elec:#d0841f; --c-food:#4f8a3a; --c-house:#8a5a3c; --c-move:#2c68b0; --c-health:#b2406a; --c-net:#6a58a8; --c-safe:#2b7f86;
   --up:#2f7d4f; --down:#b8402f;
   --f-display:"Noto Serif SC","Songti SC",serif;
   --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
@@ -22,11 +22,11 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#12171d; --surface:#1a2129; --ink:#e6eaee; --muted:#93a1ae; --rule:#2c3640; --accent:#f0a050;
-  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6;
+  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6; --c-safe:#5fc0c6;
   --up:#5fc28a; --down:#f07a66; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#12171d; --surface:#1a2129; --ink:#e6eaee; --muted:#93a1ae; --rule:#2c3640; --accent:#f0a050;
-  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6;
+  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6; --c-safe:#5fc0c6;
   --up:#5fc28a; --down:#f07a66; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -112,13 +112,13 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <main>
 <div class="col">
   <p>人均 GDP 衡量的是一个经济体一年产出多少，并不直接告诉我们普通人过得怎么样。资源出口、金融中心和跨国公司利润都会把 GDP 推高，但这些钱未必变成居民的餐桌、房子和通勤。</p>
-  <p>这篇文章换一种算法：不看产出，看<b>人实际能用上的东西</b>。我们选了六个维度，全部用实物指标：度、公斤、平方米、辆、公里、岁。然后和购买力平价（PPP）人均 GDP 的排名做对比。衣食住行里的“衣”暂时没有计分，原因见文末。</p>
+  <p>这篇文章换一种算法：不看产出，看<b>人实际能用上的东西</b>。我们选了七个维度，全部用实物指标：度、公斤、平方米、辆、公里、岁、命案数。然后和购买力平价（PPP）人均 GDP 的排名做对比。衣食住行里的“衣”暂时没有计分，原因见文末。</p>
   <p>为什么不用“居民消费额”？因为同样的东西在不同国家价格差很多。一碗面、一次理发、一张高铁票，在中国的价格可能只有西欧的几分之一。购买力平价（PPP）只做了部分修正，按美元算的消费额仍会低估物价便宜的国家。实物指标没有这个问题：一度电就是一度电。</p>
   <p>范围是两部分的合集：2025 年人均 GDP（PPP）排名前 100 的经济体，加上 GDP 总量（现价美元）排名前 50 的经济体。后者补进了印度、印尼、越南、菲律宾、孟加拉国、巴基斯坦、埃及、伊朗、秘鲁、南非、尼日利亚 11 个人口大国，它们的人均 GDP 不在前 100 名。排名数据都来自世界银行。欧盟 27 个成员国合并成“欧盟”计算，其中法国、德国、意大利是 G20 成员，另外单独列出。还没发布 2025 年数据的经济体，用它们最新一年的数据排名。13 个小地区缺两项以上的数据，没有纳入：法罗群岛、百慕大、开曼群岛、格陵兰、波多黎各、阿鲁巴、美属维尔京群岛、特克斯和凯科斯、荷属圣马丁、库拉索、帕劳、安道尔、圣马力诺。世界银行不发布台湾的数据，所以台湾也不在其中。</p>
   <p>G20 的成员里，法国、德国、意大利既单独列出，也计入欧盟整体；非洲联盟没有统一的统计数据，不单列。所以“G20 + 欧盟”共 20 个经济体。</p>
 
-  <h2>六个维度，用电权重最高</h2>
-  <p>电力是现代生活的底座：照明、冷暖、做饭、洗衣、上网都离不开它，而且发电量很难造假，“李克强指数”就把它当作核心指标。所以默认权重里电力占 25%，其余五项各占 15%。</p>
+  <h2>七个维度，用电权重最高</h2>
+  <p>电力是现代生活的底座：照明、冷暖、做饭、洗衣、上网都离不开它，而且发电量很难造假，“李克强指数”就把它当作核心指标。所以默认权重里电力占 22.5%，安全占 10%，其余五项各占 13.5%。</p>
 </div>
 
 <div class="wide"><div class="dims" id="dims"></div></div>
@@ -126,6 +126,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <div class="col">
   <p><b>出行</b>由两半组成：<b>人均汽车占 50%</b>，<b>轨道交通占 50%</b>。轨道交通只算高铁和城市轨道交通（地铁、轻轨、有轨电车），普通铁路不计入，因为它的速度和舒适度和这两者不是一个档次。</p>
   <p><b>住房</b>只看人均住房面积。只有 __NAREA__ 个经济体能找到可靠的数据。</p>
+  <p><b>安全</b>由两半组成：<b>晚上敢不敢一个人出门</b>，用盖洛普全球统一调查里“晚上独自走路感到安全”的人口比例；以及<b>命案率</b>，每 10 万人一年发生多少起故意杀人案。偷盗、抢劫的数字取决于报不报警、怎么定义，各国没法直接比；命案很难瞒报，是国际上比较治安最常用的硬指标。一个是感受，一个是事实，合起来更稳。</p>
   <p><b>缺数据怎么办：</b>某个经济体缺少某一维度的数据时，这一维度按 G20 和欧盟中有数据经济体的平均分计算。这样缺数据的经济体既不会因为少算一项而占便宜，也不会被直接记为 0 分。</p>
 </div>
 
@@ -146,7 +147,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
   <div class="vt"></div>
   <div class="rank" id="rank"></div>
   <div class="legend" id="legend"></div>
-  <figcaption>得分由六个维度按权重加权平均，全部使用实物指标，不含任何以货币计价的消费数据。缺数据较多的小经济体，排名的参考价值较低。</figcaption>
+  <figcaption>得分由七个维度按权重加权平均，全部使用实物指标，不含任何以货币计价的消费数据。缺数据较多的小经济体，排名的参考价值较低。</figcaption>
 </figure>
 </div>
 
@@ -250,6 +251,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
     <li><b>5G 数据有的较旧。</b>俄罗斯、土耳其、以色列等国的最新报告是 2021 年的，当时还没有或刚开始商用 5G，覆盖率记为 0 或很低；阿根廷、塞舌尔没有数据。网络接入取固定宽带和 5G 中较高的一项，所以 5G 为 0 的经济体仍按固定宽带计分。</li>
     <li><b>发电量包含工业用电。</b>冰岛、挪威、巴林等国有大量电解铝等高耗能工业。理想指标是居民用电，但缺少统一的跨国数据。</li>
     <li><b>部分经济体缺数据。</b>FAO 不发布新加坡的食物数据，新加坡的“食”按 G20 和欧盟的平均分计。世界银行缺香港、澳门的婴儿死亡率，它们的健康只看预期寿命。缺两项以上数据的 13 个小地区已经排除。</li>
+    <li><b>安全的两项指标各有局限。</b>偷盗、抢劫的统计取决于报案率和法律定义，不能跨国比较，所以没有用。命案率是硬数据，但反映不了小偷小摸；印尼（0.3）等国的数字可能有漏报，文莱、泰国、加蓬、越南、伊朗没有数据。夜间安全感来自盖洛普 2024 年的统一调查，会受舆论和文化影响，例如意大利只有 60%，命案率却很低；澳门、卡塔尔、白俄罗斯和多个加勒比小国没有调查，欧盟由 26 个成员国（卢森堡缺）按人口加权。缺的一项不计，两项都缺时按 G20 和欧盟的平均分计。</li>
     <li><b>平均数会掩盖不平等。</b>人均数字高，不代表大多数人都过得好。</li>
     <li><b>吃得多不等于吃得好。</b>每项都设了上限：每年水果 100 公斤、蔬菜 150 公斤、肉蛋合计 72 公斤，超过后不再加分。</li>
     <li><b>奶没有计入。</b>奶的消费量受饮食习惯影响很大，东亚和东南亚很多人乳糖不耐受，传统饮食里奶很少，喝得少不代表吃得差。</li>
@@ -271,6 +273,8 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
     <li>人均 GDP（PPP）、人口、互联网用户比例、固定宽带订户、预期寿命、婴儿死亡率：<a href="https://data.worldbank.org" target="_blank" rel="noopener">世界银行 WDI</a></li>
     <li>人均发电量：<a href="https://github.com/owid/energy-data" target="_blank" rel="noopener">Our World in Data 能源数据</a>（Ember、Energy Institute）</li>
     <li>水果、蔬菜、肉、蛋的人均供应量：<a href="https://ourworldindata.org/food-supply" target="_blank" rel="noopener">FAO 食物平衡表</a>，经 Our World in Data 整理</li>
+    <li>晚上独自走路感到安全的比例：<a href="https://www.gallup.com/file/analytics/695138/Gallup_Global-Safety-Report-2025.pdf" target="_blank" rel="noopener">Gallup Global Safety Report 2025</a>（2024 年调查）</li>
+    <li>命案率（每 10 万人故意杀人案数）：联合国毒品和犯罪问题办公室，经<a href="https://data.worldbank.org/indicator/VC.IHR.PSRC.P5" target="_blank" rel="noopener">世界银行</a>发布；欧盟由 27 个成员国按人口加权计算</li>
     <li>5G 移动网络人口覆盖率：ITU，取自<a href="https://unstats.un.org/sdgs/dataportal/database" target="_blank" rel="noopener">联合国 SDG 数据库</a>（指标 9.c.1）</li>
     <li>每千人机动车数量：<a href="https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita" target="_blank" rel="noopener">Wikipedia 汇总的各国官方数据</a>，部分经济体用各国统计补充；欧盟为成员国加总</li>
     <li>地铁年客运量：<a href="https://en.wikipedia.org/wiki/List_of_metro_systems" target="_blank" rel="noopener">Wikipedia 地铁系统列表</a>（各运营方公布的数据，多为 2024–2025 年）</li>
@@ -294,12 +298,13 @@ const AREASRC=/*__AREASRC__*/;
 const RAIL_MIN=/*__RMIN__*/, RAIL_MAX=/*__RMAX__*/, TRIP_KM=8;
 
 const DIMS=[
-  {k:"elec",name:"电",full:"用电",w:25,desc:"人均发电量，对数刻度，100 度为 0 分，15,000 度封顶为满分。"},
-  {k:"food",name:"食",full:"饮食",w:15,desc:"三项等权平均（各占饮食得分的 1/3）：每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉蛋合计（0–72 公斤）。"},
-  {k:"house",name:"住",full:"住房",w:15,desc:"人均住房面积，10 平方米为 0 分，50 平方米为满分。只有 __NAREA__ 个经济体有数据。"},
-  {k:"move",name:"行",full:"出行",w:15,desc:"两项各占一半：每千人汽车（650 辆满分），以及人均乘坐高铁和城市轨道交通的公里数（对数刻度）。普通铁路不计入。"},
-  {k:"health",name:"健康",full:"健康",w:15,desc:"预期寿命（55–85 岁）和婴儿死亡率（对数，70‰ 为 0 分，1.5‰ 为满分）平均。"},
-  {k:"net",name:"网",full:"联网",w:15,desc:"两项平均：互联网用户比例（40%–100%），以及网络接入，取固定宽带（每百人 0–40 户）和 5G 人口覆盖率（0%–100%）中较高的一项。"}
+  {k:"elec",name:"电",full:"用电",w:22.5,desc:"人均发电量，对数刻度，100 度为 0 分，15,000 度封顶为满分。"},
+  {k:"food",name:"食",full:"饮食",w:13.5,desc:"三项等权平均（各占饮食得分的 1/3）：每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉蛋合计（0–72 公斤）。"},
+  {k:"house",name:"住",full:"住房",w:13.5,desc:"人均住房面积，10 平方米为 0 分，50 平方米为满分。只有 __NAREA__ 个经济体有数据。"},
+  {k:"move",name:"行",full:"出行",w:13.5,desc:"两项各占一半：每千人汽车（650 辆满分），以及人均乘坐高铁和城市轨道交通的公里数（对数刻度）。普通铁路不计入。"},
+  {k:"health",name:"健康",full:"健康",w:13.5,desc:"预期寿命（55–85 岁）和婴儿死亡率（对数，70‰ 为 0 分，1.5‰ 为满分）平均。"},
+  {k:"net",name:"网",full:"联网",w:13.5,desc:"两项平均：互联网用户比例（40%–100%），以及网络接入，取固定宽带（每百人 0–40 户）和 5G 人口覆盖率（0%–100%）中较高的一项。"},
+  {k:"safe",name:"安",full:"安全",w:10,desc:"两项平均：晚上独自走路感到安全的人口比例（盖洛普，30%–100%），以及每 10 万人的故意杀人案数（对数刻度，30 起为 0 分，0.5 起及以下为满分）。"}
 ];
 const DEFAULT_W=Object.fromEntries(DIMS.map(d=>[d.k,d.w]));
 let W={...DEFAULT_W};
@@ -322,6 +327,7 @@ DATA.forEach(r=>{
   s.health=avg([lin(r.life,55,85), r.imr!=null? cl((ln(70)-ln(Math.max(r.imr,1.5)))/(ln(70)-ln(1.5))):null]);
   const access=Math.max(lin(r.bb,0,40)??0, lin(r.g5,0,100)??0);
   s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
+  s.safe=avg([lin(r.night,30,100), r.hom!=null? cl((ln(30)-ln(Math.max(r.hom,0.5)))/(ln(30)-ln(0.5))) : null]);
   r.s=s;
 });
 const G20=/*__G20__*/;
@@ -347,7 +353,7 @@ document.querySelectorAll(".viewtog button").forEach(b=>b.addEventListener("clic
 
 document.getElementById("dims").innerHTML=DIMS.map(d=>`<div class="dim"><b><i style="background:${col(d.k)}"></i>${d.name} · ${d.full}<span class="wt" data-wt="${d.k}"></span></b>${d.desc}</div>`).join("");
 document.getElementById("legend").innerHTML=DIMS.map(d=>`<span><i style="background:${col(d.k)}"></i>${d.name}</span>`).join("");
-document.getElementById("weights").innerHTML=DIMS.map(d=>`<label class="w" for="w-${d.k}"><span class="sw" style="background:${col(d.k)}"></span><span>${d.name}<input type="range" id="w-${d.k}" min="0" max="50" step="5" value="${d.w}"></span><output id="o-${d.k}"></output></label>`).join("");
+document.getElementById("weights").innerHTML=DIMS.map(d=>`<label class="w" for="w-${d.k}"><span class="sw" style="background:${col(d.k)}"></span><span>${d.name}<input type="range" id="w-${d.k}" min="0" max="50" step="0.5" value="${d.w}"></span><output id="o-${d.k}"></output></label>`).join("");
 DIMS.forEach(d=>document.getElementById("w-"+d.k).addEventListener("input",e=>{W[d.k]=+e.target.value;render();}));
 document.getElementById("reset").addEventListener("click",()=>{W={...DEFAULT_W};DIMS.forEach(d=>document.getElementById("w-"+d.k).value=W[d.k]);render();});
 
@@ -446,8 +452,8 @@ function renderArea(){
   document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}：${a.raw} 平方米，${a.y} 年，${a.note}。<a href="${a.url}" target="_blank" rel="noopener">来源</a></li>`).join("");
 }
 
-const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g5","5G %"]];
-const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g5:1,fruit:1,veg:1,meat:1,egg:1};
+const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g5","5G %"],["night","夜间安全 %"],["hom","命案/10万"]];
+const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g5:1,night:1,hom:1,fruit:1,veg:1,meat:1,egg:1};
 let sortK="score",sortD=-1;
 function renderTable(){
   const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
@@ -460,7 +466,7 @@ document.getElementById("years").innerHTML="<thead><tr><th>指标</th><th>年份
 
 function render(){
   const tot=DIMS.reduce((a,d)=>a+W[d.k],0);
-  DIMS.forEach(d=>{const pct=tot?Math.round(100*W[d.k]/tot):0;document.getElementById("o-"+d.k).textContent=pct+"%";document.querySelector(`[data-wt="${d.k}"]`).textContent="权重 "+pct+"%";});
+  DIMS.forEach(d=>{const pct=tot?Math.round(1000*W[d.k]/tot)/10:0;document.getElementById("o-"+d.k).textContent=pct+"%";document.querySelector(`[data-wt="${d.k}"]`).textContent="权重 "+pct+"%";});
   document.getElementById("wsum").textContent=tot?"滑块数值会自动换算成百分比。":"至少给一个维度设置权重。";
   score();
   document.querySelectorAll(".viewtog button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===VIEW)));

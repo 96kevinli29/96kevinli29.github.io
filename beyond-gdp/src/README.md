@@ -14,6 +14,7 @@
 | `data/indicators.json` | `build_data.py` 的输出快照，提交到 git，没有 `raw/` 也能重建页面。 |
 | `data/area.json` | 人均住房面积，手工逐国整理（数值、年份、口径、来源链接）。 |
 | `data/rail.json` | 高铁人公里、轻轨和有轨电车客运人次、中国城市轨道交通人公里，手工整理。 |
+| `data/night_safety.json` | 盖洛普 2024 年“晚上独自走路感到安全”的比例，从 Global Safety Report 2025 的表格里摘录。 |
 | `data/findings.html` | 散点图下面的结论文字，手写。 |
 
 ## 常见操作
@@ -44,4 +45,4 @@ python3 build_page.py
 
 ## 计分
 
-六个维度，默认权重用电 25%，其余各 15%（`template.html` 里的 `DIMS`）。某个经济体缺某一维度时，用 G20 和欧盟中有数据经济体在这一维度的平均分代替。
+七个维度，默认权重用电 22.5%、安全 10%，其余各 13.5%（`template.html` 里的 `DIMS`）。某个经济体缺某一维度时，用 G20 和欧盟中有数据经济体在这一维度的平均分代替。

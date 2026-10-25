@@ -19,6 +19,7 @@ WB_INDICATORS = {
     "SP.DYN.IMRT.IN": "2015:2025",
     "IT.NET.USER.ZS": "2015:2025",
     "IT.NET.BBND.P2": "2015:2025",
+    "VC.IHR.PSRC.P5": "2015:2025",     # intentional homicides per 100,000 (UNODC)
 }
 OWID_CHARTS = [
     "fruit-consumption-per-capita",
