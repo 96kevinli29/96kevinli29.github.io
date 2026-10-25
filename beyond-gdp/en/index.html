@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beyond GDP · Sea-Fill</title>
+<meta name="description" content="Eight kinds of physical measures (electricity, food, housing, transport, health, education, safety, internet) compare how people actually live in 79 economies, set against GDP per person.">
+<meta property="og:title" content="Beyond GDP · Sea-Fill">
+<meta property="og:description" content="Eight kinds of physical measures (electricity, food, housing, transport, health, education, safety, internet) compare how people actually live in 79 economies, set against GDP per person.">
+<link rel="icon" href="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (~68ch) with charts allowed to widen to 960px; meter-panel feel for the data. */
+:root{
+  --bg:#f6f7f8; --surface:#ffffff; --ink:#18212b; --muted:#5d6b78; --rule:#d9dee3; --accent:#c4661f;
+  --c-elec:#d0841f; --c-food:#4f8a3a; --c-house:#8a5a3c; --c-move:#2c68b0; --c-health:#b2406a; --c-net:#6a58a8; --c-safe:#2b7f86; --c-edu:#7a6b1f;
+  --up:#2f7d4f; --down:#b8402f;
+  --f-display:"Noto Serif SC","Songti SC",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-data:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12171d; --surface:#1a2129; --ink:#e6eaee; --muted:#93a1ae; --rule:#2c3640; --accent:#f0a050;
+  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6; --c-safe:#5fc0c6; --c-edu:#cbb85a;
+  --up:#5fc28a; --down:#f07a66; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171d; --surface:#1a2129; --ink:#e6eaee; --muted:#93a1ae; --rule:#2c3640; --accent:#f0a050;
+  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6; --c-safe:#5fc0c6; --c-edu:#cbb85a;
+  --up:#5fc28a; --down:#f07a66; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+.site-nav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:0 auto;padding-block:16px 0;font-family:var(--f-data);font-size:12px;letter-spacing:.06em}
+.site-nav a{color:var(--muted);text-decoration:none}
+.site-nav a:hover{color:var(--ink)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.8;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.col{max-width:68ch;margin:0 auto}
+.wide{max-width:960px;margin:0 auto}
+header{padding-block:56px 24px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--f-data);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(40px,8vw,72px);line-height:1.1;margin:8px 0 16px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(24px,4vw,30px);line-height:1.3;margin:56px 0 12px;text-wrap:balance}
+h3{font-size:17px;font-weight:700;margin:28px 0 4px}
+.lede{font-size:19px;color:var(--muted);margin:0}
+.byline{font-family:var(--f-data);font-size:12px;color:var(--muted);margin-top:20px}
+p{margin:12px 0}
+.num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+figure{margin:28px auto;padding:20px;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.6}
+.fig-title{font-weight:700;font-size:15px;margin:0 0 4px}
+.chart{width:100%;overflow-x:auto}
+svg text{font-family:var(--f-data);font-size:11px;fill:var(--muted)}
+svg .lbl{fill:var(--ink);font-family:var(--f-body);font-size:12px}
+.weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px}
+.w{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;font-size:14px}
+.w .sw{width:10px;height:10px;border-radius:2px}
+.w input{width:100%;accent-color:var(--accent)}
+.w output{font-family:var(--f-data);font-size:13px;min-width:3.5ch;text-align:right}
+.w-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:14px;font-size:13px;color:var(--muted)}
+button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:4px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rank{display:grid;grid-template-columns:2.2em minmax(5.5em,8.5em) 4.8em minmax(0,1fr) 3em 4.2em;gap:3px 10px;align-items:center;font-size:14px}
+.rank .h{font-size:11px;color:var(--muted);font-family:var(--f-data);text-transform:uppercase;letter-spacing:.06em}
+.rank .nm{line-height:1.25;min-width:0}
+.rank .pop{font-size:12px;color:var(--muted);font-family:var(--f-data);text-align:right;white-space:nowrap}
+.cmp td.nat{color:var(--muted)}
+.rank .reg{color:var(--accent)}
+.rank .tag{font-size:11px;margin-left:6px;padding:0 5px;border:1px solid var(--accent);border-radius:3px;font-family:var(--f-data)}
+.cmp tr.sub td{border-top:2px solid var(--rule)}
+.cmp td:not(:first-child),.cmp th:not(:first-child){text-align:right}
+.bar{display:flex;height:14px;border-radius:2px;overflow:hidden;background:var(--rule)}
+.bar span{height:100%}
+.delta{font-family:var(--f-data);font-size:12px;text-align:right}
+.delta.up{color:var(--up)} .delta.down{color:var(--down)} .delta.eq{color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted);margin-top:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;font-size:13px;width:100%;min-width:1200px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:12px;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--surface)}
+th[aria-sort]{color:var(--ink)}
+td{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+td:first-child{font-family:var(--f-body)}
+.na{color:var(--muted)}
+.tbl-sm table{min-width:0}
+.tbl-sm th{cursor:default;position:static}
+.tbl-sm td:not(:first-child){font-family:var(--f-data)}
+.tbl-txt td{font-family:var(--f-body);white-space:normal;text-align:left}
+.tbl-txt th{text-align:left}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+.dim{padding:14px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;font-size:14px;line-height:1.65}
+.dim b{display:flex;align-items:center;gap:8px;font-size:15px}
+.dim b i{width:10px;height:10px;border-radius:2px}
+.dim .wt{font-family:var(--f-data);font-size:12px;color:var(--muted);margin-left:auto;font-weight:400}
+ul{padding-left:1.2em} li{margin:6px 0}
+.viewtog{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin:0 0 14px}
+.viewtog button{border:0;border-radius:0;background:var(--surface);padding:6px 14px}
+.viewtog button+button{border-left:1px solid var(--rule)}
+.viewtog button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.5;padding:6px 9px;border-radius:4px;z-index:5;max-width:260px}
+a{color:var(--accent)}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<nav class="site-nav"><a href="../../">← Sea-Fill</a><a href="../">中文</a></nav>
+<header><div class="col">
+  <div class="eyebrow">Sea-Fill · Social science notes</div>
+  <h1>Beyond GDP</h1>
+  <p class="lede">GDP per person tells us how much a country produces in a year. It does not tell us how big people's homes are, whether they dare to walk home at night, or whether a fast train will take them where they need to go. This essay keeps a different set of books for 79 economies, using eight kinds of physical measures.</p>
+  <div class="byline">Data as of October 2026 · 2025 figures wherever published · adjustable weights · open data and code</div>
+</div></header>
+
+<main>
+<div class="col">
+  <p>Start with three puzzles.</p>
+  <p><b>Guyana</b> has a GDP per person (at purchasing power parity) of about $98,000, seventh among the 79 economies here and above the United States. Yet life expectancy is 70 years, there are 19 homicides per 100,000 people a year, and electricity use per person is about one eighth of America's. Since large-scale oil production began in 2019, GDP has outrun everything else; daily life has not caught up.</p>
+  <p><b>Macao</b> ranks third on GDP per person, but the average resident has about 21 square metres of home, less than a third of what a Norwegian has.</p>
+  <p><b>China</b>'s GDP per person is about $29,000, 50th on the list and less than a third of America's. But 94% of Chinese people feel safe walking alone at night, against 71% of Americans; China's homicide rate is a twelfth of America's; and the average Chinese travels about 960 km a year by high-speed rail and urban rail, sixteen times the American figure.</p>
+  <p>None of this is a statistical error. GDP simply measures something different from how well people live.</p>
+
+  <h2>Where GDP goes wrong</h2>
+  <p>GDP is the market value of everything newly produced in a year. That definition has four gaps, and living standards leak through each of them.</p>
+  <h3>1. It counts flows, not stocks</h3>
+  <p>The year a metro line is built, its cost enters GDP. For the next fifty years it carries millions of people a day and barely registers. Housing is the same: once built, a home adds nothing more, however long people live in it. Japan opened the Shinkansen in 1964; China and South Korea have built vast high-speed and metro networks over the past two decades. Much of the reason these countries live better than their GDP rank suggests is the stock they have accumulated.</p>
+  <h3>2. It counts in prices, and prices differ</h3>
+  <p>A bowl of noodles, a haircut or a train ticket can cost a fraction in China of what it costs in Western Europe. Purchasing power parity tries to correct for this but only partly succeeds; services are especially hard to compare. Cheap countries end up understated. Physical measures avoid the problem: a kilowatt-hour is a kilowatt-hour, a square metre is a square metre.</p>
+  <h3>3. It does not care where the money goes</h3>
+  <p>Oil, casinos, financial centres and multinational profits all push GDP up, but the money may stay with a few people or leave the country. Luxembourg's GDP includes the output of more than 200,000 people who commute in daily from France, Belgium and Germany, while GDP per person divides only by Luxembourg's residents.</p>
+  <h3>4. Some things money cannot buy</h3>
+  <p>Safety and a national rail network are public goods: however rich you are, you cannot buy them on your own. America's GDP per person is 1.6 times Japan's, yet its homicide rate is nearly 30 times higher and its people live five fewer years. High private incomes do not guarantee a society that works well.</p>
+  <p>So this essay counts differently: <b>not what a country produces, but what its people can actually use.</b></p>
+
+  <h2>Eight dimensions</h2>
+  <p>We use eight dimensions, all measured in physical units: kilowatt-hours, kilograms, square metres, vehicles, kilometres, years, trips and homicides. No money-denominated data such as household consumption is used, because it cannot escape the price problem.</p>
+</div>
+
+<div class="wide"><div class="dims" id="dims"></div></div>
+
+<div class="col">
+  <p><b>Electricity</b> is the foundation of modern life: lighting, heating and cooling, cooking, washing and the internet all depend on it, and electricity use is hard to fake. We use electricity use per person, that is, domestic generation plus net imports. It includes industry, so it reflects both living conditions and industrial capacity.</p>
+  <p><b>Transport</b> is half cars per person and half high-speed rail plus urban rail (metro, light rail and trams). Conventional rail is not counted; its speed and comfort are in a different league.</p>
+  <p><b>Housing</b> is floor area per person. There is no international database, so we searched official statistics country by country and found figures for 32 economies.</p>
+  <p><b>Safety</b> is half the share of people who feel safe walking alone at night (Gallup's worldwide survey) and half the homicide rate. Theft and robbery statistics depend on whether people report crimes and how the law defines them, so they cannot be compared across countries; homicides are hard to hide, which makes them the standard hard measure. One is a feeling, the other a fact.</p>
+  <p><b>Education</b> is the tertiary gross enrolment ratio: how many young people go to university.</p>
+  <p><b>Missing data:</b> when an economy lacks a dimension, that dimension takes the average score of the G20 and EU economies that have it, so the gap neither flatters nor punishes it.</p>
+  <p><b>Coverage:</b> the top 100 economies by GDP per person (PPP) in 2025, plus the top 50 by total GDP. The 27 EU members are merged into "EU", with France, Germany, Italy, Sweden, Denmark, Finland and Luxembourg also shown on their own. Thirteen small territories with too little data are left out, and the World Bank publishes no data for Taiwan. That leaves 79 economies. The page opens on "G20 + rich": the 19 G20 countries and the EU, plus the five Nordic countries, Switzerland and Luxembourg, 27 in all. You can switch to the G20 alone or to everything.</p>
+
+  <h3>How the weights were set</h3>
+  <p>The default weights are 15% each for electricity, housing and health; 12.5% each for food, transport, education and safety; and 5% for the internet. No dimension exceeds 15%. Three reasons:</p>
+  <ul>
+    <li><b>Common practice is roughly equal weights.</b> The UN Human Development Index gives health, education and income a third each; the Legatum Prosperity Index and the Social Progress Index weight their dimensions equally. In the OECD Better Life Index, where users set their own weights, more than 100,000 users ranked health and education highest, and older users put more weight on safety and housing.</li>
+    <li><b>Dimensions that overlap with others get less.</b> Internet and electricity scores are highly correlated (0.83), so the internet gets only 5%. Housing correlates least with the rest and adds the most independent information, so it gets 15%.</li>
+    <li><b>A check against life satisfaction.</b> Tested against Gallup's national life-satisfaction scores (World Happiness Report, 2025), our score explains slightly more than GDP per person does (R² of about 0.47 against 0.46; 0.57 against 0.55 for the G20 and rich countries). The two explain about as much, yet rank countries very differently, which shows they measure different things. Satisfaction cannot set the weights directly because culture colours it: Latin Americans rate their lives highly despite crime, East Asians rate theirs low despite good schooling.</li>
+  </ul>
+  <p><b>The results barely depend on the weights.</b> Raise electricity to 21% and cut safety to 9%, and the same five countries still lead the G20 + rich list, China moves by one place, and no economy except Japan moves more than three places. Try the sliders below; every chart updates.</p>
+</div>
+
+<div class="wide">
+<figure>
+  <p class="fig-title">Adjust the weights</p>
+  <div class="weights" id="weights"></div>
+  <div class="w-foot"><span id="wsum"></span><button type="button" id="reset">Reset weights</button></div>
+</figure>
+</div>
+
+<div class="col">
+  <h2>The ranking: living standards against GDP</h2>
+  <p>Each row is an economy. The bar is the overall score (out of 100), coloured by each dimension's contribution. The population column is a reminder of how different in size these economies are. The last column compares the rank with the GDP-per-person rank in the current view: <span style="color:var(--up)">▲</span> means living standards rank higher than GDP. Jiangsu-Zhejiang-Shanghai is shown in orange as a "region" for reference; it sits where its score puts it but takes no rank and does not enter the trend line.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="vt"></div>
+  <div class="rank" id="rank"></div>
+  <div class="legend" id="legend"></div>
+  <figcaption>The score is the weighted average of eight dimensions, all physical measures, with no money-denominated consumption data. Rankings of small economies with many gaps are less reliable.</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>Same money, different lives</h2>
+  <p>Put the score next to GDP per person: the horizontal axis is GDP per person (log scale), the vertical axis is the living-standards score, and the dashed line is the trend across all economies. Economies <b>above the line</b> turn the same income into better lives; for those <b>below it</b>, much of GDP never becomes daily life.</p>
+  <p>Note that the horizontal axis is logarithmic, so the straight trend line means each doubling of income adds about the same number of points. In other words, every extra dollar buys less improvement than the last. Among rich countries, the differences come mainly from public goods and accumulated stock, not from income.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="vt"></div>
+  <div class="chart" id="scatter"></div>
+  <figcaption>Trend line: least-squares fit of the score on ln(GDP per person). Where points are crowded only some are labelled; hover over a point to see its values.</figcaption>
+</figure>
+</div>
+
+<div class="col" id="findings"></div>
+<div class="col">
+<h3>G20 and rich countries (default weights)</h3>
+<ul>
+  <li><b>The Nordic countries lead.</b> Norway is 1st, Sweden 3rd, Denmark 4th and Finland 5th. They use a lot of electricity (cheap hydropower, cold winters), live long, are safe, and send many young people to university. <b>Luxembourg</b> is 1st on GDP per person and 2nd on living standards; <b>Switzerland</b> goes from 3rd to 6th.</li>
+  <li><b>China</b> sits further above the trend line than any other economy. It is 22nd of these 27 on GDP per person and 16th on living standards. Food scores full marks; 94% of people feel safe walking alone at night and there are 0.5 homicides per 100,000, for a safety score of 96; tertiary enrolment is 77%; the average person travels about 960 km a year by high-speed and urban rail, behind only Japan and France. Floor area (about 36 m² per person) and health pull the score down.</li>
+  <li><b>South Korea</b> (16th → 9th) and <b>Japan</b> (18th → 12th) rise the most: dense rail, long lives, safe streets. Japan's tertiary enrolment of 65% is the lowest among the high-income economies here.</li>
+  <li><b>The United States</b> is 4th on GDP per person and 15th on living standards. Cars, floor area and education are near full marks, but only 71% of people feel safe walking alone at night and the homicide rate of 5.8 per 100,000 is nearly 30 times Japan's; there is little high-speed or urban rail; life expectancy trails other rich economies. <b>Saudi Arabia</b> (8th → 19th), the <b>United Kingdom</b> (14th → 18th) and <b>Iceland</b> (5th → 11th) also fall. Britain uses about 4,600 kWh of electricity per person, the least of the high-income economies here.</li>
+  <li><b>Russia, Argentina, Brazil, Mexico and South Africa</b> all score low on safety. <b>Indonesia, South Africa and India</b> take the last three places, far behind on electricity, meat and eggs, and cars; India has about 11 m² of floor area per person and tertiary enrolment of 34%.</li>
+</ul>
+<h3>Across all 79 economies</h3>
+<ul>
+  <li><b>Resource and financial economies fall furthest.</b> Guyana, which began large-scale oil production only in 2019, is 7th on GDP per person and 72nd on living standards. Macao (3rd → 27th), Qatar (4th → 22nd), Brunei (8th → 43rd), Hong Kong (12th → 24th) and Singapore (1st → 8th) all drop. Hong Kong's floor area of about 16 m² per person is the smallest of any economy with data.</li>
+  <li><b>China</b> is also furthest above the trend among all 79: 50th on GDP per person, 17th on living standards.</li>
+  <li><b>The populous poorer countries remain far behind.</b> India, Nigeria and Pakistan take the last three places.</li>
+</ul>
+</div>
+
+<div class="col">
+  <h2>China: a life GDP undercounts</h2>
+  <p>China sits further above the trend line than any other economy. For its income, its score "should" be around 62; it is 84. Where does the gap come from?</p>
+  <ul>
+    <li><b>Public goods.</b> Safety and rail are paid for collectively, and here China matches or beats the richest countries: 94% of people feel safe walking alone at night, and its high-speed network is longer than the rest of the world's combined. The average Chinese rides about 770 km a year by high-speed rail alone, more than the average European travels by high-speed and urban rail together.</li>
+    <li><b>Cheap, plentiful basics.</b> Supplies of fruit, vegetables, meat and eggs per person all exceed the full-score caps. Such goods are cheap in China, and GDP measured in dollars undervalues them.</li>
+    <li><b>Investment turned into stock.</b> China's heavy investment of the past two decades is often criticised, but much of it became the railways, metros, power grids and housing people use every day. Each entered GDP once, the year it was built, and has delivered services ever since without being counted again.</li>
+  </ul>
+  <p>But the correction should not be overdone. China's real weaknesses are in things that take decades and cannot be rushed with money: about 36 square metres of usable floor area per person, below Europe and America; life expectancy of 78, six years short of Japan; 333 cars per 1,000 people, less than half the American level. Two measures may also flatter China. Most of its 7,460 kWh of electricity per person goes to industry; household use was only about 1,130 kWh per person in 2025. And the tertiary enrolment ratio uses UNESCO's 77%, while China's Ministry of Education reports 61.3% for 2025 on its own definition.</p>
+</div>
+
+<div class="col">
+  <h2>China's most developed region: Jiangsu-Zhejiang-Shanghai</h2>
+  <p>China is too big for one average; the national figure mixes its most and least developed places. Jiangsu, Zhejiang and Shanghai together hold 177 million people and are among China's most developed regions. The table scores the region with exactly the same method as the economies and sets it beside China, the United States, the EU and Japan. Where no regional figure exists the national value is used, shown in grey: food, education, internet users, 5G coverage and safety.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="tbl tbl-sm"><table class="cmp" id="cmp"></table></div>
+  <figcaption id="cmpcap"></figcaption>
+</figure>
+</div>
+<div class="col">
+  <p>With the default weights, <b>Jiangsu-Zhejiang-Shanghai scores 88.4</b>, 4.5 points above China as a whole (83.9). Added to the 27 G20 and rich economies, it would rank 8th, between Australia and Germany.</p>
+<ul>
+  <li><b>Where the region leads</b>: rail, with about 790 km a year per person by high-speed rail and 390 km by urban rail, about 1,180 km in all, close to Japan; health, with life expectancy of about 82 years, infant mortality of 1.7 per 1,000 and a health score of 94, in the top group with Sweden and Japan; electricity, at 10,309 kWh per person, more than China as a whole, the EU or Japan, though industry takes most of it.</li>
+  <li><b>Where it lags</b>: about 38 m² of floor area per person, a little above China's average but well below Europe and America; 314 vehicles per 1,000 people, less than half the American level, so its transport score of 72 is below Canada's (80) despite far more rail.</li>
+  <li>Food, education and safety use China's national figures, so the advantages there belong to the country as a whole, not to the region alone.</li>
+</ul>
+  <h3>Notes on the regional data</h3>
+  <ul id="cmpnotes"></ul>
+</div>
+
+<div class="col">
+  <h2>The Nordics: turning money into public goods</h2>
+  <p>Norway, Sweden, Denmark and Finland take four of the top five places. They are rich, but what sets them apart is how the money is spent: cheap hydropower means high electricity use (about 24,000 kWh per person in Norway), good healthcare means long lives, streets are safe, university is open to almost everyone, and homes are spacious (about 66 m² per person in Norway). Most of this comes from public investment built up over decades, not from what individuals can buy with their incomes.</p>
+
+  <h2>The United States: the richest large country, outside the top ten</h2>
+  <p>America ranks 4th on GDP per person among the G20 + rich economies and 15th on living standards. It scores near full marks on what money can buy: about 73 m² of housing per person, 800 vehicles per 1,000 people, 13,000 kWh of electricity per person. It loses on public goods: only 71% of people feel safe walking alone at night, there are 5.8 homicides per 100,000 people, and the average American travels only about 60 km a year by high-speed or urban rail. Life expectancy, at 78.9 years, is about the same as China's and five years short of Japan's; infant mortality, at 5.5 per 1,000, is higher than China's. Private wealth is abundant; public life does not lead.</p>
+</div>
+
+<div class="col">
+  <h2>Transport: cars and rail</h2>
+  <p>The horizontal axis is vehicles per 1,000 people; the vertical axis is kilometres per person per year by high-speed and urban rail. The top right does well on both, the bottom right relies on cars, the top left on rail. The United States, Canada and Australia sit at the bottom right; Japan, France, China and South Korea near the top.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="vt"></div>
+  <div class="chart" id="move"></div>
+  <figcaption id="movecap"></figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>Housing: floor area per person</h2>
+  <p>Floor area per person is the most direct measure of housing, but countries measure it differently: some report gross area, some usable area; some divide the whole housing stock (including empty homes) by the population, others count only occupied dwellings. The chart shows the 32 economies with data, all on a national (urban plus rural) basis; Singapore, Hong Kong and Macao are cities.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="chart" id="area"></div>
+  <figcaption>Floor area per person, m². Lighter bars mark weaker sources (academic estimates, model results or secondary quotes). China's official figure is gross floor area (2020 census: 41.76 m² per person in family households, 46.80 in rural areas). To compare with usable area elsewhere, urban apartments, which include shared areas, are converted at 78%; rural self-built houses are not converted; the two are weighted by the 63.9% urban population, giving about 36.3 m². The 78% is a market rule of thumb, not an official figure. Scoring: 10 m² scores 0, 50 m² full marks.</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>Electricity: a wider gap than income</h2>
+  <p id="electxt"></p>
+</div>
+<div class="wide">
+<figure>
+  <div class="chart" id="elec"></div>
+  <figcaption>Electricity use per person (generation plus net imports), kWh per year. Bars above 30,000 are cut at the edge; the values are shown in full. The dashed line is the full-score cap (15,000). Source: Ember and the Energy Institute via Our World in Data.</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>Two sets of books</h2>
+  <p>GDP is like a company's annual income statement: it tells you how much money flowed in and out this year, not what the company has built up or how its employees actually live. Physical measures are closer to the balance sheet plus the employees' real conditions.</p>
+  <p>That does not make GDP useless. Across these 79 economies, the living-standards score and the log of GDP per person are closely correlated (about 0.8): rich countries generally live better and poor ones worse, and GDP gets that direction right. The trouble is in particular countries. Resource and financial income, price differences, public goods and decades of accumulation can each move a country dozens of places.</p>
+  <p>So the safest course is to read both books: <b>GDP for the size and output of an economy, physical measures for how people actually live.</b> The further apart they are, the more the gap deserves a question.</p>
+  <p>Finally, these measures capture material conditions. They leave out air pollution, working hours, income distribution, freedom and rights. Add those, and some ranks would move again.</p>
+</div>
+
+<div class="col">
+  <h2>All the data</h2>
+  <p>Click a column header to sort.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="vt"></div>
+  <div class="tbl"><table id="tbl"></table></div>
+  <figcaption>— means no data. High-speed and urban rail are kilometres per person per year. Floor area is the usable area used for scoring.</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>Why clothing is not scored</h2>
+  <p>The most direct physical measure of clothing is how many kilograms of textile fibre each person consumes a year, but there are no reliable public figures by country. National "cotton consumption" counts what spinning mills use, which measures production, not what people wear: in 2008 North American mills used only 0.88 million tonnes of cotton, but counting the cotton in imported clothing, North Americans consumed 5.89 million tonnes; the Far East was the reverse. The right measure is end-use consumption, which the International Cotton Advisory Committee (ICAC) publishes only by region:</p>
+</div>
+<div class="wide">
+<figure>
+  <p class="fig-title">Textile fibre end-use consumption per person (kg per year)</p>
+  <div class="tbl tbl-sm"><table>
+    <thead><tr><th>Region</th><th>2000</th><th>2013</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>Industrial countries</td><td>26.4</td><td>29.8</td><td>+13%</td></tr>
+      <tr><td>Developing Asia</td><td>5.5</td><td>11.2</td><td>+106%</td></tr>
+      <tr><td>Middle East and developing Europe</td><td>10.4</td><td>10.5</td><td>+1%</td></tr>
+      <tr><td>Central and Eastern Europe and former USSR</td><td>4.3</td><td>7.9</td><td>+86%</td></tr>
+      <tr><td>Latin America and the Caribbean</td><td>6.8</td><td>7.5</td><td>+9%</td></tr>
+      <tr><td>Africa</td><td>1.8</td><td>2.3</td><td>+31%</td></tr>
+      <tr><td>World average</td><td>8.1</td><td>11.7</td><td>+44%</td></tr>
+    </tbody>
+  </table></div>
+  <figcaption>Source: ICAC World Textile Demand (November 2014), table 3. 2013 is the latest actual value in the report; later years are projections and are not used. The North American and Far East cotton figures come from the FAO/ICAC World Apparel Fiber Consumption Survey, 2008.</figcaption>
+</figure>
+</div>
+<div class="col">
+  <p>Industrial countries consume about 30 kg of fibre per person a year, 2.7 times developing Asia and 13 times Africa; developing Asia doubled its consumption in 13 years. Clothing will join the score once reliable country figures are found.</p>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li><b>Floor area covers only 32 economies, on different bases.</b> Gross against usable area, housing stock against occupied homes: each can shift a figure by 10–25%. England's official per-person figure dates from 2008; Norway's comes from a 2023 self-reported survey; Denmark's is gross area including outer walls and runs high; Luxembourg's has to be derived from the 2011 census. For the 47 economies without data, housing takes the G20 and EU average (<span id="g20house"></span> points); their true housing may be better or worse.</li>
+    <li><b>Urban rail assumes 8 km per trip.</b> Except for China, countries publish metro and light-rail trips, not passenger-kilometres. China's official data show about 8.1 km per trip (counting transfers), close to the assumption. Some light-rail figures cover only major cities (France only the Paris region, Switzerland only Zurich); no national tram figure was found for Japan. Buses are not counted.</li>
+    <li><b>High-speed rail years and definitions differ.</b> China's figure is passenger-km on EMU trains, a few of which run on conventional lines. The EU sums France, Germany, Italy, Spain, Sweden and Finland; small amounts elsewhere are missing. Russia (Sapsan), Saudi Arabia (Haramain) and Indonesia (Whoosh) publish trips only, converted at full line length, an upper bound. No separate figure was found for the UK (HS1) or Hong Kong (its section of the Guangzhou line), so they count as zero.</li>
+    <li><b>Conventional rail is not counted.</b> Commuter rail around Tokyo and other big cities carries huge numbers but is neither high-speed nor metro, so Japan's rail travel is understated.</li>
+    <li><b>Vehicle data vary in year and definition.</b> Some figures are old, and a few (Malaysia, Brunei) may include motorcycles or many non-resident registrations. The score caps at 650 per 1,000, which limits the effect. Uruguay, Mauritius, Turkmenistan, Gabon and St Vincent have no data; their transport takes the G20 and EU average.</li>
+    <li><b>Some 5G data are old.</b> The latest reports for Russia, Türkiye, Israel and others date from 2021, before or just after commercial 5G began, so their coverage shows as zero or very low; Argentina and Seychelles have no data. Network access takes the higher of fixed broadband and 5G, so a zero for 5G falls back on broadband.</li>
+    <li><b>Education data.</b> Gross enrolment counts students in their own country. Most Luxembourg students study abroad, leaving a domestic ratio of 22%, so Luxembourg uses the EU average. Ratios above 100% include older students.</li>
+    <li><b>Electricity use includes industry.</b> Iceland, Norway, Bahrain and others run energy-intensive industries such as aluminium smelting. Household use would be a purer measure but lacks consistent international data.</li>
+    <li><b>Some economies have gaps.</b> FAO publishes no food data for Singapore, so its food score takes the G20 and EU average; the World Bank has no infant mortality for Hong Kong or Macao, so their health uses life expectancy alone. Thirteen small territories with two or more gaps are excluded.</li>
+    <li><b>Both safety measures have limits.</b> Theft and robbery statistics depend on reporting and legal definitions and are not used. The homicide rate is hard data but misses petty crime; Indonesia's 0.3 may be under-reported; Brunei, Thailand, Gabon, Vietnam and Iran have no figure. Night-time safety comes from Gallup's 2024 survey and is coloured by public mood and culture: only 60% of Italians feel safe, despite a very low homicide rate. Macao, Qatar, Belarus and several Caribbean states were not surveyed, and the EU is weighted over 26 members (Luxembourg missing). A missing item is skipped; with both missing, safety takes the G20 and EU average.</li>
+    <li><b>Averages hide inequality.</b> A high average does not mean most people live well.</li>
+    <li><b>More food is not better food.</b> Each item is capped: 100 kg of fruit, 150 kg of vegetables and 72 kg of meat and eggs a year; beyond that there are no extra points.</li>
+    <li><b>Milk is not counted.</b> Milk consumption reflects diet traditions; many East and Southeast Asians are lactose-intolerant and traditional diets contain little milk, which says nothing about how well they eat.</li>
+    <li><b>Food data are supply, not intake.</b> FAO counts food available for consumption, including waste in shops and homes; actual intake is lower.</li>
+  </ul>
+  <h2>Data years</h2>
+  <p>Wherever 2025 data exist they are used; where a source has not yet published 2025, the latest published year is used.</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="tbl tbl-sm tbl-txt"><table id="years"></table></div>
+</figure>
+</div>
+
+<div class="col">
+  <h2>Sources</h2>
+  <ul>
+    <li>GDP per person (PPP), population, internet users, fixed broadband, life expectancy, infant mortality: <a href="https://data.worldbank.org" target="_blank" rel="noopener">World Bank WDI</a></li>
+    <li>Electricity use per person (generation plus net imports): <a href="https://github.com/owid/energy-data" target="_blank" rel="noopener">Our World in Data energy data</a> (Ember, Energy Institute)</li>
+    <li>Fruit, vegetable, meat and egg supply per person: <a href="https://ourworldindata.org/food-supply" target="_blank" rel="noopener">FAO food balance sheets</a> via Our World in Data</li>
+    <li>Share who feel safe walking alone at night: <a href="https://www.gallup.com/file/analytics/695138/Gallup_Global-Safety-Report-2025.pdf" target="_blank" rel="noopener">Gallup Global Safety Report 2025</a> (2024 survey)</li>
+    <li>Tertiary gross enrolment ratio: <a href="https://uis.unesco.org" target="_blank" rel="noopener">UNESCO Institute for Statistics (UIS)</a>; EU weighted over members by population</li>
+    <li>Homicides per 100,000 people: UNODC, published by the <a href="https://data.worldbank.org/indicator/VC.IHR.PSRC.P5" target="_blank" rel="noopener">World Bank</a>; EU weighted over the 27 members by population</li>
+    <li>5G population coverage: ITU, from the <a href="https://unstats.un.org/sdgs/dataportal/database" target="_blank" rel="noopener">UN SDG database</a> (indicator 9.c.1)</li>
+    <li>Vehicles per 1,000 people: <a href="https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita" target="_blank" rel="noopener">Wikipedia's compilation of national figures</a>; EU summed over members</li>
+    <li>Metro ridership: <a href="https://en.wikipedia.org/wiki/List_of_metro_systems" target="_blank" rel="noopener">Wikipedia list of metro systems</a> (operators' figures, mostly 2024–2025)</li>
+    <li>High-speed rail passenger-km: China <a href="https://www.yicai.com/news/102443765.html" target="_blank" rel="noopener">National Railway Administration, 2024 EMU passenger-km</a>; Japan <a href="https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040366697&amp;fileKind=4" target="_blank" rel="noopener">MLIT railway transport statistics</a>; EU (France, Germany, Italy, Spain), South Korea, Türkiye and the US <a href="https://statbase.org/datasets/air-rail-and-water-transportation/high-speed-rail-passenger-traffic/" target="_blank" rel="noopener">UIC 2023 statistics</a>; Russia (Sapsan), Saudi Arabia (<a href="https://en.wikipedia.org/wiki/Haramain_High_Speed_Railway" target="_blank" rel="noopener">Haramain</a>) and Indonesia (<a href="https://goodstats.id/article/jumlah-penumpang-kereta-cepat-whoosh-semakin-melonjak-pada-juni-2025-h2Qk6" target="_blank" rel="noopener">Whoosh</a>) publish trips only</li>
+    <li>China urban rail passenger-km: <a href="https://infosharingp2-oss.camet.org.cn/resources/manual/2026/03/31/789660015317061.pdf" target="_blank" rel="noopener">CAMET 2025 statistics</a></li>
+    <li>Light rail and trams: US <a href="https://data.transportation.gov/resource/8bui-9xvu" target="_blank" rel="noopener">NTD</a>; Russia <a href="https://rosstat.gov.ru/storage/mediabank/PerevPass(Gor-Electro)_2kv-2026.xlsx" target="_blank" rel="noopener">Rosstat</a>; UK <a href="https://www.gov.uk/government/statistics/light-rail-and-tram-statistics-england-year-ending-march-2026" target="_blank" rel="noopener">light rail statistics for England</a>; Germany Destatis; Hong Kong Transport Department and MTR annual report; others from operators and statistics offices</li>
+    <li>Nordic light rail and trams: Finland <a href="https://hslfi.oncloudos.com/kokous/2026302-2-70700.PDF" target="_blank" rel="noopener">HSL</a> and the Tampere tram; Swedish and Finnish high-speed rail: <a href="https://transport.ec.europa.eu/facts-funding/studies-data/eu-transport-figures-statistical-pocketbook/statistical-pocketbook-2026_en" target="_blank" rel="noopener">EU transport statistical pocketbook 2026</a></li>
+    <li>Jiangsu-Zhejiang-Shanghai: <a href="https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html" target="_blank" rel="noopener">Shanghai 2025 statistical bulletin</a>, Jiangsu and Zhejiang 2025 statistical bulletins, <a href="https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/zk/html/A0112.xls" target="_blank" rel="noopener">2020 census housing tables by province</a>, <a href="https://www.stats.gov.cn/sj/ndsj/2025/indexch.htm" target="_blank" rel="noopener">China Statistical Yearbook 2025</a>, <a href="https://infosharingp2-oss.camet.org.cn/resources/manual/2026/03/31/789660015317061.pdf" target="_blank" rel="noopener">CAMET 2025 urban rail statistics</a></li>
+    <li>Floor area per person: national statistics offices and housing surveys, listed below</li>
+    <li>Textile fibre end-use (regional only, not scored): <a href="https://icac.org/wp-content/uploads/2024/11/world-textile-demand2014_november.pdf" target="_blank" rel="noopener">ICAC World Textile Demand 2014</a>; mill use against actual consumption: <a href="https://www.fao.org/fileadmin/templates/est/COMM_MARKETS_MONITORING/Cotton/Documents/World_Apparel_Fiber_Consumption_Survey_2011_-_Summary_English.pdf" target="_blank" rel="noopener">FAO/ICAC World Apparel Fiber Consumption Survey</a></li>
+    <li>EU internet users, fixed broadband and 5G coverage: population-weighted over the latest values of the 27 members</li>
+  </ul>
+  <h3>Floor area sources</h3>
+  <ul id="areasrc"></ul>
+</div>
+
+<footer class="col">Sea-Fill · open-source science. The data and scoring are public; the scripts and data that build this page are on <a href="https://github.com/96kevinli29/96kevinli29.github.io/tree/main/beyond-gdp/src" target="_blank" rel="noopener">GitHub</a>. Corrections welcome.</footer>
+</main>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA=[{"code":"SGP","name":"Singapore","gdp":163354,"pop":6111175,"elec":10295.1,"fruit":null,"veg":null,"meat":null,"egg":null,"life":83.3,"imr":2.2,"net":94.4,"bb":27.8,"g5":95.0,"cars":172,"hom":0.1,"ter":97.3,"gdpY":2025,"carsY":2023,"area":42,"areaY":2020,"weakArea":false,"hsr":null,"urbanTrips":1316.3,"urbanPkm":null,"night":98},{"code":"MAC","name":"Macao","gdp":137031,"pop":685900,"elec":8719.0,"fruit":66.2,"veg":135.5,"meat":121.2,"egg":24.0,"life":83.3,"imr":null,"net":89.8,"bb":29.9,"g5":92.7,"cars":353,"hom":0.6,"ter":141.9,"gdpY":2025,"carsY":2023,"area":20.7,"areaY":2022,"weakArea":true,"hsr":null,"urbanTrips":5.2,"urbanPkm":null,"night":null},{"code":"QAT","name":"Qatar","gdp":128883,"pop":2972215,"elec":18030.2,"fruit":71.2,"veg":173.7,"meat":71.4,"egg":15.1,"life":82.5,"imr":4.8,"net":98.1,"bb":11.8,"g5":99.0,"cars":512,"hom":0.1,"ter":43.0,"gdpY":2025,"carsY":2016,"area":null,"hsr":null,"urbanTrips":53.0,"urbanPkm":null,"night":null},{"code":"NOR","name":"Norway","gdp":104044,"pop":5610870,"elec":24490.2,"fruit":113.8,"veg":146.4,"meat":70.4,"egg":12.1,"life":83.2,"imr":2,"net":99,"bb":45.2,"g5":99.7,"cars":629,"hom":0.7,"ter":95.5,"gdpY":2025,"carsY":2024,"area":65.5,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":197.3,"urbanPkm":null,"night":91},{"code":"CHE","name":"Switzerland","gdp":102513,"pop":9092436,"elec":7261.9,"fruit":96.3,"veg":146.9,"meat":64.0,"egg":12.8,"life":84.4,"imr":3.4,"net":97.3,"bb":47.0,"g5":100.0,"cars":603,"hom":0.6,"ter":73.5,"gdpY":2025,"carsY":2024,"area":46.6,"areaY":2025,"weakArea":false,"hsr":null,"urbanTrips":227.5,"urbanPkm":null,"night":88},{"code":"GUY","name":"Guyana","gdp":97899,"pop":835986,"elec":1660.5,"fruit":345.9,"veg":315.8,"meat":88.7,"egg":1.6,"life":70.3,"imr":23.2,"net":83.0,"bb":12.9,"g5":0.0,"cars":171,"hom":19.1,"ter":26.4,"gdpY":2025,"carsY":2010,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"BRN","name":"Brunei","gdp":92430,"pop":466330,"elec":12015.5,"fruit":95.2,"veg":65.1,"meat":74.7,"egg":15.5,"life":75.5,"imr":8.6,"net":96.3,"bb":21.2,"g5":95.4,"cars":1043,"hom":null,"ter":36.4,"gdpY":2025,"carsY":2022,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"USA","name":"United States","gdp":90027,"pop":341784857,"elec":13061.1,"fruit":169.2,"veg":129.1,"meat":122.1,"egg":15.6,"life":78.9,"imr":5.5,"net":94.7,"bb":38.9,"g5":96.0,"cars":800,"hom":5.8,"ter":79.4,"gdpY":2025,"carsY":2024,"area":72.6,"areaY":2024,"weakArea":false,"hsr":1700,"urbanTrips":2384.0,"urbanPkm":null,"night":71},{"code":"ISL","name":"Iceland","gdp":83431,"pop":392404,"elec":48423.5,"fruit":130.1,"veg":157.7,"meat":98.1,"egg":9.9,"life":82.8,"imr":2.1,"net":98.2,"bb":37.5,"g5":95.0,"cars":779,"hom":1.3,"ter":76.5,"gdpY":2025,"carsY":2024,"area":39.2,"areaY":2021,"weakArea":false,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":88},{"code":"HKG","name":"Hong Kong","gdp":80423,"pop":7498900,"elec":6582.7,"fruit":75.1,"veg":172.6,"meat":107.4,"egg":28.3,"life":85.4,"imr":null,"net":95.8,"bb":40.3,"g5":99.0,"cars":124,"hom":0.4,"ter":120.1,"gdpY":2025,"carsY":2022,"area":16,"areaY":2021,"weakArea":true,"hsr":null,"urbanTrips":1974.9,"urbanPkm":null,"night":91},{"code":"ARE","name":"UAE","gdp":79344,"pop":11513149,"elec":16053.1,"fruit":64.1,"veg":70.9,"meat":67.8,"egg":7.3,"life":83.1,"imr":3.8,"net":100,"bb":40.8,"g5":99.5,"cars":376,"hom":0.7,"ter":63.7,"gdpY":2024,"carsY":2016,"area":null,"hsr":null,"urbanTrips":304.6,"urbanPkm":null,"night":90},{"code":"SAU","name":"Saudi Arabia","gdp":73784,"pop":36973555,"elec":13385.0,"fruit":105.3,"veg":119.0,"meat":58.1,"egg":11.4,"life":79.0,"imr":4.7,"net":100,"bb":44.1,"g5":84.0,"cars":224,"hom":0.9,"ter":83.9,"gdpY":2025,"carsY":2016,"area":null,"hsr":3157,"urbanTrips":151.9,"urbanPkm":null,"night":93},{"code":"AUS","name":"Australia","gdp":71934,"pop":27614411,"elec":10615.4,"fruit":86.1,"veg":160.6,"meat":116.8,"egg":7.6,"life":83.1,"imr":3.1,"net":96.1,"bb":36.5,"g5":89.0,"cars":781,"hom":0.9,"ter":108.4,"gdpY":2025,"carsY":2024,"area":84,"areaY":2019,"weakArea":true,"hsr":null,"urbanTrips":305.7,"urbanPkm":null,"night":66},{"code":"BHR","name":"Bahrain","gdp":70997,"pop":1600366,"elec":23919.5,"fruit":125.1,"veg":139.4,"meat":76.3,"egg":10.7,"life":81.4,"imr":7.3,"net":100,"bb":17.0,"g5":100.0,"cars":476,"hom":0.2,"ter":58.4,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":90},{"code":"CAN","name":"Canada","gdp":66746,"pop":41651653,"elec":16090.0,"fruit":112.2,"veg":114.5,"meat":94.8,"egg":15.9,"life":82.1,"imr":4.7,"net":94.4,"bb":42.5,"g5":94.3,"cars":750,"hom":2.0,"ter":76.3,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":1051.7,"urbanPkm":null,"night":75},{"code":"GBR","name":"United Kingdom","gdp":64606,"pop":69487000,"elec":4620.8,"fruit":92.1,"veg":165.7,"meat":84.4,"egg":10.8,"life":81.4,"imr":4.1,"net":95.5,"bb":42.2,"g5":85.0,"cars":584,"hom":1.1,"ter":80.4,"gdpY":2025,"carsY":2024,"area":37,"areaY":2008,"weakArea":false,"hsr":null,"urbanTrips":1455.2,"urbanPkm":null,"night":76},{"code":"KOR","name":"South Korea","gdp":63125,"pop":51684564,"elec":12090.1,"fruit":48.1,"veg":214.6,"meat":84.0,"egg":13.0,"life":83.6,"imr":2.3,"net":97.9,"bb":47.8,"g5":94.0,"cars":520,"hom":0.5,"ter":111.9,"gdpY":2025,"carsY":2023,"area":36.0,"areaY":2024,"weakArea":false,"hsr":17900,"urbanTrips":3534.3,"urbanPkm":null,"night":80},{"code":"ISR","name":"Israel","gdp":59717,"pop":10122800,"elec":7954.0,"fruit":117.8,"veg":143.2,"meat":108.7,"egg":12.5,"life":83.2,"imr":2.7,"net":88.2,"bb":29.2,"g5":30.0,"cars":562,"hom":1.6,"ter":56.3,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":59.8,"urbanPkm":null,"night":71},{"code":"NZL","name":"New Zealand","gdp":57350,"pop":5324700,"elec":8252.3,"fruit":107.9,"veg":137.9,"meat":79.5,"egg":10.9,"life":82.0,"imr":4,"net":93.5,"bb":38.0,"g5":40.4,"cars":881,"hom":1.5,"ter":77.2,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":64},{"code":"KWT","name":"Kuwait","gdp":56468,"pop":4865298,"elec":18402.0,"fruit":92.8,"veg":162.9,"meat":62.5,"egg":14.0,"life":84.6,"imr":7,"net":100,"bb":1.0,"g5":99.9,"cars":521,"hom":0.2,"ter":51.9,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":91},{"code":"JPN","name":"Japan","gdp":55422,"pop":123366734,"elec":8365.8,"fruit":44.7,"veg":115.3,"meat":59.9,"egg":19.8,"life":84.0,"imr":1.8,"net":85.5,"bb":38.6,"g5":96.6,"cars":720,"hom":0.2,"ter":64.5,"gdpY":2025,"carsY":2024,"area":41.0,"areaY":2023,"weakArea":false,"hsr":102063,"urbanTrips":6350.2,"urbanPkm":null,"night":78},{"code":"RUS","name":"Russia","gdp":49568,"pop":143513328,"elec":8167.6,"fruit":73.1,"veg":106.7,"meat":84.8,"egg":16.8,"life":73.4,"imr":4.1,"net":94.4,"bb":27.1,"g5":0.0,"cars":355,"hom":6.8,"ter":60.4,"gdpY":2025,"carsY":2024,"area":29.4,"areaY":2024,"weakArea":false,"hsr":3575,"urbanTrips":4252.4,"urbanPkm":null,"night":69},{"code":"TUR","name":"Türkiye","gdp":45288,"pop":85878556,"elec":4013.6,"fruit":167.8,"veg":250.6,"meat":49.4,"egg":10.5,"life":77.4,"imr":8,"net":89.8,"bb":23.4,"g5":0.0,"cars":390,"hom":3.2,"ter":105.9,"gdpY":2025,"carsY":2025,"area":36.7,"areaY":2022,"weakArea":true,"hsr":4200,"urbanTrips":1569.6,"urbanPkm":null,"night":52},{"code":"KAZ","name":"Kazakhstan","gdp":44293,"pop":20843754,"elec":6049.8,"fruit":63.5,"veg":301.5,"meat":64.9,"egg":9.7,"life":74.5,"imr":7.4,"net":93.4,"bb":15.3,"g5":45.8,"cars":250,"hom":2.6,"ter":52.9,"gdpY":2025,"carsY":2023,"area":25.1,"areaY":2025,"weakArea":false,"hsr":null,"urbanTrips":27.1,"urbanPkm":null,"night":67},{"code":"PAN","name":"Panama","gdp":43902,"pop":4571189,"elec":2943.1,"fruit":154.3,"veg":41.9,"meat":78.0,"egg":7.1,"life":79.8,"imr":12,"net":72.8,"bb":18.1,"g5":0.0,"cars":320,"hom":11.7,"ter":53.7,"gdpY":2025,"carsY":2016,"area":null,"hsr":null,"urbanTrips":114.9,"urbanPkm":null,"night":63},{"code":"OMN","name":"Oman","gdp":42295,"pop":5494691,"elec":9616.5,"fruit":141.2,"veg":274.6,"meat":37.6,"egg":5.9,"life":80.2,"imr":8.3,"net":95.3,"bb":11.1,"g5":89.0,"cars":323,"hom":0.1,"ter":42.2,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":94},{"code":"MYS","name":"Malaysia","gdp":41498,"pop":35977838,"elec":5556.5,"fruit":60.0,"veg":64.9,"meat":69.1,"egg":21.7,"life":76.8,"imr":7,"net":98.0,"bb":13.5,"g5":82.4,"cars":1102,"hom":0.7,"ter":38.5,"gdpY":2025,"carsY":2025,"area":27.3,"areaY":2017,"weakArea":true,"hsr":null,"urbanTrips":330.2,"urbanPkm":null,"night":58},{"code":"BHS","name":"Bahamas","gdp":41258,"pop":403033,"elec":5607.0,"fruit":309.9,"veg":173.1,"meat":114.9,"egg":13.7,"life":74.7,"imr":11.1,"net":92.5,"bb":25.3,"g5":0.0,"cars":654,"hom":32.2,"ter":null,"gdpY":2024,"carsY":2022,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"URY","name":"Uruguay","gdp":38315,"pop":3384688,"elec":4357.9,"fruit":98.6,"veg":107.4,"meat":69.3,"egg":14.5,"life":78.3,"imr":6.2,"net":92.0,"bb":33.0,"g5":18.8,"cars":null,"hom":11.2,"ter":80.0,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":50},{"code":"CHL","name":"Chile","gdp":37774,"pop":19859921,"elec":4456.2,"fruit":76.8,"veg":77.6,"meat":98.5,"egg":9.9,"life":81.4,"imr":5.8,"net":95.6,"bb":23.7,"g5":87.0,"cars":532,"hom":6.3,"ter":110.2,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":640.0,"urbanPkm":null,"night":39},{"code":"TTO","name":"Trinidad and Tobago","gdp":37121,"pop":1367764,"elec":6333.8,"fruit":73.5,"veg":95.3,"meat":65.7,"egg":7.0,"life":73.6,"imr":17,"net":82.2,"bb":27.0,"g5":0.0,"cars":582,"hom":40.4,"ter":23.8,"gdpY":2025,"carsY":2015,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":49},{"code":"KNA","name":"St Kitts and Nevis","gdp":36777,"pop":46922,"elec":4907.5,"fruit":198.2,"veg":36.0,"meat":88.8,"egg":3.8,"life":72.3,"imr":13.9,"net":76.9,"bb":46.7,"g5":0.0,"cars":543,"hom":64.2,"ter":93.9,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"SYC","name":"Seychelles","gdp":35854,"pop":122730,"elec":4830.0,"fruit":84.5,"veg":137.0,"meat":70.7,"egg":11.0,"life":76.3,"imr":12.9,"net":87.8,"bb":31.6,"g5":null,"cars":210,"hom":8.0,"ter":14.5,"gdpY":2025,"carsY":2016,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"ATG","name":"Antigua and Barbuda","gdp":35832,"pop":94209,"elec":3945.3,"fruit":241.7,"veg":101.1,"meat":96.4,"egg":6.0,"life":77.8,"imr":7,"net":72.7,"bb":10.7,"g5":0.0,"cars":598,"hom":10.7,"ter":null,"gdpY":2025,"carsY":2020,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"MNE","name":"Montenegro","gdp":35423,"pop":623129,"elec":6859.2,"fruit":120.8,"veg":165.4,"meat":96.9,"egg":13.4,"life":77.9,"imr":1.9,"net":88.9,"bb":32.3,"g5":91.2,"cars":393,"hom":0.8,"ter":55.2,"gdpY":2025,"carsY":2024,"area":27.5,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":87},{"code":"BLR","name":"Belarus","gdp":34716,"pop":9085991,"elec":5053.6,"fruit":62.4,"veg":178.3,"meat":111.7,"egg":16.7,"life":74.4,"imr":1.8,"net":94.3,"bb":36.3,"g5":0.0,"cars":338,"hom":2.4,"ter":70.1,"gdpY":2025,"carsY":2016,"area":29.4,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":250.3,"urbanPkm":null,"night":null},{"code":"SRB","name":"Serbia","gdp":33910,"pop":6549143,"elec":5591.2,"fruit":147.6,"veg":103.1,"meat":84.2,"egg":12.8,"life":76.0,"imr":4.6,"net":87.7,"bb":33.4,"g5":0.0,"cars":392,"hom":1.3,"ter":70.6,"gdpY":2025,"carsY":2025,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":78},{"code":"CRI","name":"Costa Rica","gdp":33815,"pop":5152950,"elec":2416.1,"fruit":77.1,"veg":71.8,"meat":64.1,"egg":13.6,"life":81.0,"imr":9.1,"net":87.2,"bb":23.3,"g5":0.0,"cars":514,"hom":17.7,"ter":55.0,"gdpY":2025,"carsY":2021,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":53},{"code":"MUS","name":"Mauritius","gdp":33667,"pop":1243741,"elec":2682.6,"fruit":57.6,"veg":153.3,"meat":64.5,"egg":7.7,"life":73.8,"imr":13.8,"net":73.3,"bb":28.0,"g5":65.0,"cars":null,"hom":2.3,"ter":45.8,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":12.1,"urbanPkm":null,"night":62},{"code":"ARG","name":"Argentina","gdp":32587,"pop":45851378,"elec":3543.0,"fruit":74.1,"veg":76.6,"meat":114.9,"egg":18.4,"life":77.5,"imr":8,"net":89.7,"bb":26.1,"g5":null,"cars":499,"hom":4.5,"ter":107.8,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":236.8,"urbanPkm":null,"night":48},{"code":"GEO","name":"Georgia","gdp":29414,"pop":3935766,"elec":3861.6,"fruit":47.8,"veg":83.5,"meat":45.4,"egg":11.3,"life":74.7,"imr":7.5,"net":83.8,"bb":30.4,"g5":0.0,"cars":441,"hom":2.0,"ter":89.5,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":78.4,"urbanPkm":null,"night":82},{"code":"CHN","name":"China","gdp":29333,"pop":1406585000,"elec":7459.9,"fruit":114.4,"veg":412.7,"meat":73.5,"egg":23.0,"life":78.0,"imr":4.1,"net":91.6,"bb":47.2,"g5":96.0,"cars":333,"hom":0.5,"ter":76.9,"gdpY":2025,"carsY":2025,"area":36.3,"areaY":2020,"weakArea":false,"hsr":1084549,"urbanTrips":32345.4,"urbanPkm":271925,"night":94},{"code":"DOM","name":"Dominican Republic","gdp":28721,"pop":11520487,"elec":1968.7,"fruit":379.6,"veg":159.9,"meat":61.6,"egg":16.8,"life":73.9,"imr":27.7,"net":91.0,"bb":11.2,"g5":61.9,"cars":513,"hom":10.9,"ter":57.7,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":103.4,"urbanPkm":null,"night":47},{"code":"LCA","name":"St Lucia","gdp":28674,"pop":180149,"elec":2225.3,"fruit":115.0,"veg":51.5,"meat":90.3,"egg":5.1,"life":72.8,"imr":15.8,"net":68.2,"bb":13.6,"g5":0.0,"cars":203,"hom":39.0,"ter":15.0,"gdpY":2025,"carsY":2016,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"MDV","name":"Maldives","gdp":28555,"pop":529676,"elec":1610.5,"fruit":168.5,"veg":196.0,"meat":29.6,"egg":20.2,"life":81.3,"imr":4.7,"net":85.2,"bb":19.6,"g5":69.0,"cars":250,"hom":0.6,"ter":48.5,"gdpY":2025,"carsY":2022,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"ALB","name":"Albania","gdp":28221,"pop":2349580,"elec":3105.6,"fruit":185.7,"veg":382.4,"meat":56.7,"egg":11.6,"life":79.8,"imr":8.3,"net":85.9,"bb":24.9,"g5":24.0,"cars":309,"hom":1.4,"ter":84.1,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":71},{"code":"MKD","name":"North Macedonia","gdp":28029,"pop":1820909,"elec":4603.6,"fruit":97.6,"veg":298.7,"meat":51.5,"egg":8.1,"life":76.6,"imr":2.5,"net":93.1,"bb":29.9,"g5":97.0,"cars":263,"hom":1.5,"ter":55.0,"gdpY":2025,"carsY":2024,"area":30.1,"areaY":2021,"weakArea":false,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":75},{"code":"THA","name":"Thailand","gdp":26250,"pop":71619863,"elec":3143.0,"fruit":71.7,"veg":42.4,"meat":24.5,"egg":11.7,"life":76.6,"imr":7.7,"net":90.9,"bb":14.9,"g5":95.0,"cars":391,"hom":null,"ter":49.1,"gdpY":2025,"carsY":2016,"area":null,"hsr":null,"urbanTrips":479.8,"urbanPkm":null,"night":70},{"code":"AZE","name":"Azerbaijan","gdp":26113,"pop":10246996,"elec":2613.1,"fruit":91.3,"veg":196.3,"meat":39.4,"egg":10.6,"life":74.6,"imr":12.5,"net":90.8,"bb":21.8,"g5":0.0,"cars":169,"hom":2.2,"ter":41.3,"gdpY":2025,"carsY":2023,"area":20.1,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":223.3,"urbanPkm":null,"night":74},{"code":"BRB","name":"Barbados","gdp":25894,"pop":282623,"elec":3929.5,"fruit":103.2,"veg":121.4,"meat":76.2,"egg":9.9,"life":76.3,"imr":9.1,"net":70.4,"bb":37.5,"g5":0.0,"cars":425,"hom":7.4,"ter":50.8,"gdpY":2025,"carsY":2022,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"MEX","name":"Mexico","gdp":25868,"pop":131946900,"elec":2703.1,"fruit":137.4,"veg":66.5,"meat":78.2,"egg":21.6,"life":75.3,"imr":12.1,"net":83.1,"bb":21.7,"g5":45.8,"cars":405,"hom":24.9,"ter":48.2,"gdpY":2025,"carsY":2025,"area":null,"hsr":null,"urbanTrips":1508.2,"urbanPkm":null,"night":51},{"code":"BIH","name":"Bosnia and Herzegovina","gdp":25814,"pop":3140095,"elec":4598.6,"fruit":196.6,"veg":261.0,"meat":51.9,"egg":7.0,"life":78.0,"imr":5.5,"net":86.1,"bb":29.4,"g5":0.0,"cars":282,"hom":1.2,"ter":45.5,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":23.9,"urbanPkm":null,"night":69},{"code":"ARM","name":"Armenia","gdp":24754,"pop":3086700,"elec":2757.1,"fruit":112.2,"veg":217.7,"meat":54.7,"egg":13.4,"life":78.3,"imr":8.5,"net":81.3,"bb":20.3,"g5":17.6,"cars":303,"hom":2.2,"ter":52.8,"gdpY":2025,"carsY":2024,"area":35.5,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":26.4,"urbanPkm":null,"night":85},{"code":"BRA","name":"Brazil","gdp":23433,"pop":212812405,"elec":3581.2,"fruit":106.8,"veg":52.4,"meat":104.6,"egg":12.7,"life":76.0,"imr":12.3,"net":84.5,"bb":24.1,"g5":63.0,"cars":443,"hom":19.3,"ter":69.7,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":1824.4,"urbanPkm":null,"night":51},{"code":"VCT","name":"St Vincent and the Grenadines","gdp":22799,"pop":99924,"elec":1490.6,"fruit":128.2,"veg":50.2,"meat":118.5,"egg":4.8,"life":71.4,"imr":10.2,"net":76.2,"bb":29.5,"g5":0.0,"cars":null,"hom":51.3,"ter":41.5,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"DMA","name":"Dominica","gdp":22713,"pop":65871,"elec":2254.6,"fruit":529.1,"veg":153.8,"meat":86.4,"egg":9.1,"life":71.3,"imr":33.3,"net":82.0,"bb":20.9,"g5":0.0,"cars":271,"hom":27.1,"ter":null,"gdpY":2025,"carsY":2020,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"SUR","name":"Suriname","gdp":22652,"pop":639850,"elec":2742.6,"fruit":63.0,"veg":58.4,"meat":48.5,"egg":5.8,"life":73.8,"imr":14.8,"net":87.4,"bb":18.8,"g5":16.3,"cars":394,"hom":6.5,"ter":2.6,"gdpY":2025,"carsY":2020,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"COL","name":"Colombia","gdp":22640,"pop":53425635,"elec":1714.7,"fruit":153.7,"veg":51.0,"meat":62.6,"egg":15.0,"life":77.9,"imr":10.5,"net":79.3,"bb":17.2,"g5":2.3,"cars":280,"hom":24.9,"ter":59.3,"gdpY":2025,"carsY":2017,"area":null,"hsr":null,"urbanTrips":212.9,"urbanPkm":null,"night":49},{"code":"TKM","name":"Turkmenistan","gdp":22602,"pop":7618847,"elec":3203.7,"fruit":51.6,"veg":130.4,"meat":51.2,"egg":11.6,"life":70.2,"imr":30.4,"net":18.0,"bb":5.2,"g5":0.0,"cars":null,"hom":1.0,"ter":20.4,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":null},{"code":"GAB","name":"Gabon","gdp":22218,"pop":2593130,"elec":1252.5,"fruit":131.3,"veg":55.5,"meat":63.1,"egg":0.8,"life":68.5,"imr":25.9,"net":68.7,"bb":4.7,"g5":0.0,"cars":null,"hom":null,"ter":null,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":44},{"code":"IND","name":"India","gdp":11748,"pop":1463865525,"elec":1422.8,"fruit":65.6,"veg":92.9,"meat":8.1,"egg":4.7,"life":72.2,"imr":23.3,"net":70,"bb":3.2,"g5":82.2,"cars":38,"hom":2.8,"ter":34.4,"gdpY":2025,"carsY":2024,"area":10.8,"areaY":2018,"weakArea":false,"hsr":null,"urbanTrips":3617.3,"urbanPkm":null,"night":72},{"code":"IDN","name":"Indonesia","gdp":17660,"pop":285721236,"elec":1314.0,"fruit":85.4,"veg":49.2,"meat":19.9,"egg":20.9,"life":71.3,"imr":15.2,"net":72.8,"bb":4.9,"g5":8.9,"cars":82,"hom":0.3,"ter":44.9,"gdpY":2025,"carsY":2025,"area":11.3,"areaY":2022,"weakArea":true,"hsr":861,"urbanTrips":58.2,"urbanPkm":null,"night":83},{"code":"VNM","name":"Vietnam","gdp":18088,"pop":101598527,"elec":3086.6,"fruit":99.6,"veg":191.3,"meat":60.5,"egg":4.0,"life":74.7,"imr":12,"net":84.2,"bb":23.7,"g5":25.5,"cars":43,"hom":null,"ter":37.6,"gdpY":2025,"carsY":2020,"area":26.6,"areaY":2024,"weakArea":false,"hsr":null,"urbanTrips":41.1,"urbanPkm":null,"night":88},{"code":"PHL","name":"Philippines","gdp":12577,"pop":116786962,"elec":1054.2,"fruit":98.2,"veg":59.5,"meat":33.6,"egg":5.8,"life":69.9,"imr":21.7,"net":67.3,"bb":7.1,"g5":72.4,"cars":180,"hom":4.3,"ter":47.4,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":347.2,"urbanPkm":null,"night":64},{"code":"BGD","name":"Bangladesh","gdp":10154,"pop":175686899,"elec":672.0,"fruit":30.4,"veg":52.1,"meat":4.5,"egg":3.8,"life":74.9,"imr":24.4,"net":53.4,"bb":8.1,"g5":0.0,"cars":34,"hom":2.3,"ter":23.7,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":100.4,"urbanPkm":null,"night":74},{"code":"ZAF","name":"South Africa","gdp":15906,"pop":64747319,"elec":3657.9,"fruit":26.4,"veg":37.3,"meat":58.3,"egg":5.9,"life":66.3,"imr":24.2,"net":78.4,"bb":5.3,"g5":50.5,"cars":208,"hom":43.7,"ter":23.5,"gdpY":2025,"carsY":2024,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null,"night":33},{"code":"PAK","name":"Pakistan","gdp":6573,"pop":255219554,"elec":766.0,"fruit":24.1,"veg":30.4,"meat":21.2,"egg":3.9,"life":67.8,"imr":48.2,"net":57.3,"bb":1.5,"g5":0.0,"cars":121,"hom":4.3,"ter":10.9,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":20.0,"urbanPkm":null,"night":51},{"code":"EGY","name":"Egypt","gdp":20204,"pop":118365995,"elec":2064.0,"fruit":94.0,"veg":135.7,"meat":27.6,"egg":3.7,"life":71.8,"imr":20.8,"net":74.6,"bb":11.7,"g5":0.0,"cars":87,"hom":1.3,"ter":38.0,"gdpY":2025,"carsY":2023,"area":null,"hsr":null,"urbanTrips":1460.0,"urbanPkm":null,"night":82},{"code":"IRN","name":"Iran","gdp":19699,"pop":92417681,"elec":4280.6,"fruit":123.4,"veg":105.4,"meat":29.9,"egg":8.5,"life":77.9,"imr":10.3,"net":85.3,"bb":12.1,"g5":8.2,"cars":182,"hom":null,"ter":58.7,"gdpY":2025,"carsY":2020,"area":null,"hsr":null,"urbanTrips":915.7,"urbanPkm":null,"night":78},{"code":"PER","name":"Peru","gdp":18816,"pop":34576665,"elec":1748.9,"fruit":135.6,"veg":62.6,"meat":55.4,"egg":11.0,"life":77.9,"imr":11,"net":82.0,"bb":11.7,"g5":27.5,"cars":182,"hom":8.6,"ter":71.2,"gdpY":2025,"carsY":2016,"area":null,"hsr":null,"urbanTrips":171.9,"urbanPkm":null,"night":43},{"code":"NGA","name":"Nigeria","gdp":9532,"pop":237527782,"elec":165.2,"fruit":68.3,"veg":65.1,"meat":7.1,"egg":2.6,"life":54.6,"imr":69.8,"net":41.2,"bb":0.1,"g5":13.3,"cars":62,"hom":15.7,"ter":null,"gdpY":2025,"carsY":2021,"area":null,"hsr":null,"urbanTrips":3.5,"urbanPkm":null,"night":53},{"code":"FRA","name":"France","gdp":63975,"pop":68720337,"elec":7151.6,"fruit":105.2,"veg":112.8,"meat":80.3,"egg":13.1,"life":83.0,"imr":3.4,"net":88.7,"bb":48.9,"g5":93.0,"cars":667,"hom":1.3,"ter":71.5,"gdpY":2025,"carsY":2024,"area":40,"areaY":2022,"weakArea":false,"hsr":59700,"urbanTrips":2508.4,"urbanPkm":null,"night":73},{"code":"DEU","name":"Germany","gdp":75407,"pop":83491249,"elec":6188.2,"fruit":86.7,"veg":175.8,"meat":70.7,"egg":15.9,"life":80.8,"imr":3.1,"net":93.5,"bb":45.6,"g5":98.0,"cars":627,"hom":0.9,"ter":76.7,"gdpY":2025,"carsY":2024,"area":44,"areaY":2022,"weakArea":false,"hsr":38000,"urbanTrips":3947.0,"urbanPkm":null,"night":78},{"code":"ITA","name":"Italy","gdp":62803,"pop":58915656,"elec":5268.3,"fruit":121.1,"veg":120.5,"meat":71.2,"egg":13.1,"life":84.0,"imr":2.3,"net":89.2,"bb":31.8,"g5":90.0,"cars":753,"hom":0.6,"ter":75.9,"gdpY":2025,"carsY":2024,"area":41,"areaY":2022,"weakArea":false,"hsr":26000,"urbanTrips":621.4,"urbanPkm":null,"night":60},{"code":"SWE","name":"Sweden","gdp":72529,"pop":10596620,"elec":12866.2,"fruit":87.0,"veg":158.6,"meat":68.3,"egg":10.4,"life":84.1,"imr":2,"net":95.8,"bb":40.6,"g5":98.2,"cars":542,"hom":1.1,"ter":84.0,"gdpY":2025,"carsY":2024,"area":42,"areaY":2025,"weakArea":false,"hsr":3270,"urbanTrips":635.5,"urbanPkm":null,"night":null},{"code":"DNK","name":"Denmark","gdp":83218,"pop":6009169,"elec":6775.5,"fruit":106.6,"veg":149.9,"meat":101.3,"egg":13.5,"life":82.3,"imr":3.5,"net":99.8,"bb":43.4,"g5":100.0,"cars":609,"hom":0.8,"ter":79.0,"gdpY":2025,"carsY":2024,"area":53.8,"areaY":2025,"weakArea":false,"hsr":null,"urbanTrips":139.4,"urbanPkm":null,"night":null},{"code":"FIN","name":"Finland","gdp":65884,"pop":5646436,"elec":15610.0,"fruit":92.2,"veg":103.2,"meat":69.4,"egg":10.5,"life":82.3,"imr":1.9,"net":93.7,"bb":36.5,"g5":100.0,"cars":752,"hom":1.0,"ter":110.3,"gdpY":2025,"carsY":2024,"area":41.6,"areaY":2025,"weakArea":false,"hsr":390,"urbanTrips":162.4,"urbanPkm":null,"night":null},{"code":"LUX","name":"Luxembourg","gdp":156542,"pop":686970,"elec":9846.4,"fruit":135.9,"veg":219.1,"meat":83.0,"egg":25.5,"life":83.2,"imr":1.9,"net":99.1,"bb":40.3,"g5":99.0,"cars":818,"hom":1.5,"ter":79.8,"gdpY":2025,"carsY":2024,"area":53.9,"areaY":2011,"weakArea":false,"hsr":null,"urbanTrips":31.7,"urbanPkm":null,"night":null},{"code":"EUU","name":"EU","gdp":65503,"pop":451127411,"elec":6179.7,"fruit":101.4,"veg":136.3,"meat":78.5,"egg":13.4,"life":81.6,"imr":3.1,"net":91.6,"bb":39.6,"g5":91.2,"cars":637,"hom":0.9,"ter":79.8,"gdpY":2025,"carsY":2024,"area":40,"areaY":2022,"weakArea":false,"hsr":142660,"urbanTrips":13190.6,"urbanPkm":null,"night":73.9}];
+const YEARS=[{"label": "GDP per person (PPP)", "years": "2025 (2 others: 2024)", "n": 79}, {"label": "Electricity use per person", "years": "2025 (25 others: 2023–2024)", "n": 79}, {"label": "Fruit, vegetables, meat, eggs (FAO)", "years": "2023 (3 others: 2009–2022)", "n": 78}, {"label": "Floor area per person", "years": "2022 (25 others: 2008–2025)", "n": 32}, {"label": "Vehicles per 1,000 people", "years": "2024 (46 others: 2010–2025)", "n": 74}, {"label": "Life expectancy", "years": "2024", "n": 79}, {"label": "Infant mortality", "years": "2024", "n": 77}, {"label": "Internet users", "years": "2024 (11 others: 2016–2025)", "n": 79}, {"label": "Fixed broadband", "years": "2024 (11 others: 2022–2023)", "n": 79}, {"label": "5G coverage", "years": "2024 (22 others: 2021–2023)", "n": 77}, {"label": "Homicide rate", "years": "2023 (27 others: 2015–2022)", "n": 74}, {"label": "Tertiary gross enrolment", "years": "2024 (33 others: 2015–2025)", "n": 74}, {"label": "Feel safe walking alone at night (Gallup)", "years": "2024", "n": 59}];
+const AREASRC=[{"name": "Australia", "raw": 84, "y": 2019, "note": "Academic estimate", "url": "https://doi.org/10.1038/s41560-019-0512-1"}, {"name": "United States", "raw": 72.6, "y": 2024, "note": "National, per household member, including basements (EIA RECS)", "url": "https://www.eia.gov/consumption/residential/data/2024/hc/pdf/HC10.9_2024.pdf"}, {"name": "Norway", "raw": 65.5, "y": 2023, "note": "Living-conditions survey, self-reported, averaged over persons (Statistics Norway); no register figure after 2011", "url": "https://www.ssb.no/statbank/table/14079"}, {"name": "Luxembourg", "raw": 53.9, "y": 2011, "note": "Derived: 2011 census average dwelling 129.9 m² ÷ 2.41 persons (usable, self-reported); the 2021 census publishes only size bands", "url": "https://statistiques.public.lu/dam-assets/catalogue-publications/RP-2011---Premiers-resultats/2013/rp11-09-13.pdf"}, {"name": "Denmark", "raw": 53.8, "y": 2025, "note": "Gross area including outer walls and shared stairwells, may be 15–20% above usable area (Statistics Denmark)", "url": "https://www.statbank.dk/BOL106"}, {"name": "Switzerland", "raw": 46.6, "y": 2025, "note": "Usable area of occupied dwellings (Swiss Federal Statistical Office)", "url": "https://www.bfs.admin.ch/"}, {"name": "Germany", "raw": 44, "y": 2022, "note": "Housing stock ÷ population, ODYSSEE (same source as the EU figure)", "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"}, {"name": "Singapore", "raw": 42, "y": 2020, "note": "Census mean (median 33)", "url": "https://data.gov.sg/datasets/d_46ff0d0429b30ac8d76d6778df32eb84/view"}, {"name": "Sweden", "raw": 42, "y": 2025, "note": "Usable area of occupied dwellings ÷ residents (Statistics Sweden)", "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/HE/HE0111/HE0111A/HushallT23"}, {"name": "Finland", "raw": 41.6, "y": 2025, "note": "Usable area ÷ household population (Statistics Finland)", "url": "https://pxdata.stat.fi/PxWeb/api/v1/fi/StatFin/asku/15fd.px"}, {"name": "Japan", "raw": 41.0, "y": 2023, "note": "Total dwelling floor area ÷ average household size", "url": "https://www.stat.go.jp/data/jyutaku/2023/pdf/kihon_gaiyou.pdf"}, {"name": "Italy", "raw": 41, "y": 2022, "note": "Housing stock ÷ population, ODYSSEE (same source as the EU figure)", "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"}, {"name": "EU", "raw": 40, "y": 2022, "note": "Population-weighted from Germany, France, Italy, Spain and Poland (66% of EU population), ODYSSEE", "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"}, {"name": "France", "raw": 40, "y": 2022, "note": "Housing stock ÷ population, ODYSSEE (same source as the EU figure)", "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"}, {"name": "Iceland", "raw": 39.2, "y": 2021, "note": "Derived: 2021 census average dwelling 105.8 m² ÷ 2.7 residents", "url": "https://px.hagstofa.is/pxis/api/v1/is/Ibuar/manntal/2021/7_husnaedi/CEN1710.px"}, {"name": "United Kingdom", "raw": 37, "y": 2008, "note": "England; the latest official per-person figure", "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/725085/Floor_Space_in_English_Homes_main_report.pdf"}, {"name": "Türkiye", "raw": 36.7, "y": 2022, "note": "Model estimate", "url": "https://arxiv.org/pdf/2503.05824"}, {"name": "China", "raw": 41.76, "y": 2020, "note": "National, family-household floor area from the 2020 census (rural 46.80, cities and towns about 38.9 m² gross); urban floor area converted at 78% to usable area, rural self-built houses not converted, weighted by the 63.9% urban population: about 36.3", "url": "https://www.nbd.com.cn/articles/2022-06-27/2341610.html"}, {"name": "South Korea", "raw": 36.0, "y": 2024, "note": "National (Korea Housing Survey)", "url": "https://biz.newdaily.co.kr/site/data/html/2025/11/15/2025111500090.html"}, {"name": "Armenia", "raw": 35.5, "y": 2023, "note": "Housing stock ÷ population", "url": "https://stat.uz/en/press-center/news-of-committee/47745"}, {"name": "North Macedonia", "raw": 30.1, "y": 2021, "note": "Derived from the census", "url": "https://arhiva.moepp.gov.mk/wp-content/uploads/2021/01/1_Socio-ekonomski-spoeno-2022.pdf"}, {"name": "Russia", "raw": 29.4, "y": 2024, "note": "National, housing stock ÷ population (Rosstat)", "url": "https://rosstat.gov.ru/storage/mediabank/Jil_hoz_2025.pdf"}, {"name": "Belarus", "raw": 29.4, "y": 2023, "note": "Housing stock ÷ population", "url": "https://stat.uz/en/press-center/news-of-committee/47745"}, {"name": "Montenegro", "raw": 27.5, "y": 2023, "note": "Census", "url": "https://www.monstat.org/uploads/files/popis%202021/saopstenja/RELEASE_DWELLINGS%202023_II.pdf"}, {"name": "Malaysia", "raw": 27.3, "y": 2017, "note": "Developer report citing the government valuation department", "url": "https://www.edgeprop.my/content/1471152"}, {"name": "Vietnam", "raw": 26.6, "y": 2024, "note": "National living area, excluding kitchens and bathrooms", "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2025/01/thong-cao-bao-chi-ket-qua-dieu-tra-dan-so-va-nha-o-giua-ky-nam-2024/"}, {"name": "Kazakhstan", "raw": 25.1, "y": 2025, "note": "National", "url": "https://stat.gov.kz/ru/industries/business-statistics/stat-inno-build/publications/477117/"}, {"name": "Macao", "raw": 20.7, "y": 2022, "note": "Statista; original source not stated", "url": "https://es.statista.com/statistics/1040751/macao-per-capita-living-space/"}, {"name": "Azerbaijan", "raw": 20.1, "y": 2023, "note": "Housing stock ÷ population", "url": "https://stat.uz/en/press-center/news-of-committee/47745"}, {"name": "Hong Kong", "raw": 16, "y": 2021, "note": "Census median, as quoted in the legislature", "url": "https://www.devb.gov.hk/en/sdev/press/index_id_11447.html"}, {"name": "Indonesia", "raw": 11.3, "y": 2022, "note": "Model estimate", "url": "https://arxiv.org/pdf/2503.05824"}, {"name": "India", "raw": 10.8, "y": 2018, "note": "National, 46.4 m² per household ÷ 4.3 persons (NSS 76th round)", "url": "https://mospi.gov.in/sites/default/files/publication_reports/Report_584_final_0.pdf"}];
+const RAIL_MIN=10, RAIL_MAX=1500, TRIP_KM=8;
+
+const DIMS=[
+  {k:"elec",name:"Elec",full:"Electricity",w:15,desc:"Electricity use per person (generation plus net imports), log scale: 100 kWh scores 0, 15,000 kWh or more full marks."},
+  {k:"food",name:"Food",full:"Food",w:12.5,desc:"Equal-weight average of three items per person per year: fruit (0–100 kg), vegetables (0–150 kg), meat and eggs combined (0–72 kg)."},
+  {k:"house",name:"Home",full:"Housing",w:15,desc:"Floor area per person: 10 m² scores 0, 50 m² full marks. Data for 32 economies."},
+  {k:"move",name:"Move",full:"Transport",w:12.5,desc:"Half vehicles per 1,000 people (650 is full marks), half kilometres per person by high-speed and urban rail (log scale). Conventional rail is not counted."},
+  {k:"health",name:"Health",full:"Health",w:15,desc:"Average of life expectancy (55–85 years) and infant mortality (log scale: 70 per 1,000 scores 0, 1.5 full marks)."},
+  {k:"net",name:"Net",full:"Internet",w:5,desc:"Average of internet users (40%–100%) and access: the higher of fixed broadband (0–40 per 100 people) and 5G population coverage (0%–100%)."},
+  {k:"edu",name:"Edu",full:"Education",w:12.5,desc:"Tertiary gross enrolment ratio, students as a share of the university-age population (UNESCO): 20% scores 0, 80% or more full marks."},
+  {k:"safe",name:"Safe",full:"Safety",w:12.5,desc:"Average of the share who feel safe walking alone at night (Gallup, 30%–100%) and homicides per 100,000 people (log scale: 30 scores 0, 0.5 or fewer full marks)."}
+];
+const DEFAULT_W=Object.fromEntries(DIMS.map(d=>[d.k,d.w]));
+let W={...DEFAULT_W};
+const col=k=>`var(--c-${k})`;
+const cl=v=>Math.max(0,Math.min(1,v)), ln=Math.log;
+const lin=(x,a,b)=>x==null?null:cl((x-a)/(b-a)), lg=(x,a,b)=>x==null?null:cl((ln(x)-ln(a))/(ln(b)-ln(a)));
+const avg=a=>{const v=a.filter(x=>x!=null&&!isNaN(x));return v.length?v.reduce((p,q)=>p+q,0)/v.length:null;};
+const fmt=(n,d=0)=>n==null?"—":Number(n).toLocaleString("en-US",{maximumFractionDigits:d,minimumFractionDigits:d});
+
+// Dimension scores (0-1) for one economy or region; null where data are missing.
+function dimScores(r){
+  r.hsrKm=r.hsr? r.hsr*1e6/r.pop : 0;
+  r.urbanKm=r.urbanPkm? r.urbanPkm*1e6/r.pop : (r.urbanTrips? r.urbanTrips*1e6*TRIP_KM/r.pop : 0);
+  r.railKm=r.hsrKm+r.urbanKm;
+  const s={};
+  s.elec=r.elec!=null? lg(Math.max(r.elec,100),100,15000):null;
+  s.food=avg([lin(r.fruit,0,100),lin(r.veg,0,150),(r.meat!=null||r.egg!=null)?lin((r.meat??0)+(r.egg??0),0,72):null]);
+  s.house=lin(r.area,10,50);
+  const car=lin(r.cars,0,650), rail=r.railKm>0? lg(Math.max(r.railKm,RAIL_MIN),RAIL_MIN,RAIL_MAX):0;
+  s.move= car!=null? .5*car+.5*rail : null;
+  s.health=avg([lin(r.life,55,85), r.imr!=null? cl((ln(70)-ln(Math.max(r.imr,1.5)))/(ln(70)-ln(1.5))):null]);
+  const access=Math.max(lin(r.bb,0,40)??0, lin(r.g5,0,100)??0);
+  s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
+  s.edu=lin(r.ter,20,80);
+  s.safe=avg([lin(r.night,30,100), r.hom!=null? cl((ln(30)-ln(Math.max(r.hom,0.5)))/(ln(30)-ln(0.5))) : null]);
+  return s;
+}
+DATA.forEach(r=>{ r.s=dimScores(r); });
+const G20=["ARG", "AUS", "BRA", "CAN", "CHN", "FRA", "DEU", "IND", "IDN", "ITA", "JPN", "KOR", "MEX", "RUS", "SAU", "ZAF", "TUR", "GBR", "USA", "EUU"];
+const FOCUS=["ARG", "AUS", "BRA", "CAN", "CHN", "FRA", "DEU", "IND", "IDN", "ITA", "JPN", "KOR", "MEX", "RUS", "SAU", "ZAF", "TUR", "GBR", "USA", "EUU", "NOR", "SWE", "DNK", "FIN", "ISL", "CHE", "LUX"];  // default view: G20 + EU + Nordic countries, Switzerland, Luxembourg
+const REGIONS=[{"code": "JZS", "name": "Jiangsu-Zhejiang-Shanghai", "nation": "CHN", "pop": 177044100, "gdp": 48809, "gdpCny": 165837, "elec": 10309, "area": 38.0, "areaGross": 44.5, "cars": 314, "hsr": 140426, "urbanPkm": 68948, "life": 82.0, "imr": 1.65, "bb": 57.9, "fruit": 114.35999, "veg": 412.71997, "meat": 73.54, "egg": 22.96, "net": 91.6, "g5": 96.0, "hom": 0.5018560705357, "night": 94, "national": ["Food", "Internet users", "5G coverage", "Safety", "Education"], "notes": ["Population, GDP, electricity use and car stock from the 2025 statistical bulletins of Jiangsu, Zhejiang and Shanghai (Shanghai cars: 2024); GDP converted with the World Bank 2025 PPP factor for China (3.40)", "Electricity is the three provinces' total electricity use in 2025, including industry", "Housing is family-household floor area from the 2020 census (city, town and rural weighted; about 44.5 m² gross); urban area converted at 78%, rural not converted", "Urban rail is CAMET's 2025 passenger-kilometres, 68.9 billion", "High-speed rail: the provinces' 2024 rail passenger-kilometres, 204.6 billion, times China's national EMU share of 68.6% (provincial EMU figures are not published)", "Life expectancy is population-weighted: Jiangsu 80.7, Zhejiang 82.6, Shanghai 'over 85' counted as 85; infant mortality Jiangsu 1.67‰, Zhejiang 1.37‰ (2024), Shanghai 2.34‰ (2025)", "Fixed broadband is the provinces' 2025 subscriber count"], "ter": 76.9, "name_en": "Jiangsu-Zhejiang-Shanghai", "notes_en": ["Population, GDP, electricity use and car stock from the 2025 statistical bulletins of Jiangsu, Zhejiang and Shanghai (Shanghai cars: 2024); GDP converted with the World Bank 2025 PPP factor for China (3.40)", "Electricity is the three provinces' total electricity use in 2025, including industry", "Housing is family-household floor area from the 2020 census (city, town and rural weighted; about 44.5 m² gross); urban area converted at 78%, rural not converted", "Urban rail is CAMET's 2025 passenger-kilometres, 68.9 billion", "High-speed rail: the provinces' 2024 rail passenger-kilometres, 204.6 billion, times China's national EMU share of 68.6% (provincial EMU figures are not published)", "Life expectancy is population-weighted: Jiangsu 80.7, Zhejiang 82.6, Shanghai 'over 85' counted as 85; infant mortality Jiangsu 1.67‰, Zhejiang 1.37‰ (2024), Shanghai 2.34‰ (2025)", "Fixed broadband is the provinces' 2025 subscriber count"], "national_en": ["Food", "Internet users", "5G coverage", "Safety", "Education"]}];
+const popFmt=n=>n>=1e9?(n/1e9).toFixed(2)+" bn":n>=1e6?(n/1e6).toFixed(1)+" M":Math.round(n/1e3)+" k";
+// A missing dimension takes the average score of the G20 + EU economies that have it.
+const G20AVG=Object.fromEntries(DIMS.map(d=>[d.k,avg(DATA.filter(r=>G20.includes(r.code)).map(r=>r.s[d.k]))]));
+DATA.forEach(r=>DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }));
+REGIONS.forEach(r=>{ r.s=dimScores(r); DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }); r.region=true; r.gdpY=2025; r.carsY=2025; r.areaY=r.code==="JZS"?2020:2024; });
+const NATIONS=DATA.slice();
+DATA.push(...REGIONS);  // shown everywhere for reference, but not ranked
+document.getElementById("g20house").textContent=Math.round(G20AVG.house*100);
+let VIEW="g20", SHOW=DATA, gdpRank={};
+
+function score(){
+  DATA.forEach(r=>{
+    let ws=0,t=0; r.contrib={};
+    DIMS.forEach(d=>{ if(r.s[d.k]!=null){ws+=W[d.k]; t+=W[d.k]*r.s[d.k];} });
+    DIMS.forEach(d=>{ r.contrib[d.k]= r.s[d.k]!=null&&ws? 100*W[d.k]*r.s[d.k]/ws : 0; });
+    r.score= ws? 100*t/ws : 0;
+  });
+  const pick= VIEW==="g20only"? G20 : VIEW==="g20"? FOCUS : null;
+  SHOW= pick? DATA.filter(r=>pick.includes(r.code)||r.region) : DATA;
+  const ranked=SHOW.filter(r=>!r.region);
+  gdpRank=Object.fromEntries([...ranked].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
+  [...ranked].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
+}
+document.querySelectorAll(".vt").forEach(el=>{el.className="viewtog";el.setAttribute("role","group");el.setAttribute("aria-label","View");el.innerHTML=`<button type="button" data-v="g20only">G20</button><button type="button" data-v="g20">G20 + rich</button><button type="button" data-v="all">All ${NATIONS.length}</button>`;});
+document.querySelectorAll(".viewtog button").forEach(b=>b.addEventListener("click",()=>{VIEW=b.dataset.v;render();}));
+
+document.getElementById("dims").innerHTML=DIMS.map(d=>`<div class="dim"><b><i style="background:${col(d.k)}"></i>${d.full}<span class="wt" data-wt="${d.k}"></span></b>${d.desc}</div>`).join("");
+document.getElementById("legend").innerHTML=DIMS.map(d=>`<span><i style="background:${col(d.k)}"></i>${d.full}</span>`).join("");
+document.getElementById("weights").innerHTML=DIMS.map(d=>`<label class="w" for="w-${d.k}"><span class="sw" style="background:${col(d.k)}"></span><span>${d.full}<input type="range" id="w-${d.k}" min="0" max="50" step="0.25" value="${d.w}"></span><output id="o-${d.k}"></output></label>`).join("");
+DIMS.forEach(d=>document.getElementById("w-"+d.k).addEventListener("input",e=>{W[d.k]=+e.target.value;render();}));
+document.getElementById("reset").addEventListener("click",()=>{W={...DEFAULT_W};DIMS.forEach(d=>document.getElementById("w-"+d.k).value=W[d.k]);render();});
+
+const tip=document.getElementById("tip");
+function showTip(e,html){tip.innerHTML=html;tip.hidden=false;tip.style.left=Math.min(e.clientX+12,innerWidth-270)+"px";tip.style.top=(e.clientY+12)+"px";}
+function hideTip(){tip.hidden=true;}
+
+function renderRank(){
+  const rows=[...SHOW].sort((a,b)=>b.score-a.score);
+  let h=`<div class="h">#</div><div class="h">Economy</div><div class="h" style="text-align:right">Population</div><div class="h">Score</div><div class="h" style="text-align:right">Pts</div><div class="h" style="text-align:right">vs GDP</div>`;
+  rows.forEach(r=>{
+    if(r.region){ h+=`<div class="num reg">·</div><div class="nm reg">${r.name}<span class="tag">region</span></div><div class="pop">${popFmt(r.pop)}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta eq" title="Region, not ranked">—</div>`; return; }
+    const d=gdpRank[r.code]-r.rank;
+    const cls=d>0?"up":d<0?"down":"eq", sym=d>0?`▲${d}`:d<0?`▼${-d}`:"—";
+    h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}</div><div class="pop">${popFmt(r.pop)}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP rank ${gdpRank[r.code]}">${sym}</div>`;
+  });
+  document.getElementById("rank").innerHTML=h;
+}
+
+function scatter(el,{pts,xlog,ylog,xdom,ydom,xticks,yticks,xfmt,yfmt,xlabel,ylabel,trend,tipf,H=480,keep=[]}){
+  const Wd=880,m={l:56,r:24,t:16,b:48};
+  const sx=v=>m.l+(Wd-m.l-m.r)*(xlog?(ln(v)-ln(xdom[0]))/(ln(xdom[1])-ln(xdom[0])):(v-xdom[0])/(xdom[1]-xdom[0]));
+  const sy=v=>H-m.b-(H-m.t-m.b)*(ylog?(ln(v)-ln(ydom[0]))/(ln(ydom[1])-ln(ydom[0])):(v-ydom[0])/(ydom[1]-ydom[0]));
+  let s=`<svg viewBox="0 0 ${Wd} ${H}" width="100%" style="min-width:560px" role="img">`;
+  yticks.forEach(t=>{s+=`<line x1="${m.l}" x2="${Wd-m.r}" y1="${sy(t)}" y2="${sy(t)}" stroke="var(--rule)" stroke-width="1"/><text x="${m.l-8}" y="${sy(t)+4}" text-anchor="end">${yfmt(t)}</text>`;});
+  xticks.forEach(t=>{s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 3"/><text x="${sx(t)}" y="${H-m.b+18}" text-anchor="middle">${xfmt(t)}</text>`;});
+  s+=`<text x="${(m.l+Wd-m.r)/2}" y="${H-8}" text-anchor="middle">${xlabel}</text><text x="14" y="${(m.t+H-m.b)/2}" text-anchor="middle" transform="rotate(-90 14 ${(m.t+H-m.b)/2})">${ylabel}</text>`;
+  if(trend){s+=`<line x1="${sx(xdom[0])}" y1="${sy(trend(xdom[0]))}" x2="${sx(xdom[1])}" y2="${sy(trend(xdom[1]))}" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="6 5" fill="none"/>`;}
+  const placed=[], P=pts.map(p=>({...p,X:sx(p.x),Y:sy(p.y)}));
+  P.forEach(p=>{s+=`<circle cx="${p.X}" cy="${p.Y}" r="5" fill="${p.c||"var(--accent)"}" stroke="var(--surface)" stroke-width="1.5" data-i="${p.code}"/>`;});
+  P.forEach(p=>placed.push({x0:p.X-6,x1:p.X+6,y0:p.Y-6,y1:p.Y+6}));
+  const hit=b=>b.x0<m.l||b.x1>Wd-m.r||b.y0<m.t||b.y1>H-m.b||placed.some(q=>b.x0<q.x1&&b.x1>q.x0&&b.y0<q.y1&&b.y1>q.y0);
+  [...P].sort((a,b)=>(keep.includes(b.code)-keep.includes(a.code))||(a.Y-b.Y)).forEach(p=>{
+    const w=p.name.length*12+2,h=14;
+    for(const [dx,dy,anc] of [[9,4,"start"],[-9,4,"end"],[0,-10,"middle"],[0,18,"middle"],[9,-8,"start"],[-9,-8,"end"],[9,16,"start"],[-9,16,"end"]]){
+      const x0=anc==="start"?p.X+dx:anc==="end"?p.X+dx-w:p.X-w/2, b={x0,x1:x0+w,y0:p.Y+dy-11,y1:p.Y+dy-11+h};
+      if(!hit(b)){placed.push(b);s+=`<text class="lbl" x="${p.X+dx}" y="${p.Y+dy}" text-anchor="${anc}">${p.name}</text>`;break;}
+    }
+  });
+  s+="</svg>";
+  el.innerHTML=s;
+  el.querySelectorAll("circle").forEach(c=>{const p=pts.find(q=>q.code===c.dataset.i);c.addEventListener("mousemove",e=>showTip(e,tipf(p)));c.addEventListener("mouseleave",hideTip);});
+}
+
+function fit(){
+  const pts=SHOW.filter(r=>!r.region), xs=pts.map(r=>ln(r.gdp)), ys=pts.map(r=>r.score), n=xs.length;
+  const mx=xs.reduce((a,b)=>a+b)/n, my=ys.reduce((a,b)=>a+b)/n;
+  let sxy=0,sxx=0; xs.forEach((x,i)=>{sxy+=(x-mx)*(ys[i]-my);sxx+=(x-mx)**2;});
+  const b=sxy/sxx,a=my-b*mx; return g=>a+b*ln(g);
+}
+const KEY=["JZS","CHN","USA","EUU","FRA","DEU","ITA","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
+function renderScatter(){
+  const f=fit();
+  SHOW.forEach(r=>r.resid=r.score-f(r.gdp));
+  const ymin=Math.max(0,Math.floor(Math.min(...SHOW.map(r=>r.score))/10)*10-10);
+  const yt=[];for(let v=ymin;v<=100;v+=10)yt.push(v);
+  scatter(document.getElementById("scatter"),{
+    pts:SHOW.map(r=>({code:r.code,name:r.name,x:r.gdp,y:r.score,c:r.region?"var(--accent)":r.resid>=0?"var(--up)":"var(--down)",r})),
+    xlog:true,xdom:[8000,180000],ydom:[ymin,100],xticks:[10000,20000,50000,100000,150000],yticks:yt,keep:KEY,H:520,
+    xfmt:t=>"$"+(t/1000)+"k",yfmt:t=>t,xlabel:"GDP per person (PPP, international $, log scale)",ylabel:"Living-standards score",
+    trend:f,tipf:p=>`<b>${p.name}</b><br>GDP per person $${fmt(p.r.gdp)} (${p.r.gdpY})<br>Score ${p.r.score.toFixed(1)}, trend ${(p.r.score-p.r.resid).toFixed(1)}<br>${p.r.region?"Region, not ranked":`Living standards #${p.r.rank}, GDP #${gdpRank[p.code]}`}`
+  });
+  const s=SHOW.filter(r=>!r.region).sort((a,b)=>b.resid-a.resid), k=VIEW==="all"?6:3;
+  const li=r=>`<b>${r.name}</b> <span class="num">${r.resid>0?"+":""}${r.resid.toFixed(1)}</span>`;
+  document.getElementById("findings").innerHTML=`<p>With the current weights, furthest above the trend line: ${s.slice(0,k).map(li).join(", ")}; furthest below: ${s.slice(-k).reverse().map(li).join(", ")} (points above or below the trend).</p>`;
+}
+
+function renderMove(){
+  const pts=SHOW.filter(r=>r.cars!=null).map(r=>({code:r.code,name:r.name,x:Math.min(r.cars,1000),y:Math.max(r.railKm,1),c:"var(--c-move)",r}));
+  scatter(document.getElementById("move"),{
+    pts,xdom:[0,1000],ylog:true,ydom:[1,RAIL_MAX*2],xticks:[0,200,400,600,800,1000],yticks:[1,10,100,1000],keep:KEY,
+    xfmt:t=>t===1000?"≥1,000":fmt(t),yfmt:t=>t===1?"≈0":fmt(t),xlabel:"Vehicles per 1,000 people",ylabel:"High-speed + urban rail (km per person per year)",
+    tipf:p=>`<b>${p.name}</b><br>Vehicles per 1,000: ${fmt(p.r.cars)} (${p.r.carsY})<br>High-speed rail: ${fmt(p.r.hsrKm)} km per person<br>Urban rail: ${fmt(p.r.urbanKm)} km per person<br>Transport score ${(p.r.s.move*100).toFixed(0)}`
+  });
+  document.getElementById("movecap").textContent=`Horizontal axis: vehicles per 1,000 people; values above 1,000 are drawn at the right edge. Vertical axis: kilometres per person per year by high-speed and urban rail (log scale); zero is drawn on the bottom row. High-speed rail uses passenger-km: China 2024 EMU data, Japan fiscal 2024, the EU (France, Germany, Italy, Spain, Sweden, Finland), South Korea, Türkiye and the US from UIC and EU statistics. Russia, Saudi Arabia and Indonesia publish only trips, converted at full line length, an upper bound. No separate figure was found for the UK or Hong Kong, so they count as zero. Urban rail: China uses official passenger-km; elsewhere only trips are published, converted at ${TRIP_KM} km each. Scoring: ${fmt(RAIL_MIN)} km scores 0, ${fmt(RAIL_MAX)} km full marks (log scale).${SHOW.some(r=>r.cars==null)?` The ${SHOW.filter(r=>r.cars==null).length} economies without vehicle data are not drawn; their transport takes the G20 and EU average.`:""}`;
+}
+
+function hbar(el,rows,{max,val,lab,color,cap,extra,unit=""}){
+  const Wd=880, rh=22, m={l:132,r:70,t:8,b:24}, H=m.t+rows.length*rh+m.b;
+  const sx=v=>m.l+(Wd-m.l-m.r)*Math.min(v,max)/max;
+  let s=`<svg viewBox="0 0 ${Wd} ${H}" width="100%" style="min-width:520px" role="img">`;
+  const step=max/4; for(let t=0;t<=max;t+=step) s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--rule)"/><text x="${sx(t)}" y="${H-6}" text-anchor="middle">${fmt(t)}</text>`;
+  rows.forEach((r,i)=>{const y=m.t+i*rh, v=val(r);
+    s+=`<text class="lbl" x="${m.l-8}" y="${y+15}" text-anchor="end">${r.name}</text><rect x="${m.l}" y="${y+4}" width="${sx(v)-m.l}" height="${rh-8}" fill="${color}" fill-opacity="${r.weakArea?0.45:1}" rx="2"/><text x="${sx(v)+6}" y="${y+15}">${lab(r)}${v>max?" ›":""}</text>`;});
+  if(cap!=null) s+=`<line x1="${sx(cap)}" x2="${sx(cap)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--ink)" stroke-dasharray="5 4"/><text x="${sx(cap)+4}" y="${m.t+10}" fill="var(--ink)">${extra||""}</text>`;
+  el.innerHTML=s+"</svg>";
+}
+function renderElec(){
+  const rows=SHOW.filter(r=>r.elec!=null).sort((a,b)=>b.elec-a.elec);
+  hbar(document.getElementById("elec"),rows,{max:30000,val:r=>r.elec,lab:r=>fmt(r.elec),color:"var(--c-elec)",cap:15000,extra:"Full score 15,000"});
+  const nat=rows.filter(r=>!r.region), hi=nat[0], lo=nat[nat.length-1], cn=DATA.find(r=>r.code==="CHN");
+  document.getElementById("electxt").textContent=`Electricity use per person ranges from ${fmt(lo.elec)} kWh in ${lo.name} to ${fmt(hi.elec)} kWh in ${hi.name}, a ratio of about ${Math.round(hi.elec/lo.elec)} to 1. China uses ${fmt(cn.elec)} kWh, ranking ${nat.indexOf(cn)+1} of the ${nat.length} economies with data. The figures include industry: Iceland, Norway, Bahrain and Qatar run energy-hungry industries such as aluminium smelting and gas processing, and manufacturing takes the largest share in China. That is why the score uses a log scale and stops rising at 15,000 kWh per person.`;
+}
+function renderArea(){
+  const rows=SHOW.filter(r=>r.area!=null).sort((a,b)=>b.area-a.area);
+  hbar(document.getElementById("area"),rows,{max:90,val:r=>r.area,lab:r=>`${fmt(r.area,1)} (${r.areaY})`,color:"var(--c-house)",cap:50,extra:"Full score 50"});
+  document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}: ${a.raw} m², ${a.y}. ${a.note}. <a href="${a.url}" target="_blank" rel="noopener">Source</a></li>`).join("");
+}
+
+const COLS=[["name","Economy"],["pop","Population"],["score","Score"],["gdp","GDP pp $"],["elec","Elec. kWh"],["fruit","Fruit kg"],["veg","Veg. kg"],["meat","Meat kg"],["egg","Eggs kg"],["area","Home m²"],["cars","Cars/1k"],["hsrKm","HSR km"],["urbanKm","Urban rail km"],["life","Life exp."],["imr","Infant mort. ‰"],["net","Internet %"],["bb","Broadband/100"],["g5","5G %"],["night","Safe at night %"],["hom","Homicide/100k"],["ter","Tertiary enrol. %"]];
+const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g5:1,night:1,hom:1,ter:1,fruit:1,veg:1,meat:1,egg:1};
+let sortK="score",sortD=-1;
+function renderTable(){
+  const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
+  let h="<thead><tr>"+COLS.map(([k,l])=>`<th data-k="${k}" ${k===sortK?`aria-sort="${sortD<0?"descending":"ascending"}"`:""}>${l}${k===sortK?(sortD<0?" ↓":" ↑"):""}</th>`).join("")+"</tr></thead><tbody>";
+  rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?(r.region?v+" (region)":v):k==="pop"?popFmt(v):fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
+  const t=document.getElementById("tbl"); t.innerHTML=h+"</tbody>";
+  t.querySelectorAll("th").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;sortD=k===sortK?-sortD:(k==="name"?1:-1);sortK=k;renderTable();}));
+}
+document.getElementById("years").innerHTML="<thead><tr><th>Indicator</th><th>Year</th><th>Coverage</th></tr></thead><tbody>"+YEARS.map(y=>`<tr><td>${y.label}</td><td>${y.years}</td><td>${y.n} / ${NATIONS.length}</td></tr>`).join("")+"</tbody>";
+
+function weighted(r){
+  let ws=0,t=0; DIMS.forEach(d=>{ if(r.s[d.k]!=null){ws+=W[d.k]; t+=W[d.k]*r.s[d.k];} });
+  return ws? 100*t/ws : 0;
+}
+function renderCmp(){
+  const by=c=>DATA.find(r=>r.code===c), jz=REGIONS[0], cols=[jz,by("CHN"),by("USA"),by("EUU"),by("JPN")];
+  const g20=NATIONS.filter(r=>FOCUS.includes(r.code)).map(r=>weighted(r));
+  const rankIn=v=>1+g20.filter(x=>x>v).length;
+  const isNat=(r,dim)=>r.national&&r.national.includes(dim);
+  const rows=[
+    ["Population",r=>popFmt(r.pop)],
+    ["GDP per person (PPP, international $)",r=>"$"+fmt(r.gdp)],
+    ["Electricity use per person (kWh/year)",r=>fmt(r.elec)],
+    ["Floor area per person (m²)",r=>r.area==null?"—":fmt(r.area,1)],
+    ["Vehicles per 1,000 people",r=>fmt(r.cars)],
+    ["High-speed rail (km per person per year)",r=>fmt(r.hsr? r.hsr*1e6/r.pop:0)],
+    ["Urban rail (km per person per year)",r=>fmt(r.urbanPkm? r.urbanPkm*1e6/r.pop : (r.urbanTrips||0)*1e6*TRIP_KM/r.pop)],
+    ["Life expectancy (years)",r=>fmt(r.life,1)],
+    ["Infant mortality (per 1,000)",r=>fmt(r.imr,1)],
+    ["Internet users (%)",r=>fmt(r.net,1),"Internet users"],
+    ["Tertiary gross enrolment (%)",r=>fmt(r.ter,1),"Education"],
+    ["Feel safe walking alone at night (%)",r=>fmt(r.night),"Safety"],
+    ["Homicides per 100,000",r=>fmt(r.hom,1),"Safety"],
+  ];
+  let h=`<thead><tr><th>Item</th>${cols.map(r=>`<th>${r.name}${r.nation?"":" (national)"}</th>`).join("")}</tr></thead><tbody>`;
+  rows.forEach(([lab,f,dim])=>{h+=`<tr><td>${lab}</td>${cols.map(r=>`<td class="${dim&&isNat(r,dim)?"nat":""}">${f(r)}</td>`).join("")}</tr>`;});
+  DIMS.forEach((d,i)=>{h+=`<tr class="${i===0?"sub":""}"><td>${d.full} score</td>${cols.map(r=>`<td class="${isNat(r,d.name)||isNat(r,d.full)?"nat":""}">${Math.round(r.s[d.k]*100)}</td>`).join("")}</tr>`;});
+  h+=`<tr class="sub"><td><b>Overall score</b></td>${cols.map(r=>`<td><b>${weighted(r).toFixed(1)}</b></td>`).join("")}</tr>`;
+  h+=`<tr><td>Rank among G20 + rich (${FOCUS.length})</td>${cols.map(r=>`<td>#${rankIn(weighted(r))}</td>`).join("")}</tr></tbody>`;
+  document.getElementById("cmp").innerHTML=h;
+  document.getElementById("cmpcap").textContent="Grey items use national values. Food uses national data; safety uses national night-time safety and homicide figures. Ranks use the current weights: the region's rank is where it would sit if added to the G20 + rich list; the others are actual ranks.";
+  document.getElementById("cmpnotes").innerHTML=REGIONS.map(r=>`<li><b>${r.name}</b>：${r.notes.join("；")}。</li>`).join("");
+}
+function render(){
+  const tot=DIMS.reduce((a,d)=>a+W[d.k],0);
+  DIMS.forEach(d=>{const pct=tot?Math.round(10000*W[d.k]/tot)/100:0;document.getElementById("o-"+d.k).textContent=pct+"%";document.querySelector(`[data-wt="${d.k}"]`).textContent="Weight "+pct+"%";});
+  document.getElementById("wsum").textContent=tot?"Slider values are converted to percentages automatically.":"Give at least one dimension some weight.";
+  score();
+  document.querySelectorAll(".viewtog button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===VIEW)));
+  renderRank(); renderScatter(); renderMove(); renderElec(); renderArea(); renderTable(); renderCmp();
+}
+render();
+</script>
+<script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

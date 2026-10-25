@@ -20,6 +20,29 @@ ZH = {
     "EUU": "欧盟",
 }
 
+# English display names by ISO3 code (EUU = EU, JZS = Jiangsu-Zhejiang-Shanghai).
+EN = {
+    "FRA": "France", "DEU": "Germany", "ITA": "Italy", "SWE": "Sweden", "DNK": "Denmark",
+    "FIN": "Finland", "LUX": "Luxembourg", "SGP": "Singapore", "MAC": "Macao", "QAT": "Qatar",
+    "BMU": "Bermuda", "NOR": "Norway", "CHE": "Switzerland", "GUY": "Guyana", "BRN": "Brunei",
+    "CYM": "Cayman Islands", "USA": "United States", "ISL": "Iceland", "FRO": "Faroe Islands", "HKG": "Hong Kong",
+    "AND": "Andorra", "ARE": "UAE", "GRL": "Greenland", "SMR": "San Marino", "SAU": "Saudi Arabia",
+    "AUS": "Australia", "BHR": "Bahrain", "CAN": "Canada", "GBR": "United Kingdom", "KOR": "South Korea",
+    "ISR": "Israel", "NZL": "New Zealand", "SXM": "Sint Maarten", "KWT": "Kuwait", "JPN": "Japan",
+    "PRI": "Puerto Rico", "ABW": "Aruba", "VIR": "US Virgin Islands", "RUS": "Russia", "TUR": "Türkiye",
+    "KAZ": "Kazakhstan", "PAN": "Panama", "OMN": "Oman", "MYS": "Malaysia", "BHS": "Bahamas",
+    "URY": "Uruguay", "TCA": "Turks and Caicos Islands", "CHL": "Chile", "TTO": "Trinidad and Tobago", "KNA": "St Kitts and Nevis",
+    "SYC": "Seychelles", "ATG": "Antigua and Barbuda", "MNE": "Montenegro", "BLR": "Belarus", "SRB": "Serbia",
+    "CRI": "Costa Rica", "MUS": "Mauritius", "CUW": "Curaçao", "ARG": "Argentina", "GEO": "Georgia",
+    "CHN": "China", "DOM": "Dominican Republic", "LCA": "St Lucia", "MDV": "Maldives", "ALB": "Albania",
+    "MKD": "North Macedonia", "THA": "Thailand", "AZE": "Azerbaijan", "BRB": "Barbados", "MEX": "Mexico",
+    "BIH": "Bosnia and Herzegovina", "ARM": "Armenia", "BRA": "Brazil", "PLW": "Palau", "VCT": "St Vincent and the Grenadines",
+    "DMA": "Dominica", "SUR": "Suriname", "COL": "Colombia", "TKM": "Turkmenistan", "GAB": "Gabon",
+    "IND": "India", "IDN": "Indonesia", "VNM": "Vietnam", "ZAF": "South Africa", "NGA": "Nigeria",
+    "PHL": "Philippines", "BGD": "Bangladesh", "PAK": "Pakistan", "EGY": "Egypt", "IRN": "Iran",
+    "PER": "Peru", "EUU": "EU", "JZS": "Jiangsu-Zhejiang-Shanghai",
+}
+
 # Country names used by Wikipedia tables that differ from World Bank names.
 ALIAS = {
     "Vietnam": "VNM", "Iran": "IRN", "Egypt": "EGY", "United States": "USA", "Russia": "RUS", "South Korea": "KOR",

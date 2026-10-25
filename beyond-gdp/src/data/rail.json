@@ -92,5 +92,11 @@
  ],
  "urbanPkm": {
   "CHN": 271925
- }
+ },
+ "sources_en": [
+  "<li>High-speed rail passenger-km: China <a href=\"https://www.yicai.com/news/102443765.html\" target=\"_blank\" rel=\"noopener\">National Railway Administration, 2024 EMU passenger-km</a>; Japan <a href=\"https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040366697&amp;fileKind=4\" target=\"_blank\" rel=\"noopener\">MLIT railway transport statistics</a>; EU (France, Germany, Italy, Spain), South Korea, Türkiye and the US <a href=\"https://statbase.org/datasets/air-rail-and-water-transportation/high-speed-rail-passenger-traffic/\" target=\"_blank\" rel=\"noopener\">UIC 2023 statistics</a>; Russia (Sapsan), Saudi Arabia (<a href=\"https://en.wikipedia.org/wiki/Haramain_High_Speed_Railway\" target=\"_blank\" rel=\"noopener\">Haramain</a>) and Indonesia (<a href=\"https://goodstats.id/article/jumlah-penumpang-kereta-cepat-whoosh-semakin-melonjak-pada-juni-2025-h2Qk6\" target=\"_blank\" rel=\"noopener\">Whoosh</a>) publish trips only</li>",
+  "<li>China urban rail passenger-km: <a href=\"https://infosharingp2-oss.camet.org.cn/resources/manual/2026/03/31/789660015317061.pdf\" target=\"_blank\" rel=\"noopener\">CAMET 2025 statistics</a></li>",
+  "<li>Light rail and trams: US <a href=\"https://data.transportation.gov/resource/8bui-9xvu\" target=\"_blank\" rel=\"noopener\">NTD</a>; Russia <a href=\"https://rosstat.gov.ru/storage/mediabank/PerevPass(Gor-Electro)_2kv-2026.xlsx\" target=\"_blank\" rel=\"noopener\">Rosstat</a>; UK <a href=\"https://www.gov.uk/government/statistics/light-rail-and-tram-statistics-england-year-ending-march-2026\" target=\"_blank\" rel=\"noopener\">light rail statistics for England</a>; Germany Destatis; Hong Kong Transport Department and MTR annual report; others from operators and statistics offices</li>",
+  "<li>Nordic light rail and trams: Finland <a href=\"https://hslfi.oncloudos.com/kokous/2026302-2-70700.PDF\" target=\"_blank\" rel=\"noopener\">HSL</a> and the Tampere tram; Swedish and Finnish high-speed rail: <a href=\"https://transport.ec.europa.eu/facts-funding/studies-data/eu-transport-figures-statistical-pocketbook/statistical-pocketbook-2026_en\" target=\"_blank\" rel=\"noopener\">EU transport statistical pocketbook 2026</a></li>"
+ ]
 }

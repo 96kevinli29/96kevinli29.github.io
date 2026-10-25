@@ -5,42 +5,48 @@
   "y": 2020,
   "note": "全国，家庭户人均住房建筑面积（2020 年人口普查，乡村 46.80、城市和镇约 38.9）；城镇按 78% 折算成使用面积，乡村自建房不折算，按城镇人口 63.9% 加权，约 36.3",
   "weak": false,
-  "url": "https://www.nbd.com.cn/articles/2022-06-27/2341610.html"
+  "url": "https://www.nbd.com.cn/articles/2022-06-27/2341610.html",
+  "note_en": "National, family-household floor area from the 2020 census (rural 46.80, cities and towns about 38.9 m² gross); urban floor area converted at 78% to usable area, rural self-built houses not converted, weighted by the 63.9% urban population: about 36.3"
  },
  "USA": {
   "v": 72.6,
   "use": 72.6,
   "y": 2024,
   "note": "全国，每位住户的住宅面积，含地下室",
-  "url": "https://www.eia.gov/consumption/residential/data/2024/hc/pdf/HC10.9_2024.pdf"
+  "url": "https://www.eia.gov/consumption/residential/data/2024/hc/pdf/HC10.9_2024.pdf",
+  "note_en": "National, per household member, including basements (EIA RECS)"
  },
  "EUU": {
   "v": 40,
   "use": 40,
   "y": 2022,
   "note": "德法意西波按人口加权（覆盖 66% 人口）",
-  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf",
+  "note_en": "Population-weighted from Germany, France, Italy, Spain and Poland (66% of EU population), ODYSSEE"
  },
  "JPN": {
   "v": 41.0,
   "use": 41.0,
   "y": 2023,
   "note": "住宅总面积÷户均人口",
-  "url": "https://www.stat.go.jp/data/jyutaku/2023/pdf/kihon_gaiyou.pdf"
+  "url": "https://www.stat.go.jp/data/jyutaku/2023/pdf/kihon_gaiyou.pdf",
+  "note_en": "Total dwelling floor area ÷ average household size"
  },
  "KOR": {
   "v": 36.0,
   "use": 36.0,
   "y": 2024,
   "note": "全国",
-  "url": "https://biz.newdaily.co.kr/site/data/html/2025/11/15/2025111500090.html"
+  "url": "https://biz.newdaily.co.kr/site/data/html/2025/11/15/2025111500090.html",
+  "note_en": "National (Korea Housing Survey)"
  },
  "GBR": {
   "v": 37,
   "use": 37,
   "y": 2008,
   "note": "英格兰，官方最新的人均数据",
-  "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/725085/Floor_Space_in_English_Homes_main_report.pdf"
+  "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/725085/Floor_Space_in_English_Homes_main_report.pdf",
+  "note_en": "England; the latest official per-person figure"
  },
  "AUS": {
   "v": 84,
@@ -48,28 +54,32 @@
   "y": 2019,
   "note": "学术估算",
   "weak": true,
-  "url": "https://doi.org/10.1038/s41560-019-0512-1"
+  "url": "https://doi.org/10.1038/s41560-019-0512-1",
+  "note_en": "Academic estimate"
  },
  "CHE": {
   "v": 46.6,
   "use": 46.6,
   "y": 2025,
   "note": "使用面积，有人住的住宅（瑞士联邦统计局）",
-  "url": "https://www.bfs.admin.ch/"
+  "url": "https://www.bfs.admin.ch/",
+  "note_en": "Usable area of occupied dwellings (Swiss Federal Statistical Office)"
  },
  "NOR": {
   "v": 65.5,
   "use": 65.5,
   "y": 2023,
   "note": "生活状况调查，自报面积，按人平均（挪威统计局）；2011 年后没有登记数据",
-  "url": "https://www.ssb.no/statbank/table/14079"
+  "url": "https://www.ssb.no/statbank/table/14079",
+  "note_en": "Living-conditions survey, self-reported, averaged over persons (Statistics Norway); no register figure after 2011"
  },
  "RUS": {
   "v": 29.4,
   "use": 29.4,
   "y": 2024,
   "note": "全国，住房存量÷人口",
-  "url": "https://rosstat.gov.ru/storage/mediabank/Jil_hoz_2025.pdf"
+  "url": "https://rosstat.gov.ru/storage/mediabank/Jil_hoz_2025.pdf",
+  "note_en": "National, housing stock ÷ population (Rosstat)"
  },
  "TUR": {
   "v": 36.7,
@@ -77,14 +87,16 @@
   "y": 2022,
   "note": "模型估算",
   "weak": true,
-  "url": "https://arxiv.org/pdf/2503.05824"
+  "url": "https://arxiv.org/pdf/2503.05824",
+  "note_en": "Model estimate"
  },
  "SGP": {
   "v": 42,
   "use": 42,
   "y": 2020,
   "note": "人口普查，平均值（中位数 33）",
-  "url": "https://data.gov.sg/datasets/d_46ff0d0429b30ac8d76d6778df32eb84/view"
+  "url": "https://data.gov.sg/datasets/d_46ff0d0429b30ac8d76d6778df32eb84/view",
+  "note_en": "Census mean (median 33)"
  },
  "HKG": {
   "v": 16,
@@ -92,7 +104,8 @@
   "y": 2021,
   "note": "人口普查中位数，转引",
   "weak": true,
-  "url": "https://www.devb.gov.hk/en/sdev/press/index_id_11447.html"
+  "url": "https://www.devb.gov.hk/en/sdev/press/index_id_11447.html",
+  "note_en": "Census median, as quoted in the legislature"
  },
  "MAC": {
   "v": 20.7,
@@ -100,49 +113,56 @@
   "y": 2022,
   "note": "Statista，原始来源未注明",
   "weak": true,
-  "url": "https://es.statista.com/statistics/1040751/macao-per-capita-living-space/"
+  "url": "https://es.statista.com/statistics/1040751/macao-per-capita-living-space/",
+  "note_en": "Statista; original source not stated"
  },
  "KAZ": {
   "v": 25.1,
   "use": 25.1,
   "y": 2025,
   "note": "全国",
-  "url": "https://stat.gov.kz/ru/industries/business-statistics/stat-inno-build/publications/477117/"
+  "url": "https://stat.gov.kz/ru/industries/business-statistics/stat-inno-build/publications/477117/",
+  "note_en": "National"
  },
  "BLR": {
   "v": 29.4,
   "use": 29.4,
   "y": 2023,
   "note": "住房存量÷人口",
-  "url": "https://stat.uz/en/press-center/news-of-committee/47745"
+  "url": "https://stat.uz/en/press-center/news-of-committee/47745",
+  "note_en": "Housing stock ÷ population"
  },
  "ARM": {
   "v": 35.5,
   "use": 35.5,
   "y": 2023,
   "note": "住房存量÷人口",
-  "url": "https://stat.uz/en/press-center/news-of-committee/47745"
+  "url": "https://stat.uz/en/press-center/news-of-committee/47745",
+  "note_en": "Housing stock ÷ population"
  },
  "AZE": {
   "v": 20.1,
   "use": 20.1,
   "y": 2023,
   "note": "住房存量÷人口",
-  "url": "https://stat.uz/en/press-center/news-of-committee/47745"
+  "url": "https://stat.uz/en/press-center/news-of-committee/47745",
+  "note_en": "Housing stock ÷ population"
  },
  "MNE": {
   "v": 27.5,
   "use": 27.5,
   "y": 2023,
   "note": "人口普查",
-  "url": "https://www.monstat.org/uploads/files/popis%202021/saopstenja/RELEASE_DWELLINGS%202023_II.pdf"
+  "url": "https://www.monstat.org/uploads/files/popis%202021/saopstenja/RELEASE_DWELLINGS%202023_II.pdf",
+  "note_en": "Census"
  },
  "MKD": {
   "v": 30.1,
   "use": 30.1,
   "y": 2021,
   "note": "人口普查推算",
-  "url": "https://arhiva.moepp.gov.mk/wp-content/uploads/2021/01/1_Socio-ekonomski-spoeno-2022.pdf"
+  "url": "https://arhiva.moepp.gov.mk/wp-content/uploads/2021/01/1_Socio-ekonomski-spoeno-2022.pdf",
+  "note_en": "Derived from the census"
  },
  "MYS": {
   "v": 27.3,
@@ -150,14 +170,16 @@
   "y": 2017,
   "note": "开发商报告转引",
   "weak": true,
-  "url": "https://www.edgeprop.my/content/1471152"
+  "url": "https://www.edgeprop.my/content/1471152",
+  "note_en": "Developer report citing the government valuation department"
  },
  "IND": {
   "v": 10.8,
   "use": 10.8,
   "y": 2018,
   "note": "全国，户均面积 46.4 平方米 ÷ 户均 4.3 人（NSS 第 76 轮）",
-  "url": "https://mospi.gov.in/sites/default/files/publication_reports/Report_584_final_0.pdf"
+  "url": "https://mospi.gov.in/sites/default/files/publication_reports/Report_584_final_0.pdf",
+  "note_en": "National, 46.4 m² per household ÷ 4.3 persons (NSS 76th round)"
  },
  "IDN": {
   "v": 11.3,
@@ -165,69 +187,79 @@
   "y": 2022,
   "note": "模型估算",
   "weak": true,
-  "url": "https://arxiv.org/pdf/2503.05824"
+  "url": "https://arxiv.org/pdf/2503.05824",
+  "note_en": "Model estimate"
  },
  "VNM": {
   "v": 26.6,
   "use": 26.6,
   "y": 2024,
   "note": "全国，居住面积，不含厨房、卫生间",
-  "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2025/01/thong-cao-bao-chi-ket-qua-dieu-tra-dan-so-va-nha-o-giua-ky-nam-2024/"
+  "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2025/01/thong-cao-bao-chi-ket-qua-dieu-tra-dan-so-va-nha-o-giua-ky-nam-2024/",
+  "note_en": "National living area, excluding kitchens and bathrooms"
  },
  "DEU": {
   "v": 44,
   "use": 44,
   "y": 2022,
   "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
-  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf",
+  "note_en": "Housing stock ÷ population, ODYSSEE (same source as the EU figure)"
  },
  "FRA": {
   "v": 40,
   "use": 40,
   "y": 2022,
   "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
-  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf",
+  "note_en": "Housing stock ÷ population, ODYSSEE (same source as the EU figure)"
  },
  "ITA": {
   "v": 41,
   "use": 41,
   "y": 2022,
   "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
-  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf",
+  "note_en": "Housing stock ÷ population, ODYSSEE (same source as the EU figure)"
  },
  "SWE": {
   "v": 42,
   "use": 42,
   "y": 2025,
   "note": "使用面积，有人住的住宅÷居住人口（瑞典统计局）",
-  "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/HE/HE0111/HE0111A/HushallT23"
+  "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/HE/HE0111/HE0111A/HushallT23",
+  "note_en": "Usable area of occupied dwellings ÷ residents (Statistics Sweden)"
  },
  "DNK": {
   "v": 53.8,
   "use": 53.8,
   "y": 2025,
   "note": "建筑面积（含外墙和楼梯间分摊），可能比使用面积高 15%–20%（丹麦统计局）",
-  "url": "https://www.statbank.dk/BOL106"
+  "url": "https://www.statbank.dk/BOL106",
+  "note_en": "Gross area including outer walls and shared stairwells, may be 15–20% above usable area (Statistics Denmark)"
  },
  "FIN": {
   "v": 41.6,
   "use": 41.6,
   "y": 2025,
   "note": "使用面积，居住人口（芬兰统计局）",
-  "url": "https://pxdata.stat.fi/PxWeb/api/v1/fi/StatFin/asku/15fd.px"
+  "url": "https://pxdata.stat.fi/PxWeb/api/v1/fi/StatFin/asku/15fd.px",
+  "note_en": "Usable area ÷ household population (Statistics Finland)"
  },
  "ISL": {
   "v": 39.2,
   "use": 39.2,
   "y": 2021,
   "note": "推算：2021 年普查户均 105.8 平方米 ÷ 户均 2.7 人",
-  "url": "https://px.hagstofa.is/pxis/api/v1/is/Ibuar/manntal/2021/7_husnaedi/CEN1710.px"
+  "url": "https://px.hagstofa.is/pxis/api/v1/is/Ibuar/manntal/2021/7_husnaedi/CEN1710.px",
+  "note_en": "Derived: 2021 census average dwelling 105.8 m² ÷ 2.7 residents"
  },
  "LUX": {
   "v": 53.9,
   "use": 53.9,
   "y": 2011,
   "note": "推算：2011 年人口普查户均 129.9 平方米 ÷ 户均 2.41 人（使用面积，自报）；2021 年普查只公布分组，没有平均值",
-  "url": "https://statistiques.public.lu/dam-assets/catalogue-publications/RP-2011---Premiers-resultats/2013/rp11-09-13.pdf"
+  "url": "https://statistiques.public.lu/dam-assets/catalogue-publications/RP-2011---Premiers-resultats/2013/rp11-09-13.pdf",
+  "note_en": "Derived: 2011 census average dwelling 129.9 m² ÷ 2.41 persons (usable, self-reported); the 2021 census publishes only size bands"
  }
 }
