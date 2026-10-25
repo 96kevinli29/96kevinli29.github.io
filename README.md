@@ -9,3 +9,4 @@ Homepage of Sea-Fill, an open-source science team: https://seafill.info/ (中文
   - Hugging Face paper page: https://huggingface.co/papers/2609.37119
   - Hugging Face Space: https://huggingface.co/spaces/SeaFill2025/RewardFree
 - ThoughtAtlas: https://seafill.info/ThoughtAtlas/
+- GDP 之外 (Beyond GDP, in Chinese): https://seafill.info/beyond-gdp/

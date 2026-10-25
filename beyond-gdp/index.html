@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GDP 之外 · Sea-Fill</title>
+<meta name="description" content="用用电、饮食、住房面积、出行、健康、联网六个实物维度，比较人均 GDP 前 100 名和 GDP 总量前 50 名的 72 个经济体，并与 GDP 排名对照。">
+<meta property="og:title" content="GDP 之外 · Sea-Fill">
+<meta property="og:description" content="用用电、饮食、住房面积、出行、健康、联网六个实物维度，比较人均 GDP 前 100 名和 GDP 总量前 50 名的 72 个经济体，并与 GDP 排名对照。">
+<link rel="icon" href="https://cdn-avatars.huggingface.co/v1/production/uploads/68d669e121785bf79dec4f7a/HN8cIsNLsI8vrUUvv4sva.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (~68ch) with charts allowed to widen to 960px; meter-panel feel for the data. */
+:root{
+  --bg:#f6f7f8; --surface:#ffffff; --ink:#18212b; --muted:#5d6b78; --rule:#d9dee3; --accent:#c4661f;
+  --c-elec:#d0841f; --c-food:#4f8a3a; --c-house:#8a5a3c; --c-move:#2c68b0; --c-health:#b2406a; --c-net:#6a58a8;
+  --up:#2f7d4f; --down:#b8402f;
+  --f-display:"Noto Serif SC","Songti SC",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-data:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12171d; --surface:#1a2129; --ink:#e6eaee; --muted:#93a1ae; --rule:#2c3640; --accent:#f0a050;
+  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6;
+  --up:#5fc28a; --down:#f07a66; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171d; --surface:#1a2129; --ink:#e6eaee; --muted:#93a1ae; --rule:#2c3640; --accent:#f0a050;
+  --c-elec:#f2a643; --c-food:#7fbf62; --c-house:#c68d68; --c-move:#68a3ec; --c-health:#e57aa1; --c-net:#a594e6;
+  --up:#5fc28a; --down:#f07a66; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+.site-nav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:0 auto;padding-block:16px 0;font-family:var(--f-data);font-size:12px;letter-spacing:.06em}
+.site-nav a{color:var(--muted);text-decoration:none}
+.site-nav a:hover{color:var(--ink)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.8;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.col{max-width:68ch;margin:0 auto}
+.wide{max-width:960px;margin:0 auto}
+header{padding-block:56px 24px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--f-data);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:900;font-size:clamp(40px,8vw,72px);line-height:1.1;margin:8px 0 16px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(24px,4vw,30px);line-height:1.3;margin:56px 0 12px;text-wrap:balance}
+h3{font-size:17px;font-weight:700;margin:28px 0 4px}
+.lede{font-size:19px;color:var(--muted);margin:0}
+.byline{font-family:var(--f-data);font-size:12px;color:var(--muted);margin-top:20px}
+p{margin:12px 0}
+.num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+figure{margin:28px auto;padding:20px;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.6}
+.fig-title{font-weight:700;font-size:15px;margin:0 0 4px}
+.chart{width:100%;overflow-x:auto}
+svg text{font-family:var(--f-data);font-size:11px;fill:var(--muted)}
+svg .lbl{fill:var(--ink);font-family:var(--f-body);font-size:12px}
+.weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 24px}
+.w{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;font-size:14px}
+.w .sw{width:10px;height:10px;border-radius:2px}
+.w input{width:100%;accent-color:var(--accent)}
+.w output{font-family:var(--f-data);font-size:13px;min-width:3.5ch;text-align:right}
+.w-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:14px;font-size:13px;color:var(--muted)}
+button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:4px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rank{display:grid;grid-template-columns:2.2em minmax(6.5em,9.5em) minmax(0,1fr) 3em 4.2em;gap:3px 10px;align-items:center;font-size:14px}
+.rank .h{font-size:11px;color:var(--muted);font-family:var(--f-data);text-transform:uppercase;letter-spacing:.06em}
+.rank .nm{line-height:1.25;min-width:0}
+.rank .miss{display:block;font-size:11px;color:var(--muted)}
+.bar{display:flex;height:14px;border-radius:2px;overflow:hidden;background:var(--rule)}
+.bar span{height:100%}
+.delta{font-family:var(--f-data);font-size:12px;text-align:right}
+.delta.up{color:var(--up)} .delta.down{color:var(--down)} .delta.eq{color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted);margin-top:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;font-size:13px;width:100%;min-width:1200px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:12px;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--surface)}
+th[aria-sort]{color:var(--ink)}
+td{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+td:first-child{font-family:var(--f-body)}
+.na{color:var(--muted)}
+.tbl-sm table{min-width:0}
+.tbl-sm th{cursor:default;position:static}
+.tbl-sm td:not(:first-child){font-family:var(--f-data)}
+.tbl-txt td{font-family:var(--f-body);white-space:normal;text-align:left}
+.tbl-txt th{text-align:left}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+.dim{padding:14px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;font-size:14px;line-height:1.65}
+.dim b{display:flex;align-items:center;gap:8px;font-size:15px}
+.dim b i{width:10px;height:10px;border-radius:2px}
+.dim .wt{font-family:var(--f-data);font-size:12px;color:var(--muted);margin-left:auto;font-weight:400}
+ul{padding-left:1.2em} li{margin:6px 0}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.5;padding:6px 9px;border-radius:4px;z-index:5;max-width:260px}
+a{color:var(--accent)}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<nav class="site-nav"><a href="../zh/">← Sea-Fill</a><a href="../">English</a></nav>
+<header><div class="col">
+  <div class="eyebrow">Sea-Fill · 社会科学笔记</div>
+  <h1>GDP 之外</h1>
+  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，共 72 个经济体。</p>
+  <div class="byline">数据截至 2026 年 10 月 · 尽量使用 2025 年数据 · 世界银行 / FAO / Ember / ITU / 各国统计局 · 权重可调</div>
+</div></header>
+
+<main>
+<div class="col">
+  <p>人均 GDP 衡量的是一个经济体一年产出多少，并不直接告诉我们普通人过得怎么样。资源出口、金融中心和跨国公司利润都会把 GDP 推高，但这些钱未必变成居民的餐桌、房子和通勤。</p>
+  <p>这篇文章换一种算法：不看产出，看<b>人实际能用上的东西</b>。我们选了六个维度，全部用实物指标：度、千卡、公斤、平方米、辆、公里、岁。然后和购买力平价（PPP）人均 GDP 的排名做对比。衣食住行里的“衣”暂时没有计分，原因见文末。</p>
+  <p>为什么不用“居民消费额”？因为同样的东西在不同国家价格差很多。一碗面、一次理发、一张高铁票，在中国的价格可能只有西欧的几分之一。购买力平价（PPP）只做了部分修正，按美元算的消费额仍会低估物价便宜的国家。实物指标没有这个问题：一度电就是一度电。</p>
+  <p>范围是两部分的合集：2025 年人均 GDP（PPP）排名前 100 的经济体，加上 GDP 总量（现价美元）排名前 50 的经济体。后者补进了印度、印尼、越南、菲律宾、孟加拉国、巴基斯坦、埃及、伊朗、秘鲁、南非、尼日利亚 11 个人口大国，它们的人均 GDP 不在前 100 名。排名数据都来自世界银行。欧盟 27 个成员国合并成“欧盟”计算。还没发布 2025 年数据的经济体，用它们最新一年的数据排名。13 个小地区缺两项以上的数据，没有纳入：法罗群岛、百慕大、开曼群岛、格陵兰、波多黎各、阿鲁巴、美属维尔京群岛、特克斯和凯科斯、荷属圣马丁、库拉索、帕劳、安道尔、圣马力诺。世界银行不发布台湾的数据，所以台湾也不在其中。</p>
+
+  <h2>六个维度，用电权重最高</h2>
+  <p>电力是现代生活的底座：照明、冷暖、做饭、洗衣、上网都离不开它，而且发电量很难造假，“李克强指数”就把它当作核心指标。所以默认权重里电力占 25%，其余五项各占 15%。</p>
+</div>
+
+<div class="wide"><div class="dims" id="dims"></div></div>
+
+<div class="col">
+  <p><b>出行</b>由两半组成：<b>人均汽车占 50%</b>，<b>轨道交通占 50%</b>。轨道交通只算高铁和城市轨道交通（地铁、轻轨、有轨电车），普通铁路不计入，因为它的速度和舒适度和这两者不是一个档次。</p>
+  <p><b>住房</b>只看人均住房面积。只有 24 个经济体能找到可靠的数据，其余经济体的住房一项不计分。</p>
+  <p>某一维度完全没有数据时，这一维度不计分，它的权重按比例分给其余维度。排名里会标出缺了哪些维度。</p>
+</div>
+
+<div class="wide">
+<figure>
+  <p class="fig-title">调整权重</p>
+  <div class="weights" id="weights"></div>
+  <div class="w-foot"><span id="wsum"></span><button type="button" id="reset">恢复默认权重</button></div>
+</figure>
+</div>
+
+<div class="col">
+  <h2>生活水平排名，和 GDP 排名对比</h2>
+  <p>下图每一行是一个经济体，条形长度是综合得分（满分 100），颜色是各维度的贡献。最右一列是和人均 GDP 在这 72 个经济体里的排名相比的变化：<span style="color:var(--up)">▲</span> 表示生活水平排名比 GDP 排名靠前。名字下方的小字标出缺少的数据。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="rank" id="rank"></div>
+  <div class="legend" id="legend"></div>
+  <figcaption>得分由六个维度按权重加权平均，全部使用实物指标，不含任何以货币计价的消费数据。缺数据较多的小经济体，排名的参考价值较低。</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>同样的钱，过出了不同的日子</h2>
+  <p>把综合得分和人均 GDP 放在一起看：横轴是人均 GDP（对数刻度），纵轴是生活水平得分，虚线是按所有经济体拟合的趋势。<b>在线上方</b>的经济体，同样的收入换来了更好的生活条件；<b>在线下方</b>的经济体，GDP 里有不少没有变成日常生活。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="chart" id="scatter"></div>
+  <figcaption>趋势线：得分对 ln(人均 GDP) 的最小二乘拟合。点太密时只标出部分名字，把鼠标移到点上可以看全部数值。</figcaption>
+</figure>
+</div>
+
+<div class="col" id="findings"></div>
+<div class="col">
+<h3>几个值得注意的现象（按默认权重）</h3>
+<ul>
+  <li><b>中国</b>是高出趋势线最多的经济体。人均 GDP 在这 72 个经济体里排第 43，生活水平排第 22。饮食、联网接近发达国家；高铁加城市轨道交通人均每年约 960 公里，仅次于香港、新加坡、日本、韩国。拉低得分的是人均住房面积（按使用面积约 31 平方米）和健康指标。</li>
+  <li><b>资源和金融型经济体落差最大。</b>圭亚那 2019 年才开始大规模产油，人均 GDP 排第 6，生活水平只排第 66。澳门靠博彩业，人均 GDP 排第 2，人均住房只有约 21 平方米，生活水平排第 53。新加坡（第 1 → 第 12）、香港（第 10 → 第 30）、文莱（第 7 → 第 21）也明显下滑，香港的人均住房面积约 16 平方米，是有数据的经济体里最小的。</li>
+  <li><b>日本、韩国和欧盟靠轨道交通拿分。</b>日本人均每年乘坐新干线和地铁约 1,240 公里，韩国约 890 公里，欧盟约 540 公里，美国只有约 60 公里。所以美国汽车最多，出行得分却低于日本、欧盟和韩国。美国的健康得分（预期寿命 79 岁）也低于其他高收入经济体。</li>
+  <li><b>海湾产油国排名靠前，但要打折扣。</b>卡塔尔第 7、阿联酋第 11、科威特第 14、沙特第 16。它们的用电和联网几乎满分，但都没有人均住房面积数据，住房一项不计分，排名可能偏高。加拿大、冰岛、新西兰也是同样的情况。</li>
+  <li><b>人口大国差距仍然很大。</b>印尼第 68、印度第 69、孟加拉国第 70、巴基斯坦第 71、尼日利亚第 72。人均用电、肉蛋奶、汽车都远低于其他经济体。印度城镇人均住房约 12 平方米，地铁发展很快，但人均乘坐距离仍只有约 20 公里。</li>
+</ul>
+</div>
+
+<div class="col">
+  <h2>出行：汽车和轨道交通</h2>
+  <p>横轴是每千人汽车，纵轴是人均每年乘坐高铁和城市轨道交通的公里数。右上角是两样都好的经济体；右下角主要靠汽车；左上角主要靠轨道交通。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="chart" id="move"></div>
+  <figcaption id="movecap"></figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>住房：人均面积</h2>
+  <p>人均住房面积是衡量“住”最直接的指标，但国际上没有统一的数据库，只能逐个经济体查官方统计。各国口径不同：有的是建筑面积，有的是使用面积；有的按住房存量除以总人口（包括空置房），有的只算有人住的房子。下图只列出能找到数据的 24 个经济体。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="chart" id="area"></div>
+  <figcaption>人均住房面积，平方米。浅色条表示来源较弱（学术估算、模型推算或转引）。中国的官方数据是建筑面积（40 平方米以上，2023 年城镇），这里按使用面积约占 78% 折算为 31.2 平方米，以便和其他经济体的使用面积比较；这个折算比例是市场常用经验值，不是官方数字。计分时 10 平方米为 0 分，50 平方米为满分。</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>用电：差距比收入差距更大</h2>
+  <p id="electxt"></p>
+</div>
+<div class="wide">
+<figure>
+  <div class="chart" id="elec"></div>
+  <figcaption>人均发电量，千瓦时/年。超过 30,000 的条形画到边缘为止，数值照实标出。虚线为计分封顶线（15,000）。来源：Ember、Energy Institute，经 Our World in Data 整理。</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>全部原始数据</h2>
+  <p>点击表头可以排序。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="tbl"><table id="tbl"></table></div>
+  <figcaption>— 表示缺少数据。高铁、城轨的单位是人均每年乘坐公里数。住房面积为计分所用的使用面积。</figcaption>
+</figure>
+</div>
+
+<div class="col">
+  <h2>为什么没有算“衣”</h2>
+  <p>“衣”最直接的实物指标是每人每年消费多少公斤纺织纤维（棉、化纤、羊毛等）。但公开数据里找不到可靠的分国家数字。</p>
+  <p>最容易查到的是各国“棉花消费量”，但它统计的是纺纱厂用了多少棉花，衡量的是生产，不是穿衣。中国、越南、孟加拉国纺出来的纱、做出来的衣服大量出口，美国几乎不纺纱，衣服主要靠进口。2008 年北美的纺纱厂只用了 88 万吨棉花，但加上进口衣物里的棉花，北美实际消费了 589 万吨；远东地区的纺纱厂用了 1,857 万吨，实际在本地消费的只有 838 万吨。直接用纱厂用棉量，排名会正好颠倒。</p>
+  <p>正确的口径是“终端消费量”：纺纱厂用量加上进出口纺织品和服装里所含的纤维。国际棉花咨询委员会（ICAC）按这个口径做过统计，但公开的只有地区数据，分国家的数据需要付费购买。下表是公开报告里最新的实际值：</p>
+</div>
+<div class="wide">
+<figure>
+  <p class="fig-title">人均纺织纤维终端消费量（公斤/年）</p>
+  <div class="tbl tbl-sm"><table>
+    <thead><tr><th>地区</th><th>2000</th><th>2013</th><th>变化</th></tr></thead>
+    <tbody>
+      <tr><td>工业化国家</td><td>26.4</td><td>29.8</td><td>+13%</td></tr>
+      <tr><td>发展中亚洲</td><td>5.5</td><td>11.2</td><td>+106%</td></tr>
+      <tr><td>中东及发展中欧洲</td><td>10.4</td><td>10.5</td><td>+1%</td></tr>
+      <tr><td>中东欧及前苏联</td><td>4.3</td><td>7.9</td><td>+86%</td></tr>
+      <tr><td>拉丁美洲及加勒比</td><td>6.8</td><td>7.5</td><td>+9%</td></tr>
+      <tr><td>非洲</td><td>1.8</td><td>2.3</td><td>+31%</td></tr>
+      <tr><td>世界平均</td><td>8.1</td><td>11.7</td><td>+44%</td></tr>
+    </tbody>
+  </table></div>
+  <figcaption>来源：ICAC World Textile Demand（2014 年 11 月），表 3。2013 年是该报告最新的实际值，之后的年份为预测，这里没有采用。北美和远东的棉花数据来自 FAO/ICAC World Apparel Fiber Consumption Survey，2008 年。</figcaption>
+</figure>
+</div>
+<div class="col">
+  <p>即使只看地区数据，差距也很明显：工业化国家人均每年消费约 30 公斤纤维，是发展中亚洲的 2.7 倍、非洲的 13 倍。发展中亚洲的消费量在 13 年里翻了一倍，增长最快。等找到可靠的分国家数据，再把“衣”加进综合得分。</p>
+
+  <h2>这套算法的局限</h2>
+  <ul>
+    <li><b>人均住房面积只覆盖 24 个经济体，口径也不统一。</b>建筑面积和使用面积、住房存量和实际居住，都会造成 10%–25% 的差异。英国（2008）和挪威（2007）的官方人均数据已经很旧。没有面积数据的 48 个经济体，住房一项不计分。有数据的经济体在这一项上普遍得分不高，所以缺面积数据的经济体综合得分可能偏高。</li>
+    <li><b>城市轨道交通按每次 8 公里估算。</b>除中国外，各国只公布地铁、轻轨的客运人次，没有统一的人公里数据。中国官方数据显示平均每次（含换乘）约 8.1 公里，和这个假设接近。有些国家的轻轨数据只覆盖主要城市（法国只有巴黎大区，瑞士只有苏黎世），日本的有轨电车没有找到全国数据。公交车没有计入。</li>
+    <li><b>高铁数据的年份和口径不完全一致。</b>中国用的是“动车组”旅客周转量，包含少量在普速线上运行的动车组。欧盟只算了法国、德国、意大利、西班牙四国，比利时、荷兰、奥地利等国的少量高铁没有计入。俄罗斯（Sapsan）、沙特（哈拉曼高铁）、印尼（Whoosh）只有乘客人次，按全线长度折算，是上限。英国（HS1）和香港（广深港高铁香港段）没有找到单独数据，按 0 计。</li>
+    <li><b>普通铁路不计入。</b>东京等大城市的近郊通勤铁路运量很大，但它们既不是高铁也不是地铁，按这个口径不计入，日本等国的轨道出行会被低估。</li>
+    <li><b>汽车数据的年份和口径不一。</b>部分经济体的数据较旧，少数（如马来西亚、文莱、安道尔、圣马力诺）可能包含摩托车或大量非居民登记车辆。计分在每千人 650 辆封顶，影响有限。乌拉圭、毛里求斯、土库曼斯坦、加蓬、圣文森特和格林纳丁斯找不到汽车数据，出行一项不计分。</li>
+    <li><b>发电量包含工业用电。</b>冰岛、挪威、巴林等国有大量电解铝等高耗能工业。理想指标是居民用电，但缺少统一的跨国数据。</li>
+    <li><b>部分经济体缺数据。</b>FAO 不发布新加坡的食物数据，世界银行缺香港、澳门等地的婴儿死亡率。缺两项以上数据的 13 个小地区已经排除。</li>
+    <li><b>平均数会掩盖不平等。</b>人均数字高，不代表大多数人都过得好。</li>
+    <li><b>吃得多不等于吃得好。</b>每项都设了上限：每天 3,000 千卡，每年水果 100 公斤、蔬菜 150 公斤、肉 60 公斤、蛋 12 公斤、奶 200 公斤，超过后不再加分。</li>
+    <li><b>奶的消费量受饮食习惯影响很大。</b>东亚和东南亚很多人乳糖不耐受，传统饮食里奶很少，这一项得分偏低不完全代表买不起。</li>
+    <li><b>食物数据是“供应量”。</b>FAO 统计的是可供消费的食物，包括零售和家庭环节的浪费，实际吃进去的会少一些。</li>
+  </ul>
+
+  <h2>各项数据的年份</h2>
+  <p>能拿到 2025 年数据的指标一律用 2025 年。数据源还没发布 2025 年的，用已发布的最新一年。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="tbl tbl-sm tbl-txt"><table id="years"></table></div>
+</figure>
+</div>
+
+<div class="col">
+  <h2>数据来源</h2>
+  <ul>
+    <li>人均 GDP（PPP）、人口、互联网用户比例、固定宽带订户、预期寿命、婴儿死亡率：<a href="https://data.worldbank.org" target="_blank" rel="noopener">世界银行 WDI</a></li>
+    <li>人均发电量：<a href="https://github.com/owid/energy-data" target="_blank" rel="noopener">Our World in Data 能源数据</a>（Ember、Energy Institute）</li>
+    <li>热量、蛋白质、水果、蔬菜、肉、蛋、奶的人均供应量：<a href="https://ourworldindata.org/food-supply" target="_blank" rel="noopener">FAO 食物平衡表</a>，经 Our World in Data 整理</li>
+    <li>4G 移动网络人口覆盖率：<a href="https://ourworldindata.org/grapher/share-with-4g-mobile-network-coverage" target="_blank" rel="noopener">ITU</a>，经 Our World in Data 整理</li>
+    <li>每千人机动车数量：<a href="https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita" target="_blank" rel="noopener">Wikipedia 汇总的各国官方数据</a>，部分经济体用各国统计补充；欧盟为成员国加总</li>
+    <li>地铁年客运量：<a href="https://en.wikipedia.org/wiki/List_of_metro_systems" target="_blank" rel="noopener">Wikipedia 地铁系统列表</a>（各运营方公布的数据，多为 2024–2025 年）</li>
+    <li>高铁人公里：中国 <a href="https://www.yicai.com/news/102443765.html" target="_blank" rel="noopener">国家铁路局 2024 年动车组旅客周转量</a>；日本 <a href="https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040366697&amp;fileKind=4" target="_blank" rel="noopener">国土交通省铁道输送统计</a>；欧盟（法、德、意、西）、韩国、土耳其、美国 <a href="https://statbase.org/datasets/air-rail-and-water-transportation/high-speed-rail-passenger-traffic/" target="_blank" rel="noopener">UIC 2023 年统计</a>；俄罗斯 Sapsan、沙特 <a href="https://en.wikipedia.org/wiki/Haramain_High_Speed_Railway" target="_blank" rel="noopener">哈拉曼高铁</a>、印尼 <a href="https://goodstats.id/article/jumlah-penumpang-kereta-cepat-whoosh-semakin-melonjak-pada-juni-2025-h2Qk6" target="_blank" rel="noopener">Whoosh</a> 只有乘客人次</li>
+    <li>中国城市轨道交通人公里：<a href="https://infosharingp2-oss.camet.org.cn/resources/manual/2026/03/31/789660015317061.pdf" target="_blank" rel="noopener">中国城市轨道交通协会 2025 年统计</a></li>
+    <li>轻轨和有轨电车：美国 <a href="https://data.transportation.gov/resource/8bui-9xvu" target="_blank" rel="noopener">NTD</a>；俄罗斯 <a href="https://rosstat.gov.ru/storage/mediabank/PerevPass(Gor-Electro)_2kv-2026.xlsx" target="_blank" rel="noopener">Rosstat</a>；英国 <a href="https://www.gov.uk/government/statistics/light-rail-and-tram-statistics-england-year-ending-march-2026" target="_blank" rel="noopener">英格兰轻轨统计</a>；德国 Destatis；香港运输署和港铁年报；其余为各运营方和统计部门数据</li>
+    <li>人均住房面积：各国统计局和住房调查，逐项见下方列表</li>
+    <li>纺织纤维终端消费（仅地区数据，未计分）：<a href="https://icac.org/wp-content/uploads/2024/11/world-textile-demand2014_november.pdf" target="_blank" rel="noopener">ICAC World Textile Demand 2014</a>；纺纱厂用棉与实际消费的对比：<a href="https://www.fao.org/fileadmin/templates/est/COMM_MARKETS_MONITORING/Cotton/Documents/World_Apparel_Fiber_Consumption_Survey_2011_-_Summary_English.pdf" target="_blank" rel="noopener">FAO/ICAC World Apparel Fiber Consumption Survey</a></li>
+    <li>欧盟的互联网用户比例、固定宽带、4G 覆盖率：由 27 个成员国最新值按人口加权计算</li>
+  </ul>
+  <h3>人均住房面积的来源</h3>
+  <ul id="areasrc"></ul>
+</div>
+
+<footer class="col">Sea-Fill · 开源科学。数据和计分方法都是公开的，欢迎指出问题。</footer>
+</main>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA=[{"code":"SGP","name":"新加坡","gdp":163354,"pop":6111175,"elec":10245.7,"kcal":null,"protein":null,"fruit":null,"veg":null,"meat":null,"egg":null,"milk":null,"life":83.3,"imr":2.2,"net":94.4,"bb":27.8,"g4":100.0,"cars":172,"gdpY":2025,"carsY":"2023","area":42,"areaY":2020,"weakArea":false,"hsr":null,"urbanTrips":1316.3,"urbanPkm":null},{"code":"MAC","name":"澳门","gdp":137031,"pop":685900,"elec":1082.9,"kcal":2928.5,"protein":117.7,"fruit":66.2,"veg":135.5,"meat":121.2,"egg":24.0,"milk":41.5,"life":83.3,"imr":null,"net":89.8,"bb":29.9,"g4":99.7,"cars":353,"gdpY":2025,"carsY":"2023","area":20.7,"areaY":2022,"weakArea":true,"hsr":null,"urbanTrips":5.2,"urbanPkm":null},{"code":"QAT","name":"卡塔尔","gdp":128883,"pop":2972215,"elec":18030.2,"kcal":3251.1,"protein":105.1,"fruit":71.2,"veg":173.7,"meat":71.4,"egg":15.1,"milk":99.8,"life":82.5,"imr":4.8,"net":98.1,"bb":11.8,"g4":100.0,"cars":512,"gdpY":2025,"carsY":"2016","area":null,"hsr":null,"urbanTrips":53.0,"urbanPkm":null},{"code":"NOR","name":"挪威","gdp":104044,"pop":5610870,"elec":28598.2,"kcal":3475.6,"protein":125.5,"fruit":113.8,"veg":146.4,"meat":70.4,"egg":12.1,"milk":184.6,"life":83.2,"imr":2,"net":99,"bb":45.2,"g4":100.0,"cars":629,"gdpY":2025,"carsY":"2024","area":57,"areaY":2007,"weakArea":false,"hsr":null,"urbanTrips":197.3,"urbanPkm":null},{"code":"CHE","name":"瑞士","gdp":102513,"pop":9092436,"elec":7250.7,"kcal":3402.4,"protein":101.4,"fruit":96.3,"veg":146.9,"meat":64.0,"egg":12.8,"milk":290.0,"life":84.4,"imr":3.4,"net":97.3,"bb":47.0,"g4":100.0,"cars":603,"gdpY":2025,"carsY":"2024","area":46.6,"areaY":2024,"weakArea":false,"hsr":null,"urbanTrips":227.5,"urbanPkm":null},{"code":"GUY","name":"圭亚那","gdp":97899,"pop":835986,"elec":1660.5,"kcal":3318.0,"protein":114.2,"fruit":345.9,"veg":315.8,"meat":88.7,"egg":1.6,"milk":129.3,"life":70.3,"imr":23.2,"net":83.0,"bb":12.9,"g4":50.0,"cars":171,"gdpY":2025,"carsY":"2010","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"BRN","name":"文莱","gdp":92430,"pop":466330,"elec":12015.5,"kcal":2959.9,"protein":85.9,"fruit":95.2,"veg":65.1,"meat":74.7,"egg":15.5,"milk":91.7,"life":75.5,"imr":8.6,"net":96.3,"bb":21.2,"g4":99.0,"cars":1043,"gdpY":2025,"carsY":"2022","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"USA","name":"美国","gdp":90027,"pop":341784857,"elec":13015.0,"kcal":3947.3,"protein":123.1,"fruit":169.2,"veg":129.1,"meat":122.1,"egg":15.6,"milk":226.3,"life":78.9,"imr":5.5,"net":94.7,"bb":38.9,"g4":99.0,"cars":800,"gdpY":2025,"carsY":"2024","area":69.8,"areaY":2024,"weakArea":false,"hsr":1700,"urbanTrips":2384.0,"urbanPkm":null},{"code":"ISL","name":"冰岛","gdp":83431,"pop":392404,"elec":48423.5,"kcal":3681.1,"protein":151.7,"fruit":130.1,"veg":157.7,"meat":98.1,"egg":9.9,"milk":202.2,"life":82.8,"imr":2.1,"net":98.2,"bb":37.5,"g4":99.2,"cars":779,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"HKG","name":"香港","gdp":80423,"pop":7498900,"elec":5049.3,"kcal":2827.7,"protein":118.3,"fruit":75.1,"veg":172.6,"meat":107.4,"egg":28.3,"milk":67.4,"life":85.4,"imr":null,"net":95.8,"bb":40.3,"g4":99.0,"cars":124,"gdpY":2025,"carsY":"2022","area":16,"areaY":2021,"weakArea":true,"hsr":null,"urbanTrips":1974.9,"urbanPkm":null},{"code":"ARE","name":"阿联酋","gdp":79344,"pop":11513149,"elec":16074.9,"kcal":3125.1,"protein":96.7,"fruit":64.1,"veg":70.9,"meat":67.8,"egg":7.3,"milk":110.8,"life":83.1,"imr":3.8,"net":100,"bb":40.8,"g4":100.0,"cars":376,"gdpY":2024,"carsY":"2016","area":null,"hsr":null,"urbanTrips":304.6,"urbanPkm":null},{"code":"SAU","name":"沙特","gdp":73784,"pop":36973555,"elec":13386.4,"kcal":3659.8,"protein":103.8,"fruit":105.3,"veg":119.0,"meat":58.1,"egg":11.4,"milk":80.1,"life":79.0,"imr":4.7,"net":100,"bb":44.1,"g4":100.0,"cars":224,"gdpY":2025,"carsY":"2016","area":null,"hsr":3157,"urbanTrips":151.9,"urbanPkm":null},{"code":"AUS","name":"澳大利亚","gdp":71934,"pop":27614411,"elec":10615.4,"kcal":3561.9,"protein":125.0,"fruit":86.1,"veg":160.6,"meat":116.8,"egg":7.6,"milk":227.1,"life":83.1,"imr":3.1,"net":96.1,"bb":36.5,"g4":89.0,"cars":781,"gdpY":2025,"carsY":"2024","area":84,"areaY":2019,"weakArea":true,"hsr":null,"urbanTrips":305.7,"urbanPkm":null},{"code":"BHR","name":"巴林","gdp":70997,"pop":1600366,"elec":23614.6,"kcal":3422.8,"protein":99.8,"fruit":125.1,"veg":139.4,"meat":76.3,"egg":10.7,"milk":194.1,"life":81.4,"imr":7.3,"net":100,"bb":17.0,"g4":100.0,"cars":476,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"CAN","name":"加拿大","gdp":66746,"pop":41651653,"elec":16259.5,"kcal":3590.0,"protein":112.9,"fruit":112.2,"veg":114.5,"meat":94.8,"egg":15.9,"milk":185.9,"life":82.1,"imr":4.7,"net":94.4,"bb":42.5,"g4":99.5,"cars":750,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":1051.7,"urbanPkm":null},{"code":"GBR","name":"英国","gdp":64606,"pop":69487000,"elec":4202.8,"kcal":3434.6,"protein":110.0,"fruit":92.1,"veg":165.7,"meat":84.4,"egg":10.8,"milk":236.7,"life":81.4,"imr":4.1,"net":95.5,"bb":42.2,"g4":99.9,"cars":584,"gdpY":2025,"carsY":"2024","area":37,"areaY":2008,"weakArea":false,"hsr":null,"urbanTrips":1455.2,"urbanPkm":null},{"code":"KOR","name":"韩国","gdp":63125,"pop":51684564,"elec":12090.1,"kcal":3430.3,"protein":110.7,"fruit":48.1,"veg":214.6,"meat":84.0,"egg":13.0,"milk":29.0,"life":83.6,"imr":2.3,"net":97.9,"bb":47.8,"g4":99.9,"cars":520,"gdpY":2025,"carsY":"2023","area":36.0,"areaY":2024,"weakArea":false,"hsr":17900,"urbanTrips":3534.3,"urbanPkm":null},{"code":"ISR","name":"以色列","gdp":59717,"pop":10122800,"elec":8626.5,"kcal":3753.9,"protein":130.7,"fruit":117.8,"veg":143.2,"meat":108.7,"egg":12.5,"milk":175.5,"life":83.2,"imr":2.7,"net":88.2,"bb":29.2,"g4":99.0,"cars":562,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":59.8,"urbanPkm":null},{"code":"NZL","name":"新西兰","gdp":57350,"pop":5324700,"elec":8252.3,"kcal":3121.5,"protein":100.9,"fruit":107.9,"veg":137.9,"meat":79.5,"egg":10.9,"milk":61.8,"life":82.0,"imr":4,"net":93.5,"bb":38.0,"g4":98.5,"cars":881,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"KWT","name":"科威特","gdp":56468,"pop":4865298,"elec":18402.0,"kcal":3135.6,"protein":95.5,"fruit":92.8,"veg":162.9,"meat":62.5,"egg":14.0,"milk":141.5,"life":84.6,"imr":7,"net":100,"bb":1.0,"g4":100.0,"cars":521,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"JPN","name":"日本","gdp":55422,"pop":123366734,"elec":8365.8,"kcal":2670.1,"protein":93.8,"fruit":44.7,"veg":115.3,"meat":59.9,"egg":19.8,"milk":61.6,"life":84.0,"imr":1.8,"net":85.5,"bb":38.6,"g4":98.1,"cars":720,"gdpY":2025,"carsY":"2024","area":41.0,"areaY":2023,"weakArea":false,"hsr":102063,"urbanTrips":6350.2,"urbanPkm":null},{"code":"RUS","name":"俄罗斯","gdp":49568,"pop":143513328,"elec":8283.4,"kcal":3528.4,"protein":117.8,"fruit":73.1,"veg":106.7,"meat":84.8,"egg":16.8,"milk":198.4,"life":73.4,"imr":4.1,"net":94.4,"bb":27.1,"g4":93.0,"cars":355,"gdpY":2025,"carsY":"2024","area":28.8,"areaY":2024,"weakArea":false,"hsr":3575,"urbanTrips":4252.4,"urbanPkm":null},{"code":"TUR","name":"土耳其","gdp":45288,"pop":85878556,"elec":4035.6,"kcal":3892.2,"protein":119.7,"fruit":167.8,"veg":250.6,"meat":49.4,"egg":10.5,"milk":186.8,"life":77.4,"imr":8,"net":89.8,"bb":23.4,"g4":99.7,"cars":390,"gdpY":2025,"carsY":"2025","area":36.7,"areaY":2022,"weakArea":true,"hsr":4200,"urbanTrips":1569.6,"urbanPkm":null},{"code":"KAZ","name":"哈萨克斯坦","gdp":44293,"pop":20843754,"elec":5934.2,"kcal":3135.9,"protein":106.7,"fruit":63.5,"veg":301.5,"meat":64.9,"egg":9.7,"milk":191.5,"life":74.5,"imr":7.4,"net":93.4,"bb":15.3,"g4":91.6,"cars":250,"gdpY":2025,"carsY":"2023","area":27.4,"areaY":2025,"weakArea":false,"hsr":null,"urbanTrips":27.1,"urbanPkm":null},{"code":"PAN","name":"巴拿马","gdp":43902,"pop":4571189,"elec":2974.2,"kcal":3104.6,"protein":93.5,"fruit":154.3,"veg":41.9,"meat":78.0,"egg":7.1,"milk":36.4,"life":79.8,"imr":12,"net":72.8,"bb":18.1,"g4":85.0,"cars":320,"gdpY":2025,"carsY":"2016","area":null,"hsr":null,"urbanTrips":114.9,"urbanPkm":null},{"code":"OMN","name":"阿曼","gdp":42295,"pop":5494691,"elec":9616.5,"kcal":2981.3,"protein":85.6,"fruit":141.2,"veg":274.6,"meat":37.6,"egg":5.9,"milk":255.7,"life":80.2,"imr":8.3,"net":95.3,"bb":11.1,"g4":99.0,"cars":323,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"MYS","name":"马来西亚","gdp":41498,"pop":35977838,"elec":5589.3,"kcal":2926.5,"protein":93.3,"fruit":60.0,"veg":64.9,"meat":69.1,"egg":21.7,"milk":44.8,"life":76.8,"imr":7,"net":98.0,"bb":13.5,"g4":98.6,"cars":1102,"gdpY":2025,"carsY":"2025","area":27.3,"areaY":2017,"weakArea":true,"hsr":null,"urbanTrips":330.2,"urbanPkm":null},{"code":"BHS","name":"巴哈马","gdp":41258,"pop":403033,"elec":5607.0,"kcal":2672.3,"protein":104.8,"fruit":309.9,"veg":173.1,"meat":114.9,"egg":13.7,"milk":130.0,"life":74.7,"imr":11.1,"net":92.5,"bb":25.3,"g4":95.0,"cars":654,"gdpY":2024,"carsY":"2022","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"URY","name":"乌拉圭","gdp":38315,"pop":3384688,"elec":3527.7,"kcal":3322.7,"protein":104.5,"fruit":98.6,"veg":107.4,"meat":69.3,"egg":14.5,"milk":223.4,"life":78.3,"imr":6.2,"net":92.0,"bb":33.0,"g4":92.7,"cars":null,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"CHL","name":"智利","gdp":37774,"pop":19859921,"elec":4456.2,"kcal":3057.5,"protein":105.1,"fruit":76.8,"veg":77.6,"meat":98.5,"egg":9.9,"milk":105.1,"life":81.4,"imr":5.8,"net":95.6,"bb":23.7,"g4":96.0,"cars":532,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":640.0,"urbanPkm":null},{"code":"TTO","name":"特立尼达和多巴哥","gdp":37121,"pop":1367764,"elec":6333.8,"kcal":2945.7,"protein":87.4,"fruit":73.5,"veg":95.3,"meat":65.7,"egg":7.0,"milk":68.4,"life":73.6,"imr":17,"net":82.2,"bb":27.0,"g4":94.0,"cars":582,"gdpY":2025,"carsY":"2015","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"KNA","name":"圣基茨和尼维斯","gdp":36777,"pop":46922,"elec":4907.5,"kcal":2852.1,"protein":90.9,"fruit":198.2,"veg":36.0,"meat":88.8,"egg":3.8,"milk":53.3,"life":72.3,"imr":13.9,"net":76.9,"bb":46.7,"g4":100.0,"cars":543,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"SYC","name":"塞舌尔","gdp":35854,"pop":122730,"elec":4830.0,"kcal":2888.4,"protein":104.3,"fruit":84.5,"veg":137.0,"meat":70.7,"egg":11.0,"milk":101.7,"life":76.3,"imr":12.9,"net":87.8,"bb":31.6,"g4":99.0,"cars":210,"gdpY":2025,"carsY":"2016","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"ATG","name":"安提瓜和巴布达","gdp":35832,"pop":94209,"elec":3945.3,"kcal":2544.0,"protein":98.1,"fruit":241.7,"veg":101.1,"meat":96.4,"egg":6.0,"milk":117.2,"life":77.8,"imr":7,"net":72.7,"bb":10.7,"g4":99.0,"cars":598,"gdpY":2025,"carsY":"2020","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"MNE","name":"黑山","gdp":35423,"pop":623129,"elec":3887.9,"kcal":3669.4,"protein":134.4,"fruit":120.8,"veg":165.4,"meat":96.9,"egg":13.4,"milk":443.5,"life":77.9,"imr":1.9,"net":88.9,"bb":32.3,"g4":98.1,"cars":393,"gdpY":2025,"carsY":"2024","area":27.5,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"BLR","name":"白俄罗斯","gdp":34716,"pop":9085991,"elec":5153.6,"kcal":3396.3,"protein":128.0,"fruit":62.4,"veg":178.3,"meat":111.7,"egg":16.7,"milk":170.1,"life":74.4,"imr":1.8,"net":94.3,"bb":36.3,"g4":99.0,"cars":338,"gdpY":2025,"carsY":"2016","area":29.4,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":250.3,"urbanPkm":null},{"code":"SRB","name":"塞尔维亚","gdp":33910,"pop":6549143,"elec":5474.6,"kcal":3878.9,"protein":135.6,"fruit":147.6,"veg":103.1,"meat":84.2,"egg":12.8,"milk":189.4,"life":76.0,"imr":4.6,"net":87.7,"bb":33.4,"g4":98.8,"cars":392,"gdpY":2025,"carsY":"2025","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"CRI","name":"哥斯达黎加","gdp":33815,"pop":5152950,"elec":2486.0,"kcal":3061.1,"protein":91.9,"fruit":77.1,"veg":71.8,"meat":64.1,"egg":13.6,"milk":172.9,"life":81.0,"imr":9.1,"net":87.2,"bb":23.3,"g4":95.0,"cars":514,"gdpY":2025,"carsY":"2021","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"MUS","name":"毛里求斯","gdp":33667,"pop":1243741,"elec":2682.6,"kcal":3255.5,"protein":105.0,"fruit":57.6,"veg":153.3,"meat":64.5,"egg":7.7,"milk":154.3,"life":73.8,"imr":13.8,"net":73.3,"bb":28.0,"g4":99.0,"cars":null,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":12.1,"urbanPkm":null},{"code":"ARG","name":"阿根廷","gdp":32587,"pop":45851378,"elec":3340.1,"kcal":3360.4,"protein":121.5,"fruit":74.1,"veg":76.6,"meat":114.9,"egg":18.4,"milk":178.4,"life":77.5,"imr":8,"net":89.7,"bb":26.1,"g4":97.7,"cars":499,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":236.8,"urbanPkm":null},{"code":"GEO","name":"格鲁吉亚","gdp":29414,"pop":3935766,"elec":3546.4,"kcal":2999.8,"protein":90.2,"fruit":47.8,"veg":83.5,"meat":45.4,"egg":11.3,"milk":188.8,"life":74.7,"imr":7.5,"net":83.8,"bb":30.4,"g4":99.7,"cars":441,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":78.4,"urbanPkm":null},{"code":"CHN","name":"中国","gdp":29333,"pop":1406585000,"elec":7473.6,"kcal":3526.9,"protein":131.6,"fruit":114.4,"veg":412.7,"meat":73.5,"egg":23.0,"milk":34.8,"life":78.0,"imr":4.1,"net":91.6,"bb":47.2,"g4":100.0,"cars":333,"gdpY":2025,"carsY":"2025","area":31.2,"areaY":2023,"weakArea":false,"hsr":1084549,"urbanTrips":32345.4,"urbanPkm":271925},{"code":"DOM","name":"多米尼加共和国","gdp":28721,"pop":11520487,"elec":1968.7,"kcal":3313.4,"protein":90.0,"fruit":379.6,"veg":159.9,"meat":61.6,"egg":16.8,"milk":113.3,"life":73.9,"imr":27.7,"net":91.0,"bb":11.2,"g4":97.6,"cars":513,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":103.4,"urbanPkm":null},{"code":"LCA","name":"圣卢西亚","gdp":28674,"pop":180149,"elec":2225.3,"kcal":2654.2,"protein":93.0,"fruit":115.0,"veg":51.5,"meat":90.3,"egg":5.1,"milk":69.2,"life":72.8,"imr":15.8,"net":68.2,"bb":13.6,"g4":96.0,"cars":203,"gdpY":2025,"carsY":"2016","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"MDV","name":"马尔代夫","gdp":28555,"pop":529676,"elec":1610.5,"kcal":2671.3,"protein":97.4,"fruit":168.5,"veg":196.0,"meat":29.6,"egg":20.2,"milk":132.9,"life":81.3,"imr":4.7,"net":85.2,"bb":19.6,"g4":100.0,"cars":250,"gdpY":2025,"carsY":"2022","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"ALB","name":"阿尔巴尼亚","gdp":28221,"pop":2349580,"elec":2987.4,"kcal":3237.8,"protein":114.0,"fruit":185.7,"veg":382.4,"meat":56.7,"egg":11.6,"milk":291.0,"life":79.8,"imr":8.3,"net":85.9,"bb":24.9,"g4":99.6,"cars":309,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"MKD","name":"北马其顿","gdp":28029,"pop":1820909,"elec":3760.1,"kcal":3475.6,"protein":103.1,"fruit":97.6,"veg":298.7,"meat":51.5,"egg":8.1,"milk":156.4,"life":76.6,"imr":2.5,"net":93.1,"bb":29.9,"g4":99.7,"cars":263,"gdpY":2025,"carsY":"2024","area":30.1,"areaY":2021,"weakArea":false,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"THA","name":"泰国","gdp":26250,"pop":71619863,"elec":2628.3,"kcal":2855.3,"protein":68.6,"fruit":71.7,"veg":42.4,"meat":24.5,"egg":11.7,"milk":31.9,"life":76.6,"imr":7.7,"net":90.9,"bb":14.9,"g4":99.0,"cars":391,"gdpY":2025,"carsY":"2016","area":null,"hsr":null,"urbanTrips":479.8,"urbanPkm":null},{"code":"AZE","name":"阿塞拜疆","gdp":26113,"pop":10246996,"elec":2701.6,"kcal":3339.2,"protein":102.0,"fruit":91.3,"veg":196.3,"meat":39.4,"egg":10.6,"milk":165.4,"life":74.6,"imr":12.5,"net":90.8,"bb":21.8,"g4":100.0,"cars":169,"gdpY":2025,"carsY":"2023","area":20.1,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":223.3,"urbanPkm":null},{"code":"BRB","name":"巴巴多斯","gdp":25894,"pop":282623,"elec":3929.5,"kcal":3117.9,"protein":108.6,"fruit":103.2,"veg":121.4,"meat":76.2,"egg":9.9,"milk":111.6,"life":76.3,"imr":9.1,"net":70.4,"bb":37.5,"g4":99.0,"cars":425,"gdpY":2025,"carsY":"2022","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"MEX","name":"墨西哥","gdp":25868,"pop":131946900,"elec":2705.4,"kcal":3304.6,"protein":100.3,"fruit":137.4,"veg":66.5,"meat":78.2,"egg":21.6,"milk":122.0,"life":75.3,"imr":12.1,"net":83.1,"bb":21.7,"g4":97.4,"cars":405,"gdpY":2025,"carsY":"2025","area":null,"hsr":null,"urbanTrips":1508.2,"urbanPkm":null},{"code":"BIH","name":"波黑","gdp":25814,"pop":3140095,"elec":4598.6,"kcal":3457.8,"protein":113.7,"fruit":196.6,"veg":261.0,"meat":51.9,"egg":7.0,"milk":193.4,"life":78.0,"imr":5.5,"net":86.1,"bb":29.4,"g4":98.0,"cars":282,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":23.9,"urbanPkm":null},{"code":"ARM","name":"亚美尼亚","gdp":24754,"pop":3086700,"elec":3292.3,"kcal":3129.2,"protein":103.2,"fruit":112.2,"veg":217.7,"meat":54.7,"egg":13.4,"milk":210.6,"life":78.3,"imr":8.5,"net":81.3,"bb":20.3,"g4":100.0,"cars":303,"gdpY":2025,"carsY":"2024","area":35.5,"areaY":2023,"weakArea":false,"hsr":null,"urbanTrips":26.4,"urbanPkm":null},{"code":"BRA","name":"巴西","gdp":23433,"pop":212812405,"elec":3526.7,"kcal":3423.4,"protein":106.5,"fruit":106.8,"veg":52.4,"meat":104.6,"egg":12.7,"milk":163.2,"life":76.0,"imr":12.3,"net":84.5,"bb":24.1,"g4":91.2,"cars":443,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":1824.4,"urbanPkm":null},{"code":"VCT","name":"圣文森特和格林纳丁斯","gdp":22799,"pop":99924,"elec":1490.6,"kcal":3042.6,"protein":114.0,"fruit":128.2,"veg":50.2,"meat":118.5,"egg":4.8,"milk":131.4,"life":71.4,"imr":10.2,"net":76.2,"bb":29.5,"g4":90.0,"cars":null,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"DMA","name":"多米尼克","gdp":22713,"pop":65871,"elec":2254.6,"kcal":3278.3,"protein":108.9,"fruit":529.1,"veg":153.8,"meat":86.4,"egg":9.1,"milk":115.0,"life":71.3,"imr":33.3,"net":82.0,"bb":20.9,"g4":98.8,"cars":271,"gdpY":2025,"carsY":"2020","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"SUR","name":"苏里南","gdp":22652,"pop":639850,"elec":2742.6,"kcal":2539.1,"protein":68.3,"fruit":63.0,"veg":58.4,"meat":48.5,"egg":5.8,"milk":47.7,"life":73.8,"imr":14.8,"net":87.4,"bb":18.8,"g4":82.6,"cars":394,"gdpY":2025,"carsY":"2020","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"COL","name":"哥伦比亚","gdp":22640,"pop":53425635,"elec":1691.3,"kcal":3126.3,"protein":83.1,"fruit":153.7,"veg":51.0,"meat":62.6,"egg":15.0,"milk":116.5,"life":77.9,"imr":10.5,"net":79.3,"bb":17.2,"g4":100.0,"cars":280,"gdpY":2025,"carsY":"2017","area":null,"hsr":null,"urbanTrips":212.9,"urbanPkm":null},{"code":"TKM","name":"土库曼斯坦","gdp":22602,"pop":7618847,"elec":4404.6,"kcal":2814.2,"protein":104.7,"fruit":51.6,"veg":130.4,"meat":51.2,"egg":11.6,"milk":278.6,"life":70.2,"imr":30.4,"net":18.0,"bb":5.2,"g4":80.0,"cars":null,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"GAB","name":"加蓬","gdp":22218,"pop":2593130,"elec":1024.0,"kcal":2686.5,"protein":84.8,"fruit":131.3,"veg":55.5,"meat":63.1,"egg":0.8,"milk":31.8,"life":68.5,"imr":25.9,"net":68.7,"bb":4.7,"g4":98.0,"cars":null,"gdpY":2025,"carsY":null,"area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"IND","name":"印度","gdp":11748,"pop":1463865525,"elec":1422.0,"kcal":2668.5,"protein":74.6,"fruit":65.6,"veg":92.9,"meat":8.1,"egg":4.7,"milk":87.4,"life":72.2,"imr":23.3,"net":70,"bb":3.2,"g4":99.1,"cars":38,"gdpY":2025,"carsY":"2024","area":11.8,"areaY":2018,"weakArea":false,"hsr":null,"urbanTrips":3617.3,"urbanPkm":null},{"code":"IDN","name":"印尼","gdp":17660,"pop":285721236,"elec":1310.6,"kcal":2900.3,"protein":77.8,"fruit":85.4,"veg":49.2,"meat":19.9,"egg":20.9,"milk":14.9,"life":71.3,"imr":15.2,"net":72.8,"bb":4.9,"g4":99.2,"cars":82,"gdpY":2025,"carsY":"2025","area":11.3,"areaY":2022,"weakArea":true,"hsr":861,"urbanTrips":58.2,"urbanPkm":null},{"code":"VNM","name":"越南","gdp":18088,"pop":101598527,"elec":3051.1,"kcal":3086.0,"protein":102.2,"fruit":99.6,"veg":191.3,"meat":60.5,"egg":4.0,"milk":37.4,"life":74.7,"imr":12,"net":84.2,"bb":23.7,"g4":99.8,"cars":43,"gdpY":2025,"carsY":"2020","area":26.6,"areaY":2024,"weakArea":false,"hsr":null,"urbanTrips":41.1,"urbanPkm":null},{"code":"ZAF","name":"南非","gdp":15906,"pop":64747319,"elec":3749.3,"kcal":2693.9,"protein":79.2,"fruit":26.4,"veg":37.3,"meat":58.3,"egg":5.9,"milk":52.3,"life":66.3,"imr":24.2,"net":78.4,"bb":5.3,"g4":99.4,"cars":208,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"NGA","name":"尼日利亚","gdp":9532,"pop":237527782,"elec":174.9,"kcal":2470.1,"protein":57.0,"fruit":68.3,"veg":65.1,"meat":7.1,"egg":2.6,"milk":4.1,"life":54.6,"imr":69.8,"net":41.2,"bb":0.1,"g4":84.6,"cars":62,"gdpY":2025,"carsY":"2021","area":null,"hsr":null,"urbanTrips":3.5,"urbanPkm":null},{"code":"PHL","name":"菲律宾","gdp":12577,"pop":116786962,"elec":1054.2,"kcal":2982.9,"protein":77.5,"fruit":98.2,"veg":59.5,"meat":33.6,"egg":5.8,"milk":23.9,"life":69.9,"imr":21.7,"net":67.3,"bb":7.1,"g4":98.7,"cars":180,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":347.2,"urbanPkm":null},{"code":"BGD","name":"孟加拉国","gdp":10154,"pop":175686899,"elec":588.5,"kcal":2587.7,"protein":68.0,"fruit":30.4,"veg":52.1,"meat":4.5,"egg":3.8,"milk":76.1,"life":74.9,"imr":24.4,"net":53.4,"bb":8.1,"g4":99.6,"cars":34,"gdpY":2025,"carsY":"2024","area":null,"hsr":null,"urbanTrips":100.4,"urbanPkm":null},{"code":"PAK","name":"巴基斯坦","gdp":6573,"pop":255219554,"elec":764.2,"kcal":2513.8,"protein":73.4,"fruit":24.1,"veg":30.4,"meat":21.2,"egg":3.9,"milk":129.7,"life":67.8,"imr":48.2,"net":57.3,"bb":1.5,"g4":81.0,"cars":121,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":0,"urbanPkm":null},{"code":"EGY","name":"埃及","gdp":20204,"pop":118365995,"elec":2075.8,"kcal":3094.0,"protein":89.8,"fruit":94.0,"veg":135.7,"meat":27.6,"egg":3.7,"milk":48.4,"life":71.8,"imr":20.8,"net":74.6,"bb":11.7,"g4":98.0,"cars":87,"gdpY":2025,"carsY":"2023","area":null,"hsr":null,"urbanTrips":1460.0,"urbanPkm":null},{"code":"IRN","name":"伊朗","gdp":19699,"pop":92417681,"elec":4282.5,"kcal":2875.2,"protein":79.6,"fruit":123.4,"veg":105.4,"meat":29.9,"egg":8.5,"milk":26.5,"life":77.9,"imr":10.3,"net":85.3,"bb":12.1,"g4":94.2,"cars":182,"gdpY":2025,"carsY":"2020","area":null,"hsr":null,"urbanTrips":915.7,"urbanPkm":null},{"code":"PER","name":"秘鲁","gdp":18816,"pop":34576665,"elec":1748.0,"kcal":2810.5,"protein":88.6,"fruit":135.6,"veg":62.6,"meat":55.4,"egg":11.0,"milk":89.9,"life":77.9,"imr":11,"net":82.0,"bb":11.7,"g4":93.3,"cars":182,"gdpY":2025,"carsY":"2016","area":null,"hsr":null,"urbanTrips":171.9,"urbanPkm":null},{"code":"EUU","name":"欧盟","gdp":65503,"pop":451127411,"elec":6229.7,"kcal":3545.9,"protein":113.6,"fruit":101.4,"veg":136.3,"meat":78.5,"egg":13.4,"milk":232.8,"life":81.6,"imr":3.1,"net":91.6,"bb":39.6,"g4":99.6,"cars":637,"gdpY":2025,"carsY":"2024","area":40,"areaY":2022,"weakArea":false,"hsr":139000,"urbanTrips":13107.2,"urbanPkm":null}];
+const YEARS=[{"label": "人均 GDP（PPP）", "years": "2025（另有 11 个为 2022–2024）", "n": 85}, {"label": "人均发电量", "years": "2025（另有 32 个为 2023–2024）", "n": 80}, {"label": "热量、蛋白质、果蔬、肉蛋奶（FAO）", "years": "2023（另有 4 个为 2009–2022）", "n": 72}, {"label": "人均住房面积", "years": "2023（另有 18 个为 2007–2025）", "n": 24}, {"label": "每千人机动车", "years": "2024（另有 46 个为 2010–2025）", "n": 67}, {"label": "预期寿命", "years": "2024", "n": 85}, {"label": "婴儿死亡率", "years": "2024", "n": 74}, {"label": "互联网用户比例", "years": "2024（另有 17 个为 2016–2025）", "n": 83}, {"label": "固定宽带", "years": "2024（另有 19 个为 2022–2023）", "n": 83}, {"label": "4G 覆盖率", "years": "2024（另有 2 个为 2022–2023）", "n": 84}];
+const AREASRC=[{"name": "澳大利亚", "raw": 84, "y": 2019, "note": "学术估算", "url": "https://doi.org/10.1038/s41560-019-0512-1"}, {"name": "美国", "raw": 69.8, "y": 2024, "note": "城镇，含地下室", "url": "https://www.eia.gov/consumption/residential/data/2024/hc/pdf/HC10.9_2024.pdf"}, {"name": "挪威", "raw": 57, "y": 2007, "note": "官方最新的人均数据", "url": "https://www.ssb.no/a/static/samfunnsspeilet/utg/200805/09/tab-2008-12-08-01.html"}, {"name": "瑞士", "raw": 46.6, "y": 2024, "note": "全国", "url": "https://www.bfs.admin.ch/"}, {"name": "新加坡", "raw": 42, "y": 2020, "note": "人口普查，平均值（中位数 33）", "url": "https://data.gov.sg/datasets/d_46ff0d0429b30ac8d76d6778df32eb84/view"}, {"name": "日本", "raw": 41.0, "y": 2023, "note": "住宅总面积÷户均人口", "url": "https://www.stat.go.jp/data/jyutaku/2023/pdf/kihon_gaiyou.pdf"}, {"name": "欧盟", "raw": 40, "y": 2022, "note": "德法意西波按人口加权（覆盖 66% 人口）", "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"}, {"name": "英国", "raw": 37, "y": 2008, "note": "英格兰，官方最新的人均数据", "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/725085/Floor_Space_in_English_Homes_main_report.pdf"}, {"name": "土耳其", "raw": 36.7, "y": 2022, "note": "模型估算", "url": "https://arxiv.org/pdf/2503.05824"}, {"name": "韩国", "raw": 36.0, "y": 2024, "note": "全国", "url": "https://biz.newdaily.co.kr/site/data/html/2025/11/15/2025111500090.html"}, {"name": "亚美尼亚", "raw": 35.5, "y": 2023, "note": "住房存量÷人口", "url": "https://stat.uz/en/press-center/news-of-committee/47745"}, {"name": "中国", "raw": 40, "y": 2023, "note": "城镇，建筑面积；按使用面积约 78% 折算为 31.2", "url": "http://paper.people.com.cn/hwbwap/html/2024-08/24/content_26076654.htm"}, {"name": "北马其顿", "raw": 30.1, "y": 2021, "note": "人口普查推算", "url": "https://arhiva.moepp.gov.mk/wp-content/uploads/2021/01/1_Socio-ekonomski-spoeno-2022.pdf"}, {"name": "白俄罗斯", "raw": 29.4, "y": 2023, "note": "住房存量÷人口", "url": "https://stat.uz/en/press-center/news-of-committee/47745"}, {"name": "俄罗斯", "raw": 28.8, "y": 2024, "note": "城镇，住房存量÷人口", "url": "https://rosstat.gov.ru/storage/mediabank/Jil_hoz_2025.pdf"}, {"name": "黑山", "raw": 27.5, "y": 2023, "note": "人口普查", "url": "https://www.monstat.org/uploads/files/popis%202021/saopstenja/RELEASE_DWELLINGS%202023_II.pdf"}, {"name": "哈萨克斯坦", "raw": 27.4, "y": 2025, "note": "城镇", "url": "https://stat.gov.kz/ru/industries/business-statistics/stat-inno-build/publications/477117/"}, {"name": "马来西亚", "raw": 27.3, "y": 2017, "note": "开发商报告转引", "url": "https://www.edgeprop.my/content/1471152"}, {"name": "越南", "raw": 26.6, "y": 2024, "note": "全国，居住面积，不含厨房、卫生间", "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2025/01/thong-cao-bao-chi-ket-qua-dieu-tra-dan-so-va-nha-o-giua-ky-nam-2024/"}, {"name": "澳门", "raw": 20.7, "y": 2022, "note": "Statista，原始来源未注明", "url": "https://es.statista.com/statistics/1040751/macao-per-capita-living-space/"}, {"name": "阿塞拜疆", "raw": 20.1, "y": 2023, "note": "住房存量÷人口", "url": "https://stat.uz/en/press-center/news-of-committee/47745"}, {"name": "香港", "raw": 16, "y": 2021, "note": "人口普查中位数，转引", "url": "https://www.devb.gov.hk/en/sdev/press/index_id_11447.html"}, {"name": "印度", "raw": 11.8, "y": 2018, "note": "城镇，使用面积，户均面积÷户均人口推算（NSS 第 76 轮）", "url": "https://mospi.gov.in/sites/default/files/publication_reports/Report_584_final_0.pdf"}, {"name": "印尼", "raw": 11.3, "y": 2022, "note": "模型估算", "url": "https://arxiv.org/pdf/2503.05824"}];
+const RAIL_MIN=10, RAIL_MAX=1500, TRIP_KM=8;
+
+const DIMS=[
+  {k:"elec",name:"电",full:"用电",w:25,desc:"人均发电量，对数刻度，100 度为 0 分，15,000 度封顶为满分。"},
+  {k:"food",name:"食",full:"饮食",w:15,desc:"七项平均：每日热量（1,800–3,000 千卡）、蛋白质（40–100 克），以及每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉（0–60 公斤）、蛋（0–12 公斤）、奶（0–200 公斤）。"},
+  {k:"house",name:"住",full:"住房",w:15,desc:"人均住房面积，10 平方米为 0 分，50 平方米为满分。只有 24 个经济体有数据。"},
+  {k:"move",name:"行",full:"出行",w:15,desc:"两项各占一半：每千人汽车（650 辆满分），以及人均乘坐高铁和城市轨道交通的公里数（对数刻度）。普通铁路不计入。"},
+  {k:"health",name:"健康",full:"健康",w:15,desc:"预期寿命（55–85 岁）和婴儿死亡率（对数，70‰ 为 0 分，1.5‰ 为满分）平均。"},
+  {k:"net",name:"网",full:"联网",w:15,desc:"两项平均：互联网用户比例（40%–100%），以及网络接入，取固定宽带（每百人 0–40 户）和 4G 人口覆盖率（50%–100%）中较高的一项。"}
+];
+const DEFAULT_W=Object.fromEntries(DIMS.map(d=>[d.k,d.w]));
+let W={...DEFAULT_W};
+const col=k=>`var(--c-${k})`;
+const cl=v=>Math.max(0,Math.min(1,v)), ln=Math.log;
+const lin=(x,a,b)=>x==null?null:cl((x-a)/(b-a)), lg=(x,a,b)=>x==null?null:cl((ln(x)-ln(a))/(ln(b)-ln(a)));
+const avg=a=>{const v=a.filter(x=>x!=null&&!isNaN(x));return v.length?v.reduce((p,q)=>p+q,0)/v.length:null;};
+const fmt=(n,d=0)=>n==null?"—":Number(n).toLocaleString("en-US",{maximumFractionDigits:d,minimumFractionDigits:d});
+
+DATA.forEach(r=>{
+  r.hsrKm=r.hsr? r.hsr*1e6/r.pop : 0;
+  r.urbanKm=r.urbanPkm? r.urbanPkm*1e6/r.pop : (r.urbanTrips? r.urbanTrips*1e6*TRIP_KM/r.pop : 0);
+  r.railKm=r.hsrKm+r.urbanKm;
+  const s={};
+  s.elec=r.elec!=null? lg(Math.max(r.elec,100),100,15000):null;
+  s.food=avg([lin(r.kcal,1800,3000),lin(r.protein,40,100),lin(r.fruit,0,100),lin(r.veg,0,150),lin(r.meat,0,60),lin(r.egg,0,12),lin(r.milk,0,200)]);
+  s.house=lin(r.area,10,50);
+  const car=lin(r.cars,0,650), rail=r.railKm>0? lg(Math.max(r.railKm,RAIL_MIN),RAIL_MIN,RAIL_MAX):0;
+  s.move= car!=null? .5*car+.5*rail : null;
+  s.health=avg([lin(r.life,55,85), r.imr!=null? cl((ln(70)-ln(Math.max(r.imr,1.5)))/(ln(70)-ln(1.5))):null]);
+  const access=Math.max(lin(r.bb,0,40)??0, lin(r.g4,50,100)??0);
+  s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
+  r.s=s;
+});
+const gdpRank=Object.fromEntries([...DATA].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
+
+function score(){
+  DATA.forEach(r=>{
+    let ws=0,t=0; r.contrib={};
+    DIMS.forEach(d=>{ if(r.s[d.k]!=null){ws+=W[d.k]; t+=W[d.k]*r.s[d.k];} });
+    DIMS.forEach(d=>{ r.contrib[d.k]= r.s[d.k]!=null&&ws? 100*W[d.k]*r.s[d.k]/ws : 0; });
+    r.score= ws? 100*t/ws : 0;
+  });
+  [...DATA].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
+}
+
+document.getElementById("dims").innerHTML=DIMS.map(d=>`<div class="dim"><b><i style="background:${col(d.k)}"></i>${d.name} · ${d.full}<span class="wt" data-wt="${d.k}"></span></b>${d.desc}</div>`).join("");
+document.getElementById("legend").innerHTML=DIMS.map(d=>`<span><i style="background:${col(d.k)}"></i>${d.name}</span>`).join("");
+document.getElementById("weights").innerHTML=DIMS.map(d=>`<label class="w" for="w-${d.k}"><span class="sw" style="background:${col(d.k)}"></span><span>${d.name}<input type="range" id="w-${d.k}" min="0" max="50" step="5" value="${d.w}"></span><output id="o-${d.k}"></output></label>`).join("");
+DIMS.forEach(d=>document.getElementById("w-"+d.k).addEventListener("input",e=>{W[d.k]=+e.target.value;render();}));
+document.getElementById("reset").addEventListener("click",()=>{W={...DEFAULT_W};DIMS.forEach(d=>document.getElementById("w-"+d.k).value=W[d.k]);render();});
+
+const tip=document.getElementById("tip");
+function showTip(e,html){tip.innerHTML=html;tip.hidden=false;tip.style.left=Math.min(e.clientX+12,innerWidth-270)+"px";tip.style.top=(e.clientY+12)+"px";}
+function hideTip(){tip.hidden=true;}
+
+function missText(r){
+  const m=DIMS.filter(d=>r.s[d.k]==null).map(d=>d.name);
+  return m.length? `<span class="miss">缺：${m.join("、")}</span>`:"";
+}
+function renderRank(){
+  const rows=[...DATA].sort((a,b)=>b.score-a.score);
+  let h=`<div class="h">#</div><div class="h">经济体</div><div class="h">综合得分</div><div class="h" style="text-align:right">分</div><div class="h" style="text-align:right">vs GDP</div>`;
+  rows.forEach(r=>{
+    const d=gdpRank[r.code]-r.rank;
+    const cls=d>0?"up":d<0?"down":"eq", sym=d>0?`▲${d}`:d<0?`▼${-d}`:"—";
+    h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}${missText(r)}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP 排名第 ${gdpRank[r.code]}">${sym}</div>`;
+  });
+  document.getElementById("rank").innerHTML=h;
+}
+
+function scatter(el,{pts,xlog,ylog,xdom,ydom,xticks,yticks,xfmt,yfmt,xlabel,ylabel,trend,tipf,H=480,keep=[]}){
+  const Wd=880,m={l:56,r:24,t:16,b:48};
+  const sx=v=>m.l+(Wd-m.l-m.r)*(xlog?(ln(v)-ln(xdom[0]))/(ln(xdom[1])-ln(xdom[0])):(v-xdom[0])/(xdom[1]-xdom[0]));
+  const sy=v=>H-m.b-(H-m.t-m.b)*(ylog?(ln(v)-ln(ydom[0]))/(ln(ydom[1])-ln(ydom[0])):(v-ydom[0])/(ydom[1]-ydom[0]));
+  let s=`<svg viewBox="0 0 ${Wd} ${H}" width="100%" style="min-width:560px" role="img">`;
+  yticks.forEach(t=>{s+=`<line x1="${m.l}" x2="${Wd-m.r}" y1="${sy(t)}" y2="${sy(t)}" stroke="var(--rule)" stroke-width="1"/><text x="${m.l-8}" y="${sy(t)+4}" text-anchor="end">${yfmt(t)}</text>`;});
+  xticks.forEach(t=>{s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2 3"/><text x="${sx(t)}" y="${H-m.b+18}" text-anchor="middle">${xfmt(t)}</text>`;});
+  s+=`<text x="${(m.l+Wd-m.r)/2}" y="${H-8}" text-anchor="middle">${xlabel}</text><text x="14" y="${(m.t+H-m.b)/2}" text-anchor="middle" transform="rotate(-90 14 ${(m.t+H-m.b)/2})">${ylabel}</text>`;
+  if(trend){s+=`<line x1="${sx(xdom[0])}" y1="${sy(trend(xdom[0]))}" x2="${sx(xdom[1])}" y2="${sy(trend(xdom[1]))}" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="6 5" fill="none"/>`;}
+  const placed=[], P=pts.map(p=>({...p,X:sx(p.x),Y:sy(p.y)}));
+  P.forEach(p=>{s+=`<circle cx="${p.X}" cy="${p.Y}" r="5" fill="${p.c||"var(--accent)"}" stroke="var(--surface)" stroke-width="1.5" data-i="${p.code}"/>`;});
+  P.forEach(p=>placed.push({x0:p.X-6,x1:p.X+6,y0:p.Y-6,y1:p.Y+6}));
+  const hit=b=>b.x0<m.l||b.x1>Wd-m.r||b.y0<m.t||b.y1>H-m.b||placed.some(q=>b.x0<q.x1&&b.x1>q.x0&&b.y0<q.y1&&b.y1>q.y0);
+  [...P].sort((a,b)=>(keep.includes(b.code)-keep.includes(a.code))||(a.Y-b.Y)).forEach(p=>{
+    const w=p.name.length*12+2,h=14;
+    for(const [dx,dy,anc] of [[9,4,"start"],[-9,4,"end"],[0,-10,"middle"],[0,18,"middle"],[9,-8,"start"],[-9,-8,"end"],[9,16,"start"],[-9,16,"end"]]){
+      const x0=anc==="start"?p.X+dx:anc==="end"?p.X+dx-w:p.X-w/2, b={x0,x1:x0+w,y0:p.Y+dy-11,y1:p.Y+dy-11+h};
+      if(!hit(b)){placed.push(b);s+=`<text class="lbl" x="${p.X+dx}" y="${p.Y+dy}" text-anchor="${anc}">${p.name}</text>`;break;}
+    }
+  });
+  s+="</svg>";
+  el.innerHTML=s;
+  el.querySelectorAll("circle").forEach(c=>{const p=pts.find(q=>q.code===c.dataset.i);c.addEventListener("mousemove",e=>showTip(e,tipf(p)));c.addEventListener("mouseleave",hideTip);});
+}
+
+function fit(){
+  const xs=DATA.map(r=>ln(r.gdp)), ys=DATA.map(r=>r.score), n=xs.length;
+  const mx=xs.reduce((a,b)=>a+b)/n, my=ys.reduce((a,b)=>a+b)/n;
+  let sxy=0,sxx=0; xs.forEach((x,i)=>{sxy+=(x-mx)*(ys[i]-my);sxx+=(x-mx)**2;});
+  const b=sxy/sxx,a=my-b*mx; return g=>a+b*ln(g);
+}
+const KEY=["CHN","USA","EUU","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
+function renderScatter(){
+  const f=fit();
+  DATA.forEach(r=>r.resid=r.score-f(r.gdp));
+  const ymin=Math.max(0,Math.floor(Math.min(...DATA.map(r=>r.score))/10)*10-10);
+  const yt=[];for(let v=ymin;v<=100;v+=10)yt.push(v);
+  scatter(document.getElementById("scatter"),{
+    pts:DATA.map(r=>({code:r.code,name:r.name,x:r.gdp,y:r.score,c:r.resid>=0?"var(--up)":"var(--down)",r})),
+    xlog:true,xdom:[8000,180000],ydom:[ymin,100],xticks:[10000,20000,50000,100000,150000],yticks:yt,keep:KEY,H:520,
+    xfmt:t=>"$"+(t/1000)+"k",yfmt:t=>t,xlabel:"人均 GDP（PPP，国际元，对数刻度）",ylabel:"生活水平得分",
+    trend:f,tipf:p=>`<b>${p.name}</b><br>人均 GDP $${fmt(p.r.gdp)}（${p.r.gdpY}）<br>得分 ${p.r.score.toFixed(1)}，趋势值 ${(p.r.score-p.r.resid).toFixed(1)}<br>生活水平第 ${p.r.rank} 名，GDP 第 ${gdpRank[p.code]} 名`
+  });
+  const s=[...DATA].sort((a,b)=>b.resid-a.resid);
+  const li=r=>`<b>${r.name}</b> <span class="num">${r.resid>0?"+":""}${r.resid.toFixed(1)}</span>`;
+  document.getElementById("findings").innerHTML=`<p>按当前权重，比趋势线高出最多的是 ${s.slice(0,6).map(li).join("、")}；低于趋势线最多的是 ${s.slice(-6).reverse().map(li).join("、")}（数字为偏离趋势线的分数）。</p>`;
+}
+
+function renderMove(){
+  const pts=DATA.filter(r=>r.cars!=null).map(r=>({code:r.code,name:r.name,x:Math.min(r.cars,1000),y:Math.max(r.railKm,1),c:"var(--c-move)",r}));
+  scatter(document.getElementById("move"),{
+    pts,xdom:[0,1000],ylog:true,ydom:[1,RAIL_MAX*2],xticks:[0,200,400,600,800,1000],yticks:[1,10,100,1000],keep:KEY,
+    xfmt:t=>t===1000?"≥1,000":fmt(t),yfmt:t=>t===1?"≈0":fmt(t),xlabel:"每千人机动车（辆）",ylabel:"人均高铁+城轨（公里/年）",
+    tipf:p=>`<b>${p.name}</b><br>每千人机动车 ${fmt(p.r.cars)}（${p.r.carsY}）<br>高铁 ${fmt(p.r.hsrKm)} 公里/人/年<br>城市轨道 ${fmt(p.r.urbanKm)} 公里/人/年<br>出行得分 ${(p.r.s.move*100).toFixed(0)}`
+  });
+  document.getElementById("movecap").textContent=`横轴：每千人机动车，超过 1,000 的画在右边缘。纵轴：人均每年乘坐高铁和城市轨道交通的公里数（对数刻度），为 0 的画在最下面一行。高铁用旅客周转量（人公里）：中国为 2024 年动车组数据，日本为 2024 财年，欧盟（法德意西）、韩国、土耳其、美国为 UIC 2023 年数据。俄罗斯、沙特、印尼只有乘客人次，按全线长度折算，是上限。英国、香港的高铁没有找到单独数据，按 0 计。城市轨道交通：中国用官方公布的人公里，其他经济体只有客运人次，每次按 ${TRIP_KM} 公里折算。计分时 ${fmt(RAIL_MIN)} 公里为 0 分，${fmt(RAIL_MAX)} 公里为满分（对数）。缺汽车数据的 ${DATA.filter(r=>r.cars==null).length} 个经济体未画出，出行一项不计分。`;
+}
+
+function hbar(el,rows,{max,val,lab,color,cap,extra,unit=""}){
+  const Wd=880, rh=22, m={l:132,r:70,t:8,b:24}, H=m.t+rows.length*rh+m.b;
+  const sx=v=>m.l+(Wd-m.l-m.r)*Math.min(v,max)/max;
+  let s=`<svg viewBox="0 0 ${Wd} ${H}" width="100%" style="min-width:520px" role="img">`;
+  const step=max/4; for(let t=0;t<=max;t+=step) s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--rule)"/><text x="${sx(t)}" y="${H-6}" text-anchor="middle">${fmt(t)}</text>`;
+  rows.forEach((r,i)=>{const y=m.t+i*rh, v=val(r);
+    s+=`<text class="lbl" x="${m.l-8}" y="${y+15}" text-anchor="end">${r.name}</text><rect x="${m.l}" y="${y+4}" width="${sx(v)-m.l}" height="${rh-8}" fill="${color}" fill-opacity="${r.weakArea?0.45:1}" rx="2"/><text x="${sx(v)+6}" y="${y+15}">${lab(r)}${v>max?" ›":""}</text>`;});
+  if(cap!=null) s+=`<line x1="${sx(cap)}" x2="${sx(cap)}" y1="${m.t}" y2="${H-m.b}" stroke="var(--ink)" stroke-dasharray="5 4"/><text x="${sx(cap)+4}" y="${m.t+10}" fill="var(--ink)">${extra||""}</text>`;
+  el.innerHTML=s+"</svg>";
+}
+function renderElec(){
+  const rows=DATA.filter(r=>r.elec!=null).sort((a,b)=>b.elec-a.elec);
+  hbar(document.getElementById("elec"),rows,{max:30000,val:r=>r.elec,lab:r=>fmt(r.elec),color:"var(--c-elec)",cap:15000,extra:"满分线 15,000"});
+  const hi=rows[0], lo=rows[rows.length-1], cn=DATA.find(r=>r.code==="CHN");
+  document.getElementById("electxt").textContent=`人均发电量从${lo.name}的 ${fmt(lo.elec)} 度到${hi.name}的 ${fmt(hi.elec)} 度，相差约 ${Math.round(hi.elec/lo.elec)} 倍。中国是 ${fmt(cn.elec)} 度，排在 ${rows.length} 个有数据的经济体中第 ${rows.indexOf(cn)+1} 位。发电量包含工业用电：冰岛、挪威、巴林、卡塔尔等有大量电解铝、天然气加工等高耗能工业，中国的制造业用电也占大头。所以计分时用对数刻度，并在每人每年 15,000 度封顶，超出部分不再加分。`;
+}
+function renderArea(){
+  const rows=DATA.filter(r=>r.area!=null).sort((a,b)=>b.area-a.area);
+  hbar(document.getElementById("area"),rows,{max:90,val:r=>r.area,lab:r=>`${fmt(r.area,1)}（${r.areaY}）`,color:"var(--c-house)",cap:50,extra:"满分线 50"});
+  document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}：${a.raw} 平方米，${a.y} 年，${a.note}。<a href="${a.url}" target="_blank" rel="noopener">来源</a></li>`).join("");
+}
+
+const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["kcal","千卡/日"],["protein","蛋白质 g"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["milk","奶 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g4","4G %"]];
+const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g4:1,protein:1,fruit:1,veg:1,meat:1,egg:1,milk:1};
+let sortK="score",sortD=-1;
+function renderTable(){
+  const rows=[...DATA].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
+  let h="<thead><tr>"+COLS.map(([k,l])=>`<th data-k="${k}" ${k===sortK?`aria-sort="${sortD<0?"descending":"ascending"}"`:""}>${l}${k===sortK?(sortD<0?" ↓":" ↑"):""}</th>`).join("")+"</tr></thead><tbody>";
+  rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?v:fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
+  const t=document.getElementById("tbl"); t.innerHTML=h+"</tbody>";
+  t.querySelectorAll("th").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;sortD=k===sortK?-sortD:(k==="name"?1:-1);sortK=k;renderTable();}));
+}
+document.getElementById("years").innerHTML="<thead><tr><th>指标</th><th>年份</th><th>覆盖</th></tr></thead><tbody>"+YEARS.map(y=>`<tr><td>${y.label}</td><td>${y.years}</td><td>${y.n} / ${DATA.length}</td></tr>`).join("")+"</tbody>";
+
+function render(){
+  const tot=DIMS.reduce((a,d)=>a+W[d.k],0);
+  DIMS.forEach(d=>{const pct=tot?Math.round(100*W[d.k]/tot):0;document.getElementById("o-"+d.k).textContent=pct+"%";document.querySelector(`[data-wt="${d.k}"]`).textContent="权重 "+pct+"%";});
+  document.getElementById("wsum").textContent=tot?"滑块数值会自动换算成百分比。":"至少给一个维度设置权重。";
+  score(); renderRank(); renderScatter(); renderTable();
+}
+renderMove(); renderElec(); renderArea(); render();
+</script>
+<script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
