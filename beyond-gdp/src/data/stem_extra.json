@@ -1,0 +1,17 @@
+{
+ "note": "STEM share of tertiary graduates from national ministries, where UNESCO has no figure (UNESCO counts ISCED 5-8, so short-cycle programmes are included)",
+ "values": {
+  "CHN": {
+   "v": 36.4,
+   "y": 2022,
+   "note": "教育部 2022 年毕业生：普通本科、研究生（理学 + 工学）和职业本科、高职专科（装备制造、电子信息、土木建筑、能源动力与材料大类），合计 1,053 万人中 36.4%",
+   "url": "http://www.moe.gov.cn/jyb_sjzl/moe_560/2022/quanguo/202401/t20240110_1099511.html"
+  },
+  "JPN": {
+   "v": 20.8,
+   "y": 2025,
+   "note": "文部科学省学校基本调查 2025 年 3 月毕业生：学部、研究生院（理学 + 工学）和短期大学（工业），合计 72.2 万人中 20.8%",
+   "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040393014&fileKind=0"
+  }
+ }
+}

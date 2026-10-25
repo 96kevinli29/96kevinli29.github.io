@@ -53,16 +53,16 @@
  "CHE": {
   "v": 46.6,
   "use": 46.6,
-  "y": 2024,
-  "note": "全国",
+  "y": 2025,
+  "note": "使用面积，有人住的住宅（瑞士联邦统计局）",
   "url": "https://www.bfs.admin.ch/"
  },
  "NOR": {
-  "v": 57,
-  "use": 57,
-  "y": 2007,
-  "note": "官方最新的人均数据",
-  "url": "https://www.ssb.no/a/static/samfunnsspeilet/utg/200805/09/tab-2008-12-08-01.html"
+  "v": 65.5,
+  "use": 65.5,
+  "y": 2023,
+  "note": "生活状况调查，自报面积，按人平均（挪威统计局）；2011 年后没有登记数据",
+  "url": "https://www.ssb.no/statbank/table/14079"
  },
  "RUS": {
   "v": 29.4,
@@ -194,5 +194,40 @@
   "y": 2022,
   "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
   "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+ },
+ "SWE": {
+  "v": 42,
+  "use": 42,
+  "y": 2025,
+  "note": "使用面积，有人住的住宅÷居住人口（瑞典统计局）",
+  "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/HE/HE0111/HE0111A/HushallT23"
+ },
+ "DNK": {
+  "v": 53.8,
+  "use": 53.8,
+  "y": 2025,
+  "note": "建筑面积（含外墙和楼梯间分摊），可能比使用面积高 15%–20%（丹麦统计局）",
+  "url": "https://www.statbank.dk/BOL106"
+ },
+ "FIN": {
+  "v": 41.6,
+  "use": 41.6,
+  "y": 2025,
+  "note": "使用面积，居住人口（芬兰统计局）",
+  "url": "https://pxdata.stat.fi/PxWeb/api/v1/fi/StatFin/asku/15fd.px"
+ },
+ "ISL": {
+  "v": 39.2,
+  "use": 39.2,
+  "y": 2021,
+  "note": "推算：2021 年普查户均 105.8 平方米 ÷ 户均 2.7 人",
+  "url": "https://px.hagstofa.is/pxis/api/v1/is/Ibuar/manntal/2021/7_husnaedi/CEN1710.px"
+ },
+ "LUX": {
+  "v": 53.9,
+  "use": 53.9,
+  "y": 2011,
+  "note": "推算：2011 年人口普查户均 129.9 平方米 ÷ 户均 2.41 人（使用面积，自报）；2021 年普查只公布分组，没有平均值",
+  "url": "https://statistiques.public.lu/dam-assets/catalogue-publications/RP-2011---Premiers-resultats/2013/rp11-09-13.pdf"
  }
 }

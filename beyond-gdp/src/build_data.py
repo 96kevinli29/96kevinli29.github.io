@@ -67,10 +67,10 @@ def put(key, c, val):
     years.setdefault(key, {})[c] = val[1]
 
 
-def eu_avg(r):
-    """Population-weighted average of the 27 members; year is the oldest member year."""
+def eu_avg(r, min_members=27):
+    """Population-weighted average of the EU members that have data; year is the oldest member year."""
     have = [c for c in EU if c in r]
-    if len(have) < 27:
+    if len(have) < min_members:
         return None
     v = sum(r[c][0] * pop[c][0] for c in have) / sum(pop[c][0] for c in have)
     return (v, min(r[c][1] for c in have))
@@ -105,7 +105,7 @@ def owid(fn, col=None):
 
 
 for key, fn, col in [
-    ("elec", "energy.csv", "per_capita_electricity"),
+    ("elec", "energy.csv", "electricity_demand_per_capita"),  # generation + net imports
     ("fruit", "fruit-consumption-per-capita.csv", None),
     ("veg", "vegetable-consumption-per-capita.csv", None),
     ("meat", "meat-supply-per-person.csv", None),
@@ -128,6 +128,17 @@ for x in load("un/IT_MOB_5GNTWK.json")["data"]:
 for c in lst:
     put("g5", c, g5.get(c))
 put("g5", "EUU", eu_avg(g5))
+
+# Education (UNESCO UIS): tertiary gross enrolment ratio and STEM share of tertiary graduates
+for key, code in [("ter", "GER.5T8"), ("stem", "FOSGP.5T8.F500600700")]:
+    best = {}
+    for x in load(f"uis/{code}.json")["records"]:
+        c, y = x["geoUnit"], x["year"]
+        if x["value"] is not None and (c not in best or y > best[c][1]):
+            best[c] = (x["value"], y)
+    for c in lst:
+        put(key, c, best.get(c))
+    put(key, "EUU", eu_avg(best, min_members=24))
 
 # --- Wikipedia tables
 clean = lambda s: re.sub(r"\[[^\]]*\]", "", html.unescape(re.sub("<[^>]+>", "", s))).strip()
@@ -186,7 +197,7 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf8") as f:
     json.dump({"rows": rows, "years": years}, f, ensure_ascii=False, indent=1)
 print(f"{len(ECON)} economies -> {os.path.relpath(OUT, HERE)}")
-for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5", "hom"]:
+for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5", "hom", "ter", "stem"]:
     gaps = [ZH[c] for c in ECON if rows[c].get(key) is None]
     if gaps:
         print(f"  missing {key}: {', '.join(gaps)}")

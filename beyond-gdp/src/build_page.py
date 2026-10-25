@@ -5,8 +5,10 @@ Inputs:
   data/area.json        housing floor area per person, hand-collected (m2, year, source)
   data/rail.json        high-speed rail pkm, light rail / tram trips, China urban-rail pkm
   data/night_safety.json  Gallup: % who feel safe walking alone at night (2024)
-  data/regions.json     Jiangsu+Zhejiang+Shanghai and California, for the regional comparison
+  data/stem_extra.json  STEM graduate shares for China and Japan from their ministries
+  data/regions.json     Jiangsu+Zhejiang+Shanghai, shown as a regional reference
   data/findings.html    the hand-written findings shown under the scatter chart
+  data/jzs.html         the hand-written notes under the Jiangsu-Zhejiang-Shanghai table
 
 Usage: python3 build_page.py
 """
@@ -14,12 +16,15 @@ import collections
 import json
 import os
 
-from names import EXCLUDE, G20
+from names import EXCLUDE, FOCUS, G20
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(HERE, "data")
 OUT = os.path.join(HERE, "..", "index.html")
 RAIL_MIN, RAIL_MAX = 10, 1500  # km per person per year: 0 and full score (log scale)
+# Indicators replaced by another economy's value where the own figure misleads.
+# Luxembourg: most students study abroad, so its own tertiary enrolment (22%) is far too low.
+SUBSTITUTE = {"LUX": ("EUU", ["ter", "stem"])}
 
 
 def load(name):
@@ -29,17 +34,18 @@ def load(name):
 
 ind = load("indicators.json")
 rows, yrs = ind["rows"], ind["years"]
-area, rail, findings = load("area.json"), load("rail.json"), load("findings.html")
+area, rail, findings, jzs_text = load("area.json"), load("rail.json"), load("findings.html"), load("jzs.html")
 night = load("night_safety.json")
+stem_extra = load("stem_extra.json")["values"]
 regions = load("regions.json")
 
 DATA = []
 for c, r in rows.items():
     if c in EXCLUDE:
         continue
-    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars", "hom"]}
+    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars", "hom", "ter", "stem"]}
     d["gdpY"], d["carsY"] = yrs["gdp"][c], yrs.get("cars", {}).get(c)
-    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec", "hom"]:
+    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec", "hom", "ter", "stem"]:
         if d[k] is not None:
             d[k] = round(d[k], 1)
     d["gdp"] = round(d["gdp"])
@@ -51,6 +57,12 @@ for c, r in rows.items():
     d["urbanTrips"] = round((r.get("metroTrips") or 0) + rail["lrt"].get(c, 0), 1)
     d["urbanPkm"] = rail.get("urbanPkm", {}).get(c)
     d["night"] = night["values"].get(c)
+    if d["stem"] is None and c in stem_extra:  # China, Japan: ministry figures
+        d["stem"] = stem_extra[c]["v"]
+    if c in SUBSTITUTE:
+        src, keys = SUBSTITUTE[c]
+        for k in keys:
+            d[k] = round(rows[src][k], 1)
     DATA.append(d)
 
 
@@ -68,7 +80,7 @@ shown = {d["code"] for d in DATA}
 pick = lambda key: {c: y for c, y in yrs.get(key, {}).items() if c in shown}
 YEARS = [y for y in [
     year_summary("人均 GDP（PPP）", pick("gdp")),
-    year_summary("人均发电量", pick("elec")),
+    year_summary("人均用电量", pick("elec")),
     year_summary("水果、蔬菜、肉、蛋（FAO）", pick("fruit")),
     year_summary("人均住房面积", {c: a["y"] for c, a in area.items() if c in shown}),
     year_summary("每千人机动车", pick("cars")),
@@ -78,6 +90,8 @@ YEARS = [y for y in [
     year_summary("固定宽带", pick("bb")),
     year_summary("5G 覆盖率", pick("g5")),
     year_summary("命案率", pick("hom")),
+    year_summary("高等教育毛入学率", pick("ter")),
+    year_summary("STEM 毕业生占比", {**pick("stem"), **{c: v["y"] for c, v in stem_extra.items() if c in shown}}),
     year_summary("夜间独自走路感到安全（盖洛普）", {c: night["year"] for c in night["values"] if c in shown}),
 ] if y]
 AREASRC = [{"name": rows[c]["name"], "raw": a["v"], "y": a["y"], "note": a["note"], "url": a["url"]}
@@ -90,7 +104,8 @@ fills = {
     "/*__YEARS__*/": json.dumps(YEARS, ensure_ascii=False),
     "/*__AREASRC__*/": json.dumps(AREASRC, ensure_ascii=False),
     "/*__G20__*/": json.dumps(G20),
-    "/*__REGIONS__*/": json.dumps([regions["JZS"], regions["CA"]], ensure_ascii=False),
+    "/*__FOCUS__*/": json.dumps(FOCUS),
+    "/*__REGIONS__*/": json.dumps([regions["JZS"]], ensure_ascii=False),
     "<!--__REGIONSRC__-->": "\n    ".join(regions["sources"]),
     "/*__RMIN__*/": str(RAIL_MIN),
     "/*__RMAX__*/": str(RAIL_MAX),
@@ -98,6 +113,7 @@ fills = {
     "__NOAREA__": str(sum(1 for d in DATA if d["area"] is None)),
     "__N__": str(len(DATA)),
     "<!--__FINDINGS__-->": findings.strip(),
+    "<!--__JZSTEXT__-->": jzs_text.strip(),
     "<!--__RAILSRC__-->": "\n    ".join(rail.get("sources", [])),
 }
 for key, val in fills.items():
