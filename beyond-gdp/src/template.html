@@ -67,6 +67,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .rank .nm{line-height:1.25;min-width:0}
 .rank .pop{font-size:12px;color:var(--muted);font-family:var(--f-data);text-align:right;white-space:nowrap}
 .cmp td.nat{color:var(--muted)}
+.rank .reg{color:var(--accent)}
+.rank .tag{font-size:11px;margin-left:6px;padding:0 5px;border:1px solid var(--accent);border-radius:3px;font-family:var(--f-data)}
 .cmp tr.sub td{border-top:2px solid var(--rule)}
 .cmp td:not(:first-child),.cmp th:not(:first-child){text-align:right}
 .bar{display:flex;height:14px;border-radius:2px;overflow:hidden;background:var(--rule)}
@@ -144,7 +146,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 
 <div class="col">
   <h2>生活水平排名，和 GDP 排名对比</h2>
-  <p>下图每一行是一个经济体，条形长度是综合得分（满分 100），颜色是各维度的贡献。最右一列是和人均 GDP 在当前显示的经济体里的排名相比的变化：<span style="color:var(--up)">▲</span> 表示生活水平排名比 GDP 排名靠前。</p>
+  <p>下图每一行是一个经济体，条形长度是综合得分（满分 100），颜色是各维度的贡献。最右一列是和人均 GDP 在当前显示的经济体里的排名相比的变化：<span style="color:var(--up)">▲</span> 表示生活水平排名比 GDP 排名靠前。江浙沪和加州作为参照，用橙色标出“地区”，显示在得分对应的位置上，但不占名次，也不参与趋势线拟合。</p>
 </div>
 <div class="wide">
 <figure>
@@ -366,7 +368,9 @@ const popFmt=n=>n>=1e8?(n/1e8).toFixed(2)+" 亿":n>=1e4?Math.round(n/1e4).toLoca
 // A missing dimension takes the average score of the G20 + EU economies that have it.
 const G20AVG=Object.fromEntries(DIMS.map(d=>[d.k,avg(DATA.filter(r=>G20.includes(r.code)).map(r=>r.s[d.k]))]));
 DATA.forEach(r=>DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }));
-REGIONS.forEach(r=>{ r.s=dimScores(r); DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }); });
+REGIONS.forEach(r=>{ r.s=dimScores(r); DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }); r.region=true; r.gdpY=2025; r.carsY=2025; r.areaY=r.code==="JZS"?2020:2024; });
+const NATIONS=DATA.slice();
+DATA.push(...REGIONS);  // shown everywhere for reference, but not ranked
 document.getElementById("g20house").textContent=Math.round(G20AVG.house*100);
 let VIEW="g20", SHOW=DATA, gdpRank={};
 
@@ -377,11 +381,12 @@ function score(){
     DIMS.forEach(d=>{ r.contrib[d.k]= r.s[d.k]!=null&&ws? 100*W[d.k]*r.s[d.k]/ws : 0; });
     r.score= ws? 100*t/ws : 0;
   });
-  SHOW= VIEW==="g20"? DATA.filter(r=>G20.includes(r.code)) : DATA;
-  gdpRank=Object.fromEntries([...SHOW].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
-  [...SHOW].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
+  SHOW= VIEW==="g20"? DATA.filter(r=>G20.includes(r.code)||r.region) : DATA;
+  const ranked=SHOW.filter(r=>!r.region);
+  gdpRank=Object.fromEntries([...ranked].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
+  [...ranked].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
 }
-document.querySelectorAll(".vt").forEach(el=>{el.className="viewtog";el.setAttribute("role","group");el.setAttribute("aria-label","显示范围");el.innerHTML=`<button type="button" data-v="g20">G20 + 欧盟</button><button type="button" data-v="all">全部 ${DATA.length} 个</button>`;});
+document.querySelectorAll(".vt").forEach(el=>{el.className="viewtog";el.setAttribute("role","group");el.setAttribute("aria-label","显示范围");el.innerHTML=`<button type="button" data-v="g20">G20 + 欧盟</button><button type="button" data-v="all">全部 ${NATIONS.length} 个</button>`;});
 document.querySelectorAll(".viewtog button").forEach(b=>b.addEventListener("click",()=>{VIEW=b.dataset.v;render();}));
 
 document.getElementById("dims").innerHTML=DIMS.map(d=>`<div class="dim"><b><i style="background:${col(d.k)}"></i>${d.name} · ${d.full}<span class="wt" data-wt="${d.k}"></span></b>${d.desc}</div>`).join("");
@@ -398,6 +403,7 @@ function renderRank(){
   const rows=[...SHOW].sort((a,b)=>b.score-a.score);
   let h=`<div class="h">#</div><div class="h">经济体</div><div class="h" style="text-align:right">人口</div><div class="h">综合得分</div><div class="h" style="text-align:right">分</div><div class="h" style="text-align:right">vs GDP</div>`;
   rows.forEach(r=>{
+    if(r.region){ h+=`<div class="num reg">·</div><div class="nm reg">${r.name}<span class="tag">地区</span></div><div class="pop">${popFmt(r.pop)}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta eq" title="地区，不参与排名">—</div>`; return; }
     const d=gdpRank[r.code]-r.rank;
     const cls=d>0?"up":d<0?"down":"eq", sym=d>0?`▲${d}`:d<0?`▼${-d}`:"—";
     h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}</div><div class="pop">${popFmt(r.pop)}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP 排名第 ${gdpRank[r.code]}">${sym}</div>`;
@@ -431,24 +437,24 @@ function scatter(el,{pts,xlog,ylog,xdom,ydom,xticks,yticks,xfmt,yfmt,xlabel,ylab
 }
 
 function fit(){
-  const xs=SHOW.map(r=>ln(r.gdp)), ys=SHOW.map(r=>r.score), n=xs.length;
+  const pts=SHOW.filter(r=>!r.region), xs=pts.map(r=>ln(r.gdp)), ys=pts.map(r=>r.score), n=xs.length;
   const mx=xs.reduce((a,b)=>a+b)/n, my=ys.reduce((a,b)=>a+b)/n;
   let sxy=0,sxx=0; xs.forEach((x,i)=>{sxy+=(x-mx)*(ys[i]-my);sxx+=(x-mx)**2;});
   const b=sxy/sxx,a=my-b*mx; return g=>a+b*ln(g);
 }
-const KEY=["CHN","USA","EUU","FRA","DEU","ITA","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
+const KEY=["JZS","CA","CHN","USA","EUU","FRA","DEU","ITA","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
 function renderScatter(){
   const f=fit();
   SHOW.forEach(r=>r.resid=r.score-f(r.gdp));
   const ymin=Math.max(0,Math.floor(Math.min(...SHOW.map(r=>r.score))/10)*10-10);
   const yt=[];for(let v=ymin;v<=100;v+=10)yt.push(v);
   scatter(document.getElementById("scatter"),{
-    pts:SHOW.map(r=>({code:r.code,name:r.name,x:r.gdp,y:r.score,c:r.resid>=0?"var(--up)":"var(--down)",r})),
+    pts:SHOW.map(r=>({code:r.code,name:r.name,x:r.gdp,y:r.score,c:r.region?"var(--accent)":r.resid>=0?"var(--up)":"var(--down)",r})),
     xlog:true,xdom:[8000,180000],ydom:[ymin,100],xticks:[10000,20000,50000,100000,150000],yticks:yt,keep:KEY,H:520,
     xfmt:t=>"$"+(t/1000)+"k",yfmt:t=>t,xlabel:"人均 GDP（PPP，国际元，对数刻度）",ylabel:"生活水平得分",
-    trend:f,tipf:p=>`<b>${p.name}</b><br>人均 GDP $${fmt(p.r.gdp)}（${p.r.gdpY}）<br>得分 ${p.r.score.toFixed(1)}，趋势值 ${(p.r.score-p.r.resid).toFixed(1)}<br>生活水平第 ${p.r.rank} 名，GDP 第 ${gdpRank[p.code]} 名`
+    trend:f,tipf:p=>`<b>${p.name}</b><br>人均 GDP $${fmt(p.r.gdp)}（${p.r.gdpY}）<br>得分 ${p.r.score.toFixed(1)}，趋势值 ${(p.r.score-p.r.resid).toFixed(1)}<br>${p.r.region?"地区，不参与排名":`生活水平第 ${p.r.rank} 名，GDP 第 ${gdpRank[p.code]} 名`}`
   });
-  const s=[...SHOW].sort((a,b)=>b.resid-a.resid), k=VIEW==="g20"?3:6;
+  const s=SHOW.filter(r=>!r.region).sort((a,b)=>b.resid-a.resid), k=VIEW==="g20"?3:6;
   const li=r=>`<b>${r.name}</b> <span class="num">${r.resid>0?"+":""}${r.resid.toFixed(1)}</span>`;
   document.getElementById("findings").innerHTML=`<p>按当前权重，比趋势线高出最多的是 ${s.slice(0,k).map(li).join("、")}；低于趋势线最多的是 ${s.slice(-k).reverse().map(li).join("、")}（数字为偏离趋势线的分数）。</p>`;
 }
@@ -475,9 +481,9 @@ function hbar(el,rows,{max,val,lab,color,cap,extra,unit=""}){
 }
 function renderElec(){
   const rows=SHOW.filter(r=>r.elec!=null).sort((a,b)=>b.elec-a.elec);
-  hbar(document.getElementById("elec"),rows,{max:30000,val:r=>r.elec,lab:r=>fmt(r.elec),color:"var(--c-elec)",cap:15000,extra:"满分线 15,000"});
-  const hi=rows[0], lo=rows[rows.length-1], cn=DATA.find(r=>r.code==="CHN");
-  document.getElementById("electxt").textContent=`人均发电量从${lo.name}的 ${fmt(lo.elec)} 度到${hi.name}的 ${fmt(hi.elec)} 度，相差约 ${Math.round(hi.elec/lo.elec)} 倍。中国是 ${fmt(cn.elec)} 度，排在 ${rows.length} 个有数据的经济体中第 ${rows.indexOf(cn)+1} 位。发电量包含工业用电：冰岛、挪威、巴林、卡塔尔等有大量电解铝、天然气加工等高耗能工业，中国的制造业用电也占大头。所以计分时用对数刻度，并在每人每年 15,000 度封顶，超出部分不再加分。`;
+  hbar(document.getElementById("elec"),rows,{max:30000,val:r=>r.elec,lab:r=>fmt(r.elec)+(r.region?"（用电量）":""),color:"var(--c-elec)",cap:15000,extra:"满分线 15,000"});
+  const nat=rows.filter(r=>!r.region), hi=nat[0], lo=nat[nat.length-1], cn=DATA.find(r=>r.code==="CHN");
+  document.getElementById("electxt").textContent=`人均发电量从${lo.name}的 ${fmt(lo.elec)} 度到${hi.name}的 ${fmt(hi.elec)} 度，相差约 ${Math.round(hi.elec/lo.elec)} 倍。中国是 ${fmt(cn.elec)} 度，排在 ${nat.length} 个有数据的经济体中第 ${nat.indexOf(cn)+1} 位。发电量包含工业用电：冰岛、挪威、巴林、卡塔尔等有大量电解铝、天然气加工等高耗能工业，中国的制造业用电也占大头。所以计分时用对数刻度，并在每人每年 15,000 度封顶，超出部分不再加分。`;
 }
 function renderArea(){
   const rows=SHOW.filter(r=>r.area!=null).sort((a,b)=>b.area-a.area);
@@ -491,11 +497,11 @@ let sortK="score",sortD=-1;
 function renderTable(){
   const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
   let h="<thead><tr>"+COLS.map(([k,l])=>`<th data-k="${k}" ${k===sortK?`aria-sort="${sortD<0?"descending":"ascending"}"`:""}>${l}${k===sortK?(sortD<0?" ↓":" ↑"):""}</th>`).join("")+"</tr></thead><tbody>";
-  rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?v:k==="pop"?popFmt(v):fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
+  rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?(r.region?v+"（地区）":v):k==="pop"?popFmt(v):fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
   const t=document.getElementById("tbl"); t.innerHTML=h+"</tbody>";
   t.querySelectorAll("th").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;sortD=k===sortK?-sortD:(k==="name"?1:-1);sortK=k;renderTable();}));
 }
-document.getElementById("years").innerHTML="<thead><tr><th>指标</th><th>年份</th><th>覆盖</th></tr></thead><tbody>"+YEARS.map(y=>`<tr><td>${y.label}</td><td>${y.years}</td><td>${y.n} / ${DATA.length}</td></tr>`).join("")+"</tbody>";
+document.getElementById("years").innerHTML="<thead><tr><th>指标</th><th>年份</th><th>覆盖</th></tr></thead><tbody>"+YEARS.map(y=>`<tr><td>${y.label}</td><td>${y.years}</td><td>${y.n} / ${NATIONS.length}</td></tr>`).join("")+"</tbody>";
 
 function weighted(r){
   let ws=0,t=0; DIMS.forEach(d=>{ if(r.s[d.k]!=null){ws+=W[d.k]; t+=W[d.k]*r.s[d.k];} });
