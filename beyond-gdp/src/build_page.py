@@ -5,6 +5,7 @@ Inputs:
   data/area.json        housing floor area per person, hand-collected (m2, year, source)
   data/rail.json        high-speed rail pkm, light rail / tram trips, China urban-rail pkm
   data/night_safety.json  Gallup: % who feel safe walking alone at night (2024)
+  data/regions.json     Jiangsu+Zhejiang+Shanghai and California, for the regional comparison
   data/findings.html    the hand-written findings shown under the scatter chart
 
 Usage: python3 build_page.py
@@ -30,6 +31,7 @@ ind = load("indicators.json")
 rows, yrs = ind["rows"], ind["years"]
 area, rail, findings = load("area.json"), load("rail.json"), load("findings.html")
 night = load("night_safety.json")
+regions = load("regions.json")
 
 DATA = []
 for c, r in rows.items():
@@ -88,6 +90,8 @@ fills = {
     "/*__YEARS__*/": json.dumps(YEARS, ensure_ascii=False),
     "/*__AREASRC__*/": json.dumps(AREASRC, ensure_ascii=False),
     "/*__G20__*/": json.dumps(G20),
+    "/*__REGIONS__*/": json.dumps([regions["JZS"], regions["CA"]], ensure_ascii=False),
+    "<!--__REGIONSRC__-->": "\n    ".join(regions["sources"]),
     "/*__RMIN__*/": str(RAIL_MIN),
     "/*__RMAX__*/": str(RAIL_MAX),
     "__NAREA__": str(sum(1 for d in DATA if d["area"] is not None)),

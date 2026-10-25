@@ -65,6 +65,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .rank{display:grid;grid-template-columns:2.2em minmax(6.5em,9.5em) minmax(0,1fr) 3em 4.2em;gap:3px 10px;align-items:center;font-size:14px}
 .rank .h{font-size:11px;color:var(--muted);font-family:var(--f-data);text-transform:uppercase;letter-spacing:.06em}
 .rank .nm{line-height:1.25;min-width:0}
+.rank .pop{display:block;font-size:11px;color:var(--muted);font-family:var(--f-data)}
+.cmp td.nat{color:var(--muted)}
+.cmp tr.sub td{border-top:2px solid var(--rule)}
+.cmp td:not(:first-child),.cmp th:not(:first-child){text-align:right}
 .bar{display:flex;height:14px;border-radius:2px;overflow:hidden;background:var(--rule)}
 .bar span{height:100%}
 .delta{font-family:var(--f-data);font-size:12px;text-align:right}
@@ -166,6 +170,29 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <div class="col" id="findings"></div>
 <div class="col">
 <!--__FINDINGS__-->
+</div>
+
+<div class="col">
+  <h2>最发达的地区：江浙沪对加州</h2>
+  <p>中国和美国都太大，全国平均会把最发达和最落后的地区混在一起。江浙沪（江苏、浙江、上海）和加州分别是两国经济最发达的地区之一：江浙沪 1.77 亿人，加州 3,900 万人。下表用和各国完全相同的算法给两地打分，并和两国的全国数据放在一起。</p>
+  <p>有几项没有地区数据，用全国值代替，表中用灰字标出：“食”、网民比例、5G 覆盖率和“安全”。用电也和各国不同：地区之间大量输电，所以两地用的是<b>用电量</b>，各国用的是发电量。</p>
+</div>
+<div class="wide">
+<figure>
+  <div class="tbl tbl-sm"><table class="cmp" id="cmp"></table></div>
+  <figcaption id="cmpcap"></figcaption>
+</figure>
+</div>
+<div class="col">
+  <p>按默认权重，<b>江浙沪综合得分 88.2</b>，如果单独放进 G20 和欧盟，会排在第 1 位，略高于澳大利亚；<b>加州 83.3</b>，排第 10 位，比美国全国平均（第 7）还低一点。</p>
+  <ul>
+    <li><b>江浙沪领先的地方</b>：安全（96 对 49）、健康（94 对 80，预期寿命 82.0 对 81.2 岁，婴儿死亡率 1.7‰ 对 4.2‰）、轨道交通（人均每年乘坐高铁约 790 公里、城市轨道约 390 公里，加州只有约 70 公里城市轨道）。人均用电 10,309 度也比加州的 7,185 度高，但其中工业用电占了大头。</li>
+    <li><b>加州领先的地方</b>：人均 GDP 是江浙沪的 2.2 倍；人均住房约 51 平方米，江浙沪约 38 平方米；每千人 826 辆汽车，江浙沪 314 辆。</li>
+    <li><b>加州为什么比美国全国还低</b>：加州气候温和、节能标准严，人均用电只有 7,185 度，远低于美国平均；用电在这套算法里权重最高。另外加州用的是用电量，美国全国用的是发电量，两者口径不完全一样。</li>
+    <li>“食”和“安全”两地都用全国数据，所以这两项的差别其实是中美两国的差别。</li>
+  </ul>
+  <h3>两地数据说明</h3>
+  <ul id="cmpnotes"></ul>
 </div>
 
 <div class="col">
@@ -279,6 +306,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
     <li>每千人机动车数量：<a href="https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita" target="_blank" rel="noopener">Wikipedia 汇总的各国官方数据</a>，部分经济体用各国统计补充；欧盟为成员国加总</li>
     <li>地铁年客运量：<a href="https://en.wikipedia.org/wiki/List_of_metro_systems" target="_blank" rel="noopener">Wikipedia 地铁系统列表</a>（各运营方公布的数据，多为 2024–2025 年）</li>
     <!--__RAILSRC__-->
+    <!--__REGIONSRC__-->
     <li>人均住房面积：各国统计局和住房调查，逐项见下方列表</li>
     <li>纺织纤维终端消费（仅地区数据，未计分）：<a href="https://icac.org/wp-content/uploads/2024/11/world-textile-demand2014_november.pdf" target="_blank" rel="noopener">ICAC World Textile Demand 2014</a>；纺纱厂用棉与实际消费的对比：<a href="https://www.fao.org/fileadmin/templates/est/COMM_MARKETS_MONITORING/Cotton/Documents/World_Apparel_Fiber_Consumption_Survey_2011_-_Summary_English.pdf" target="_blank" rel="noopener">FAO/ICAC World Apparel Fiber Consumption Survey</a></li>
     <li>欧盟的互联网用户比例、固定宽带、5G 覆盖率：由 27 个成员国最新值按人口加权计算</li>
@@ -314,7 +342,8 @@ const lin=(x,a,b)=>x==null?null:cl((x-a)/(b-a)), lg=(x,a,b)=>x==null?null:cl((ln
 const avg=a=>{const v=a.filter(x=>x!=null&&!isNaN(x));return v.length?v.reduce((p,q)=>p+q,0)/v.length:null;};
 const fmt=(n,d=0)=>n==null?"—":Number(n).toLocaleString("en-US",{maximumFractionDigits:d,minimumFractionDigits:d});
 
-DATA.forEach(r=>{
+// Dimension scores (0-1) for one economy or region; null where data are missing.
+function dimScores(r){
   r.hsrKm=r.hsr? r.hsr*1e6/r.pop : 0;
   r.urbanKm=r.urbanPkm? r.urbanPkm*1e6/r.pop : (r.urbanTrips? r.urbanTrips*1e6*TRIP_KM/r.pop : 0);
   r.railKm=r.hsrKm+r.urbanKm;
@@ -328,12 +357,16 @@ DATA.forEach(r=>{
   const access=Math.max(lin(r.bb,0,40)??0, lin(r.g5,0,100)??0);
   s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
   s.safe=avg([lin(r.night,30,100), r.hom!=null? cl((ln(30)-ln(Math.max(r.hom,0.5)))/(ln(30)-ln(0.5))) : null]);
-  r.s=s;
-});
+  return s;
+}
+DATA.forEach(r=>{ r.s=dimScores(r); });
 const G20=/*__G20__*/;
+const REGIONS=/*__REGIONS__*/;
+const popFmt=n=>n>=1e8?(n/1e8).toFixed(2)+" 亿":n>=1e4?Math.round(n/1e4).toLocaleString("en-US")+" 万":fmt(n);
 // A missing dimension takes the average score of the G20 + EU economies that have it.
 const G20AVG=Object.fromEntries(DIMS.map(d=>[d.k,avg(DATA.filter(r=>G20.includes(r.code)).map(r=>r.s[d.k]))]));
 DATA.forEach(r=>DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }));
+REGIONS.forEach(r=>{ r.s=dimScores(r); DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }); });
 document.getElementById("g20house").textContent=Math.round(G20AVG.house*100);
 let VIEW="g20", SHOW=DATA, gdpRank={};
 
@@ -367,7 +400,7 @@ function renderRank(){
   rows.forEach(r=>{
     const d=gdpRank[r.code]-r.rank;
     const cls=d>0?"up":d<0?"down":"eq", sym=d>0?`▲${d}`:d<0?`▼${-d}`:"—";
-    h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP 排名第 ${gdpRank[r.code]}">${sym}</div>`;
+    h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}<span class="pop">${popFmt(r.pop)}</span></div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP 排名第 ${gdpRank[r.code]}">${sym}</div>`;
   });
   document.getElementById("rank").innerHTML=h;
 }
@@ -452,25 +485,57 @@ function renderArea(){
   document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}：${a.raw} 平方米，${a.y} 年，${a.note}。<a href="${a.url}" target="_blank" rel="noopener">来源</a></li>`).join("");
 }
 
-const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g5","5G %"],["night","夜间安全 %"],["hom","命案/10万"]];
+const COLS=[["name","经济体"],["pop","人口"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g5","5G %"],["night","夜间安全 %"],["hom","命案/10万"]];
 const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g5:1,night:1,hom:1,fruit:1,veg:1,meat:1,egg:1};
 let sortK="score",sortD=-1;
 function renderTable(){
   const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
   let h="<thead><tr>"+COLS.map(([k,l])=>`<th data-k="${k}" ${k===sortK?`aria-sort="${sortD<0?"descending":"ascending"}"`:""}>${l}${k===sortK?(sortD<0?" ↓":" ↑"):""}</th>`).join("")+"</tr></thead><tbody>";
-  rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?v:fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
+  rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?v:k==="pop"?popFmt(v):fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
   const t=document.getElementById("tbl"); t.innerHTML=h+"</tbody>";
   t.querySelectorAll("th").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;sortD=k===sortK?-sortD:(k==="name"?1:-1);sortK=k;renderTable();}));
 }
 document.getElementById("years").innerHTML="<thead><tr><th>指标</th><th>年份</th><th>覆盖</th></tr></thead><tbody>"+YEARS.map(y=>`<tr><td>${y.label}</td><td>${y.years}</td><td>${y.n} / ${DATA.length}</td></tr>`).join("")+"</tbody>";
 
+function weighted(r){
+  let ws=0,t=0; DIMS.forEach(d=>{ if(r.s[d.k]!=null){ws+=W[d.k]; t+=W[d.k]*r.s[d.k];} });
+  return ws? 100*t/ws : 0;
+}
+function renderCmp(){
+  const cn=DATA.find(r=>r.code==="CHN"), us=DATA.find(r=>r.code==="USA"), [jz,ca]=REGIONS, cols=[jz,ca,cn,us];
+  const g20=DATA.filter(r=>G20.includes(r.code)).map(r=>weighted(r));
+  const rankIn=v=>1+g20.filter(x=>x>v).length;
+  const isNat=(r,dim)=>r.national&&r.national.includes(dim);
+  const rows=[
+    ["人口",r=>popFmt(r.pop)],
+    ["人均 GDP（PPP，国际元）",r=>"$"+fmt(r.gdp)],
+    ["人均用电（度/年）",r=>fmt(r.elec)+(r.nation?"（用电量）":"（发电量）")],
+    ["人均住房面积（平方米）",r=>r.area==null?"—":fmt(r.area,1)],
+    ["每千人汽车",r=>fmt(r.cars)],
+    ["人均高铁（公里/年）",r=>fmt(r.hsr? r.hsr*1e6/r.pop:0)],
+    ["人均城市轨道（公里/年）",r=>fmt(r.urbanPkm? r.urbanPkm*1e6/r.pop : (r.urbanTrips||0)*1e6*TRIP_KM/r.pop)],
+    ["预期寿命（岁）",r=>fmt(r.life,1)],
+    ["婴儿死亡率（‰）",r=>fmt(r.imr,1)],
+    ["网民比例（%）",r=>fmt(r.net,1),"网民比例"],
+    ["夜间敢独自出门（%）",r=>fmt(r.night),"安全"],
+    ["命案率（每 10 万人）",r=>fmt(r.hom,1),"安全"],
+  ];
+  let h=`<thead><tr><th>项目</th>${cols.map(r=>`<th>${r.name}${r.nation?"":"（全国）"}</th>`).join("")}</tr></thead><tbody>`;
+  rows.forEach(([lab,f,dim])=>{h+=`<tr><td>${lab}</td>${cols.map(r=>`<td class="${dim&&isNat(r,dim)?"nat":""}">${f(r)}</td>`).join("")}</tr>`;});
+  DIMS.forEach((d,i)=>{h+=`<tr class="${i===0?"sub":""}"><td>${d.name} · ${d.full} 得分</td>${cols.map(r=>`<td class="${isNat(r,d.name)||isNat(r,d.full)?"nat":""}">${Math.round(r.s[d.k]*100)}</td>`).join("")}</tr>`;});
+  h+=`<tr class="sub"><td><b>综合得分</b></td>${cols.map(r=>`<td><b>${weighted(r).toFixed(1)}</b></td>`).join("")}</tr>`;
+  h+=`<tr><td>放进 G20 + 欧盟（20 个）里的名次</td>${cols.map(r=>`<td>第 ${rankIn(weighted(r))}</td>`).join("")}</tr></tbody>`;
+  document.getElementById("cmp").innerHTML=h;
+  document.getElementById("cmpcap").textContent="灰字为用全国数据代替的项目。“食”的得分用全国数据；“安全”用全国的夜间安全感和命案率。名次按当前权重计算：两地的名次是假设把它们单独放进 G20 + 欧盟后的位置，中国和美国是它们实际的名次。";
+  document.getElementById("cmpnotes").innerHTML=REGIONS.map(r=>`<li><b>${r.name}</b>：${r.notes.join("；")}。</li>`).join("");
+}
 function render(){
   const tot=DIMS.reduce((a,d)=>a+W[d.k],0);
   DIMS.forEach(d=>{const pct=tot?Math.round(1000*W[d.k]/tot)/10:0;document.getElementById("o-"+d.k).textContent=pct+"%";document.querySelector(`[data-wt="${d.k}"]`).textContent="权重 "+pct+"%";});
   document.getElementById("wsum").textContent=tot?"滑块数值会自动换算成百分比。":"至少给一个维度设置权重。";
   score();
   document.querySelectorAll(".viewtog button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===VIEW)));
-  renderRank(); renderScatter(); renderMove(); renderElec(); renderArea(); renderTable();
+  renderRank(); renderScatter(); renderMove(); renderElec(); renderArea(); renderTable(); renderCmp();
 }
 render();
 </script>

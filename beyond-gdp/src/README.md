@@ -15,6 +15,7 @@
 | `data/area.json` | 人均住房面积，手工逐国整理（数值、年份、口径、来源链接）。 |
 | `data/rail.json` | 高铁人公里、轻轨和有轨电车客运人次、中国城市轨道交通人公里，手工整理。 |
 | `data/night_safety.json` | 盖洛普 2024 年“晚上独自走路感到安全”的比例，从 Global Safety Report 2025 的表格里摘录。 |
+| `data/regions.json` | 江浙沪（三省市合并）和加州的地区数据，手工整理，用于“江浙沪对加州”一节。 |
 | `data/findings.html` | 散点图下面的结论文字，手写。 |
 
 ## 常见操作

@@ -1,0 +1,84 @@
+{
+ "JZS": {
+  "code": "JZS",
+  "name": "江浙沪",
+  "nation": "CHN",
+  "pop": 177044100,
+  "gdp": 48809,
+  "gdpCny": 165837,
+  "elec": 10309,
+  "area": 38.0,
+  "areaGross": 44.5,
+  "cars": 314,
+  "hsr": 140426,
+  "urbanPkm": 68948,
+  "life": 82.0,
+  "imr": 1.65,
+  "bb": 57.9,
+  "fruit": 114.35999,
+  "veg": 412.71997,
+  "meat": 73.54,
+  "egg": 22.96,
+  "net": 91.6,
+  "g5": 96.0,
+  "hom": 0.5018560705357,
+  "night": 94,
+  "national": [
+   "食",
+   "网民比例",
+   "5G 覆盖",
+   "安全"
+  ],
+  "notes": [
+   "人口、GDP、用电量、汽车保有量为 2025 年江苏、浙江、上海统计公报（上海汽车为 2024 年）；GDP 按世界银行 2025 年中国购买力平价换算系数 3.40 折算",
+   "用电为全社会用电量（含工业），各国是人均发电量",
+   "住房为 2020 年人口普查家庭户人均住房建筑面积（三省市城市、镇、乡村加权，建筑面积约 44.5 平方米）；城镇按 78% 折算，乡村不折算",
+   "城市轨道交通为中国城市轨道交通协会 2025 年客运周转量 689 亿人公里",
+   "高铁：三省市 2024 年铁路旅客周转量 2,046 亿人公里，按全国动车组占比 68.6% 估算（分省动车组数据未公布）",
+   "预期寿命为三省市人口加权：江苏 80.7、浙江 82.6、上海“85 岁以上”按 85 计；婴儿死亡率江苏 1.67‰、浙江 1.37‰（2024）、上海 2.34‰（2025）",
+   "固定宽带为 2025 年三省市宽带用户数"
+  ]
+ },
+ "CA": {
+  "code": "CA",
+  "name": "加州",
+  "nation": "USA",
+  "pop": 39355309,
+  "gdp": 109196,
+  "elec": 7185,
+  "area": 51.2,
+  "cars": 826,
+  "hsr": 0,
+  "urbanPkm": 2653,
+  "life": 81.2,
+  "imr": 4.18,
+  "bb": 36.6,
+  "fruit": 169.2,
+  "veg": 129.06,
+  "meat": 122.060005,
+  "egg": 15.590001,
+  "net": 94.69380188,
+  "g5": 96.0,
+  "hom": 5.76340794073065,
+  "night": 71,
+  "national": [
+   "食",
+   "网民比例",
+   "5G 覆盖",
+   "安全"
+  ],
+  "notes": [
+   "人口为美国人口普查局 2025 年 7 月估计；GDP 为美国经济分析局 2025 年数据",
+   "用电为加州能源委员会 2024 年用电量 2,828 亿千瓦时（含自发电）；加州约四分之一电力从外州购入",
+   "住房为 EIA 住宅能耗调查 2024：每户 1,538 平方英尺（含地下室），户均 2.79 人",
+   "汽车为加州车管局 2025 年登记的小汽车和卡车，不含拖车和摩托车",
+   "城市轨道交通为 NTD 2025 年地铁、轻轨、有轨电车、缆车的乘客里程 16.5 亿英里；不含 Caltrain、Metrolink 等通勤铁路；加州没有高铁",
+   "预期寿命为加州公共卫生部 2024 年 81.2 岁；婴儿死亡率为 CDC 2024 年 4.18‰",
+   "固定宽带为 FCC 2025 年 6 月连接数（含企业），每百人 36.6"
+  ]
+ },
+ "sources": [
+  "<li>江浙沪：<a href=\"https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html\" target=\"_blank\" rel=\"noopener\">上海市 2025 年统计公报</a>、江苏省和浙江省 2025 年统计公报、<a href=\"https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/zk/html/A0112.xls\" target=\"_blank\" rel=\"noopener\">第七次人口普查分省住房数据</a>、<a href=\"https://www.stats.gov.cn/sj/ndsj/2025/indexch.htm\" target=\"_blank\" rel=\"noopener\">中国统计年鉴 2025</a>、<a href=\"https://infosharingp2-oss.camet.org.cn/resources/manual/2026/03/31/789660015317061.pdf\" target=\"_blank\" rel=\"noopener\">中国城市轨道交通协会 2025 年统计</a></li>",
+  "<li>加州：<a href=\"https://apps.bea.gov/regional/zip/SAGDP.zip\" target=\"_blank\" rel=\"noopener\">BEA</a>、<a href=\"https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/state/totals/NST-EST2025-ALLDATA.csv\" target=\"_blank\" rel=\"noopener\">人口普查局</a>、<a href=\"https://www.energy.ca.gov/data-reports/energy-almanac/california-electricity-data/california-energy-consumption-dashboards-0\" target=\"_blank\" rel=\"noopener\">加州能源委员会</a>、<a href=\"https://www.eia.gov/consumption/residential/data/2024/state/xls/STsquareFootage_2024.xlsx\" target=\"_blank\" rel=\"noopener\">EIA RECS 2024</a>、<a href=\"https://www.dmv.ca.gov/portal/file/estimated-fee-paid-vehicle-registration-by-county-report-pdf\" target=\"_blank\" rel=\"noopener\">加州车管局</a>、<a href=\"https://data.transportation.gov/d/wwdp-t4re\" target=\"_blank\" rel=\"noopener\">NTD</a>、<a href=\"https://www.cdc.gov/nchs/pressroom/states/california/ca.htm\" target=\"_blank\" rel=\"noopener\">CDC</a>、<a href=\"https://docs.fcc.gov/public/attachments/DOC-421557A1.pdf\" target=\"_blank\" rel=\"noopener\">FCC</a></li>"
+ ]
+}
