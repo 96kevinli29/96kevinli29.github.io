@@ -1,17 +1,17 @@
 {
  "CHN": {
-  "v": 40,
-  "use": 31.2,
-  "y": 2023,
-  "note": "城镇，建筑面积；按使用面积约 78% 折算为 31.2",
+  "v": 41.76,
+  "use": 32.6,
+  "y": 2020,
+  "note": "全国，家庭户人均住房建筑面积（2020 年人口普查）；按使用面积约 78% 折算为 32.6",
   "weak": false,
-  "url": "http://paper.people.com.cn/hwbwap/html/2024-08/24/content_26076654.htm"
+  "url": "https://www.nbd.com.cn/articles/2022-06-27/2341610.html"
  },
  "USA": {
-  "v": 69.8,
-  "use": 69.8,
+  "v": 72.6,
+  "use": 72.6,
   "y": 2024,
-  "note": "城镇，含地下室",
+  "note": "全国，每位住户的住宅面积，含地下室",
   "url": "https://www.eia.gov/consumption/residential/data/2024/hc/pdf/HC10.9_2024.pdf"
  },
  "EUU": {
@@ -65,10 +65,10 @@
   "url": "https://www.ssb.no/a/static/samfunnsspeilet/utg/200805/09/tab-2008-12-08-01.html"
  },
  "RUS": {
-  "v": 28.8,
-  "use": 28.8,
+  "v": 29.4,
+  "use": 29.4,
   "y": 2024,
-  "note": "城镇，住房存量÷人口",
+  "note": "全国，住房存量÷人口",
   "url": "https://rosstat.gov.ru/storage/mediabank/Jil_hoz_2025.pdf"
  },
  "TUR": {
@@ -103,10 +103,10 @@
   "url": "https://es.statista.com/statistics/1040751/macao-per-capita-living-space/"
  },
  "KAZ": {
-  "v": 27.4,
-  "use": 27.4,
+  "v": 25.1,
+  "use": 25.1,
   "y": 2025,
-  "note": "城镇",
+  "note": "全国",
   "url": "https://stat.gov.kz/ru/industries/business-statistics/stat-inno-build/publications/477117/"
  },
  "BLR": {
@@ -153,10 +153,10 @@
   "url": "https://www.edgeprop.my/content/1471152"
  },
  "IND": {
-  "v": 11.8,
-  "use": 11.8,
+  "v": 10.8,
+  "use": 10.8,
   "y": 2018,
-  "note": "城镇，使用面积，户均面积÷户均人口推算（NSS 第 76 轮）",
+  "note": "全国，户均面积 46.4 平方米 ÷ 户均 4.3 人（NSS 第 76 轮）",
   "url": "https://mospi.gov.in/sites/default/files/publication_reports/Report_584_final_0.pdf"
  },
  "IDN": {
