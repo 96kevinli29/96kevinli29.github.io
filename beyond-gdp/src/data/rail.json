@@ -1,0 +1,69 @@
+{
+ "hsr": {
+  "CHN": {
+   "v": 1084549,
+   "note": "动车组旅客周转量，2024，国家铁路局"
+  },
+  "JPN": {
+   "v": 102063,
+   "note": "新干线，2024 财年，国土交通省"
+  },
+  "EUU": {
+   "v": 139000,
+   "note": "法、德、意、西，2023，UIC"
+  },
+  "KOR": {
+   "v": 17900,
+   "note": "2023，UIC"
+  },
+  "TUR": {
+   "v": 4200,
+   "note": "2023，UIC"
+  },
+  "USA": {
+   "v": 1700,
+   "note": "2023，UIC"
+  },
+  "RUS": {
+   "v": 3575,
+   "note": "Sapsan 550 万人次（2024）× 全程 650 公里，上限"
+  },
+  "SAU": {
+   "v": 3157,
+   "note": "哈拉曼高铁 697 万人次（2023）× 全线 453 公里，上限"
+  },
+  "IDN": {
+   "v": 861,
+   "note": "Whoosh 606 万人次（2024）× 全线 142 公里，上限"
+  }
+ },
+ "lrt": {
+  "USA": 406.8,
+  "EUU": 4605.2,
+  "RUS": 1055.2,
+  "GBR": 127.1,
+  "TUR": 510,
+  "HKG": 204.9,
+  "CAN": 240.0,
+  "AUS": 234,
+  "ISR": 59.8,
+  "NOR": 81.3,
+  "SGP": 76.3,
+  "MEX": 32.7,
+  "BRA": 25.2,
+  "BIH": 23.9,
+  "MUS": 12.1,
+  "COL": 10.4,
+  "ARE": 9.9,
+  "ARG": 0.8,
+  "CHE": 191.5
+ },
+ "sources": [
+  "<li>高铁人公里：中国 <a href=\"https://www.yicai.com/news/102443765.html\" target=\"_blank\" rel=\"noopener\">国家铁路局 2024 年动车组旅客周转量</a>；日本 <a href=\"https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040366697&amp;fileKind=4\" target=\"_blank\" rel=\"noopener\">国土交通省铁道输送统计</a>；欧盟（法、德、意、西）、韩国、土耳其、美国 <a href=\"https://statbase.org/datasets/air-rail-and-water-transportation/high-speed-rail-passenger-traffic/\" target=\"_blank\" rel=\"noopener\">UIC 2023 年统计</a>；俄罗斯 Sapsan、沙特 <a href=\"https://en.wikipedia.org/wiki/Haramain_High_Speed_Railway\" target=\"_blank\" rel=\"noopener\">哈拉曼高铁</a>、印尼 <a href=\"https://goodstats.id/article/jumlah-penumpang-kereta-cepat-whoosh-semakin-melonjak-pada-juni-2025-h2Qk6\" target=\"_blank\" rel=\"noopener\">Whoosh</a> 只有乘客人次</li>",
+  "<li>中国城市轨道交通人公里：<a href=\"https://infosharingp2-oss.camet.org.cn/resources/manual/2026/03/31/789660015317061.pdf\" target=\"_blank\" rel=\"noopener\">中国城市轨道交通协会 2025 年统计</a></li>",
+  "<li>轻轨和有轨电车：美国 <a href=\"https://data.transportation.gov/resource/8bui-9xvu\" target=\"_blank\" rel=\"noopener\">NTD</a>；俄罗斯 <a href=\"https://rosstat.gov.ru/storage/mediabank/PerevPass(Gor-Electro)_2kv-2026.xlsx\" target=\"_blank\" rel=\"noopener\">Rosstat</a>；英国 <a href=\"https://www.gov.uk/government/statistics/light-rail-and-tram-statistics-england-year-ending-march-2026\" target=\"_blank\" rel=\"noopener\">英格兰轻轨统计</a>；德国 Destatis；香港运输署和港铁年报；其余为各运营方和统计部门数据</li>"
+ ],
+ "urbanPkm": {
+  "CHN": 271925
+ }
+}

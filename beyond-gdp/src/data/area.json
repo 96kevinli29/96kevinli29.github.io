@@ -1,0 +1,177 @@
+{
+ "CHN": {
+  "v": 40,
+  "use": 31.2,
+  "y": 2023,
+  "note": "城镇，建筑面积；按使用面积约 78% 折算为 31.2",
+  "weak": false,
+  "url": "http://paper.people.com.cn/hwbwap/html/2024-08/24/content_26076654.htm"
+ },
+ "USA": {
+  "v": 69.8,
+  "use": 69.8,
+  "y": 2024,
+  "note": "城镇，含地下室",
+  "url": "https://www.eia.gov/consumption/residential/data/2024/hc/pdf/HC10.9_2024.pdf"
+ },
+ "EUU": {
+  "v": 40,
+  "use": 40,
+  "y": 2022,
+  "note": "德法意西波按人口加权（覆盖 66% 人口）",
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+ },
+ "JPN": {
+  "v": 41.0,
+  "use": 41.0,
+  "y": 2023,
+  "note": "住宅总面积÷户均人口",
+  "url": "https://www.stat.go.jp/data/jyutaku/2023/pdf/kihon_gaiyou.pdf"
+ },
+ "KOR": {
+  "v": 36.0,
+  "use": 36.0,
+  "y": 2024,
+  "note": "全国",
+  "url": "https://biz.newdaily.co.kr/site/data/html/2025/11/15/2025111500090.html"
+ },
+ "GBR": {
+  "v": 37,
+  "use": 37,
+  "y": 2008,
+  "note": "英格兰，官方最新的人均数据",
+  "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/725085/Floor_Space_in_English_Homes_main_report.pdf"
+ },
+ "AUS": {
+  "v": 84,
+  "use": 84,
+  "y": 2019,
+  "note": "学术估算",
+  "weak": true,
+  "url": "https://doi.org/10.1038/s41560-019-0512-1"
+ },
+ "CHE": {
+  "v": 46.6,
+  "use": 46.6,
+  "y": 2024,
+  "note": "全国",
+  "url": "https://www.bfs.admin.ch/"
+ },
+ "NOR": {
+  "v": 57,
+  "use": 57,
+  "y": 2007,
+  "note": "官方最新的人均数据",
+  "url": "https://www.ssb.no/a/static/samfunnsspeilet/utg/200805/09/tab-2008-12-08-01.html"
+ },
+ "RUS": {
+  "v": 28.8,
+  "use": 28.8,
+  "y": 2024,
+  "note": "城镇，住房存量÷人口",
+  "url": "https://rosstat.gov.ru/storage/mediabank/Jil_hoz_2025.pdf"
+ },
+ "TUR": {
+  "v": 36.7,
+  "use": 36.7,
+  "y": 2022,
+  "note": "模型估算",
+  "weak": true,
+  "url": "https://arxiv.org/pdf/2503.05824"
+ },
+ "SGP": {
+  "v": 42,
+  "use": 42,
+  "y": 2020,
+  "note": "人口普查，平均值（中位数 33）",
+  "url": "https://data.gov.sg/datasets/d_46ff0d0429b30ac8d76d6778df32eb84/view"
+ },
+ "HKG": {
+  "v": 16,
+  "use": 16,
+  "y": 2021,
+  "note": "人口普查中位数，转引",
+  "weak": true,
+  "url": "https://www.devb.gov.hk/en/sdev/press/index_id_11447.html"
+ },
+ "MAC": {
+  "v": 20.7,
+  "use": 20.7,
+  "y": 2022,
+  "note": "Statista，原始来源未注明",
+  "weak": true,
+  "url": "https://es.statista.com/statistics/1040751/macao-per-capita-living-space/"
+ },
+ "KAZ": {
+  "v": 27.4,
+  "use": 27.4,
+  "y": 2025,
+  "note": "城镇",
+  "url": "https://stat.gov.kz/ru/industries/business-statistics/stat-inno-build/publications/477117/"
+ },
+ "BLR": {
+  "v": 29.4,
+  "use": 29.4,
+  "y": 2023,
+  "note": "住房存量÷人口",
+  "url": "https://stat.uz/en/press-center/news-of-committee/47745"
+ },
+ "ARM": {
+  "v": 35.5,
+  "use": 35.5,
+  "y": 2023,
+  "note": "住房存量÷人口",
+  "url": "https://stat.uz/en/press-center/news-of-committee/47745"
+ },
+ "AZE": {
+  "v": 20.1,
+  "use": 20.1,
+  "y": 2023,
+  "note": "住房存量÷人口",
+  "url": "https://stat.uz/en/press-center/news-of-committee/47745"
+ },
+ "MNE": {
+  "v": 27.5,
+  "use": 27.5,
+  "y": 2023,
+  "note": "人口普查",
+  "url": "https://www.monstat.org/uploads/files/popis%202021/saopstenja/RELEASE_DWELLINGS%202023_II.pdf"
+ },
+ "MKD": {
+  "v": 30.1,
+  "use": 30.1,
+  "y": 2021,
+  "note": "人口普查推算",
+  "url": "https://arhiva.moepp.gov.mk/wp-content/uploads/2021/01/1_Socio-ekonomski-spoeno-2022.pdf"
+ },
+ "MYS": {
+  "v": 27.3,
+  "use": 27.3,
+  "y": 2017,
+  "note": "开发商报告转引",
+  "weak": true,
+  "url": "https://www.edgeprop.my/content/1471152"
+ },
+ "IND": {
+  "v": 11.8,
+  "use": 11.8,
+  "y": 2018,
+  "note": "城镇，使用面积，户均面积÷户均人口推算（NSS 第 76 轮）",
+  "url": "https://mospi.gov.in/sites/default/files/publication_reports/Report_584_final_0.pdf"
+ },
+ "IDN": {
+  "v": 11.3,
+  "use": 11.3,
+  "y": 2022,
+  "note": "模型估算",
+  "weak": true,
+  "url": "https://arxiv.org/pdf/2503.05824"
+ },
+ "VNM": {
+  "v": 26.6,
+  "use": 26.6,
+  "y": 2024,
+  "note": "全国，居住面积，不含厨房、卫生间",
+  "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2025/01/thong-cao-bao-chi-ket-qua-dieu-tra-dan-so-va-nha-o-giua-ky-nam-2024/"
+ }
+}
