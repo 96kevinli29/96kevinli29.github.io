@@ -111,7 +111,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <header><div class="col">
   <div class="eyebrow">Sea-Fill · 社会科学笔记</div>
   <h1>GDP 之外</h1>
-  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，法国、德国、意大利、瑞典、丹麦、芬兰、卢森堡另外单独列出，共 79 个经济体。页面默认先比较 G20 和几个富国，可以随时切换到全部 79 个。</p>
+  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，法国、德国、意大利、瑞典、丹麦、芬兰、卢森堡另外单独列出，共 79 个经济体。页面默认先比较 G20 和几个富国，也可以切换到只看 G20，或者看全部 79 个。</p>
   <div class="byline">数据截至 2026 年 10 月 · 尽量使用 2025 年数据 · 世界银行 / FAO / Ember / ITU / 各国统计局 · 权重可调</div>
 </div></header>
 
@@ -121,7 +121,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
   <p>这篇文章换一种算法：不看产出，看<b>人实际能用上的东西</b>。我们选了八个维度，全部用实物指标：度、公斤、平方米、辆、公里、岁、命案数、入学率。然后和购买力平价（PPP）人均 GDP 的排名做对比。衣食住行里的“衣”暂时没有计分，原因见文末。</p>
   <p>为什么不用“居民消费额”？因为同样的东西在不同国家价格差很多。一碗面、一次理发、一张高铁票，在中国的价格可能只有西欧的几分之一。购买力平价（PPP）只做了部分修正，按美元算的消费额仍会低估物价便宜的国家。实物指标没有这个问题：一度电就是一度电。</p>
   <p>范围是两部分的合集：2025 年人均 GDP（PPP）排名前 100 的经济体，加上 GDP 总量（现价美元）排名前 50 的经济体。后者补进了印度、印尼、越南、菲律宾、孟加拉国、巴基斯坦、埃及、伊朗、秘鲁、南非、尼日利亚 11 个人口大国，它们的人均 GDP 不在前 100 名。排名数据都来自世界银行。欧盟 27 个成员国合并成“欧盟”计算，其中法国、德国、意大利（G20 成员）和瑞典、丹麦、芬兰、卢森堡另外单独列出。还没发布 2025 年数据的经济体，用它们最新一年的数据排名。13 个小地区缺两项以上的数据，没有纳入：法罗群岛、百慕大、开曼群岛、格陵兰、波多黎各、阿鲁巴、美属维尔京群岛、特克斯和凯科斯、荷属圣马丁、库拉索、帕劳、安道尔、圣马力诺。世界银行不发布台湾的数据，所以台湾也不在其中。</p>
-  <p>页面默认显示“G20 + 富国”：G20 的 19 个国家加欧盟，再加北欧五国（挪威、瑞典、丹麦、芬兰、冰岛）、瑞士和卢森堡，共 27 个经济体。法国、德国、意大利、瑞典、丹麦、芬兰、卢森堡既单独列出，也计入欧盟整体；非洲联盟没有统一的统计数据，不单列。</p>
+  <p>页面默认显示“G20 + 富国”：G20 的 19 个国家加欧盟，再加北欧五国（挪威、瑞典、丹麦、芬兰、冰岛）、瑞士和卢森堡，共 27 个经济体。法国、德国、意大利、瑞典、丹麦、芬兰、卢森堡既单独列出，也计入欧盟整体；非洲联盟没有统一的统计数据，不单列。切换到“G20”时，只显示 G20 的 19 个国家和欧盟，共 20 个。</p>
 
   <h2>八个维度</h2>
   <p><b>用电</b>是现代生活的底座：照明、冷暖、做饭、洗衣、上网都离不开它，而且用电量很难造假，“李克强指数”就把它当作核心指标。这里用的是人均用电量，也就是本国发电量加上净进口的电，所以进口电力多的国家（比如卢森堡）不会被低估，出口电力多的国家（比如法国）也不会被高估。</p>
@@ -413,12 +413,13 @@ function score(){
     DIMS.forEach(d=>{ r.contrib[d.k]= r.s[d.k]!=null&&ws? 100*W[d.k]*r.s[d.k]/ws : 0; });
     r.score= ws? 100*t/ws : 0;
   });
-  SHOW= VIEW==="g20"? DATA.filter(r=>FOCUS.includes(r.code)||r.region) : DATA;
+  const pick= VIEW==="g20only"? G20 : VIEW==="g20"? FOCUS : null;
+  SHOW= pick? DATA.filter(r=>pick.includes(r.code)||r.region) : DATA;
   const ranked=SHOW.filter(r=>!r.region);
   gdpRank=Object.fromEntries([...ranked].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
   [...ranked].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
 }
-document.querySelectorAll(".vt").forEach(el=>{el.className="viewtog";el.setAttribute("role","group");el.setAttribute("aria-label","显示范围");el.innerHTML=`<button type="button" data-v="g20">G20 + 富国</button><button type="button" data-v="all">全部 ${NATIONS.length} 个</button>`;});
+document.querySelectorAll(".vt").forEach(el=>{el.className="viewtog";el.setAttribute("role","group");el.setAttribute("aria-label","显示范围");el.innerHTML=`<button type="button" data-v="g20only">G20</button><button type="button" data-v="g20">G20 + 富国</button><button type="button" data-v="all">全部 ${NATIONS.length} 个</button>`;});
 document.querySelectorAll(".viewtog button").forEach(b=>b.addEventListener("click",()=>{VIEW=b.dataset.v;render();}));
 
 document.getElementById("dims").innerHTML=DIMS.map(d=>`<div class="dim"><b><i style="background:${col(d.k)}"></i>${d.name} · ${d.full}<span class="wt" data-wt="${d.k}"></span></b>${d.desc}</div>`).join("");
@@ -486,7 +487,7 @@ function renderScatter(){
     xfmt:t=>"$"+(t/1000)+"k",yfmt:t=>t,xlabel:"人均 GDP（PPP，国际元，对数刻度）",ylabel:"生活水平得分",
     trend:f,tipf:p=>`<b>${p.name}</b><br>人均 GDP $${fmt(p.r.gdp)}（${p.r.gdpY}）<br>得分 ${p.r.score.toFixed(1)}，趋势值 ${(p.r.score-p.r.resid).toFixed(1)}<br>${p.r.region?"地区，不参与排名":`生活水平第 ${p.r.rank} 名，GDP 第 ${gdpRank[p.code]} 名`}`
   });
-  const s=SHOW.filter(r=>!r.region).sort((a,b)=>b.resid-a.resid), k=VIEW==="g20"?3:6;
+  const s=SHOW.filter(r=>!r.region).sort((a,b)=>b.resid-a.resid), k=VIEW==="all"?6:3;
   const li=r=>`<b>${r.name}</b> <span class="num">${r.resid>0?"+":""}${r.resid.toFixed(1)}</span>`;
   document.getElementById("findings").innerHTML=`<p>按当前权重，比趋势线高出最多的是 ${s.slice(0,k).map(li).join("、")}；低于趋势线最多的是 ${s.slice(-k).reverse().map(li).join("、")}（数字为偏离趋势线的分数）。</p>`;
 }
