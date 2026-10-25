@@ -25,14 +25,15 @@ OWID_CHARTS = [
     "vegetable-consumption-per-capita",
     "meat-supply-per-person",
     "per-capita-egg-consumption-kilograms-per-year",
-    "per-capita-milk-consumption",
-    "share-with-4g-mobile-network-coverage",
 ]
 FILES = {
     "wb/countries.json": f"{WB}/country?format=json&per_page=400",
     "owid/energy.csv": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv",
     "wiki/vehicles.html": "https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita",
     "wiki/metro.html": "https://en.wikipedia.org/wiki/List_of_metro_systems",
+    # ITU 5G population coverage (SDG 9.c.1) and an ISO numeric -> alpha-3 table for its UN M49 codes
+    "un/IT_MOB_5GNTWK.json": "https://unstats.un.org/sdgapi/v1/sdg/Series/Data?seriesCode=IT_MOB_5GNTWK&pageSize=20000",
+    "un/iso3166.csv": "https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv",
 }
 for code, years in WB_INDICATORS.items():
     FILES[f"wb/{code}.json"] = f"{WB}/country/all/indicator/{code}?format=json&date={years}&per_page=20000"

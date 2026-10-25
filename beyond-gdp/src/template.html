@@ -247,6 +247,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
     <li><b>高铁数据的年份和口径不完全一致。</b>中国用的是“动车组”旅客周转量，包含少量在普速线上运行的动车组。欧盟只算了法国、德国、意大利、西班牙四国，比利时、荷兰、奥地利等国的少量高铁没有计入。俄罗斯（Sapsan）、沙特（哈拉曼高铁）、印尼（Whoosh）只有乘客人次，按全线长度折算，是上限。英国（HS1）和香港（广深港高铁香港段）没有找到单独数据，按 0 计。</li>
     <li><b>普通铁路不计入。</b>东京等大城市的近郊通勤铁路运量很大，但它们既不是高铁也不是地铁，按这个口径不计入，日本等国的轨道出行会被低估。</li>
     <li><b>汽车数据的年份和口径不一。</b>部分经济体的数据较旧，少数（如马来西亚、文莱、安道尔、圣马力诺）可能包含摩托车或大量非居民登记车辆。计分在每千人 650 辆封顶，影响有限。乌拉圭、毛里求斯、土库曼斯坦、加蓬、圣文森特和格林纳丁斯找不到汽车数据，出行一项按 G20 和欧盟的平均分计。</li>
+    <li><b>5G 数据有的较旧。</b>俄罗斯、土耳其、以色列等国的最新报告是 2021 年的，当时还没有或刚开始商用 5G，覆盖率记为 0 或很低；阿根廷、塞舌尔没有数据。网络接入取固定宽带和 5G 中较高的一项，所以 5G 为 0 的经济体仍按固定宽带计分。</li>
     <li><b>发电量包含工业用电。</b>冰岛、挪威、巴林等国有大量电解铝等高耗能工业。理想指标是居民用电，但缺少统一的跨国数据。</li>
     <li><b>部分经济体缺数据。</b>FAO 不发布新加坡的食物数据，新加坡的“食”按 G20 和欧盟的平均分计。世界银行缺香港、澳门的婴儿死亡率，它们的健康只看预期寿命。缺两项以上数据的 13 个小地区已经排除。</li>
     <li><b>平均数会掩盖不平等。</b>人均数字高，不代表大多数人都过得好。</li>
@@ -270,13 +271,13 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
     <li>人均 GDP（PPP）、人口、互联网用户比例、固定宽带订户、预期寿命、婴儿死亡率：<a href="https://data.worldbank.org" target="_blank" rel="noopener">世界银行 WDI</a></li>
     <li>人均发电量：<a href="https://github.com/owid/energy-data" target="_blank" rel="noopener">Our World in Data 能源数据</a>（Ember、Energy Institute）</li>
     <li>水果、蔬菜、肉、蛋的人均供应量：<a href="https://ourworldindata.org/food-supply" target="_blank" rel="noopener">FAO 食物平衡表</a>，经 Our World in Data 整理</li>
-    <li>4G 移动网络人口覆盖率：<a href="https://ourworldindata.org/grapher/share-with-4g-mobile-network-coverage" target="_blank" rel="noopener">ITU</a>，经 Our World in Data 整理</li>
+    <li>5G 移动网络人口覆盖率：ITU，取自<a href="https://unstats.un.org/sdgs/dataportal/database" target="_blank" rel="noopener">联合国 SDG 数据库</a>（指标 9.c.1）</li>
     <li>每千人机动车数量：<a href="https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita" target="_blank" rel="noopener">Wikipedia 汇总的各国官方数据</a>，部分经济体用各国统计补充；欧盟为成员国加总</li>
     <li>地铁年客运量：<a href="https://en.wikipedia.org/wiki/List_of_metro_systems" target="_blank" rel="noopener">Wikipedia 地铁系统列表</a>（各运营方公布的数据，多为 2024–2025 年）</li>
     <!--__RAILSRC__-->
     <li>人均住房面积：各国统计局和住房调查，逐项见下方列表</li>
     <li>纺织纤维终端消费（仅地区数据，未计分）：<a href="https://icac.org/wp-content/uploads/2024/11/world-textile-demand2014_november.pdf" target="_blank" rel="noopener">ICAC World Textile Demand 2014</a>；纺纱厂用棉与实际消费的对比：<a href="https://www.fao.org/fileadmin/templates/est/COMM_MARKETS_MONITORING/Cotton/Documents/World_Apparel_Fiber_Consumption_Survey_2011_-_Summary_English.pdf" target="_blank" rel="noopener">FAO/ICAC World Apparel Fiber Consumption Survey</a></li>
-    <li>欧盟的互联网用户比例、固定宽带、4G 覆盖率：由 27 个成员国最新值按人口加权计算</li>
+    <li>欧盟的互联网用户比例、固定宽带、5G 覆盖率：由 27 个成员国最新值按人口加权计算</li>
   </ul>
   <h3>人均住房面积的来源</h3>
   <ul id="areasrc"></ul>
@@ -298,7 +299,7 @@ const DIMS=[
   {k:"house",name:"住",full:"住房",w:15,desc:"人均住房面积，10 平方米为 0 分，50 平方米为满分。只有 __NAREA__ 个经济体有数据。"},
   {k:"move",name:"行",full:"出行",w:15,desc:"两项各占一半：每千人汽车（650 辆满分），以及人均乘坐高铁和城市轨道交通的公里数（对数刻度）。普通铁路不计入。"},
   {k:"health",name:"健康",full:"健康",w:15,desc:"预期寿命（55–85 岁）和婴儿死亡率（对数，70‰ 为 0 分，1.5‰ 为满分）平均。"},
-  {k:"net",name:"网",full:"联网",w:15,desc:"两项平均：互联网用户比例（40%–100%），以及网络接入，取固定宽带（每百人 0–40 户）和 4G 人口覆盖率（50%–100%）中较高的一项。"}
+  {k:"net",name:"网",full:"联网",w:15,desc:"两项平均：互联网用户比例（40%–100%），以及网络接入，取固定宽带（每百人 0–40 户）和 5G 人口覆盖率（0%–100%）中较高的一项。"}
 ];
 const DEFAULT_W=Object.fromEntries(DIMS.map(d=>[d.k,d.w]));
 let W={...DEFAULT_W};
@@ -319,7 +320,7 @@ DATA.forEach(r=>{
   const car=lin(r.cars,0,650), rail=r.railKm>0? lg(Math.max(r.railKm,RAIL_MIN),RAIL_MIN,RAIL_MAX):0;
   s.move= car!=null? .5*car+.5*rail : null;
   s.health=avg([lin(r.life,55,85), r.imr!=null? cl((ln(70)-ln(Math.max(r.imr,1.5)))/(ln(70)-ln(1.5))):null]);
-  const access=Math.max(lin(r.bb,0,40)??0, lin(r.g4,50,100)??0);
+  const access=Math.max(lin(r.bb,0,40)??0, lin(r.g5,0,100)??0);
   s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
   r.s=s;
 });
@@ -445,8 +446,8 @@ function renderArea(){
   document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}：${a.raw} 平方米，${a.y} 年，${a.note}。<a href="${a.url}" target="_blank" rel="noopener">来源</a></li>`).join("");
 }
 
-const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g4","4G %"]];
-const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g4:1,fruit:1,veg:1,meat:1,egg:1};
+const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g5","5G %"]];
+const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g5:1,fruit:1,veg:1,meat:1,egg:1};
 let sortK="score",sortD=-1;
 function renderTable(){
   const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});

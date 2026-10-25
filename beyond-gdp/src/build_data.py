@@ -110,15 +110,24 @@ for key, fn, col in [
     ("veg", "vegetable-consumption-per-capita.csv", None),
     ("meat", "meat-supply-per-person.csv", None),
     ("egg", "per-capita-egg-consumption-kilograms-per-year.csv", None),
-    ("milk", "per-capita-milk-consumption.csv", None),
 ]:
     b = owid(fn, col)
     for c in ECON:
         put(key, c, b.get(c))
-g4 = owid("share-with-4g-mobile-network-coverage.csv")
+# 5G population coverage from the UN SDG database, which uses numeric M49 codes
+m49 = {int(r["country-code"]): r["alpha-3"] for r in csv.DictReader(open(os.path.join(RAW, "un", "iso3166.csv"), encoding="utf8"))}
+g5 = {}
+for x in load("un/IT_MOB_5GNTWK.json")["data"]:
+    c, y = m49.get(int(x["geoAreaCode"])), int(float(x["timePeriodStart"]))
+    try:
+        v = float(x["value"])
+    except (TypeError, ValueError):
+        continue
+    if c and (c not in g5 or y > g5[c][1]):
+        g5[c] = (v, y)
 for c in lst:
-    put("g4", c, g4.get(c))
-put("g4", "EUU", eu_avg(g4))
+    put("g5", c, g5.get(c))
+put("g5", "EUU", eu_avg(g5))
 
 # --- Wikipedia tables
 clean = lambda s: re.sub(r"\[[^\]]*\]", "", html.unescape(re.sub("<[^>]+>", "", s))).strip()
@@ -177,7 +186,7 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf8") as f:
     json.dump({"rows": rows, "years": years}, f, ensure_ascii=False, indent=1)
 print(f"{len(ECON)} economies -> {os.path.relpath(OUT, HERE)}")
-for key in ["elec", "fruit", "cars", "life", "imr", "net", "g4"]:
+for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5"]:
     gaps = [ZH[c] for c in ECON if rows[c].get(key) is None]
     if gaps:
         print(f"  missing {key}: {', '.join(gaps)}")

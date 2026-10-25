@@ -33,9 +33,9 @@ DATA = []
 for c, r in rows.items():
     if c in EXCLUDE:
         continue
-    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g4", "cars"]}
+    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars"]}
     d["gdpY"], d["carsY"] = yrs["gdp"][c], yrs.get("cars", {}).get(c)
-    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g4", "elec"]:
+    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec"]:
         if d[k] is not None:
             d[k] = round(d[k], 1)
     d["gdp"] = round(d["gdp"])
@@ -71,7 +71,7 @@ YEARS = [y for y in [
     year_summary("婴儿死亡率", pick("imr")),
     year_summary("互联网用户比例", pick("net")),
     year_summary("固定宽带", pick("bb")),
-    year_summary("4G 覆盖率", pick("g4")),
+    year_summary("5G 覆盖率", pick("g5")),
 ] if y]
 AREASRC = [{"name": rows[c]["name"], "raw": a["v"], "y": a["y"], "note": a["note"], "url": a["url"]}
            for c, a in sorted(area.items(), key=lambda t: -t[1]["use"]) if c in shown]
