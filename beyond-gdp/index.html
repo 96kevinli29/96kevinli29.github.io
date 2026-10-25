@@ -92,6 +92,10 @@ td:first-child{font-family:var(--f-body)}
 .dim b i{width:10px;height:10px;border-radius:2px}
 .dim .wt{font-family:var(--f-data);font-size:12px;color:var(--muted);margin-left:auto;font-weight:400}
 ul{padding-left:1.2em} li{margin:6px 0}
+.viewtog{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin:0 0 14px}
+.viewtog button{border:0;border-radius:0;background:var(--surface);padding:6px 14px}
+.viewtog button+button{border-left:1px solid var(--rule)}
+.viewtog button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;line-height:1.5;padding:6px 9px;border-radius:4px;z-index:5;max-width:260px}
 a{color:var(--accent)}
 footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
@@ -102,7 +106,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <header><div class="col">
   <div class="eyebrow">Sea-Fill · 社会科学笔记</div>
   <h1>GDP 之外</h1>
-  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，共 72 个经济体。</p>
+  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，共 72 个经济体。页面默认先比较 G20 和欧盟，可以随时切换到全部 72 个。</p>
   <div class="byline">数据截至 2026 年 10 月 · 尽量使用 2025 年数据 · 世界银行 / FAO / Ember / ITU / 各国统计局 · 权重可调</div>
 </div></header>
 
@@ -112,6 +116,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
   <p>这篇文章换一种算法：不看产出，看<b>人实际能用上的东西</b>。我们选了六个维度，全部用实物指标：度、千卡、公斤、平方米、辆、公里、岁。然后和购买力平价（PPP）人均 GDP 的排名做对比。衣食住行里的“衣”暂时没有计分，原因见文末。</p>
   <p>为什么不用“居民消费额”？因为同样的东西在不同国家价格差很多。一碗面、一次理发、一张高铁票，在中国的价格可能只有西欧的几分之一。购买力平价（PPP）只做了部分修正，按美元算的消费额仍会低估物价便宜的国家。实物指标没有这个问题：一度电就是一度电。</p>
   <p>范围是两部分的合集：2025 年人均 GDP（PPP）排名前 100 的经济体，加上 GDP 总量（现价美元）排名前 50 的经济体。后者补进了印度、印尼、越南、菲律宾、孟加拉国、巴基斯坦、埃及、伊朗、秘鲁、南非、尼日利亚 11 个人口大国，它们的人均 GDP 不在前 100 名。排名数据都来自世界银行。欧盟 27 个成员国合并成“欧盟”计算。还没发布 2025 年数据的经济体，用它们最新一年的数据排名。13 个小地区缺两项以上的数据，没有纳入：法罗群岛、百慕大、开曼群岛、格陵兰、波多黎各、阿鲁巴、美属维尔京群岛、特克斯和凯科斯、荷属圣马丁、库拉索、帕劳、安道尔、圣马力诺。世界银行不发布台湾的数据，所以台湾也不在其中。</p>
+  <p>G20 的成员里，法国、德国、意大利已经合并在欧盟里；非洲联盟没有统一的统计数据，不单列。所以“G20 + 欧盟”共 17 个经济体。</p>
 
   <h2>六个维度，用电权重最高</h2>
   <p>电力是现代生活的底座：照明、冷暖、做饭、洗衣、上网都离不开它，而且发电量很难造假，“李克强指数”就把它当作核心指标。所以默认权重里电力占 25%，其余五项各占 15%。</p>
@@ -135,10 +140,11 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 
 <div class="col">
   <h2>生活水平排名，和 GDP 排名对比</h2>
-  <p>下图每一行是一个经济体，条形长度是综合得分（满分 100），颜色是各维度的贡献。最右一列是和人均 GDP 在这 72 个经济体里的排名相比的变化：<span style="color:var(--up)">▲</span> 表示生活水平排名比 GDP 排名靠前。名字下方的小字标出缺少的数据。</p>
+  <p>下图每一行是一个经济体，条形长度是综合得分（满分 100），颜色是各维度的贡献。最右一列是和人均 GDP 在当前显示的经济体里的排名相比的变化：<span style="color:var(--up)">▲</span> 表示生活水平排名比 GDP 排名靠前。名字下方的小字标出缺少的数据。</p>
 </div>
 <div class="wide">
 <figure>
+  <div class="vt"></div>
   <div class="rank" id="rank"></div>
   <div class="legend" id="legend"></div>
   <figcaption>得分由六个维度按权重加权平均，全部使用实物指标，不含任何以货币计价的消费数据。缺数据较多的小经济体，排名的参考价值较低。</figcaption>
@@ -151,6 +157,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 </div>
 <div class="wide">
 <figure>
+  <div class="vt"></div>
   <div class="chart" id="scatter"></div>
   <figcaption>趋势线：得分对 ln(人均 GDP) 的最小二乘拟合。点太密时只标出部分名字，把鼠标移到点上可以看全部数值。</figcaption>
 </figure>
@@ -158,13 +165,20 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 
 <div class="col" id="findings"></div>
 <div class="col">
-<h3>几个值得注意的现象（按默认权重）</h3>
+<h3>G20 和欧盟（默认权重）</h3>
 <ul>
-  <li><b>中国</b>是高出趋势线最多的经济体。人均 GDP 在这 72 个经济体里排第 43，生活水平排第 22。饮食、联网接近发达国家；高铁加城市轨道交通人均每年约 960 公里，仅次于香港、新加坡、日本、韩国。拉低得分的是人均住房面积（按使用面积约 31 平方米）和健康指标。</li>
+  <li><b>中国</b>是 G20 里高出趋势线最多的经济体。人均 GDP 在 G20 和欧盟这 17 个经济体里排第 12，生活水平排第 9。饮食、联网接近发达国家；高铁加城市轨道交通人均每年约 960 公里，仅次于日本（约 1,240 公里），高于韩国（约 890）、欧盟（约 540）和美国（约 60）。拉低得分的是人均住房面积（按使用面积约 31 平方米）和健康指标。</li>
+  <li><b>韩国和日本</b>各上升 3 位（第 7 → 第 4，第 8 → 第 5），主要靠轨道交通和健康。<b>美国</b>人均 GDP 第 1，生活水平第 3：汽车最多，但高铁和地铁很少，预期寿命也低于其他发达经济体。</li>
+  <li><b>沙特</b>落差最大，人均 GDP 第 2，生活水平第 7。它没有人均住房面积数据，住房一项不计分，实际差距可能更大。排第 1 的<b>加拿大</b>也缺住房面积数据，前几名之间只差两三分，排序要谨慎看待。</li>
+  <li><b>英国</b>从第 6 降到第 8。人均发电量约 4,200 度，是 G20 高收入经济体里最低的；官方最新的人均住房面积还是 2008 年的 37 平方米。</li>
+  <li><b>印尼和印度</b>排在最后。人均用电、肉蛋奶、汽车都远低于其他经济体，印度城镇人均住房约 12 平方米。</li>
+</ul>
+<h3>放到全部 72 个经济体里</h3>
+<ul>
   <li><b>资源和金融型经济体落差最大。</b>圭亚那 2019 年才开始大规模产油，人均 GDP 排第 6，生活水平只排第 66。澳门靠博彩业，人均 GDP 排第 2，人均住房只有约 21 平方米，生活水平排第 53。新加坡（第 1 → 第 12）、香港（第 10 → 第 30）、文莱（第 7 → 第 21）也明显下滑，香港的人均住房面积约 16 平方米，是有数据的经济体里最小的。</li>
-  <li><b>日本、韩国和欧盟靠轨道交通拿分。</b>日本人均每年乘坐新干线和地铁约 1,240 公里，韩国约 890 公里，欧盟约 540 公里，美国只有约 60 公里。所以美国汽车最多，出行得分却低于日本、欧盟和韩国。美国的健康得分（预期寿命 79 岁）也低于其他高收入经济体。</li>
-  <li><b>海湾产油国排名靠前，但要打折扣。</b>卡塔尔第 7、阿联酋第 11、科威特第 14、沙特第 16。它们的用电和联网几乎满分，但都没有人均住房面积数据，住房一项不计分，排名可能偏高。加拿大、冰岛、新西兰也是同样的情况。</li>
-  <li><b>人口大国差距仍然很大。</b>印尼第 68、印度第 69、孟加拉国第 70、巴基斯坦第 71、尼日利亚第 72。人均用电、肉蛋奶、汽车都远低于其他经济体。印度城镇人均住房约 12 平方米，地铁发展很快，但人均乘坐距离仍只有约 20 公里。</li>
+  <li><b>中国</b>在 72 个经济体里也是高出趋势线最多的：人均 GDP 第 43，生活水平第 22。</li>
+  <li><b>海湾产油国排名靠前，但要打折扣。</b>卡塔尔第 7、阿联酋第 11、科威特第 14。它们的用电和联网几乎满分，但都没有人均住房面积数据。冰岛、新西兰也是同样的情况。</li>
+  <li><b>人口大国差距仍然很大。</b>孟加拉国、巴基斯坦、尼日利亚排在最后三位。</li>
 </ul>
 </div>
 
@@ -174,6 +188,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 </div>
 <div class="wide">
 <figure>
+  <div class="vt"></div>
   <div class="chart" id="move"></div>
   <figcaption id="movecap"></figcaption>
 </figure>
@@ -207,6 +222,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 </div>
 <div class="wide">
 <figure>
+  <div class="vt"></div>
   <div class="tbl"><table id="tbl"></table></div>
   <figcaption>— 表示缺少数据。高铁、城轨的单位是人均每年乘坐公里数。住房面积为计分所用的使用面积。</figcaption>
 </figure>
@@ -295,7 +311,7 @@ const RAIL_MIN=10, RAIL_MAX=1500, TRIP_KM=8;
 
 const DIMS=[
   {k:"elec",name:"电",full:"用电",w:25,desc:"人均发电量，对数刻度，100 度为 0 分，15,000 度封顶为满分。"},
-  {k:"food",name:"食",full:"饮食",w:15,desc:"七项平均：每日热量（1,800–3,000 千卡）、蛋白质（40–100 克），以及每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉（0–60 公斤）、蛋（0–12 公斤）、奶（0–200 公斤）。"},
+  {k:"food",name:"食",full:"饮食",w:15,desc:"七项等权平均（各占饮食得分的 1/7）：每日热量（1,800–3,000 千卡）、蛋白质（40–100 克），以及每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉（0–60 公斤）、蛋（0–12 公斤）、奶（0–200 公斤）。"},
   {k:"house",name:"住",full:"住房",w:15,desc:"人均住房面积，10 平方米为 0 分，50 平方米为满分。只有 24 个经济体有数据。"},
   {k:"move",name:"行",full:"出行",w:15,desc:"两项各占一半：每千人汽车（650 辆满分），以及人均乘坐高铁和城市轨道交通的公里数（对数刻度）。普通铁路不计入。"},
   {k:"health",name:"健康",full:"健康",w:15,desc:"预期寿命（55–85 岁）和婴儿死亡率（对数，70‰ 为 0 分，1.5‰ 为满分）平均。"},
@@ -324,7 +340,8 @@ DATA.forEach(r=>{
   s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
   r.s=s;
 });
-const gdpRank=Object.fromEntries([...DATA].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
+const G20=["ARG","AUS","BRA","CAN","CHN","IND","IDN","JPN","KOR","MEX","RUS","SAU","ZAF","TUR","GBR","USA","EUU"];
+let VIEW="g20", SHOW=DATA, gdpRank={};
 
 function score(){
   DATA.forEach(r=>{
@@ -333,8 +350,12 @@ function score(){
     DIMS.forEach(d=>{ r.contrib[d.k]= r.s[d.k]!=null&&ws? 100*W[d.k]*r.s[d.k]/ws : 0; });
     r.score= ws? 100*t/ws : 0;
   });
-  [...DATA].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
+  SHOW= VIEW==="g20"? DATA.filter(r=>G20.includes(r.code)) : DATA;
+  gdpRank=Object.fromEntries([...SHOW].sort((a,b)=>b.gdp-a.gdp).map((r,i)=>[r.code,i+1]));
+  [...SHOW].sort((a,b)=>b.score-a.score).forEach((r,i)=>r.rank=i+1);
 }
+document.querySelectorAll(".vt").forEach(el=>{el.className="viewtog";el.setAttribute("role","group");el.setAttribute("aria-label","显示范围");el.innerHTML=`<button type="button" data-v="g20">G20 + 欧盟</button><button type="button" data-v="all">全部 ${DATA.length} 个</button>`;});
+document.querySelectorAll(".viewtog button").forEach(b=>b.addEventListener("click",()=>{VIEW=b.dataset.v;render();}));
 
 document.getElementById("dims").innerHTML=DIMS.map(d=>`<div class="dim"><b><i style="background:${col(d.k)}"></i>${d.name} · ${d.full}<span class="wt" data-wt="${d.k}"></span></b>${d.desc}</div>`).join("");
 document.getElementById("legend").innerHTML=DIMS.map(d=>`<span><i style="background:${col(d.k)}"></i>${d.name}</span>`).join("");
@@ -351,7 +372,7 @@ function missText(r){
   return m.length? `<span class="miss">缺：${m.join("、")}</span>`:"";
 }
 function renderRank(){
-  const rows=[...DATA].sort((a,b)=>b.score-a.score);
+  const rows=[...SHOW].sort((a,b)=>b.score-a.score);
   let h=`<div class="h">#</div><div class="h">经济体</div><div class="h">综合得分</div><div class="h" style="text-align:right">分</div><div class="h" style="text-align:right">vs GDP</div>`;
   rows.forEach(r=>{
     const d=gdpRank[r.code]-r.rank;
@@ -387,7 +408,7 @@ function scatter(el,{pts,xlog,ylog,xdom,ydom,xticks,yticks,xfmt,yfmt,xlabel,ylab
 }
 
 function fit(){
-  const xs=DATA.map(r=>ln(r.gdp)), ys=DATA.map(r=>r.score), n=xs.length;
+  const xs=SHOW.map(r=>ln(r.gdp)), ys=SHOW.map(r=>r.score), n=xs.length;
   const mx=xs.reduce((a,b)=>a+b)/n, my=ys.reduce((a,b)=>a+b)/n;
   let sxy=0,sxx=0; xs.forEach((x,i)=>{sxy+=(x-mx)*(ys[i]-my);sxx+=(x-mx)**2;});
   const b=sxy/sxx,a=my-b*mx; return g=>a+b*ln(g);
@@ -395,28 +416,28 @@ function fit(){
 const KEY=["CHN","USA","EUU","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
 function renderScatter(){
   const f=fit();
-  DATA.forEach(r=>r.resid=r.score-f(r.gdp));
-  const ymin=Math.max(0,Math.floor(Math.min(...DATA.map(r=>r.score))/10)*10-10);
+  SHOW.forEach(r=>r.resid=r.score-f(r.gdp));
+  const ymin=Math.max(0,Math.floor(Math.min(...SHOW.map(r=>r.score))/10)*10-10);
   const yt=[];for(let v=ymin;v<=100;v+=10)yt.push(v);
   scatter(document.getElementById("scatter"),{
-    pts:DATA.map(r=>({code:r.code,name:r.name,x:r.gdp,y:r.score,c:r.resid>=0?"var(--up)":"var(--down)",r})),
+    pts:SHOW.map(r=>({code:r.code,name:r.name,x:r.gdp,y:r.score,c:r.resid>=0?"var(--up)":"var(--down)",r})),
     xlog:true,xdom:[8000,180000],ydom:[ymin,100],xticks:[10000,20000,50000,100000,150000],yticks:yt,keep:KEY,H:520,
     xfmt:t=>"$"+(t/1000)+"k",yfmt:t=>t,xlabel:"人均 GDP（PPP，国际元，对数刻度）",ylabel:"生活水平得分",
     trend:f,tipf:p=>`<b>${p.name}</b><br>人均 GDP $${fmt(p.r.gdp)}（${p.r.gdpY}）<br>得分 ${p.r.score.toFixed(1)}，趋势值 ${(p.r.score-p.r.resid).toFixed(1)}<br>生活水平第 ${p.r.rank} 名，GDP 第 ${gdpRank[p.code]} 名`
   });
-  const s=[...DATA].sort((a,b)=>b.resid-a.resid);
+  const s=[...SHOW].sort((a,b)=>b.resid-a.resid), k=VIEW==="g20"?3:6;
   const li=r=>`<b>${r.name}</b> <span class="num">${r.resid>0?"+":""}${r.resid.toFixed(1)}</span>`;
-  document.getElementById("findings").innerHTML=`<p>按当前权重，比趋势线高出最多的是 ${s.slice(0,6).map(li).join("、")}；低于趋势线最多的是 ${s.slice(-6).reverse().map(li).join("、")}（数字为偏离趋势线的分数）。</p>`;
+  document.getElementById("findings").innerHTML=`<p>按当前权重，比趋势线高出最多的是 ${s.slice(0,k).map(li).join("、")}；低于趋势线最多的是 ${s.slice(-k).reverse().map(li).join("、")}（数字为偏离趋势线的分数）。</p>`;
 }
 
 function renderMove(){
-  const pts=DATA.filter(r=>r.cars!=null).map(r=>({code:r.code,name:r.name,x:Math.min(r.cars,1000),y:Math.max(r.railKm,1),c:"var(--c-move)",r}));
+  const pts=SHOW.filter(r=>r.cars!=null).map(r=>({code:r.code,name:r.name,x:Math.min(r.cars,1000),y:Math.max(r.railKm,1),c:"var(--c-move)",r}));
   scatter(document.getElementById("move"),{
     pts,xdom:[0,1000],ylog:true,ydom:[1,RAIL_MAX*2],xticks:[0,200,400,600,800,1000],yticks:[1,10,100,1000],keep:KEY,
     xfmt:t=>t===1000?"≥1,000":fmt(t),yfmt:t=>t===1?"≈0":fmt(t),xlabel:"每千人机动车（辆）",ylabel:"人均高铁+城轨（公里/年）",
     tipf:p=>`<b>${p.name}</b><br>每千人机动车 ${fmt(p.r.cars)}（${p.r.carsY}）<br>高铁 ${fmt(p.r.hsrKm)} 公里/人/年<br>城市轨道 ${fmt(p.r.urbanKm)} 公里/人/年<br>出行得分 ${(p.r.s.move*100).toFixed(0)}`
   });
-  document.getElementById("movecap").textContent=`横轴：每千人机动车，超过 1,000 的画在右边缘。纵轴：人均每年乘坐高铁和城市轨道交通的公里数（对数刻度），为 0 的画在最下面一行。高铁用旅客周转量（人公里）：中国为 2024 年动车组数据，日本为 2024 财年，欧盟（法德意西）、韩国、土耳其、美国为 UIC 2023 年数据。俄罗斯、沙特、印尼只有乘客人次，按全线长度折算，是上限。英国、香港的高铁没有找到单独数据，按 0 计。城市轨道交通：中国用官方公布的人公里，其他经济体只有客运人次，每次按 ${TRIP_KM} 公里折算。计分时 ${fmt(RAIL_MIN)} 公里为 0 分，${fmt(RAIL_MAX)} 公里为满分（对数）。缺汽车数据的 ${DATA.filter(r=>r.cars==null).length} 个经济体未画出，出行一项不计分。`;
+  document.getElementById("movecap").textContent=`横轴：每千人机动车，超过 1,000 的画在右边缘。纵轴：人均每年乘坐高铁和城市轨道交通的公里数（对数刻度），为 0 的画在最下面一行。高铁用旅客周转量（人公里）：中国为 2024 年动车组数据，日本为 2024 财年，欧盟（法德意西）、韩国、土耳其、美国为 UIC 2023 年数据。俄罗斯、沙特、印尼只有乘客人次，按全线长度折算，是上限。英国、香港的高铁没有找到单独数据，按 0 计。城市轨道交通：中国用官方公布的人公里，其他经济体只有客运人次，每次按 ${TRIP_KM} 公里折算。计分时 ${fmt(RAIL_MIN)} 公里为 0 分，${fmt(RAIL_MAX)} 公里为满分（对数）。${SHOW.some(r=>r.cars==null)?`缺汽车数据的 ${SHOW.filter(r=>r.cars==null).length} 个经济体未画出，出行一项不计分。`:""}`;
 }
 
 function hbar(el,rows,{max,val,lab,color,cap,extra,unit=""}){
@@ -430,13 +451,13 @@ function hbar(el,rows,{max,val,lab,color,cap,extra,unit=""}){
   el.innerHTML=s+"</svg>";
 }
 function renderElec(){
-  const rows=DATA.filter(r=>r.elec!=null).sort((a,b)=>b.elec-a.elec);
+  const rows=SHOW.filter(r=>r.elec!=null).sort((a,b)=>b.elec-a.elec);
   hbar(document.getElementById("elec"),rows,{max:30000,val:r=>r.elec,lab:r=>fmt(r.elec),color:"var(--c-elec)",cap:15000,extra:"满分线 15,000"});
   const hi=rows[0], lo=rows[rows.length-1], cn=DATA.find(r=>r.code==="CHN");
   document.getElementById("electxt").textContent=`人均发电量从${lo.name}的 ${fmt(lo.elec)} 度到${hi.name}的 ${fmt(hi.elec)} 度，相差约 ${Math.round(hi.elec/lo.elec)} 倍。中国是 ${fmt(cn.elec)} 度，排在 ${rows.length} 个有数据的经济体中第 ${rows.indexOf(cn)+1} 位。发电量包含工业用电：冰岛、挪威、巴林、卡塔尔等有大量电解铝、天然气加工等高耗能工业，中国的制造业用电也占大头。所以计分时用对数刻度，并在每人每年 15,000 度封顶，超出部分不再加分。`;
 }
 function renderArea(){
-  const rows=DATA.filter(r=>r.area!=null).sort((a,b)=>b.area-a.area);
+  const rows=SHOW.filter(r=>r.area!=null).sort((a,b)=>b.area-a.area);
   hbar(document.getElementById("area"),rows,{max:90,val:r=>r.area,lab:r=>`${fmt(r.area,1)}（${r.areaY}）`,color:"var(--c-house)",cap:50,extra:"满分线 50"});
   document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}：${a.raw} 平方米，${a.y} 年，${a.note}。<a href="${a.url}" target="_blank" rel="noopener">来源</a></li>`).join("");
 }
@@ -445,7 +466,7 @@ const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec
 const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g4:1,protein:1,fruit:1,veg:1,meat:1,egg:1,milk:1};
 let sortK="score",sortD=-1;
 function renderTable(){
-  const rows=[...DATA].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
+  const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
   let h="<thead><tr>"+COLS.map(([k,l])=>`<th data-k="${k}" ${k===sortK?`aria-sort="${sortD<0?"descending":"ascending"}"`:""}>${l}${k===sortK?(sortD<0?" ↓":" ↑"):""}</th>`).join("")+"</tr></thead><tbody>";
   rows.forEach(r=>{h+="<tr>"+COLS.map(([k])=>{const v=r[k];return `<td${v==null?' class="na"':""}>${k==="name"?v:fmt(v,DEC[k]||0)}</td>`;}).join("")+"</tr>";});
   const t=document.getElementById("tbl"); t.innerHTML=h+"</tbody>";
@@ -457,9 +478,11 @@ function render(){
   const tot=DIMS.reduce((a,d)=>a+W[d.k],0);
   DIMS.forEach(d=>{const pct=tot?Math.round(100*W[d.k]/tot):0;document.getElementById("o-"+d.k).textContent=pct+"%";document.querySelector(`[data-wt="${d.k}"]`).textContent="权重 "+pct+"%";});
   document.getElementById("wsum").textContent=tot?"滑块数值会自动换算成百分比。":"至少给一个维度设置权重。";
-  score(); renderRank(); renderScatter(); renderTable();
+  score();
+  document.querySelectorAll(".viewtog button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===VIEW)));
+  renderRank(); renderScatter(); renderMove(); renderElec(); renderArea(); renderTable();
 }
-renderMove(); renderElec(); renderArea(); render();
+render();
 </script>
 <script data-goatcounter="https://96kevinli29.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
