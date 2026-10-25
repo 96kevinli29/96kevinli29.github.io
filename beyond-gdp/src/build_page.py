@@ -33,9 +33,9 @@ DATA = []
 for c, r in rows.items():
     if c in EXCLUDE:
         continue
-    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "milk", "life", "imr", "net", "bb", "g4", "cars"]}
+    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g4", "cars"]}
     d["gdpY"], d["carsY"] = yrs["gdp"][c], yrs.get("cars", {}).get(c)
-    for k in ["fruit", "veg", "meat", "egg", "milk", "life", "imr", "net", "bb", "g4", "elec"]:
+    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g4", "elec"]:
         if d[k] is not None:
             d[k] = round(d[k], 1)
     d["gdp"] = round(d["gdp"])
@@ -64,7 +64,7 @@ pick = lambda key: {c: y for c, y in yrs.get(key, {}).items() if c in shown}
 YEARS = [y for y in [
     year_summary("人均 GDP（PPP）", pick("gdp")),
     year_summary("人均发电量", pick("elec")),
-    year_summary("水果、蔬菜、肉、蛋、奶（FAO）", pick("fruit")),
+    year_summary("水果、蔬菜、肉、蛋（FAO）", pick("fruit")),
     year_summary("人均住房面积", {c: a["y"] for c, a in area.items() if c in shown}),
     year_summary("每千人机动车", pick("cars")),
     year_summary("预期寿命", pick("life")),

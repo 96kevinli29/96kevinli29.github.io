@@ -250,8 +250,8 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
     <li><b>发电量包含工业用电。</b>冰岛、挪威、巴林等国有大量电解铝等高耗能工业。理想指标是居民用电，但缺少统一的跨国数据。</li>
     <li><b>部分经济体缺数据。</b>FAO 不发布新加坡的食物数据，新加坡的“食”按 G20 和欧盟的平均分计。世界银行缺香港、澳门的婴儿死亡率，它们的健康只看预期寿命。缺两项以上数据的 13 个小地区已经排除。</li>
     <li><b>平均数会掩盖不平等。</b>人均数字高，不代表大多数人都过得好。</li>
-    <li><b>吃得多不等于吃得好。</b>每项都设了上限：每年水果 100 公斤、蔬菜 150 公斤、肉蛋合计 72 公斤、奶 200 公斤，超过后不再加分。</li>
-    <li><b>奶的消费量受饮食习惯影响很大。</b>东亚和东南亚很多人乳糖不耐受，传统饮食里奶很少，这一项得分偏低不完全代表买不起。</li>
+    <li><b>吃得多不等于吃得好。</b>每项都设了上限：每年水果 100 公斤、蔬菜 150 公斤、肉蛋合计 72 公斤，超过后不再加分。</li>
+    <li><b>奶没有计入。</b>奶的消费量受饮食习惯影响很大，东亚和东南亚很多人乳糖不耐受，传统饮食里奶很少，喝得少不代表吃得差。</li>
     <li><b>食物数据是“供应量”。</b>FAO 统计的是可供消费的食物，包括零售和家庭环节的浪费，实际吃进去的会少一些。</li>
   </ul>
 
@@ -269,7 +269,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
   <ul>
     <li>人均 GDP（PPP）、人口、互联网用户比例、固定宽带订户、预期寿命、婴儿死亡率：<a href="https://data.worldbank.org" target="_blank" rel="noopener">世界银行 WDI</a></li>
     <li>人均发电量：<a href="https://github.com/owid/energy-data" target="_blank" rel="noopener">Our World in Data 能源数据</a>（Ember、Energy Institute）</li>
-    <li>水果、蔬菜、肉、蛋、奶的人均供应量：<a href="https://ourworldindata.org/food-supply" target="_blank" rel="noopener">FAO 食物平衡表</a>，经 Our World in Data 整理</li>
+    <li>水果、蔬菜、肉、蛋的人均供应量：<a href="https://ourworldindata.org/food-supply" target="_blank" rel="noopener">FAO 食物平衡表</a>，经 Our World in Data 整理</li>
     <li>4G 移动网络人口覆盖率：<a href="https://ourworldindata.org/grapher/share-with-4g-mobile-network-coverage" target="_blank" rel="noopener">ITU</a>，经 Our World in Data 整理</li>
     <li>每千人机动车数量：<a href="https://en.wikipedia.org/wiki/List_of_countries_by_vehicles_per_capita" target="_blank" rel="noopener">Wikipedia 汇总的各国官方数据</a>，部分经济体用各国统计补充；欧盟为成员国加总</li>
     <li>地铁年客运量：<a href="https://en.wikipedia.org/wiki/List_of_metro_systems" target="_blank" rel="noopener">Wikipedia 地铁系统列表</a>（各运营方公布的数据，多为 2024–2025 年）</li>
@@ -294,7 +294,7 @@ const RAIL_MIN=/*__RMIN__*/, RAIL_MAX=/*__RMAX__*/, TRIP_KM=8;
 
 const DIMS=[
   {k:"elec",name:"电",full:"用电",w:25,desc:"人均发电量，对数刻度，100 度为 0 分，15,000 度封顶为满分。"},
-  {k:"food",name:"食",full:"饮食",w:15,desc:"四项等权平均（各占饮食得分的 1/4）：每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉蛋合计（0–72 公斤）、奶（0–200 公斤）。"},
+  {k:"food",name:"食",full:"饮食",w:15,desc:"三项等权平均（各占饮食得分的 1/3）：每人每年的水果（0–100 公斤）、蔬菜（0–150 公斤）、肉蛋合计（0–72 公斤）。"},
   {k:"house",name:"住",full:"住房",w:15,desc:"人均住房面积，10 平方米为 0 分，50 平方米为满分。只有 __NAREA__ 个经济体有数据。"},
   {k:"move",name:"行",full:"出行",w:15,desc:"两项各占一半：每千人汽车（650 辆满分），以及人均乘坐高铁和城市轨道交通的公里数（对数刻度）。普通铁路不计入。"},
   {k:"health",name:"健康",full:"健康",w:15,desc:"预期寿命（55–85 岁）和婴儿死亡率（对数，70‰ 为 0 分，1.5‰ 为满分）平均。"},
@@ -314,7 +314,7 @@ DATA.forEach(r=>{
   r.railKm=r.hsrKm+r.urbanKm;
   const s={};
   s.elec=r.elec!=null? lg(Math.max(r.elec,100),100,15000):null;
-  s.food=avg([lin(r.fruit,0,100),lin(r.veg,0,150),(r.meat!=null||r.egg!=null)?lin((r.meat??0)+(r.egg??0),0,72):null,lin(r.milk,0,200)]);
+  s.food=avg([lin(r.fruit,0,100),lin(r.veg,0,150),(r.meat!=null||r.egg!=null)?lin((r.meat??0)+(r.egg??0),0,72):null]);
   s.house=lin(r.area,10,50);
   const car=lin(r.cars,0,650), rail=r.railKm>0? lg(Math.max(r.railKm,RAIL_MIN),RAIL_MIN,RAIL_MAX):0;
   s.move= car!=null? .5*car+.5*rail : null;
@@ -445,8 +445,8 @@ function renderArea(){
   document.getElementById("areasrc").innerHTML=AREASRC.map(a=>`<li>${a.name}：${a.raw} 平方米，${a.y} 年，${a.note}。<a href="${a.url}" target="_blank" rel="noopener">来源</a></li>`).join("");
 }
 
-const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["milk","奶 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g4","4G %"]];
-const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g4:1,fruit:1,veg:1,meat:1,egg:1,milk:1};
+const COLS=[["name","经济体"],["score","得分"],["gdp","人均GDP $"],["elec","发电 kWh"],["fruit","水果 kg"],["veg","蔬菜 kg"],["meat","肉 kg"],["egg","蛋 kg"],["area","住房 m²"],["cars","车/千人"],["hsrKm","高铁 km"],["urbanKm","城轨 km"],["life","寿命"],["imr","婴儿死亡‰"],["net","网民 %"],["bb","宽带/百人"],["g4","4G %"]];
+const DEC={score:1,area:1,life:1,imr:1,net:1,bb:1,g4:1,fruit:1,veg:1,meat:1,egg:1};
 let sortK="score",sortD=-1;
 function renderTable(){
   const rows=[...SHOW].sort((a,b)=>{const x=a[sortK],y=b[sortK];if(x==null)return 1;if(y==null)return -1;return typeof x==="string"?sortD*x.localeCompare(y,"zh"):sortD*(x-y);});
