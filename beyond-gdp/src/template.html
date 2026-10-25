@@ -62,10 +62,10 @@ svg .lbl{fill:var(--ink);font-family:var(--f-body);font-size:12px}
 button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:4px;cursor:pointer}
 button:hover{border-color:var(--accent)}
 button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.rank{display:grid;grid-template-columns:2.2em minmax(6.5em,9.5em) minmax(0,1fr) 3em 4.2em;gap:3px 10px;align-items:center;font-size:14px}
+.rank{display:grid;grid-template-columns:2.2em minmax(5.5em,8.5em) 4.8em minmax(0,1fr) 3em 4.2em;gap:3px 10px;align-items:center;font-size:14px}
 .rank .h{font-size:11px;color:var(--muted);font-family:var(--f-data);text-transform:uppercase;letter-spacing:.06em}
 .rank .nm{line-height:1.25;min-width:0}
-.rank .pop{display:block;font-size:11px;color:var(--muted);font-family:var(--f-data)}
+.rank .pop{font-size:12px;color:var(--muted);font-family:var(--f-data);text-align:right;white-space:nowrap}
 .cmp td.nat{color:var(--muted)}
 .cmp tr.sub td{border-top:2px solid var(--rule)}
 .cmp td:not(:first-child),.cmp th:not(:first-child){text-align:right}
@@ -396,11 +396,11 @@ function hideTip(){tip.hidden=true;}
 
 function renderRank(){
   const rows=[...SHOW].sort((a,b)=>b.score-a.score);
-  let h=`<div class="h">#</div><div class="h">经济体</div><div class="h">综合得分</div><div class="h" style="text-align:right">分</div><div class="h" style="text-align:right">vs GDP</div>`;
+  let h=`<div class="h">#</div><div class="h">经济体</div><div class="h" style="text-align:right">人口</div><div class="h">综合得分</div><div class="h" style="text-align:right">分</div><div class="h" style="text-align:right">vs GDP</div>`;
   rows.forEach(r=>{
     const d=gdpRank[r.code]-r.rank;
     const cls=d>0?"up":d<0?"down":"eq", sym=d>0?`▲${d}`:d<0?`▼${-d}`:"—";
-    h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}<span class="pop">${popFmt(r.pop)}</span></div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP 排名第 ${gdpRank[r.code]}">${sym}</div>`;
+    h+=`<div class="num">${r.rank}</div><div class="nm">${r.name}</div><div class="pop">${popFmt(r.pop)}</div><div class="bar">${DIMS.map(k=>`<span style="width:${r.contrib[k.k]}%;background:${col(k.k)}" title="${k.name} ${r.contrib[k.k].toFixed(1)}"></span>`).join("")}</div><div class="num" style="text-align:right">${r.score.toFixed(1)}</div><div class="delta ${cls}" title="GDP 排名第 ${gdpRank[r.code]}">${sym}</div>`;
   });
   document.getElementById("rank").innerHTML=h;
 }
