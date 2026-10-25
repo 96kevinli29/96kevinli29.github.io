@@ -129,8 +129,8 @@ for c in lst:
     put("g5", c, g5.get(c))
 put("g5", "EUU", eu_avg(g5))
 
-# Education (UNESCO UIS): tertiary gross enrolment ratio and STEM share of tertiary graduates
-for key, code in [("ter", "GER.5T8"), ("stem", "FOSGP.5T8.F500600700")]:
+# Education (UNESCO UIS): tertiary gross enrolment ratio
+for key, code in [("ter", "GER.5T8")]:
     best = {}
     for x in load(f"uis/{code}.json")["records"]:
         c, y = x["geoUnit"], x["year"]
@@ -197,7 +197,7 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf8") as f:
     json.dump({"rows": rows, "years": years}, f, ensure_ascii=False, indent=1)
 print(f"{len(ECON)} economies -> {os.path.relpath(OUT, HERE)}")
-for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5", "hom", "ter", "stem"]:
+for key in ["elec", "fruit", "cars", "life", "imr", "net", "g5", "hom", "ter"]:
     gaps = [ZH[c] for c in ECON if rows[c].get(key) is None]
     if gaps:
         print(f"  missing {key}: {', '.join(gaps)}")

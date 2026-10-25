@@ -5,7 +5,6 @@ Inputs:
   data/area.json        housing floor area per person, hand-collected (m2, year, source)
   data/rail.json        high-speed rail pkm, light rail / tram trips, China urban-rail pkm
   data/night_safety.json  Gallup: % who feel safe walking alone at night (2024)
-  data/stem_extra.json  STEM graduate shares for China and Japan from their ministries
   data/regions.json     Jiangsu+Zhejiang+Shanghai, shown as a regional reference
   data/findings.html    the hand-written findings shown under the scatter chart
   data/jzs.html         the hand-written notes under the Jiangsu-Zhejiang-Shanghai table
@@ -24,7 +23,7 @@ OUT = os.path.join(HERE, "..", "index.html")
 RAIL_MIN, RAIL_MAX = 10, 1500  # km per person per year: 0 and full score (log scale)
 # Indicators replaced by another economy's value where the own figure misleads.
 # Luxembourg: most students study abroad, so its own tertiary enrolment (22%) is far too low.
-SUBSTITUTE = {"LUX": ("EUU", ["ter", "stem"])}
+SUBSTITUTE = {"LUX": ("EUU", ["ter"])}
 
 
 def load(name):
@@ -36,16 +35,15 @@ ind = load("indicators.json")
 rows, yrs = ind["rows"], ind["years"]
 area, rail, findings, jzs_text = load("area.json"), load("rail.json"), load("findings.html"), load("jzs.html")
 night = load("night_safety.json")
-stem_extra = load("stem_extra.json")["values"]
 regions = load("regions.json")
 
 DATA = []
 for c, r in rows.items():
     if c in EXCLUDE:
         continue
-    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars", "hom", "ter", "stem"]}
+    d = {k: r.get(k) for k in ["code", "name", "gdp", "pop", "elec", "fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "cars", "hom", "ter"]}
     d["gdpY"], d["carsY"] = yrs["gdp"][c], yrs.get("cars", {}).get(c)
-    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec", "hom", "ter", "stem"]:
+    for k in ["fruit", "veg", "meat", "egg", "life", "imr", "net", "bb", "g5", "elec", "hom", "ter"]:
         if d[k] is not None:
             d[k] = round(d[k], 1)
     d["gdp"] = round(d["gdp"])
@@ -57,8 +55,6 @@ for c, r in rows.items():
     d["urbanTrips"] = round((r.get("metroTrips") or 0) + rail["lrt"].get(c, 0), 1)
     d["urbanPkm"] = rail.get("urbanPkm", {}).get(c)
     d["night"] = night["values"].get(c)
-    if d["stem"] is None and c in stem_extra:  # China, Japan: ministry figures
-        d["stem"] = stem_extra[c]["v"]
     if c in SUBSTITUTE:
         src, keys = SUBSTITUTE[c]
         for k in keys:
@@ -91,7 +87,6 @@ YEARS = [y for y in [
     year_summary("5G 覆盖率", pick("g5")),
     year_summary("命案率", pick("hom")),
     year_summary("高等教育毛入学率", pick("ter")),
-    year_summary("STEM 毕业生占比", {**pick("stem"), **{c: v["y"] for c, v in stem_extra.items() if c in shown}}),
     year_summary("夜间独自走路感到安全（盖洛普）", {c: night["year"] for c in night["values"] if c in shown}),
 ] if y]
 AREASRC = [{"name": rows[c]["name"], "raw": a["v"], "y": a["y"], "note": a["note"], "url": a["url"]}

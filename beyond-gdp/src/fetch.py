@@ -35,9 +35,8 @@ FILES = {
     # ITU 5G population coverage (SDG 9.c.1) and an ISO numeric -> alpha-3 table for its UN M49 codes
     "un/IT_MOB_5GNTWK.json": "https://unstats.un.org/sdgapi/v1/sdg/Series/Data?seriesCode=IT_MOB_5GNTWK&pageSize=20000",
     "un/iso3166.csv": "https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv",
-    # UNESCO UIS: tertiary gross enrolment ratio, and % of tertiary graduates from STEM programmes
+    # UNESCO UIS: tertiary gross enrolment ratio
     "uis/GER.5T8.json": "https://api.uis.unesco.org/api/public/data/indicators?indicator=GER.5T8&start=2015&end=2025",
-    "uis/FOSGP.5T8.F500600700.json": "https://api.uis.unesco.org/api/public/data/indicators?indicator=FOSGP.5T8.F500600700&start=2015&end=2025",
 }
 for code, years in WB_INDICATORS.items():
     FILES[f"wb/{code}.json"] = f"{WB}/country/all/indicator/{code}?format=json&date={years}&per_page=20000"
