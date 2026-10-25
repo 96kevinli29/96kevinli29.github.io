@@ -12,7 +12,7 @@ import collections
 import json
 import os
 
-from names import EXCLUDE
+from names import EXCLUDE, G20
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(HERE, "data")
@@ -82,6 +82,7 @@ fills = {
     "/*__DATA__*/": json.dumps(DATA, ensure_ascii=False, separators=(",", ":")),
     "/*__YEARS__*/": json.dumps(YEARS, ensure_ascii=False),
     "/*__AREASRC__*/": json.dumps(AREASRC, ensure_ascii=False),
+    "/*__G20__*/": json.dumps(G20),
     "/*__RMIN__*/": str(RAIL_MIN),
     "/*__RMAX__*/": str(RAIL_MAX),
     "__NAREA__": str(sum(1 for d in DATA if d["area"] is not None)),

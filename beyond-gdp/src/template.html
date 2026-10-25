@@ -105,7 +105,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
 <header><div class="col">
   <div class="eyebrow">Sea-Fill · 社会科学笔记</div>
   <h1>GDP 之外</h1>
-  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，共 __N__ 个经济体。页面默认先比较 G20 和欧盟，可以随时切换到全部 __N__ 个。</p>
+  <p class="lede">用电、吃饭、住房、出行、健康和联网，重新给人均 GDP 前 100 名和 GDP 总量前 50 名的经济体记一笔账。欧盟 27 国合并成一个整体，G20 成员法国、德国、意大利另外单独列出，共 __N__ 个经济体。页面默认先比较 G20 和欧盟，可以随时切换到全部 __N__ 个。</p>
   <div class="byline">数据截至 2026 年 10 月 · 尽量使用 2025 年数据 · 世界银行 / FAO / Ember / ITU / 各国统计局 · 权重可调</div>
 </div></header>
 
@@ -114,8 +114,8 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-si
   <p>人均 GDP 衡量的是一个经济体一年产出多少，并不直接告诉我们普通人过得怎么样。资源出口、金融中心和跨国公司利润都会把 GDP 推高，但这些钱未必变成居民的餐桌、房子和通勤。</p>
   <p>这篇文章换一种算法：不看产出，看<b>人实际能用上的东西</b>。我们选了六个维度，全部用实物指标：度、公斤、平方米、辆、公里、岁。然后和购买力平价（PPP）人均 GDP 的排名做对比。衣食住行里的“衣”暂时没有计分，原因见文末。</p>
   <p>为什么不用“居民消费额”？因为同样的东西在不同国家价格差很多。一碗面、一次理发、一张高铁票，在中国的价格可能只有西欧的几分之一。购买力平价（PPP）只做了部分修正，按美元算的消费额仍会低估物价便宜的国家。实物指标没有这个问题：一度电就是一度电。</p>
-  <p>范围是两部分的合集：2025 年人均 GDP（PPP）排名前 100 的经济体，加上 GDP 总量（现价美元）排名前 50 的经济体。后者补进了印度、印尼、越南、菲律宾、孟加拉国、巴基斯坦、埃及、伊朗、秘鲁、南非、尼日利亚 11 个人口大国，它们的人均 GDP 不在前 100 名。排名数据都来自世界银行。欧盟 27 个成员国合并成“欧盟”计算。还没发布 2025 年数据的经济体，用它们最新一年的数据排名。13 个小地区缺两项以上的数据，没有纳入：法罗群岛、百慕大、开曼群岛、格陵兰、波多黎各、阿鲁巴、美属维尔京群岛、特克斯和凯科斯、荷属圣马丁、库拉索、帕劳、安道尔、圣马力诺。世界银行不发布台湾的数据，所以台湾也不在其中。</p>
-  <p>G20 的成员里，法国、德国、意大利已经合并在欧盟里；非洲联盟没有统一的统计数据，不单列。所以“G20 + 欧盟”共 17 个经济体。</p>
+  <p>范围是两部分的合集：2025 年人均 GDP（PPP）排名前 100 的经济体，加上 GDP 总量（现价美元）排名前 50 的经济体。后者补进了印度、印尼、越南、菲律宾、孟加拉国、巴基斯坦、埃及、伊朗、秘鲁、南非、尼日利亚 11 个人口大国，它们的人均 GDP 不在前 100 名。排名数据都来自世界银行。欧盟 27 个成员国合并成“欧盟”计算，其中法国、德国、意大利是 G20 成员，另外单独列出。还没发布 2025 年数据的经济体，用它们最新一年的数据排名。13 个小地区缺两项以上的数据，没有纳入：法罗群岛、百慕大、开曼群岛、格陵兰、波多黎各、阿鲁巴、美属维尔京群岛、特克斯和凯科斯、荷属圣马丁、库拉索、帕劳、安道尔、圣马力诺。世界银行不发布台湾的数据，所以台湾也不在其中。</p>
+  <p>G20 的成员里，法国、德国、意大利既单独列出，也计入欧盟整体；非洲联盟没有统一的统计数据，不单列。所以“G20 + 欧盟”共 20 个经济体。</p>
 
   <h2>六个维度，用电权重最高</h2>
   <p>电力是现代生活的底座：照明、冷暖、做饭、洗衣、上网都离不开它，而且发电量很难造假，“李克强指数”就把它当作核心指标。所以默认权重里电力占 25%，其余五项各占 15%。</p>
@@ -323,7 +323,7 @@ DATA.forEach(r=>{
   s.net= r.net!=null? (lin(r.net,40,100)+access)/2 : null;
   r.s=s;
 });
-const G20=["ARG","AUS","BRA","CAN","CHN","IND","IDN","JPN","KOR","MEX","RUS","SAU","ZAF","TUR","GBR","USA","EUU"];
+const G20=/*__G20__*/;
 // A missing dimension takes the average score of the G20 + EU economies that have it.
 const G20AVG=Object.fromEntries(DIMS.map(d=>[d.k,avg(DATA.filter(r=>G20.includes(r.code)).map(r=>r.s[d.k]))]));
 DATA.forEach(r=>DIMS.forEach(d=>{ if(r.s[d.k]==null) r.s[d.k]=G20AVG[d.k]; }));
@@ -396,7 +396,7 @@ function fit(){
   let sxy=0,sxx=0; xs.forEach((x,i)=>{sxy+=(x-mx)*(ys[i]-my);sxx+=(x-mx)**2;});
   const b=sxy/sxx,a=my-b*mx; return g=>a+b*ln(g);
 }
-const KEY=["CHN","USA","EUU","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
+const KEY=["CHN","USA","EUU","FRA","DEU","ITA","JPN","KOR","GBR","RUS","IND","SGP","HKG","SAU","ARE","QAT","CHE","NOR","BRA","MEX","TUR","AUS","CAN","IDN","NGA","VNM","ZAF"];
 function renderScatter(){
   const f=fit();
   SHOW.forEach(r=>r.resid=r.score-f(r.gdp));

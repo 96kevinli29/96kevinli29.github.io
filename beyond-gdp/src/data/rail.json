@@ -35,6 +35,18 @@
   "IDN": {
    "v": 861,
    "note": "Whoosh 606 万人次（2024）× 全线 142 公里，上限"
+  },
+  "FRA": {
+   "v": 59700,
+   "note": "2023，UIC"
+  },
+  "DEU": {
+   "v": 38000,
+   "note": "2023，UIC"
+  },
+  "ITA": {
+   "v": 26000,
+   "note": "2023，UIC"
   }
  },
  "lrt": {
@@ -56,7 +68,9 @@
   "COL": 10.4,
   "ARE": 9.9,
   "ARG": 0.8,
-  "CHE": 191.5
+  "CHE": 191.5,
+  "DEU": 2566.9,
+  "FRA": 380.4
  },
  "sources": [
   "<li>高铁人公里：中国 <a href=\"https://www.yicai.com/news/102443765.html\" target=\"_blank\" rel=\"noopener\">国家铁路局 2024 年动车组旅客周转量</a>；日本 <a href=\"https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040366697&amp;fileKind=4\" target=\"_blank\" rel=\"noopener\">国土交通省铁道输送统计</a>；欧盟（法、德、意、西）、韩国、土耳其、美国 <a href=\"https://statbase.org/datasets/air-rail-and-water-transportation/high-speed-rail-passenger-traffic/\" target=\"_blank\" rel=\"noopener\">UIC 2023 年统计</a>；俄罗斯 Sapsan、沙特 <a href=\"https://en.wikipedia.org/wiki/Haramain_High_Speed_Railway\" target=\"_blank\" rel=\"noopener\">哈拉曼高铁</a>、印尼 <a href=\"https://goodstats.id/article/jumlah-penumpang-kereta-cepat-whoosh-semakin-melonjak-pada-juni-2025-h2Qk6\" target=\"_blank\" rel=\"noopener\">Whoosh</a> 只有乘客人次</li>",

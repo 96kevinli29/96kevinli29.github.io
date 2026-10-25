@@ -173,5 +173,26 @@
   "y": 2024,
   "note": "全国，居住面积，不含厨房、卫生间",
   "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2025/01/thong-cao-bao-chi-ket-qua-dieu-tra-dan-so-va-nha-o-giua-ky-nam-2024/"
+ },
+ "DEU": {
+  "v": 44,
+  "use": 44,
+  "y": 2022,
+  "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+ },
+ "FRA": {
+  "v": 40,
+  "use": 40,
+  "y": 2022,
+  "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
+ },
+ "ITA": {
+  "v": 41,
+  "use": 41,
+  "y": 2022,
+  "note": "住房存量÷人口，ODYSSEE 数据库（与欧盟数值同一来源）",
+  "url": "https://www.odyssee-mure.eu/private/workshop-papers/rome-2024/2_4-Energy-Sufficiency-Indicators-Enerdata.pdf"
  }
 }

@@ -11,7 +11,7 @@ import json
 import os
 import re
 
-from names import ALIAS, EU, EXCLUDE, METRO_CITY, ZH
+from names import ALIAS, EU, EXCLUDE, MEMBERS_SHOWN, METRO_CITY, ZH
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "raw")
@@ -48,6 +48,7 @@ lst = []
 for c in by_pc + by_total:
     if c not in EU and c not in EXCLUDE and c not in lst:
         lst.append(c)
+lst += MEMBERS_SHOWN  # France, Germany, Italy also stand on their own
 missing_names = [c for c in lst if c not in ZH]
 if missing_names:
     raise SystemExit(f"Add Chinese names to names.py for: {missing_names}")
@@ -163,10 +164,12 @@ for row in grid:
     if len(row) < 8:
         continue
     iso = METRO_CITY.get(row[1]) or n2iso.get(row[2])
-    iso = "EUU" if iso in EU else iso
     m = re.match(r"([\d.]+)\s*\((\d{4})", row[7].replace(",", ""))
-    if iso in ECON and m:
-        metro[iso] = metro.get(iso, 0) + float(m.group(1))
+    if not m:
+        continue
+    for key in {iso, "EUU" if iso in EU else iso}:  # a shown EU member counts for itself and the EU
+        if key in ECON:
+            metro[key] = metro.get(key, 0) + float(m.group(1))
 for c in ECON:
     rows[c]["metroTrips"] = round(metro.get(c, 0), 1)
 

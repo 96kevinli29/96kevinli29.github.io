@@ -2,6 +2,7 @@
 
 # Chinese display names by ISO3 code. Add an entry when a new economy enters the selection.
 ZH = {
+    "FRA": "法国", "DEU": "德国", "ITA": "意大利",
     "SGP": "新加坡", "MAC": "澳门", "QAT": "卡塔尔", "BMU": "百慕大", "NOR": "挪威", "CHE": "瑞士",
     "GUY": "圭亚那", "BRN": "文莱", "CYM": "开曼群岛", "USA": "美国", "ISL": "冰岛", "FRO": "法罗群岛",
     "HKG": "香港", "AND": "安道尔", "ARE": "阿联酋", "GRL": "格陵兰", "SMR": "圣马力诺", "SAU": "沙特",
@@ -31,7 +32,10 @@ ALIAS = {
 }
 
 # EU-27 members, merged into one economy "EUU".
+# MEMBERS_SHOWN are also listed on their own (they are G20 members).
 EU = "AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE".split()
+
+MEMBERS_SHOWN = ["FRA", "DEU", "ITA"]
 
 # Small territories left out because they miss two or more dimensions.
 EXCLUDE = set("BMU FRO SXM TCA CUW PLW AND SMR CYM GRL PRI ABW VIR".split())
@@ -39,5 +43,5 @@ EXCLUDE = set("BMU FRO SXM TCA CUW PLW AND SMR CYM GRL PRI ABW VIR".split())
 # Wikipedia's metro list files these cities under another country.
 METRO_CITY = {"Hong Kong": "HKG", "Macau": "MAC", "San Juan": "PRI"}
 
-# G20 members shown by default (France, Germany, Italy are inside the EU).
-G20 = "ARG AUS BRA CAN CHN IND IDN JPN KOR MEX RUS SAU ZAF TUR GBR USA EUU".split()
+# G20 members plus the EU, shown by default.
+G20 = "ARG AUS BRA CAN CHN FRA DEU IND IDN ITA JPN KOR MEX RUS SAU ZAF TUR GBR USA EUU".split()
