@@ -4,6 +4,9 @@ Outputs:
   ../index.html     Chinese, from template_zh.html
   ../en/index.html  English, from template_en.html
 
+Both pages inline style.css and app.js (styles, scoring and charts); each template
+holds the text, the dimension definitions and the strings (L) the script shows.
+
 Inputs:
   data/indicators.json  output of build_data.py
   data/area.json        housing floor area per person, hand-collected (m2, year, source)
@@ -49,6 +52,11 @@ YEAR_LABELS = {
 def load(name):
     with open(os.path.join(DATA_DIR, name), encoding="utf8") as f:
         return json.load(f) if name.endswith(".json") else f.read()
+
+
+def load_src(name):
+    with open(os.path.join(HERE, name), encoding="utf8") as f:
+        return f.read()
 
 
 ind = load("indicators.json")
@@ -118,6 +126,9 @@ def build(lang):
     with open(os.path.join(HERE, f"template_{lang}.html"), encoding="utf8") as f:
         page = f.read()
     fills = {
+        # shared style and script first, so placeholders inside them are filled too
+        "/*__CSS__*/": load_src("style.css").strip(),
+        "/*__APP__*/": load_src("app.js").strip(),
         "/*__DATA__*/": json.dumps(data, ensure_ascii=False, separators=(",", ":")),
         "/*__YEARS__*/": json.dumps(years, ensure_ascii=False),
         "/*__AREASRC__*/": json.dumps(areasrc, ensure_ascii=False),
