@@ -11,7 +11,8 @@ Inputs:
   data/indicators.json  output of build_data.py
   data/area.json        housing floor area per person, hand-collected (m2, year, source)
   data/rail.json        high-speed rail pkm, light rail / tram trips, China urban-rail pkm
-  data/night_safety.json  Gallup: % who feel safe walking alone at night (2024)
+  data/night_safety.json  Gallup: % who feel safe walking alone at night (2024; "years" lists exceptions)
+  data/manual.json      hand-collected values for indicators the downloaded sources lack
   data/regions.json     Jiangsu+Zhejiang+Shanghai, shown as a regional reference
   data/findings_<lang>.html  the hand-written findings shown under the scatter chart
   data/jzs_<lang>.html       the hand-written notes under the Jiangsu-Zhejiang-Shanghai table
@@ -62,6 +63,13 @@ def load_src(name):
 ind = load("indicators.json")
 rows, yrs = ind["rows"], ind["years"]
 area, rail, night, regions = load("area.json"), load("rail.json"), load("night_safety.json"), load("regions.json")
+# Hand-collected values for gaps in the downloaded sources (e.g. 5G coverage for Argentina).
+for key, by_code in load("manual.json").items():
+    if key.startswith("_"):
+        continue
+    for c, m in by_code.items():
+        rows[c][key] = m["v"]
+        yrs.setdefault(key, {})[c] = m["y"]
 
 DATA = []
 for c, r in rows.items():
@@ -112,7 +120,7 @@ def build(lang):
     pick = lambda key: {c: y for c, y in yrs.get(key, {}).items() if c in shown}
     sources_by_key = {
         "area": {c: a["y"] for c, a in area.items() if c in shown},
-        "night": {c: night["year"] for c in night["values"] if c in shown},
+        "night": {c: night.get("years", {}).get(c, night["year"]) for c in night["values"] if c in shown},
     }
     years = []
     for key, labels in YEAR_LABELS.items():

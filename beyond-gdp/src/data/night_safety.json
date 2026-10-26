@@ -62,6 +62,17 @@
   "FRA": 73,
   "DEU": 78,
   "ITA": 60,
-  "EUU": 73.9
+  "EUU": 73.9,
+  "SWE": 81,
+  "DNK": 89,
+  "FIN": 88,
+  "LUX": 87
+ },
+ "years": {
+  "LUX": 2023
+ },
+ "notes": {
+  "LUX": "Gallup Global Safety Report 2024 (2023 survey); Luxembourg is not in the 2025 report",
+  "url_LUX": "https://www.gallup.com/file/analytics/650768/Gallup_Global-Safety-Report-2024.pdf"
  }
 }

@@ -16,7 +16,8 @@
 | `data/indicators.json` | `build_data.py` 的输出快照，提交到 git，没有 `raw/` 也能重建页面。 |
 | `data/area.json` | 人均住房面积，手工逐国整理（数值、年份、口径、来源链接）。 |
 | `data/rail.json` | 高铁人公里、轻轨和有轨电车客运人次、中国城市轨道交通人公里，手工整理。 |
-| `data/night_safety.json` | 盖洛普 2024 年“晚上独自走路感到安全”的比例，从 Global Safety Report 2025 的表格里摘录。 |
+| `data/night_safety.json` | 盖洛普 2024 年“晚上独自走路感到安全”的比例，从 Global Safety Report 2025 的表格里摘录；`years` 列出用其他年份的例外（卢森堡用 2023 年）。 |
+| `data/manual.json` | 下载的数据源缺、手工补上的数值（例如阿根廷的 5G 覆盖率），带年份和来源；`build_page.py` 用它覆盖 `indicators.json`。 |
 | `data/regions.json` | 江浙沪（三省市合并）的地区数据，手工整理，作为参照显示在各图表和“江浙沪”一节里。 |
 | `data/jzs_zh.html`, `data/jzs_en.html` | “江浙沪”一节表格下面的解读文字，手写。 |
 | `data/findings_zh.html`, `data/findings_en.html` | 散点图下面的结论文字，手写。 |
@@ -49,4 +50,4 @@ python3 build_page.py
 
 ## 计分
 
-八个维度，默认权重（模板里的 `DIMS`）：用电、住房、健康各 15，饮食、出行、教育、安全各 12.5，联网 5，合计 100。计分区间在 `app.js` 的 `dimScores`。某个经济体缺某一维度时，用 G20 和欧盟中有数据经济体在这一维度的平均分代替。
+八个维度，默认权重（模板里的 `DIMS`）：用电、住房、健康各 15，饮食、出行、教育、安全各 12.5，联网 5，合计 100。计分区间在 `app.js` 的 `dimScores`。某个经济体缺某一维度时，用 G20 和欧盟中有数据经济体在这一维度的平均分代替。G20 和富国（`names.py` 的 `FOCUS`）的数据必须齐全：更新数据后如果它们缺了某项，要手工补上（住房在 `area.json`，夜间安全在 `night_safety.json`，其他在 `manual.json`）。

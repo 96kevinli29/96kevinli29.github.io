@@ -261,5 +261,57 @@
   "note": "推算：2011 年人口普查户均 129.9 平方米 ÷ 户均 2.41 人（使用面积，自报）；2021 年普查只公布分组，没有平均值",
   "url": "https://statistiques.public.lu/dam-assets/catalogue-publications/RP-2011---Premiers-resultats/2013/rp11-09-13.pdf",
   "note_en": "Derived: 2011 census average dwelling 129.9 m² ÷ 2.41 persons (usable, self-reported); the 2021 census publishes only size bands"
+ },
+ "CAN": {
+  "v": 58.8,
+  "use": 58.8,
+  "y": 2022,
+  "note": "全国，住宅总面积÷人口：加拿大自然资源部（NRCan）综合能源使用数据库，2022 年住宅总面积 22.91 亿平方米、1,537 万户，按 3,893 万人口计算",
+  "url": "https://oee.nrcan.gc.ca/corporate/statistics/neud/dpa/showTable.cfm?type=CP&sector=res&juris=ca&year=2022&rn=1&page=0",
+  "note_en": "National, total residential floor space ÷ population: Natural Resources Canada's Comprehensive Energy Use Database, 2,291 million m² and 15.37 million households in 2022, over 38.93 million people"
+ },
+ "SAU": {
+  "v": 42.2,
+  "use": 42.2,
+  "y": 2020,
+  "weak": true,
+  "note": "学术估算：住宅存量总面积÷人口（Akin 等 2025 年西亚北非住宅存量模型，13.59 亿平方米，按 2022 年人口普查 3,218 万人计算）。官方住房调查只覆盖沙特籍家庭（约 60 平方米），不含外籍居民",
+  "url": "https://doi.org/10.5334/bc.488",
+  "note_en": "Academic estimate: total residential floor area ÷ population (Akin et al. 2025 building-stock model, 1,359 million m² over the 2022 census population of 32.18 million). The official housing survey covers Saudi households only (about 60 m²) and leaves out foreign residents"
+ },
+ "ZAF": {
+  "v": 18.0,
+  "use": 18.0,
+  "y": 2020,
+  "weak": true,
+  "note": "模型估算：PBL IMAGE 模型（Deetman 等 2020），城镇 16.4、农村 21.2，按农村人口 32.8% 加权；统计局只公布面积分档，没有全国平均数",
+  "url": "https://github.com/SPDeetman/BUMA/blob/master/files_IMAGE/res_Floorspace.csv",
+  "note_en": "Model estimate: PBL IMAGE model (Deetman et al. 2020), urban 16.4 and rural 21.2, weighted by a 32.8% rural population; Stats SA publishes only floor-area bands, not a national average"
+ },
+ "MEX": {
+  "v": 20.0,
+  "use": 20.0,
+  "y": 2015,
+  "note": "全国，有人居住住宅的建筑面积÷住户人口：国家能源效率委员会（CONUEE）估算 2015 年 23.96 亿平方米，INEGI 2015 年中期人口调查 1.195 亿人",
+  "url": "https://repositorio.cepal.org/handle/11362/43612",
+  "note_en": "National, built area of inhabited dwellings ÷ household population: the energy-efficiency commission CONUEE's estimate of 2,396 million m² in 2015, over 119.5 million people (INEGI 2015 intercensal survey)"
+ },
+ "BRA": {
+  "v": 22.1,
+  "use": 22.1,
+  "y": 2018,
+  "weak": true,
+  "note": "建筑存量模型估算：住宅总面积约 45.6 亿平方米（Navigant 全球建筑存量数据库，经国际金融公司 IFC 发布）÷ 人口；巴西统计局只统计房间数，没有面积",
+  "url": "https://edgebuildings.com/wp-content/uploads/2022/04/Brazil-Green-Building-Market-Intelligence.pdf",
+  "note_en": "Building-stock model: about 4,562 million m² of housing (Navigant Global Building Stock Database, published by IFC) ÷ population; IBGE records rooms, not floor area"
+ },
+ "ARG": {
+  "v": 17.5,
+  "use": 17.5,
+  "y": 2018,
+  "weak": true,
+  "note": "建筑存量模型估算：住宅总面积约 7.83 亿平方米（Navigant 全球建筑存量数据库，经国际金融公司 IFC 发布）÷ 人口；阿根廷统计局只统计房间数，没有面积，这个数字可能偏低",
+  "url": "https://edgebuildings.com/wp-content/uploads/2022/04/Argentina-Green-Building-Market-Intelligence.pdf",
+  "note_en": "Building-stock model: about 783 million m² of housing (Navigant Global Building Stock Database, published by IFC) ÷ population; INDEC records rooms, not floor area, and the figure may be low"
  }
 }

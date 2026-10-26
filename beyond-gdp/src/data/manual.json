@@ -1,0 +1,11 @@
+{
+ "_about": "Hand-collected values for indicators the downloaded sources lack; build_page.py applies them over indicators.json.",
+ "g5": {
+  "ARG": {
+   "v": 34.6,
+   "y": 2025,
+   "source": "ITU DataHub, population coverage by at least 5G (i271G5_pop), reported by ENACOM",
+   "url": "https://datahub.itu.int/data/?c=701&e=ARG&i=100095&s=34236"
+  }
+ }
+}
